@@ -1,4 +1,6 @@
 #include "rmw/rmw.h"
+#include "classes.h"
+#include "debug.h"
 
 
 rmw_ret_t rmw_borrow_loaned_message(const rmw_publisher_t * publisher, const rosidl_message_type_support_t * type_support, void ** ros_message)
@@ -53,16 +55,37 @@ rmw_client_t * rmw_create_client(const rmw_node_t * node, const rosidl_service_t
 
 rmw_guard_condition_t * rmw_create_guard_condition(rmw_context_t * context)
 {
-  return nullptr;
+  DEBUG("rmw_create_guard_condition" "\n");
+  rmw_guard_condition_t * ret = (rmw_guard_condition_t *)malloc(sizeof(rmw_guard_condition_t));
+  ret->data = NULL;
+  ret->implementation_identifier = rmw_get_implementation_identifier();
+  return ret;
 }
 
 rmw_node_t * rmw_create_node(rmw_context_t * context, const char * name, const char * namespace_)
 {
-  return nullptr;
+  DEBUG("rmw_create_node" "\n");
+  rmw_node_t *node = (rmw_node_t *)malloc(sizeof(rmw_node_t));
+  node->implementation_identifier = rmw_get_implementation_identifier();
+  node->data = (void*)new Node(name);
+  node->context = context;
+
+  const size_t namelen = strlen(name) + 1;
+  node->name = (const char*)malloc(namelen);
+  memcpy((char*)node->name, name, namelen);
+
+  const size_t nslen = strlen(namespace_) + 1;
+  node->namespace_ = (const char*)malloc(nslen);
+  memcpy((char*)node->namespace_, namespace_, nslen);
+
+  //DiscoveryClient::instance();
+
+  return node;
 }
 
 rmw_publisher_t * rmw_create_publisher(const rmw_node_t * node, const rosidl_message_type_support_t * type_support, const char * topic_name, const rmw_qos_profile_t * qos_profile, const rmw_publisher_options_t * publisher_options)
 {
+  DEBUG("rmw_create_publisher" "\n");
   return nullptr;
 }
 
@@ -189,7 +212,16 @@ rmw_ret_t rmw_node_assert_liveliness(const rmw_node_t * node)
 
 const rmw_guard_condition_t * rmw_node_get_graph_guard_condition(const rmw_node_t * node)
 {
-  return nullptr;
+  DEBUG("rmw_node_get_graph_guard_condition" "\n");
+  
+  //Node * node_implementation = static_cast<Node *>(node->data);
+  //printf("%s\n", node_implementation->getName());
+  
+  rmw_guard_condition_t * ret = (rmw_guard_condition_t *)malloc(sizeof(rmw_guard_condition_t));
+  ret->data = NULL;
+  ret->implementation_identifier = rmw_get_implementation_identifier();
+  
+  return ret;
 }
 
 rmw_ret_t rmw_publish(const rmw_publisher_t * publisher, const void * ros_message, rmw_publisher_allocation_t * allocation)
