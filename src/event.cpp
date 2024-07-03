@@ -3,7 +3,7 @@
 
 static bool is_event_supported(const rmw_event_type_t event_t)
 {
-  return true;
+  return false;
 }
 
 static rmw_ret_t init_rmw_event(rmw_event_t * rmw_event, const char * topic_impl_identifier, void * data, rmw_event_type_t event_type)

@@ -92,8 +92,6 @@ rmw_node_t * rmw_create_node(rmw_context_t * context, const char * name, const c
   node->namespace_ = (const char*)malloc(nslen);
   memcpy((char*)node->namespace_, namespace_, nslen);
 
-  //DiscoveryClient::instance();
-
   return node;
 }
 
@@ -283,10 +281,7 @@ const rmw_guard_condition_t * rmw_node_get_graph_guard_condition(const rmw_node_
 {
   DEBUG("rmw_node_get_graph_guard_condition" "\n");
   
-  //DesertNode * node_implementation = static_cast<DesertNode *>(node->data);
-  //printf("%s\n", node_implementation->getName());
-  
-  rmw_guard_condition_t * ret = (rmw_guard_condition_t *)malloc(sizeof(rmw_guard_condition_t));
+  rmw_guard_condition_t * ret = rmw_guard_condition_allocate();
   ret->data = NULL;
   ret->implementation_identifier = rmw_get_implementation_identifier();
   
@@ -296,6 +291,7 @@ const rmw_guard_condition_t * rmw_node_get_graph_guard_condition(const rmw_node_
 rmw_ret_t rmw_publish(const rmw_publisher_t * publisher, const void * ros_message, rmw_publisher_allocation_t * allocation)
 {
   DEBUG("rmw_publish" "\n");
+  printf("MSG: %s\n", static_cast<const char *>(ros_message));
   return RMW_RET_OK;
 }
 
