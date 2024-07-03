@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "rmw/impl/cpp/macros.hpp"
 
 #define DEBUG_ENABLED 1
 

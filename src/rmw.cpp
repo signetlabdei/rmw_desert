@@ -1,6 +1,8 @@
 #include <stdlib.h>
 
 #include "rmw/rmw.h"
+#include "rmw/allocators.h"
+
 #include "classes.h"
 #include "debug.h"
 
@@ -68,7 +70,7 @@ rmw_client_t * rmw_create_client(const rmw_node_t * node, const rosidl_service_t
 rmw_guard_condition_t * rmw_create_guard_condition(rmw_context_t * context)
 {
   DEBUG("rmw_create_guard_condition" "\n");
-  rmw_guard_condition_t * ret = (rmw_guard_condition_t *)malloc(sizeof(rmw_guard_condition_t));
+  rmw_guard_condition_t * ret = rmw_guard_condition_allocate();
   ret->data = NULL;
   ret->implementation_identifier = rmw_get_implementation_identifier();
   return ret;
@@ -77,7 +79,7 @@ rmw_guard_condition_t * rmw_create_guard_condition(rmw_context_t * context)
 rmw_node_t * rmw_create_node(rmw_context_t * context, const char * name, const char * namespace_)
 {
   DEBUG("rmw_create_node" "\n");
-  rmw_node_t *node = (rmw_node_t *)malloc(sizeof(rmw_node_t));
+  rmw_node_t *node = rmw_node_allocate();
   node->implementation_identifier = rmw_get_implementation_identifier();
   node->data = (void*)new DesertNode(name);
   node->context = context;
@@ -99,7 +101,7 @@ rmw_publisher_t * rmw_create_publisher(const rmw_node_t * node, const rosidl_mes
 {
   DEBUG("rmw_create_publisher" "\n");
 
-  rmw_publisher_t * ret = (rmw_publisher_t *)malloc(sizeof(rmw_publisher_t));
+  rmw_publisher_t * ret = rmw_publisher_allocate();
   ret->implementation_identifier = rmw_get_implementation_identifier();
   ret->topic_name = topic_name;
   
@@ -113,7 +115,7 @@ rmw_service_t * rmw_create_service(const rmw_node_t * node, const rosidl_service
 {
   DEBUG("rmw_create_service" "\n");
 
-  rmw_service_t * ret = (rmw_service_t *)malloc(sizeof(rmw_service_t));
+  rmw_service_t * ret = rmw_service_allocate();
   ret->implementation_identifier = rmw_get_implementation_identifier();
   ret->service_name = service_name;
   
@@ -126,11 +128,12 @@ rmw_subscription_t * rmw_create_subscription(const rmw_node_t * node, const rosi
 {
   DEBUG("rmw_create_subscription" "\n");
 
-  rmw_subscription_t * ret = (rmw_subscription_t *)malloc(sizeof(rmw_subscription_t));
+  rmw_subscription_t * ret = rmw_subscription_allocate();
   ret->implementation_identifier = rmw_get_implementation_identifier();
   ret->topic_name = topic_name;
   
-  ret->data = NULL;
+  DesertSubscriber* sub = new DesertSubscriber(topic_name);
+  ret->data = (void*)sub;
   
   return ret;
 }
@@ -139,10 +142,13 @@ rmw_wait_set_t * rmw_create_wait_set(rmw_context_t * context,  size_t max_condit
 {
   DEBUG("rmw_create_wait_set" "\n");
 
-  rmw_wait_set_t * ret = (rmw_wait_set_t *)malloc(sizeof(rmw_wait_set_t));
+  rmw_wait_set_t * ret = rmw_wait_set_allocate();
   ret->implementation_identifier = rmw_get_implementation_identifier();
   
-  ret->data = NULL;
+  ret->guard_conditions = NULL;
+  
+  DesertWaitset* ws = new DesertWaitset();
+  ret->data = (void*)ws;
   
   return ret;
 }
@@ -476,6 +482,7 @@ rmw_ret_t rmw_take_with_info(const rmw_subscription_t * subscription, void * ros
 rmw_ret_t rmw_trigger_guard_condition(const rmw_guard_condition_t * guard_condition)
 {
   DEBUG("rmw_trigger_guard_condition" "\n");
+  //RMW_SET_ERROR_MSG("guard condition is null");
   return RMW_RET_OK;
 }
 
