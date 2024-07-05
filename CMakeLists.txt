@@ -13,6 +13,7 @@ endif()
 
 find_package(ament_cmake_ros REQUIRED)
 
+find_package(rclcpp REQUIRED)
 find_package(rcutils REQUIRED)
 find_package(rcpputils REQUIRED)
 
@@ -50,6 +51,7 @@ target_link_libraries(rmw_desert PUBLIC
   rmw::rmw)
 
 target_link_libraries(rmw_desert PRIVATE
+  rclcpp::rclcpp
   rcutils::rcutils
   rcpputils::rcpputils
   rmw_dds_common::rmw_dds_common_library
@@ -76,6 +78,7 @@ PRIVATE "rmw_desert_BUILDING_LIBRARY")
 ament_export_include_directories(include)
 ament_export_libraries(rmw_desert)
 
+ament_export_dependencies(rclcpp)
 ament_export_dependencies(rcutils)
 ament_export_dependencies(rcpputils)
 ament_export_dependencies(rmw)

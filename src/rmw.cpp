@@ -3,6 +3,17 @@
 #include "rmw/rmw.h"
 #include "rmw/allocators.h"
 
+#include "rclcpp/typesupport_helpers.hpp"
+
+#include "rosidl_typesupport_introspection_cpp/identifier.hpp"
+#include "rosidl_typesupport_introspection_c/identifier.h"
+#include "rosidl_typesupport_introspection_cpp/message_introspection.hpp"
+#include "rosidl_typesupport_introspection_c/message_introspection.h"
+
+#include "rosidl_typesupport_cpp/identifier.hpp"
+#include "rosidl_typesupport_c/type_support_map.h"
+#include "rosidl_typesupport_c/identifier.h"
+
 #include "classes.h"
 #include "debug.h"
 
@@ -105,6 +116,45 @@ rmw_publisher_t * rmw_create_publisher(const rmw_node_t * node, const rosidl_mes
   
   DesertPublisher* pub = new DesertPublisher(topic_name, std::rand());
   ret->data = (void*)pub;
+  
+  auto ts_handle = get_message_typesupport_handle(type_support, type_support->typesupport_identifier);
+  if (type_support->typesupport_identifier == rosidl_typesupport_introspection_c__identifier) {
+  
+    printf("C introspection id\n");
+    auto test = static_cast<const rosidl_typesupport_introspection_c__MessageMembers *>(ts_handle->data);
+    printf("TYPESUPPORT NAME:  %s\n", test->message_name_);
+    
+  } else if (type_support->typesupport_identifier == rosidl_typesupport_introspection_cpp::typesupport_identifier) {
+  
+    printf("C++ introspection id\n");
+    auto test = static_cast<const rosidl_typesupport_introspection_cpp::MessageMembers *>(ts_handle->data);
+    printf("TYPESUPPORT NAME:  %s\n", test->message_name_);
+    printf("TYPESUPPORT MEMBER COUNT:  %lu\n", (unsigned long)test->member_count_);
+    
+  } else if (type_support->typesupport_identifier == rosidl_typesupport_c__typesupport_identifier) {
+  
+    printf("C id\n");
+    auto test = static_cast<const rosidl_typesupport_introspection_c__MessageMembers *>(ts_handle->data);
+    printf("TYPESUPPORT NAME:  %s\n", test->message_name_);
+    
+  } else if (type_support->typesupport_identifier == rosidl_typesupport_cpp::typesupport_identifier) {
+  
+    printf("C++ id\n");
+    auto test = static_cast<const type_support_map_t *>(ts_handle->data);
+    printf("TYPESUPPORT PACKAGE NAME:  %s\n", test->package_name);
+    printf("TYPESUPPORT SIZE:  %lu\n", (unsigned long)test->size);
+    for(int i=0; i<test->size; i++) {
+      printf("%i: %s - %s\n", i, test->typesupport_identifier[i], test->symbol_name[i]);
+    }
+    
+  }
+  /*
+  if (using_introspection_c_typesupport(type_support)) {
+    printf("C id\n");
+  } else if (using_introspection_cpp_typesupport(type_support)) {
+    printf("C++ id\n");
+  }
+  */
   
   return ret;
 }
