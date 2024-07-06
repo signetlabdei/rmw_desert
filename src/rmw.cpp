@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <string.h>
 
 #include "rmw/rmw.h"
 #include "rmw/allocators.h"
@@ -9,10 +10,14 @@
 #include "rosidl_typesupport_introspection_c/identifier.h"
 #include "rosidl_typesupport_introspection_cpp/message_introspection.hpp"
 #include "rosidl_typesupport_introspection_c/message_introspection.h"
+#include "rosidl_typesupport_introspection_cpp/field_types.hpp"
+#include "rosidl_typesupport_introspection_c/field_types.h"
 
 #include "rosidl_typesupport_cpp/identifier.hpp"
 #include "rosidl_typesupport_c/type_support_map.h"
 #include "rosidl_typesupport_c/identifier.h"
+
+#include "std_msgs/msg/string.hpp"
 
 #include "classes.h"
 #include "debug.h"
@@ -106,7 +111,7 @@ rmw_node_t * rmw_create_node(rmw_context_t * context, const char * name, const c
   return node;
 }
 
-rmw_publisher_t * rmw_create_publisher(const rmw_node_t * node, const rosidl_message_type_support_t * type_support, const char * topic_name, const rmw_qos_profile_t * qos_profile, const rmw_publisher_options_t * publisher_options)
+rmw_publisher_t * rmw_create_publisher(const rmw_node_t * node, const rosidl_message_type_support_t * type_supports, const char * topic_name, const rmw_qos_profile_t * qos_profile, const rmw_publisher_options_t * publisher_options)
 {
   DEBUG("rmw_create_publisher" "\n");
 
@@ -114,47 +119,8 @@ rmw_publisher_t * rmw_create_publisher(const rmw_node_t * node, const rosidl_mes
   ret->implementation_identifier = rmw_get_implementation_identifier();
   ret->topic_name = topic_name;
   
-  DesertPublisher* pub = new DesertPublisher(topic_name, std::rand());
-  ret->data = (void*)pub;
-  
-  auto ts_handle = get_message_typesupport_handle(type_support, type_support->typesupport_identifier);
-  if (type_support->typesupport_identifier == rosidl_typesupport_introspection_c__identifier) {
-  
-    printf("C introspection id\n");
-    auto test = static_cast<const rosidl_typesupport_introspection_c__MessageMembers *>(ts_handle->data);
-    printf("TYPESUPPORT NAME:  %s\n", test->message_name_);
-    
-  } else if (type_support->typesupport_identifier == rosidl_typesupport_introspection_cpp::typesupport_identifier) {
-  
-    printf("C++ introspection id\n");
-    auto test = static_cast<const rosidl_typesupport_introspection_cpp::MessageMembers *>(ts_handle->data);
-    printf("TYPESUPPORT NAME:  %s\n", test->message_name_);
-    printf("TYPESUPPORT MEMBER COUNT:  %lu\n", (unsigned long)test->member_count_);
-    
-  } else if (type_support->typesupport_identifier == rosidl_typesupport_c__typesupport_identifier) {
-  
-    printf("C id\n");
-    auto test = static_cast<const rosidl_typesupport_introspection_c__MessageMembers *>(ts_handle->data);
-    printf("TYPESUPPORT NAME:  %s\n", test->message_name_);
-    
-  } else if (type_support->typesupport_identifier == rosidl_typesupport_cpp::typesupport_identifier) {
-  
-    printf("C++ id\n");
-    auto test = static_cast<const type_support_map_t *>(ts_handle->data);
-    printf("TYPESUPPORT PACKAGE NAME:  %s\n", test->package_name);
-    printf("TYPESUPPORT SIZE:  %lu\n", (unsigned long)test->size);
-    for(int i=0; i<test->size; i++) {
-      printf("%i: %s - %s\n", i, test->typesupport_identifier[i], test->symbol_name[i]);
-    }
-    
-  }
-  /*
-  if (using_introspection_c_typesupport(type_support)) {
-    printf("C id\n");
-  } else if (using_introspection_cpp_typesupport(type_support)) {
-    printf("C++ id\n");
-  }
-  */
+  DesertPublisher * pub = new DesertPublisher(topic_name, std::rand(), type_supports);
+  ret->data = (void *)pub;
   
   return ret;
 }
@@ -341,7 +307,10 @@ const rmw_guard_condition_t * rmw_node_get_graph_guard_condition(const rmw_node_
 rmw_ret_t rmw_publish(const rmw_publisher_t * publisher, const void * ros_message, rmw_publisher_allocation_t * allocation)
 {
   DEBUG("rmw_publish" "\n");
-  printf("MSG: %s\n", static_cast<const char *>(ros_message));
+  
+  DesertPublisher * pub = static_cast<DesertPublisher *>(publisher->data);
+  pub->push(ros_message);
+  
   return RMW_RET_OK;
 }
 

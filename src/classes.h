@@ -1,56 +1,25 @@
 #include <mutex>
+#include <stdio.h>
+#include <string.h>
 
-class DesertNode
-{
-  public:
-    DesertNode(const char* name)
-    : _name(name)
-    {}
-    
-    const char * getName()
-    {
-      return _name;
-    }
-  private:
-    const char * _name;
-};
+#include "rmw/rmw.h"
+#include "rmw/allocators.h"
+#include "rmw/error_handling.h"
 
-class DesertPublisher
-{
-  public:
-    DesertPublisher(const char* topic_name, uint64_t id)
-      : _name(topic_name)
-      , _id(id)
-    {}
-    
-    void push(const void* msg)
-    {
-    }
+#include "rclcpp/typesupport_helpers.hpp"
 
-  private:
-    const char* _name;
-    uint64_t _id;
+#include "rosidl_typesupport_introspection_cpp/identifier.hpp"
+#include "rosidl_typesupport_introspection_c/identifier.h"
+#include "rosidl_typesupport_introspection_cpp/message_introspection.hpp"
+#include "rosidl_typesupport_introspection_c/message_introspection.h"
+#include "rosidl_typesupport_introspection_cpp/field_types.hpp"
+#include "rosidl_typesupport_introspection_c/field_types.h"
 
-};
+#include "rosidl_typesupport_cpp/identifier.hpp"
+#include "rosidl_typesupport_c/type_support_map.h"
+#include "rosidl_typesupport_c/identifier.h"
 
-class DesertSubscriber
-{
-  public:
-    DesertSubscriber(const char * topic_name)
-      : _topic_name(topic_name)
-    {}
-  
-  private:
-    const char * _topic_name;
-
-};
-
-class DesertWaitset
-{
-  public:
-    DesertWaitset()
-    {}
-    
-    std::mutex lock;
-    bool inuse;
-};
+#include "desert_classes/DesertNode.h"
+#include "desert_classes/DesertPublisher.h"
+#include "desert_classes/DesertSubscriber.h"
+#include "desert_classes/DesertWaitSet.h"
