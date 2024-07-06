@@ -5,31 +5,40 @@ DesertPublisher::DesertPublisher(const char* topic_name, uint64_t id, const rosi
       , _id(id)
 {
   const rosidl_message_type_support_t * type_support = get_type_support(type_supports);
-  set_members(type_support);
+  _members = get_members(type_support);
 }
 
 void DesertPublisher::push(const void * msg)
 {
-  if (_c_cpp_identifier == 1 && _cpp_members->members_[0].type_id_ == ::rosidl_typesupport_introspection_cpp::ROS_TYPE_STRING) {
+  switch (_c_cpp_identifier)
+  {
+    case 0:
+    {
+      auto casted_members = static_cast<const rosidl_typesupport_introspection_c__MessageMembers *>(_members);
+      push<rosidl_typesupport_introspection_c__MessageMembers>(msg, casted_members);
+      break;
+    }
+    case 1:
+    {
+      auto casted_members = static_cast<const rosidl_typesupport_introspection_cpp::MessageMembers *>(_members);
+      push<rosidl_typesupport_introspection_cpp::MessageMembers>(msg, casted_members);
+      break;
+    }
+  }
+}
+
+template<typename MembersType>
+void DesertPublisher::push(const void * msg, const MembersType * casted_members)
+{
+  if (casted_members->members_[0].type_id_ == ::rosidl_typesupport_introspection_cpp::ROS_TYPE_STRING) {
     auto c_string = static_cast<const rosidl_runtime_c__String *>(msg);
     printf("INCOMING MESSAGE: %s\n", std::string(c_string->data).c_str());
   }
 }
 
-void DesertPublisher::set_members(const rosidl_message_type_support_t * type_support)
+const void * DesertPublisher::get_members(const rosidl_message_type_support_t * type_support)
 {
-  if (_c_cpp_identifier == 0)
-  {
-    _c_members = static_cast<const rosidl_typesupport_introspection_c__MessageMembers *>(type_support->data);
-  }
-  else if (_c_cpp_identifier == 1)
-  {
-    _cpp_members = static_cast<const rosidl_typesupport_introspection_cpp::MessageMembers *>(type_support->data);
-  }
-  else
-  {
-    throw std::runtime_error("unsupported typesupport");
-  }
+  return type_support->data;
 }
 
 const rosidl_message_type_support_t * DesertPublisher::get_type_support(const rosidl_message_type_support_t * type_supports)

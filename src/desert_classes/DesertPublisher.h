@@ -16,11 +16,13 @@ class DesertPublisher
     uint64_t _id;
     
     int _c_cpp_identifier;
-    const rosidl_typesupport_introspection_c__MessageMembers * _c_members;
-    const rosidl_typesupport_introspection_cpp::MessageMembers * _cpp_members;
+    const void * _members;
     
-    void set_members(const rosidl_message_type_support_t * type_support);
+    const void * get_members(const rosidl_message_type_support_t * type_support);
     const rosidl_message_type_support_t * get_type_support(const rosidl_message_type_support_t * type_supports);
+    
+    template<typename MembersType>
+    void push(const void * msg, const MembersType * casted_members);
 
 };
 
