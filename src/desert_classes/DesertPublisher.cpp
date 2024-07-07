@@ -35,54 +35,66 @@ void DesertPublisher::serialize(const void * msg, const MembersType * casted_mem
     const auto member = casted_members->members_ + i;
     void * field = const_cast<char *>(static_cast<const char *>(msg)) + member->offset_;
     switch (member->type_id_) {
+      case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_MESSAGE:
+        {
+          auto sub_members = static_cast<const MembersType *>(member->members_->data);
+          if (!member->is_array_) {
+            serialize(field, sub_members);
+          }
+        }
+        break;
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN:
-        printf("DATA TYPE BOOL\n");
+        if (!member->is_array_)
+        {
+          // Don't cast to bool here because if the bool is uninitialized the random value can't be deserialized
+          _data_stream << (*static_cast<uint8_t *>(field) ? true : false);
+        }
+        else
+        {
+          serialize_field<bool>(member, field);
+        }
         break;
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_OCTET:
-        printf("DATA TYPE OCTET\n");
+        throw std::runtime_error("OCTET type unsupported");
         break;
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT8:
-        printf("DATA TYPE UINT8\n");
+        serialize_field<uint8_t>(member, field);
         break;
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_CHAR:
-        printf("DATA TYPE CHAR\n");
+        serialize_field<char>(member, field);
         break;
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_INT8:
-        printf("DATA TYPE INT8\n");
+        serialize_field<int8_t>(member, field);
         break;
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_FLOAT:
-        printf("DATA TYPE FLOAT\n");
+        serialize_field<float>(member, field);
         break;
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_DOUBLE:
-        printf("DATA TYPE DOUBLE\n");
+        serialize_field<double>(member, field);
         break;
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_INT16:
-        printf("DATA TYPE INT16\n");
+        serialize_field<int16_t>(member, field);
         break;
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT16:
-        printf("DATA TYPE UINT16\n");
+        serialize_field<uint16_t>(member, field);
         break;
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_INT32:
-        printf("DATA TYPE INT32\n");
+        serialize_field<int32_t>(member, field);
         break;
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT32:
-        printf("DATA TYPE UINT32\n");
+        serialize_field<uint32_t>(member, field);
         break;
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_INT64:
-        printf("DATA TYPE INT64\n");
+        serialize_field<int64_t>(member, field);
         break;
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT64:
-        printf("DATA TYPE UINT64\n");
+        serialize_field<uint64_t>(member, field);
         break;
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_STRING:
-        printf("DATA TYPE STRING\n");
         serialize_field<std::string>(member, field);
         break;
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_WSTRING:
-        printf("DATA TYPE WSTRING\n");
-        break;
-      case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_MESSAGE:
-        printf("DATA TYPE MESSAGE\n");
+        serialize_field<std::u16string>(member, field);
         break;
       default:
         throw std::runtime_error("unknown type");
@@ -94,7 +106,8 @@ void DesertPublisher::serialize(const void * msg, const MembersType * casted_mem
 template<typename T>
 void DesertPublisher::serialize_field(const INTROSPECTION_CPP_MEMBER * member, void * field)
 {
-  if (!member->is_array_) {
+  if (!member->is_array_)
+  {
     _data_stream << * static_cast<T *>(field);
   }
 }
@@ -105,12 +118,26 @@ void DesertPublisher::serialize_field(const INTROSPECTION_C_MEMBER * member, voi
 {
   if constexpr(std::is_same_v<T, std::string>)
   {
-    auto c_string = static_cast<const rosidl_runtime_c__String *>(field);
-    _data_stream << std::string(c_string->data);
+    if (!member->is_array_) 
+    {
+      auto c_string = static_cast<const rosidl_runtime_c__String *>(field);
+      _data_stream << std::string(c_string->data);
+    }
+  }
+  else if constexpr(std::is_same_v<T, std::u16string>)
+  {
+    if (!member->is_array_) 
+    {
+      auto c_u16string = static_cast<const rosidl_runtime_c__U16String *>(field);
+      _data_stream << std::u16string(reinterpret_cast<char16_t *>(c_u16string->data));
+    }
   }
   else
   {
-      /* general code */
+    if (!member->is_array_) 
+    {
+      _data_stream << * static_cast<T *>(field);
+    }
   }
 }
 

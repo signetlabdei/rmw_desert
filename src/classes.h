@@ -19,6 +19,9 @@
 #include "rosidl_typesupport_c/type_support_map.h"
 #include "rosidl_typesupport_c/identifier.h"
 
+#include "rosidl_runtime_c/u16string.h"
+#include "rosidl_runtime_c/string.h"
+
 #include "desert_classes/DesertNode.h"
 #include "desert_classes/DesertPublisher.h"
 #include "desert_classes/DesertSubscriber.h"

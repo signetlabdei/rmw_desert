@@ -14,6 +14,7 @@ TxStream & TxStream::operator<<(const uint64_t n)
 
 TxStream & TxStream::operator<<(const uint32_t n)
 {
+  printf("INCOMING UINT32: %i\n", n);
   return *this;
 }
 
@@ -24,6 +25,7 @@ TxStream & TxStream::operator<<(const uint16_t n)
 
 TxStream & TxStream::operator<<(const uint8_t n)
 {
+  printf("INCOMING UINT8: %i\n", n);
   return *this;
 }
 
@@ -59,7 +61,7 @@ TxStream & TxStream::operator<<(const double d)
 
 TxStream & TxStream::operator<<(const std::string s)
 {
-  printf("INCOMING MESSAGE: %s\n", s.c_str());
+  printf("INCOMING STRING: %s\n", s.c_str());
   return *this;
 }
 
