@@ -18,6 +18,7 @@ class DesertPublisher
     
     
   private:
+    cbor::TxStream _data_stream;
     const char * _name;
     uint64_t _id;
     

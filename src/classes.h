@@ -23,3 +23,4 @@
 #include "desert_classes/DesertPublisher.h"
 #include "desert_classes/DesertSubscriber.h"
 #include "desert_classes/DesertWaitSet.h"
+#include "desert_classes/CBorStream.h"

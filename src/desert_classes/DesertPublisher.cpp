@@ -4,6 +4,7 @@ DesertPublisher::DesertPublisher(const char* topic_name, uint64_t id, const rosi
       : _name(topic_name)
       , _id(id)
 {
+  _data_stream = cbor::TxStream();
   const rosidl_message_type_support_t * type_support = get_type_support(type_supports);
   _members = get_members(type_support);
 }
@@ -93,9 +94,9 @@ void DesertPublisher::serialize(const void * msg, const MembersType * casted_mem
 template<typename T>
 void DesertPublisher::serialize_field(const INTROSPECTION_CPP_MEMBER * member, void * field)
 {
-  auto c_string = static_cast<const rosidl_runtime_c__String *>(field);
-  printf("INCOMING MESSAGE: %s\n", std::string(c_string->data).c_str());
-  printf("ISARRAY: %i\n", member->is_array_);
+  if (!member->is_array_) {
+    _data_stream << * static_cast<T *>(field);
+  }
 }
 
 // C specialization
@@ -105,8 +106,7 @@ void DesertPublisher::serialize_field(const INTROSPECTION_C_MEMBER * member, voi
   if constexpr(std::is_same_v<T, std::string>)
   {
     auto c_string = static_cast<const rosidl_runtime_c__String *>(field);
-    printf("INCOMING MESSAGE: %s\n", std::string(c_string->data).c_str());
-    printf("ISARRAY: %i\n", member->is_array_);
+    _data_stream << std::string(c_string->data);
   }
   else
   {
