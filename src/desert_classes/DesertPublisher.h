@@ -3,8 +3,11 @@
 
 #include "../classes.h"
 
-#define INTROSPECTION_C rosidl_typesupport_introspection_c__MessageMembers
-#define INTROSPECTION_CPP rosidl_typesupport_introspection_cpp::MessageMembers
+#define INTROSPECTION_C_MEMBER rosidl_typesupport_introspection_c__MessageMember
+#define INTROSPECTION_CPP_MEMBER rosidl_typesupport_introspection_cpp::MessageMember
+
+#define INTROSPECTION_C_MEMBERS rosidl_typesupport_introspection_c__MessageMembers
+#define INTROSPECTION_CPP_MEMBERS rosidl_typesupport_introspection_cpp::MessageMembers
 
 class DesertPublisher
 {
@@ -26,6 +29,11 @@ class DesertPublisher
     
     template<typename MembersType>
     void serialize(const void * msg, const MembersType * casted_members);
+    
+    template<typename T>
+    void serialize_field(const INTROSPECTION_CPP_MEMBER * member, void * field);
+    template<typename T>
+    void serialize_field(const INTROSPECTION_C_MEMBER * member, void * field);
 
 };
 

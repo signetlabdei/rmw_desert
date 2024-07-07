@@ -14,14 +14,14 @@ void DesertPublisher::push(const void * msg)
   {
     case 0:
     {
-      auto casted_members = static_cast<const INTROSPECTION_C *>(_members);
-      serialize<INTROSPECTION_C>(msg, casted_members);
+      auto casted_members = static_cast<const INTROSPECTION_C_MEMBERS *>(_members);
+      serialize<INTROSPECTION_C_MEMBERS>(msg, casted_members);
       break;
     }
     case 1:
     {
-      auto casted_members = static_cast<const INTROSPECTION_CPP *>(_members);
-      serialize<INTROSPECTION_CPP>(msg, casted_members);
+      auto casted_members = static_cast<const INTROSPECTION_CPP_MEMBERS *>(_members);
+      serialize<INTROSPECTION_CPP_MEMBERS>(msg, casted_members);
       break;
     }
   }
@@ -32,6 +32,7 @@ void DesertPublisher::serialize(const void * msg, const MembersType * casted_mem
 {
   for (uint32_t i = 0; i < casted_members->member_count_; ++i) {
     const auto member = casted_members->members_ + i;
+    void * field = const_cast<char *>(static_cast<const char *>(msg)) + member->offset_;
     switch (member->type_id_) {
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN:
         printf("DATA TYPE BOOL\n");
@@ -74,10 +75,7 @@ void DesertPublisher::serialize(const void * msg, const MembersType * casted_mem
         break;
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_STRING:
         printf("DATA TYPE STRING\n");
-        if (i == 0) {
-          auto c_string = static_cast<const rosidl_runtime_c__String *>(msg);
-          printf("INCOMING MESSAGE: %s\n", std::string(c_string->data).c_str());
-        }
+        serialize_field<std::string>(member, field);
         break;
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_WSTRING:
         printf("DATA TYPE WSTRING\n");
@@ -88,6 +86,31 @@ void DesertPublisher::serialize(const void * msg, const MembersType * casted_mem
       default:
         throw std::runtime_error("unknown type");
     }
+  }
+}
+
+// C++ specialization
+template<typename T>
+void DesertPublisher::serialize_field(const INTROSPECTION_CPP_MEMBER * member, void * field)
+{
+  auto c_string = static_cast<const rosidl_runtime_c__String *>(field);
+  printf("INCOMING MESSAGE: %s\n", std::string(c_string->data).c_str());
+  printf("ISARRAY: %i\n", member->is_array_);
+}
+
+// C specialization
+template<typename T>
+void DesertPublisher::serialize_field(const INTROSPECTION_C_MEMBER * member, void * field)
+{
+  if constexpr(std::is_same_v<T, std::string>)
+  {
+    auto c_string = static_cast<const rosidl_runtime_c__String *>(field);
+    printf("INCOMING MESSAGE: %s\n", std::string(c_string->data).c_str());
+    printf("ISARRAY: %i\n", member->is_array_);
+  }
+  else
+  {
+      /* general code */
   }
 }
 
