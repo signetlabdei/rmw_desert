@@ -14,25 +14,80 @@ void DesertPublisher::push(const void * msg)
   {
     case 0:
     {
-      auto casted_members = static_cast<const rosidl_typesupport_introspection_c__MessageMembers *>(_members);
-      push<rosidl_typesupport_introspection_c__MessageMembers>(msg, casted_members);
+      auto casted_members = static_cast<const INTROSPECTION_C *>(_members);
+      serialize<INTROSPECTION_C>(msg, casted_members);
       break;
     }
     case 1:
     {
-      auto casted_members = static_cast<const rosidl_typesupport_introspection_cpp::MessageMembers *>(_members);
-      push<rosidl_typesupport_introspection_cpp::MessageMembers>(msg, casted_members);
+      auto casted_members = static_cast<const INTROSPECTION_CPP *>(_members);
+      serialize<INTROSPECTION_CPP>(msg, casted_members);
       break;
     }
   }
 }
 
 template<typename MembersType>
-void DesertPublisher::push(const void * msg, const MembersType * casted_members)
+void DesertPublisher::serialize(const void * msg, const MembersType * casted_members)
 {
-  if (casted_members->members_[0].type_id_ == ::rosidl_typesupport_introspection_cpp::ROS_TYPE_STRING) {
-    auto c_string = static_cast<const rosidl_runtime_c__String *>(msg);
-    printf("INCOMING MESSAGE: %s\n", std::string(c_string->data).c_str());
+  for (uint32_t i = 0; i < casted_members->member_count_; ++i) {
+    const auto member = casted_members->members_ + i;
+    switch (member->type_id_) {
+      case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN:
+        printf("DATA TYPE BOOL\n");
+        break;
+      case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_OCTET:
+        printf("DATA TYPE OCTET\n");
+        break;
+      case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT8:
+        printf("DATA TYPE UINT8\n");
+        break;
+      case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_CHAR:
+        printf("DATA TYPE CHAR\n");
+        break;
+      case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_INT8:
+        printf("DATA TYPE INT8\n");
+        break;
+      case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_FLOAT:
+        printf("DATA TYPE FLOAT\n");
+        break;
+      case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_DOUBLE:
+        printf("DATA TYPE DOUBLE\n");
+        break;
+      case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_INT16:
+        printf("DATA TYPE INT16\n");
+        break;
+      case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT16:
+        printf("DATA TYPE UINT16\n");
+        break;
+      case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_INT32:
+        printf("DATA TYPE INT32\n");
+        break;
+      case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT32:
+        printf("DATA TYPE UINT32\n");
+        break;
+      case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_INT64:
+        printf("DATA TYPE INT64\n");
+        break;
+      case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT64:
+        printf("DATA TYPE UINT64\n");
+        break;
+      case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_STRING:
+        printf("DATA TYPE STRING\n");
+        if (i == 0) {
+          auto c_string = static_cast<const rosidl_runtime_c__String *>(msg);
+          printf("INCOMING MESSAGE: %s\n", std::string(c_string->data).c_str());
+        }
+        break;
+      case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_WSTRING:
+        printf("DATA TYPE WSTRING\n");
+        break;
+      case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_MESSAGE:
+        printf("DATA TYPE MESSAGE\n");
+        break;
+      default:
+        throw std::runtime_error("unknown type");
+    }
   }
 }
 

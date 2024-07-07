@@ -3,6 +3,9 @@
 
 #include "../classes.h"
 
+#define INTROSPECTION_C rosidl_typesupport_introspection_c__MessageMembers
+#define INTROSPECTION_CPP rosidl_typesupport_introspection_cpp::MessageMembers
+
 class DesertPublisher
 {
   public:
@@ -22,7 +25,7 @@ class DesertPublisher
     const rosidl_message_type_support_t * get_type_support(const rosidl_message_type_support_t * type_supports);
     
     template<typename MembersType>
-    void push(const void * msg, const MembersType * casted_members);
+    void serialize(const void * msg, const MembersType * casted_members);
 
 };
 
