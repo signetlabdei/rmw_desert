@@ -102,6 +102,8 @@ void DesertPublisher::serialize(const void * msg, const MembersType * casted_mem
   }
 }
 
+// TODO Implement array management - member->is_array_ == true
+
 // C++ specialization
 template<typename T>
 void DesertPublisher::serialize_field(const INTROSPECTION_CPP_MEMBER * member, void * field)
@@ -110,33 +112,63 @@ void DesertPublisher::serialize_field(const INTROSPECTION_CPP_MEMBER * member, v
   {
     _data_stream << * static_cast<T *>(field);
   }
+  else if (member->array_size_ && !member->is_upper_bound_)
+  {
+    _data_stream.serialize_sequence(static_cast<T *>(field), member->array_size_);
+  }
+  else
+  {
+    std::vector<T> & data = *reinterpret_cast<std::vector<T> *>(field);
+    _data_stream << data;
+  }
 }
 
 // C specialization
 template<typename T>
 void DesertPublisher::serialize_field(const INTROSPECTION_C_MEMBER * member, void * field)
 {
+  // String specific implementation
   if constexpr(std::is_same_v<T, std::string>)
   {
     if (!member->is_array_) 
     {
-      auto c_string = static_cast<const rosidl_runtime_c__String *>(field);
-      _data_stream << std::string(c_string->data);
+      _data_stream << CStringHelper::convert_to_std_string(field);
+    }
+    else if (member->array_size_ && !member->is_upper_bound_)
+    {
+      _data_stream << CStringHelper::convert_to_std_vector_string(field, member->array_size_);
+    }
+    else
+    {
+      _data_stream << CStringHelper::convert_sequence_to_std_vector_string(field);
     }
   }
+  // U16string specific implementation
   else if constexpr(std::is_same_v<T, std::u16string>)
   {
     if (!member->is_array_) 
     {
-      auto c_u16string = static_cast<const rosidl_runtime_c__U16String *>(field);
-      _data_stream << std::u16string(reinterpret_cast<char16_t *>(c_u16string->data));
+      _data_stream << CStringHelper::convert_to_std_u16string(field);
+    }
+    else if (member->array_size_ && !member->is_upper_bound_)
+    {
+      _data_stream << CStringHelper::convert_to_std_vector_u16string(field, member->array_size_);
+    }
+    else
+    {
+      _data_stream << CStringHelper::convert_sequence_to_std_vector_u16string(field);
     }
   }
+  // Generic implementation
   else
   {
     if (!member->is_array_) 
     {
       _data_stream << * static_cast<T *>(field);
+    }
+    else if (member->array_size_ && !member->is_upper_bound_)
+    {
+      _data_stream.serialize_sequence(static_cast<T *>(field), member->array_size_);
     }
   }
 }

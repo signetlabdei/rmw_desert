@@ -1,6 +1,7 @@
 #ifndef CBORSTREAM_HPP_
 #define CBORSTREAM_HPP_
 
+#include <vector>
 #include <string>
 #include <cstdint>
 #include <stdio.h>
@@ -27,6 +28,12 @@ class TxStream
     TxStream & operator<<(const std::string s);
     TxStream & operator<<(const std::u16string s);
     TxStream & operator<<(const bool b);
+    
+    template<typename T>
+    TxStream & operator<<(const std::vector<T> v);
+    TxStream & operator<<(const std::vector<bool> v);
+    template<typename T>
+    TxStream & serialize_sequence(const T * items, size_t size);
 
   private:
     size_t size_;

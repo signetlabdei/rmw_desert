@@ -2,6 +2,8 @@
 #define DESERT_PUBLISHER_H_
 
 #include "../classes.h"
+#include <vector>
+#include <string>
 
 #define INTROSPECTION_C_MEMBER rosidl_typesupport_introspection_c__MessageMember
 #define INTROSPECTION_CPP_MEMBER rosidl_typesupport_introspection_cpp::MessageMember
