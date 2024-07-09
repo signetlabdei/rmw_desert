@@ -14,14 +14,14 @@
 class DesertPublisher
 {
   public:
-    DesertPublisher(const char * topic_name, uint64_t id, const rosidl_message_type_support_t * type_supports);
+    DesertPublisher(std::string topic_name, uint64_t id, const rosidl_message_type_support_t * type_supports);
     
     void push(const void * msg);
     
     
   private:
     cbor::TxStream _data_stream;
-    const char * _name;
+    std::string _name;
     uint64_t _id;
     
     int _c_cpp_identifier;

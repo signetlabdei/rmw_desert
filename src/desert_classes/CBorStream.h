@@ -6,13 +6,22 @@
 #include <cstdint>
 #include <stdio.h>
 
+#include "cbor/encoder.h"
+#include "cbor/ieee754.h"
+#include "cbor/decoder.h"
+#include "cbor/parser.h"
+#include "cbor/helper.h"
+
 namespace cbor
 {
 
 class TxStream
 {
   public:
-    TxStream(size_t hint = 1024);
+    TxStream();
+    
+    void start_transmission(std::string topic_name);
+    void end_transmission();
 
     TxStream & operator<<(const uint64_t n);
     TxStream & operator<<(const uint32_t n);
@@ -37,6 +46,9 @@ class TxStream
 
   private:
     size_t size_;
+    uint8_t  _packet[125];
+    cbor_writer_t _writer;
+    
   
 };
 

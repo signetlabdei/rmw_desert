@@ -7,6 +7,27 @@ TxStream::TxStream(size_t hint)
 {
 }
 
+void TxStream::start_transmission(std::string topic_name)
+{
+  printf("Start transmission, topic: %s\n", topic_name.c_str());
+  
+  // Initialize cbor
+  cbor_writer_init(&_writer, _packet, sizeof(_packet));
+  // Communication type identifier
+  cbor_encode_unsigned_integer(&_writer, 0);
+  // Topic name
+  cbor_encode_null_terminated_text_string(&_writer, topic_name.c_str());
+}
+
+void TxStream::end_transmission()
+{
+  printf("End transmission, encoded data: ");
+  
+  for(size_t i=0; i < cbor_writer_len(&_writer); i++)
+      printf("%02x ", _packet[i]);
+  printf("\n");
+}
+
 TxStream & TxStream::operator<<(const uint64_t n)
 {
   return *this;
@@ -62,6 +83,7 @@ TxStream & TxStream::operator<<(const double d)
 TxStream & TxStream::operator<<(const std::string s)
 {
   printf("INCOMING STRING: %s\n", s.c_str());
+  cbor_encode_null_terminated_text_string(&_writer, s.c_str());
   return *this;
 }
 

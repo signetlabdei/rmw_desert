@@ -27,6 +27,9 @@ find_package(std_msgs REQUIRED)
 
 include_directories(include)
 
+set(CBOR_ROOT cbor)
+include_directories(${CBOR_ROOT}/include)
+
 add_library(rmw_desert
   src/get_node_info_and_types.cpp
   src/init.cpp
@@ -42,7 +45,14 @@ add_library(rmw_desert
   src/get_service_names_and_types.cpp
   src/desert_classes/DesertPublisher.cpp
   src/desert_classes/CBorStream.cpp
-  src/desert_classes/CStringHelper
+  src/desert_classes/CStringHelper.cpp
+  
+  ${CBOR_ROOT}/src/common.c
+  ${CBOR_ROOT}/src/parser.c
+  ${CBOR_ROOT}/src/decoder.c
+  ${CBOR_ROOT}/src/encoder.c
+  ${CBOR_ROOT}/src/helper.c
+  ${CBOR_ROOT}/src/ieee754.c
 )
 
 INCLUDE (FindPkgConfig)

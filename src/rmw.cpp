@@ -119,7 +119,7 @@ rmw_publisher_t * rmw_create_publisher(const rmw_node_t * node, const rosidl_mes
   ret->implementation_identifier = rmw_get_implementation_identifier();
   ret->topic_name = topic_name;
   
-  DesertPublisher * pub = new DesertPublisher(topic_name, std::rand(), type_supports);
+  DesertPublisher * pub = new DesertPublisher(std::string(topic_name), std::rand(), type_supports);
   ret->data = (void *)pub;
   
   return ret;

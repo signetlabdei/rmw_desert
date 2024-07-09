@@ -1,16 +1,18 @@
 #include "DesertPublisher.h"
 
-DesertPublisher::DesertPublisher(const char* topic_name, uint64_t id, const rosidl_message_type_support_t * type_supports)
+DesertPublisher::DesertPublisher(std::string topic_name, uint64_t id, const rosidl_message_type_support_t * type_supports)
       : _name(topic_name)
       , _id(id)
+      , _data_stream(cbor::TxStream())
 {
-  _data_stream = cbor::TxStream();
   const rosidl_message_type_support_t * type_support = get_type_support(type_supports);
   _members = get_members(type_support);
 }
 
 void DesertPublisher::push(const void * msg)
 {
+  _data_stream.start_transmission(_name);
+  
   switch (_c_cpp_identifier)
   {
     case 0:
@@ -26,6 +28,8 @@ void DesertPublisher::push(const void * msg)
       break;
     }
   }
+  
+  _data_stream.end_transmission();
 }
 
 template<typename MembersType>
@@ -101,8 +105,6 @@ void DesertPublisher::serialize(const void * msg, const MembersType * casted_mem
     }
   }
 }
-
-// TODO Implement array management - member->is_array_ == true
 
 // C++ specialization
 template<typename T>
