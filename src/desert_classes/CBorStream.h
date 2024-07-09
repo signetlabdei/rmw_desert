@@ -47,7 +47,7 @@ class TxStream
   private:
     size_t size_;
     uint8_t  _packet[125];
-    cbor_writer_t _writer;
+    cbor_writer_t * _writer;
     
   
 };
