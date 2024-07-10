@@ -7,27 +7,49 @@ TxStream::TxStream()
 {
 }
 
+void TxStream::add_packet()
+{
+  int packet_sequence_number = _packets.size();
+
+  // Initialize packet and writer
+  uint8_t * packet = new uint8_t[125];
+  _packets.push_back(packet);
+  cbor_writer_t * writer = new cbor_writer_t;
+  _writers.push_back(writer);
+  
+  cbor_writer_init(_writers.back(), _packets[packet_sequence_number], 125);
+  
+  // Sequence identifier
+  cbor_encode_unsigned_integer(_writers.back(), _sequence_id);
+  // Sequence number identifier
+  cbor_encode_unsigned_integer(_writers.back(), packet_sequence_number);
+}
+
 void TxStream::start_transmission(std::string topic_name)
 {
   printf("Start transmission, topic: %s\n", topic_name.c_str());
   
-  // Initialize cbor
-  _writer = new cbor_writer_t;
-  cbor_writer_init(_writer, _packet, sizeof(_packet));
-  // Communication type identifier
-  cbor_encode_unsigned_integer(_writer, 0);
+  _sequence_id = std::rand();
+  add_packet();
+  
   // Topic name
-  cbor_encode_text_string(_writer, topic_name.c_str(), topic_name.size());
+  cbor_encode_text_string(_writers.back(), topic_name.c_str(), topic_name.size());
 }
 
 void TxStream::end_transmission()
 {
-  printf("End transmission, encoded data: ");
+  printf("End transmission, encoded data: \n");
   
-  for(size_t i=0; i < cbor_writer_len(_writer); i++)
-      printf("%02x ", _packet[i]);
+  for(int c=0; c < _packets.size(); c++)
+  {
+    printf("%i: ", c);
+    for(size_t i=0; i < cbor_writer_len(_writers[c]); i++)
+        printf("%02x ", _packets[c][i]);
+    printf("\n");
+  }
   printf("\n");
-  delete _writer;
+  
+  _packets.clear();
 }
 
 TxStream & TxStream::operator<<(const uint64_t n)
@@ -85,6 +107,8 @@ TxStream & TxStream::operator<<(const double d)
 TxStream & TxStream::operator<<(const std::string s)
 {
   printf("INCOMING STRING: %s\n", s.c_str());
+  cbor_error_t result = cbor_encode_text_string(_writers.back(), s.c_str(), s.size());
+  handle_overrun<std::string>(result, s);
   return *this;
 }
 
@@ -114,6 +138,17 @@ TxStream & TxStream::serialize_sequence(const T * items, size_t size)
     *this << items[i];
   }
   return *this;
+}
+
+template<typename T>
+void TxStream::handle_overrun(cbor_error_t result, const T parameter)
+{
+  if (result == CBOR_OVERRUN)
+  {
+    printf("Overrun occurred\n");
+    add_packet();
+    *this << parameter;
+  }
 }
 
 }

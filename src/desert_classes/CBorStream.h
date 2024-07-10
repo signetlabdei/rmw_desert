@@ -46,9 +46,13 @@ class TxStream
 
   private:
     size_t size_;
-    uint8_t  _packet[125];
-    cbor_writer_t * _writer;
+    int _sequence_id;
+    std::vector<uint8_t *>  _packets;
+    std::vector<cbor_writer_t *>  _writers;
     
+    void add_packet();
+    template<typename T>
+    void handle_overrun(cbor_error_t result, T parameter);
   
 };
 
