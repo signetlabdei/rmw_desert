@@ -12,12 +12,12 @@ void TxStream::add_packet()
   int packet_sequence_number = _packets.size();
 
   // Initialize packet and writer
-  uint8_t * packet = new uint8_t[125];
+  uint8_t * packet = new uint8_t[MAX_PACKET_LENGTH];
   _packets.push_back(packet);
   cbor_writer_t * writer = new cbor_writer_t;
   _writers.push_back(writer);
   
-  cbor_writer_init(_writers.back(), _packets[packet_sequence_number], 125);
+  cbor_writer_init(_writers.back(), _packets[packet_sequence_number], MAX_PACKET_LENGTH);
   
   // Sequence identifier
   cbor_encode_unsigned_integer(_writers.back(), _sequence_id);
@@ -54,59 +54,76 @@ void TxStream::end_transmission()
 
 TxStream & TxStream::operator<<(const uint64_t n)
 {
+  cbor_error_t result = cbor_encode_unsigned_integer(_writers.back(), n);
+  handle_overrun<uint64_t>(result, n);
   return *this;
 }
 
 TxStream & TxStream::operator<<(const uint32_t n)
 {
-  printf("INCOMING UINT32: %u\n", n);
+  *this << static_cast<uint64_t>(n);
   return *this;
 }
 
 TxStream & TxStream::operator<<(const uint16_t n)
 {
+  *this << static_cast<uint64_t>(n);
   return *this;
 }
 
 TxStream & TxStream::operator<<(const uint8_t n)
 {
-  printf("INCOMING UINT8: %u\n", n);
+  *this << static_cast<uint64_t>(n);
   return *this;
 }
 
 TxStream & TxStream::operator<<(const int64_t n)
 {
+  cbor_error_t result;
+  
+  if (n >= 0)
+    result = cbor_encode_unsigned_integer(_writers.back(), n);
+  else
+    result = cbor_encode_negative_integer(_writers.back(), n);
+  
+  handle_overrun<int64_t>(result, n);
   return *this;
 }
 
 TxStream & TxStream::operator<<(const int32_t n)
 {
+  *this << static_cast<int64_t>(n);
   return *this;
 }
 
 TxStream & TxStream::operator<<(const int16_t n)
 {
+  *this << static_cast<int64_t>(n);
   return *this;
 }
 
 TxStream & TxStream::operator<<(const int8_t n)
 {
+  *this << static_cast<int64_t>(n);
   return *this;
 }
 
 TxStream & TxStream::operator<<(const float f)
 {
+  cbor_error_t result = cbor_encode_float(_writers.back(), f);
+  handle_overrun<float>(result, f);
   return *this;
 }
 
 TxStream & TxStream::operator<<(const double d)
 {
+  cbor_error_t result = cbor_encode_double(_writers.back(), d);
+  handle_overrun<double>(result, d);
   return *this;
 }
 
 TxStream & TxStream::operator<<(const std::string s)
 {
-  printf("INCOMING STRING: %s\n", s.c_str());
   cbor_error_t result = cbor_encode_text_string(_writers.back(), s.c_str(), s.size());
   handle_overrun<std::string>(result, s);
   return *this;
@@ -145,7 +162,6 @@ void TxStream::handle_overrun(cbor_error_t result, const T parameter)
 {
   if (result == CBOR_OVERRUN)
   {
-    printf("Overrun occurred\n");
     add_packet();
     *this << parameter;
   }
