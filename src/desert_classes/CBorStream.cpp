@@ -40,9 +40,9 @@ void TxStream::end_transmission()
 {
   printf("End transmission, encoded data: \n");
   
-  for(int c=0; c < _packets.size(); c++)
+  for(size_t c=0; c < _packets.size(); c++)
   {
-    printf("%i: ", c);
+    printf("%i: ", static_cast<int>(c));
     for(size_t i=0; i < cbor_writer_len(_writers[c]); i++)
         printf("%02x ", _packets[c][i]);
     printf("\n");
@@ -50,6 +50,7 @@ void TxStream::end_transmission()
   printf("\n");
   
   _packets.clear();
+  _writers.clear();
 }
 
 TxStream & TxStream::operator<<(const uint64_t n)
@@ -131,6 +132,8 @@ TxStream & TxStream::operator<<(const std::string s)
 
 TxStream & TxStream::operator<<(const std::u16string s)
 {
+  // Cbor does not support UTF-16 so a conversion to UTF-8 is performed
+  *this << toUTF8(s);
   return *this;
 }
 
@@ -165,6 +168,16 @@ void TxStream::handle_overrun(cbor_error_t result, const T parameter)
     add_packet();
     *this << parameter;
   }
+}
+
+std::string TxStream::toUTF8(const std::u16string source)
+{
+    std::string result;
+
+    std::wstring_convert<std::codecvt_utf8_utf16<std::u16string >, std::u16string> convertor;
+    result = convertor.to_bytes(source);
+
+    return result;
 }
 
 }

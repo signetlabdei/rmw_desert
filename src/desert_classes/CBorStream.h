@@ -3,6 +3,8 @@
 
 #include <vector>
 #include <string>
+#include <locale>
+#include <codecvt>
 #include <cstdint>
 #include <stdio.h>
 
@@ -55,6 +57,8 @@ class TxStream
     void add_packet();
     template<typename T>
     void handle_overrun(cbor_error_t result, T parameter);
+    
+    std::string toUTF8(const std::u16string source);
   
 };
 
