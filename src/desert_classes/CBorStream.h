@@ -1,12 +1,14 @@
 #ifndef CBORSTREAM_HPP_
 #define CBORSTREAM_HPP_
 
+#include "TcpDaemon.h"
+
 #include <vector>
 #include <string>
 #include <locale>
 #include <codecvt>
 #include <cstdint>
-#include <stdio.h>
+#include <cstdio>
 
 #include "cbor/encoder.h"
 #include "cbor/ieee754.h"

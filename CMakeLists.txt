@@ -46,6 +46,7 @@ add_library(rmw_desert
   src/desert_classes/DesertPublisher.cpp
   src/desert_classes/CBorStream.cpp
   src/desert_classes/CStringHelper.cpp
+  src/desert_classes/TcpDaemon.cpp
   
   ${CBOR_ROOT}/src/common.c
   ${CBOR_ROOT}/src/parser.c

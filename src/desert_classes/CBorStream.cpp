@@ -27,8 +27,6 @@ void TxStream::add_packet()
 
 void TxStream::start_transmission(std::string topic_name)
 {
-  printf("Start transmission, topic: %s\n", topic_name.c_str());
-  
   _sequence_id = std::rand();
   add_packet();
   
@@ -38,16 +36,15 @@ void TxStream::start_transmission(std::string topic_name)
 
 void TxStream::end_transmission()
 {
-  printf("End transmission, encoded data: \n");
-  
   for(size_t c=0; c < _packets.size(); c++)
   {
-    printf("%i: ", static_cast<int>(c));
+    std::vector<uint8_t> daemon_packet;
     for(size_t i=0; i < cbor_writer_len(_writers[c]); i++)
-        printf("%02x ", _packets[c][i]);
-    printf("\n");
+    {
+      daemon_packet.push_back(_packets[c][i]);
+    }
+    TcpDaemon::enqueue_packet(daemon_packet);
   }
-  printf("\n");
   
   _packets.clear();
   _writers.clear();
