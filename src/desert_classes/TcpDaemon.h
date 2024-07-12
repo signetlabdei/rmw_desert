@@ -11,6 +11,7 @@
 
 #include <arpa/inet.h>
 #include <sys/socket.h>
+#include <sys/poll.h>
 #include <unistd.h>
 
 #include "rmw/error_handling.h"
@@ -32,7 +33,8 @@ class TcpDaemon
     static std::queue<std::vector<uint8_t>> _rx_packets;
     static std::queue<std::vector<uint8_t>> _tx_packets;
     
-    void socket_communication();
+    void socket_rx_communication();
+    void socket_tx_communication();
 
 };
 

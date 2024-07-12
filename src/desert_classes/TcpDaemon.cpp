@@ -13,7 +13,8 @@ bool TcpDaemon::init()
   int status, valread;
   struct sockaddr_in serv_addr;
 
-  if ((_client_fd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
+  if ((_client_fd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
+  {
     RMW_SET_ERROR_MSG("Socket creation error");
     return -1;
   }
@@ -22,19 +23,23 @@ bool TcpDaemon::init()
   serv_addr.sin_port = htons(PORT);
 
   // Convert IPv4 and IPv6 addresses from text to binary form
-  if (inet_pton(AF_INET, ADDRESS, &serv_addr.sin_addr) <= 0) {
+  if (inet_pton(AF_INET, ADDRESS, &serv_addr.sin_addr) <= 0)
+  {
     RMW_SET_ERROR_MSG("Invalid address / Address not supported");
     return -1;
   }
 
-  if ((status = connect(_client_fd, (struct sockaddr*)&serv_addr, sizeof(serv_addr))) < 0) {
+  if ((status = connect(_client_fd, (struct sockaddr*)&serv_addr, sizeof(serv_addr))) < 0)
+  {
     RMW_SET_ERROR_MSG("Connection to DESERT socket failed");
     return -1;
   }
   
-  // Start the packet transceiver thread
-  std::thread daemon = std::thread(&TcpDaemon::socket_communication, this);
-  daemon.detach();
+  // Start the packet transceiver threads
+  std::thread rx_daemon = std::thread(&TcpDaemon::socket_rx_communication, this);
+  std::thread tx_daemon = std::thread(&TcpDaemon::socket_tx_communication, this);
+  rx_daemon.detach();
+  tx_daemon.detach();
   
   return 0;
 }
@@ -44,10 +49,43 @@ void TcpDaemon::enqueue_packet(std::vector<uint8_t> packet)
   _tx_packets.push(packet);
 }
 
-void TcpDaemon::socket_communication()
+void TcpDaemon::socket_rx_communication()
 {
   while (true)
   {
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    
+    char buffer[1024];
+    int ptr = 0;
+    ssize_t rc;
+
+    struct pollfd fd = {
+      .fd = _client_fd,
+      .events = POLLIN
+    };
+
+    poll(&fd, 1, 0); // Doesn't wait for data to arrive.
+    while ( fd.revents & POLLIN )
+    {
+      rc = read(_client_fd, buffer + ptr, sizeof(buffer) - ptr);
+
+      if ( rc <= 0 )
+        break;
+
+      ptr += rc;
+      poll(&fd, 1, 0);
+    }
+
+    printf("Read %d bytes from sock.\n", ptr); 
+  }
+}
+
+void TcpDaemon::socket_tx_communication()
+{
+  while (true)
+  {
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    
     for(size_t i=0; i < _tx_packets.size(); i++)
     {
       std::vector<uint8_t> packet = _tx_packets.front();
@@ -55,7 +93,5 @@ void TcpDaemon::socket_communication()
       send(_client_fd, casted_packet, strlen(casted_packet), 0);
       _tx_packets.pop();
     }
-    
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
   }
 }
