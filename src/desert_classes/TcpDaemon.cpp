@@ -44,13 +44,33 @@ bool TcpDaemon::init()
   return 0;
 }
 
+std::vector<uint8_t> TcpDaemon::read_packet()
+{
+  std::vector<uint8_t> packet;
+  if (!_rx_packets.empty())
+  {
+    packet = _rx_packets.front();
+    _rx_packets.pop();
+  }
+  return packet;
+}
+
 void TcpDaemon::enqueue_packet(std::vector<uint8_t> packet)
 {
+  uint8_t end_marker = 0b01010101;
+  packet.push_back(end_marker);
+  packet.push_back(end_marker);
+  packet.push_back(end_marker);
+    
+
   _tx_packets.push(packet);
 }
 
 void TcpDaemon::socket_rx_communication()
 {
+  std::vector<uint8_t> packet;
+  uint8_t end_marker = 0b01010101;
+  
   while (true)
   {
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
@@ -72,11 +92,37 @@ void TcpDaemon::socket_rx_communication()
       if ( rc <= 0 )
         break;
 
+      for (int i=0; i < rc; i++)
+      {
+        uint8_t field = static_cast<uint8_t>(* (buffer + i));
+        packet.push_back(field);
+
+        bool found_end_sequence = true;
+        for (int c=1; c <= 3; c++)
+        {
+          if (packet.end()[-c] != end_marker)
+          {
+            found_end_sequence = false;
+          }
+        }
+        if (found_end_sequence)
+        {
+          packet.pop_back();
+          packet.pop_back();
+          packet.pop_back();
+          _rx_packets.push(packet);
+          packet.clear();
+        }
+      }
+          
       ptr += rc;
       poll(&fd, 1, 0);
     }
 
-    printf("Read %d bytes from sock.\n", ptr); 
+    if (ptr != 0)
+    {
+      printf("Received %i bytes\n", ptr);
+    }
   }
 }
 
@@ -89,8 +135,8 @@ void TcpDaemon::socket_tx_communication()
     for(size_t i=0; i < _tx_packets.size(); i++)
     {
       std::vector<uint8_t> packet = _tx_packets.front();
-      const char * casted_packet = reinterpret_cast<const char*>(packet.data());
-      send(_client_fd, casted_packet, strlen(casted_packet), 0);
+      const char * casted_packet = reinterpret_cast<const char *>(packet.data());
+      send(_client_fd, casted_packet, packet.size(), 0);
       _tx_packets.pop();
     }
   }

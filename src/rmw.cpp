@@ -119,7 +119,7 @@ rmw_publisher_t * rmw_create_publisher(const rmw_node_t * node, const rosidl_mes
   ret->implementation_identifier = rmw_get_implementation_identifier();
   ret->topic_name = topic_name;
   
-  DesertPublisher * pub = new DesertPublisher(std::string(topic_name), std::rand(), type_supports);
+  DesertPublisher * pub = new DesertPublisher(topic_name, std::rand(), type_supports);
   ret->data = (void *)pub;
   
   return ret;
@@ -491,6 +491,11 @@ rmw_ret_t rmw_take_serialized_message_with_info(const rmw_subscription_t * subsc
 rmw_ret_t rmw_take_with_info(const rmw_subscription_t * subscription, void * ros_message, bool * taken, rmw_message_info_t * message_info, rmw_subscription_allocation_t * allocation)
 {
   DEBUG("rmw_take_with_info" "\n");
+  
+  DesertSubscriber * sub = static_cast<DesertSubscriber *>(subscription->data);
+  sub->has_data();
+  
+  usleep(1000);
   return RMW_RET_OK;
 }
 
@@ -504,6 +509,7 @@ rmw_ret_t rmw_trigger_guard_condition(const rmw_guard_condition_t * guard_condit
 rmw_ret_t rmw_wait(rmw_subscriptions_t * subscriptions, rmw_guard_conditions_t * guard_conditions, rmw_services_t * services, rmw_clients_t * clients, rmw_events_t * events, rmw_wait_set_t * wait_set, const rmw_time_t * wait_timeout)
 {
   DEBUG("rmw_wait" "\n");
+  usleep(1000);
   return RMW_RET_OK;
 }
 

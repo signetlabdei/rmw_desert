@@ -25,6 +25,7 @@ class TcpDaemon
     TcpDaemon();
     
     bool init();
+    static std::vector<uint8_t> read_packet();
     static void enqueue_packet(std::vector<uint8_t> packet);
     
     

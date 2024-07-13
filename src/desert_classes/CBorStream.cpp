@@ -3,6 +3,8 @@
 namespace cbor
 {
 
+// TX stream
+
 TxStream::TxStream()
 {
 }
@@ -39,10 +41,12 @@ void TxStream::end_transmission()
   for(size_t c=0; c < _packets.size(); c++)
   {
     std::vector<uint8_t> daemon_packet;
+    
     for(size_t i=0; i < cbor_writer_len(_writers[c]); i++)
     {
       daemon_packet.push_back(_packets[c][i]);
     }
+    
     TcpDaemon::enqueue_packet(daemon_packet);
   }
   
@@ -175,6 +179,68 @@ std::string TxStream::toUTF8(const std::u16string source)
     result = convertor.to_bytes(source);
 
     return result;
+}
+
+
+// RX stream
+
+RxStream::RxStream(std::string topic_name)
+      : _topic_name(topic_name)
+{
+}
+std::map<std::string, std::vector<uint8_t>> RxStream::_defragmented_packets;
+
+RxStream & RxStream::operator>>(const void ** data)
+{
+  return *this;
+}
+
+void RxStream::defragment_packets()
+{
+  std::vector<uint8_t> packet;
+  for (packet = TcpDaemon::read_packet(); packet.size() != 0; packet = TcpDaemon::read_packet())
+  {
+    printf("There is a packet\n");
+    for(int i=0; i < packet.size(); i++)
+        printf("%02x ", packet[i]);
+    printf("\n");
+    
+    // Initialize buffer and reader
+    uint8_t * buffer = &packet[0];
+    cbor_reader_t reader;
+    cbor_item_t items[16];
+    size_t n;
+
+    cbor_reader_init(&reader, items, sizeof(items) / sizeof(items[0]));
+    cbor_parse(&reader, buffer, packet.size(), &n);
+    
+    for (size_t i = 0; i < n; i++)
+    {
+      union _cbor_value val;
+
+      memset(&val, 0, sizeof(val));
+      cbor_decode(&reader, &items[i], &val, sizeof(val));
+
+      switch (items[i].type)
+      {
+        case CBOR_ITEM_INTEGER: {
+	      printf("int\n");
+	      } break;
+        case CBOR_ITEM_STRING:
+	      printf("string\n");
+	      break;
+        case CBOR_ITEM_SIMPLE_VALUE:
+	      printf("bool\n");
+        default:
+	      break;
+      }
+    }
+  }
+}
+
+void RxStream::interpret_packets()
+{
+  
 }
 
 }

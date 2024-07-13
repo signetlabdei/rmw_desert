@@ -1,6 +1,7 @@
 #include <mutex>
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
 
 #include "rmw/rmw.h"
 #include "rmw/allocators.h"

@@ -1,15 +1,21 @@
 #ifndef DESERT_SUBSCRIBER_H_
 #define DESERT_SUBSCRIBER_H_
 
+#include "CBorStream.h"
+
+#include <vector>
+#include <string>
+
 class DesertSubscriber
 {
   public:
-    DesertSubscriber(const char * topic_name)
-      : _topic_name(topic_name)
-    {}
+    DesertSubscriber(std::string topic_name);
+    
+    bool has_data();
   
   private:
-    const char * _topic_name;
+    cbor::RxStream _data_stream;
+    std::string _name;
 
 };
 
