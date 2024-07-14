@@ -57,10 +57,10 @@ std::vector<uint8_t> TcpDaemon::read_packet()
 
 void TcpDaemon::enqueue_packet(std::vector<uint8_t> packet)
 {
-  uint8_t end_marker = 0b01010101;
-  packet.push_back(end_marker);
-  packet.push_back(end_marker);
-  packet.push_back(end_marker);
+  packet.push_back(packet.size() & 0b11111111);
+  packet.push_back(END_MARKER);
+  packet.push_back(END_MARKER);
+  packet.push_back(END_MARKER);
     
 
   _tx_packets.push(packet);
@@ -69,13 +69,12 @@ void TcpDaemon::enqueue_packet(std::vector<uint8_t> packet)
 void TcpDaemon::socket_rx_communication()
 {
   std::vector<uint8_t> packet;
-  uint8_t end_marker = 0b01010101;
   
   while (true)
   {
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
     
-    char buffer[1024];
+    char buffer[4086];
     int ptr = 0;
     ssize_t rc;
 
@@ -100,28 +99,29 @@ void TcpDaemon::socket_rx_communication()
         bool found_end_sequence = true;
         for (int c=1; c <= 3; c++)
         {
-          if (packet.end()[-c] != end_marker)
+          if (packet.end()[-c] != END_MARKER)
           {
             found_end_sequence = false;
           }
         }
         if (found_end_sequence)
         {
-          packet.pop_back();
-          packet.pop_back();
-          packet.pop_back();
-          _rx_packets.push(packet);
+          uint8_t read_size = packet.end()[-4];
+          uint8_t real_size = (packet.size() - 4) & 0b11111111;
+          if (read_size == real_size)
+          {
+            packet.pop_back();
+            packet.pop_back();
+            packet.pop_back();
+            packet.pop_back();
+            _rx_packets.push(packet);
+          }
           packet.clear();
         }
       }
           
       ptr += rc;
       poll(&fd, 1, 0);
-    }
-
-    if (ptr != 0)
-    {
-      printf("Received %i bytes\n", ptr);
     }
   }
 }

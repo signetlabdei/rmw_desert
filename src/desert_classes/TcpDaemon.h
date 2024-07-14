@@ -19,6 +19,8 @@
 #define ADDRESS "192.168.1.110"
 #define PORT 4000
 
+#define END_MARKER 0b01010101
+
 class TcpDaemon
 {
   public:

@@ -9,55 +9,46 @@ TxStream::TxStream()
 {
 }
 
-void TxStream::add_packet()
+void TxStream::new_packet()
 {
-  int packet_sequence_number = _packets.size();
-
   // Initialize packet and writer
-  uint8_t * packet = new uint8_t[MAX_PACKET_LENGTH];
-  _packets.push_back(packet);
-  cbor_writer_t * writer = new cbor_writer_t;
-  _writers.push_back(writer);
+  _packet = new uint8_t[MAX_PACKET_LENGTH];
+  _writer = new cbor_writer_t;
   
-  cbor_writer_init(_writers.back(), _packets[packet_sequence_number], MAX_PACKET_LENGTH);
-  
-  // Sequence identifier
-  cbor_encode_unsigned_integer(_writers.back(), _sequence_id);
-  // Sequence number identifier
-  cbor_encode_unsigned_integer(_writers.back(), packet_sequence_number);
+  cbor_writer_init(_writer, _packet, MAX_PACKET_LENGTH);
 }
 
 void TxStream::start_transmission(std::string topic_name)
 {
-  _sequence_id = std::rand();
-  add_packet();
+  new_packet();
+  _overflow = false;
   
   // Topic name
-  cbor_encode_text_string(_writers.back(), topic_name.c_str(), topic_name.size());
+  cbor_encode_text_string(_writer, topic_name.c_str(), topic_name.size());
 }
 
 void TxStream::end_transmission()
 {
-  for(size_t c=0; c < _packets.size(); c++)
+  if (_overflow)
+    return;
+  
+  std::vector<uint8_t> daemon_packet;
+    
+  for(size_t i=0; i < cbor_writer_len(_writer); i++)
   {
-    std::vector<uint8_t> daemon_packet;
-    
-    for(size_t i=0; i < cbor_writer_len(_writers[c]); i++)
-    {
-      daemon_packet.push_back(_packets[c][i]);
-    }
-    
-    TcpDaemon::enqueue_packet(daemon_packet);
+    daemon_packet.push_back(_packet[i]);
   }
   
-  _packets.clear();
-  _writers.clear();
+  TcpDaemon::enqueue_packet(daemon_packet);
+  
+  delete _packet;
+  delete _writer;
 }
 
 TxStream & TxStream::operator<<(const uint64_t n)
 {
-  cbor_error_t result = cbor_encode_unsigned_integer(_writers.back(), n);
-  handle_overrun<uint64_t>(result, n);
+  cbor_error_t result = cbor_encode_unsigned_integer(_writer, n);
+  handle_overrun(result);
   return *this;
 }
 
@@ -84,11 +75,11 @@ TxStream & TxStream::operator<<(const int64_t n)
   cbor_error_t result;
   
   if (n >= 0)
-    result = cbor_encode_unsigned_integer(_writers.back(), n);
+    result = cbor_encode_unsigned_integer(_writer, n);
   else
-    result = cbor_encode_negative_integer(_writers.back(), n);
+    result = cbor_encode_negative_integer(_writer, n);
   
-  handle_overrun<int64_t>(result, n);
+  handle_overrun(result);
   return *this;
 }
 
@@ -112,22 +103,22 @@ TxStream & TxStream::operator<<(const int8_t n)
 
 TxStream & TxStream::operator<<(const float f)
 {
-  cbor_error_t result = cbor_encode_float(_writers.back(), f);
-  handle_overrun<float>(result, f);
+  cbor_error_t result = cbor_encode_float(_writer, f);
+  handle_overrun(result);
   return *this;
 }
 
 TxStream & TxStream::operator<<(const double d)
 {
-  cbor_error_t result = cbor_encode_double(_writers.back(), d);
-  handle_overrun<double>(result, d);
+  cbor_error_t result = cbor_encode_double(_writer, d);
+  handle_overrun(result);
   return *this;
 }
 
 TxStream & TxStream::operator<<(const std::string s)
 {
-  cbor_error_t result = cbor_encode_text_string(_writers.back(), s.c_str(), s.size());
-  handle_overrun<std::string>(result, s);
+  cbor_error_t result = cbor_encode_text_string(_writer, s.c_str(), s.size());
+  handle_overrun(result);
   return *this;
 }
 
@@ -161,13 +152,11 @@ TxStream & TxStream::serialize_sequence(const T * items, size_t size)
   return *this;
 }
 
-template<typename T>
-void TxStream::handle_overrun(cbor_error_t result, const T parameter)
+void TxStream::handle_overrun(cbor_error_t result)
 {
   if (result == CBOR_OVERRUN)
   {
-    add_packet();
-    *this << parameter;
+    _overflow = true;
   }
 }
 
@@ -224,10 +213,13 @@ void RxStream::defragment_packets()
       switch (items[i].type)
       {
         case CBOR_ITEM_INTEGER: {
-	      printf("int\n");
+	      char buf[16];
+              int len = sprintf(buf, "%d", val.i32);
+              buf[len] = '\0';
+              printf("int value: %d\n", atoi(buf));
 	      } break;
         case CBOR_ITEM_STRING:
-	      printf("string\n");
+	      printf("string value: %.*s\n", items[i].size, val.str_copy);
 	      break;
         case CBOR_ITEM_SIMPLE_VALUE:
 	      printf("bool\n");

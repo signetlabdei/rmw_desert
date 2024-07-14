@@ -19,7 +19,7 @@
 #include "cbor/parser.h"
 #include "cbor/helper.h"
 
-#define MAX_PACKET_LENGTH 125
+#define MAX_PACKET_LENGTH 512
 
 namespace cbor
 {
@@ -55,13 +55,13 @@ class TxStream
 
   private:
     size_t size_;
+    bool _overflow;
     int _sequence_id;
-    std::vector<uint8_t *>  _packets;
-    std::vector<cbor_writer_t *>  _writers;
+    uint8_t *  _packet;
+    cbor_writer_t *  _writer;
     
-    void add_packet();
-    template<typename T>
-    void handle_overrun(cbor_error_t result, T parameter);
+    void new_packet();
+    void handle_overrun(cbor_error_t result);
     
     std::string toUTF8(const std::u16string source);
   
@@ -89,7 +89,7 @@ class RxStream
 	double f64;
 	uint8_t *bin;
 	char *str;
-	uint8_t str_copy[16];
+	uint8_t str_copy[128];
     };
 };
 
