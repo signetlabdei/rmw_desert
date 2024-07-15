@@ -177,22 +177,49 @@ RxStream::RxStream(std::string topic_name)
       : _topic_name(topic_name)
 {
 }
-std::map<std::string, std::vector<uint8_t>> RxStream::_defragmented_packets;
+std::map<std::string, std::queue<std::vector<std::pair<void *, int>>>> RxStream::_interpreted_packets;
 
-RxStream & RxStream::operator>>(const void ** data)
+bool RxStream::data_available()
 {
+  return _interpreted_packets.find(_topic_name) != _interpreted_packets.end();
+}
+
+RxStream & RxStream::operator>>(std::vector<std::pair<void *, int>>& data)
+{
+  std::vector<std::pair<void *, int>> empty_packet;
+  
+  if (data_available())
+  {
+    auto topic_with_packets = _interpreted_packets.find(_topic_name);
+    if (topic_with_packets->second.size() > 0)
+    {
+      data = topic_with_packets->second.front();
+      topic_with_packets->second.pop();
+    }
+    else
+    {
+      data = empty_packet;
+    }
+  }
+  else
+  {
+    data = empty_packet;
+  }
+  
   return *this;
 }
 
-void RxStream::defragment_packets()
+void RxStream::interpret_packets()
 {
   std::vector<uint8_t> packet;
   for (packet = TcpDaemon::read_packet(); packet.size() != 0; packet = TcpDaemon::read_packet())
   {
+    /*
     printf("There is a packet\n");
     for(int i=0; i < packet.size(); i++)
         printf("%02x ", packet[i]);
     printf("\n");
+    */
     
     // Initialize buffer and reader
     uint8_t * buffer = &packet[0];
@@ -203,36 +230,62 @@ void RxStream::defragment_packets()
     cbor_reader_init(&reader, items, sizeof(items) / sizeof(items[0]));
     cbor_parse(&reader, buffer, packet.size(), &n);
     
+    std::string topic;
+    std::vector<std::pair<void *, int>> interpreted_packet;
+    
     for (size_t i = 0; i < n; i++)
     {
       union _cbor_value val;
 
       memset(&val, 0, sizeof(val));
       cbor_decode(&reader, &items[i], &val, sizeof(val));
-
-      switch (items[i].type)
+      
+      if (i == 0)
       {
-        case CBOR_ITEM_INTEGER: {
-	      char buf[16];
-              int len = sprintf(buf, "%d", val.i32);
-              buf[len] = '\0';
-              printf("int value: %d\n", atoi(buf));
-	      } break;
-        case CBOR_ITEM_STRING:
-	      printf("string value: %.*s\n", items[i].size, val.str_copy);
-	      break;
-        case CBOR_ITEM_SIMPLE_VALUE:
-	      printf("bool\n");
-        default:
-	      break;
+        val.str_copy[items[i].size] = '\0';
+        topic = reinterpret_cast<const char *>(val.str_copy);
+      }
+      else
+      {
+        std::pair<void *, int> field;
+        
+        switch (items[i].type)
+        {
+          case CBOR_ITEM_INTEGER:
+          {
+            char buf[16];
+            int len = sprintf(buf, "%d", val.i32);
+            buf[len] = '\0';
+            int * number = new int{atoi(buf)};
+            
+            field = std::make_pair(static_cast<void *>(number), CBOR_ITEM_INTEGER);
+            interpreted_packet.push_back(field);
+            break;
+	  }
+          case CBOR_ITEM_STRING: 
+          {
+            val.str_copy[items[i].size] = '\0';
+            std::string * str = new std::string{reinterpret_cast<const char *>(val.str_copy)};
+            
+            field = std::make_pair(static_cast<void *>(str), CBOR_ITEM_STRING);
+            interpreted_packet.push_back(field);
+            break;
+	  }
+          case CBOR_ITEM_SIMPLE_VALUE:
+          {
+            uint8_t * value = new uint8_t{val.i8};
+            
+            field = std::make_pair(static_cast<void *>(value), CBOR_ITEM_SIMPLE_VALUE);
+            interpreted_packet.push_back(field);
+            break;
+	  }
+          default:
+            break;
+        }
       }
     }
+    _interpreted_packets[topic].push(interpreted_packet);
   }
-}
-
-void RxStream::interpret_packets()
-{
-  
 }
 
 }

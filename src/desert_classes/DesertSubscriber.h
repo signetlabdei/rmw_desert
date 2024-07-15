@@ -12,6 +12,7 @@ class DesertSubscriber
     DesertSubscriber(std::string topic_name);
     
     bool has_data();
+    void * read_data();
   
   private:
     cbor::RxStream _data_stream;

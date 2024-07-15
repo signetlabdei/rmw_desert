@@ -57,7 +57,7 @@ std::vector<uint8_t> TcpDaemon::read_packet()
 
 void TcpDaemon::enqueue_packet(std::vector<uint8_t> packet)
 {
-  packet.push_back(packet.size() & 0b11111111);
+  packet.push_back(packet.size() & BYTE_MASK);
   packet.push_back(END_MARKER);
   packet.push_back(END_MARKER);
   packet.push_back(END_MARKER);
@@ -107,7 +107,7 @@ void TcpDaemon::socket_rx_communication()
         if (found_end_sequence)
         {
           uint8_t read_size = packet.end()[-4];
-          uint8_t real_size = (packet.size() - 4) & 0b11111111;
+          uint8_t real_size = (packet.size() - 4) & BYTE_MASK;
           if (read_size == real_size)
           {
             packet.pop_back();

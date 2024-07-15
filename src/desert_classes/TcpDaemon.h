@@ -20,6 +20,7 @@
 #define PORT 4000
 
 #define END_MARKER 0b01010101
+#define BYTE_MASK 0b11111111
 
 class TcpDaemon
 {

@@ -494,8 +494,9 @@ rmw_ret_t rmw_take_with_info(const rmw_subscription_t * subscription, void * ros
   
   DesertSubscriber * sub = static_cast<DesertSubscriber *>(subscription->data);
   sub->has_data();
+  sub->read_data();
   
-  usleep(1000);
+  usleep(100000);
   return RMW_RET_OK;
 }
 

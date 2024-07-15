@@ -2,10 +2,10 @@
 #define CBORSTREAM_HPP_
 
 #include "TcpDaemon.h"
-//#include "DesertSubscriber.h"
 
 #include <map>
-#include <set>
+#include <queue>
+#include <utility>
 #include <vector>
 #include <string>
 #include <locale>
@@ -72,14 +72,16 @@ class RxStream
   public:
     RxStream(std::string topic_name);
     
-    RxStream & operator>>(const void ** data);
+    bool data_available();
     
-    static void defragment_packets();
+    RxStream & operator>>(std::vector<std::pair<void *, int>>& data);
+    
     static void interpret_packets();
   
   private:
     std::string _topic_name;
-    static std::map<std::string, std::vector<uint8_t>> _defragmented_packets;
+    // <topic, packets <packet <field, field_type>>>
+    static std::map<std::string, std::queue<std::vector<std::pair<void *, int>>>> _interpreted_packets;
     union _cbor_value {
 	int8_t i8;
 	int16_t i16;
