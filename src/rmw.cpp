@@ -138,7 +138,7 @@ rmw_service_t * rmw_create_service(const rmw_node_t * node, const rosidl_service
   return ret;
 }
 
-rmw_subscription_t * rmw_create_subscription(const rmw_node_t * node, const rosidl_message_type_support_t * type_support, const char * topic_name, const rmw_qos_profile_t * qos_policies, const rmw_subscription_options_t * subscription_options)
+rmw_subscription_t * rmw_create_subscription(const rmw_node_t * node, const rosidl_message_type_support_t * type_supports, const char * topic_name, const rmw_qos_profile_t * qos_policies, const rmw_subscription_options_t * subscription_options)
 {
   DEBUG("rmw_create_subscription" "\n");
 
@@ -146,7 +146,7 @@ rmw_subscription_t * rmw_create_subscription(const rmw_node_t * node, const rosi
   ret->implementation_identifier = rmw_get_implementation_identifier();
   ret->topic_name = topic_name;
   
-  DesertSubscriber* sub = new DesertSubscriber(topic_name);
+  DesertSubscriber* sub = new DesertSubscriber(topic_name, type_supports);
   ret->data = (void*)sub;
   
   return ret;

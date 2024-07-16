@@ -181,29 +181,40 @@ std::map<std::string, std::queue<std::vector<std::pair<void *, int>>>> RxStream:
 
 bool RxStream::data_available()
 {
-  return _interpreted_packets.find(_topic_name) != _interpreted_packets.end();
-}
-
-RxStream & RxStream::operator>>(std::vector<std::pair<void *, int>>& data)
-{
-  std::vector<std::pair<void *, int>> empty_packet;
+  bool available = (_interpreted_packets.find(_topic_name) != _interpreted_packets.end());
   
-  if (data_available())
+  if (available)
   {
     auto topic_with_packets = _interpreted_packets.find(_topic_name);
     if (topic_with_packets->second.size() > 0)
     {
-      data = topic_with_packets->second.front();
+      _buffered_packet = topic_with_packets->second.front();
       topic_with_packets->second.pop();
+      _buffered_iterator = 0;
     }
     else
     {
-      data = empty_packet;
+      _buffered_packet.clear();
     }
   }
   else
   {
-    data = empty_packet;
+    _buffered_packet.clear();
+  }
+  
+  return available;
+}
+
+RxStream & RxStream::operator>>(std::string & s)
+{
+  if (_buffered_packet.size() > _buffered_iterator && _buffered_packet[_buffered_iterator].second == CBOR_ITEM_STRING)
+  {
+    s = *static_cast<std::string *>(_buffered_packet[_buffered_iterator].first);
+    _buffered_iterator++;
+  }
+  else
+  {
+    s = std::string();
   }
   
   return *this;
@@ -214,13 +225,6 @@ void RxStream::interpret_packets()
   std::vector<uint8_t> packet;
   for (packet = TcpDaemon::read_packet(); packet.size() != 0; packet = TcpDaemon::read_packet())
   {
-    /*
-    printf("There is a packet\n");
-    for(int i=0; i < packet.size(); i++)
-        printf("%02x ", packet[i]);
-    printf("\n");
-    */
-    
     // Initialize buffer and reader
     uint8_t * buffer = &packet[0];
     cbor_reader_t reader;

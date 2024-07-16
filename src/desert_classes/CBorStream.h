@@ -74,12 +74,16 @@ class RxStream
     
     bool data_available();
     
-    RxStream & operator>>(std::vector<std::pair<void *, int>>& data);
+    RxStream & operator>>(std::string & s);
     
     static void interpret_packets();
   
   private:
     std::string _topic_name;
+    
+    int _buffered_iterator;
+    std::vector<std::pair<void *, int>> _buffered_packet;
+    
     // <topic, packets <packet <field, field_type>>>
     static std::map<std::string, std::queue<std::vector<std::pair<void *, int>>>> _interpreted_packets;
     union _cbor_value {
