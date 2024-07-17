@@ -74,6 +74,18 @@ class RxStream
     
     bool data_available();
     
+    RxStream & operator>>(uint64_t & n);
+    RxStream & operator>>(uint32_t & n);
+    RxStream & operator>>(uint16_t & n);
+    RxStream & operator>>(uint8_t & n);
+    RxStream & operator>>(int64_t & i);
+    RxStream & operator>>(int32_t & n);
+    RxStream & operator>>(int16_t & n);
+    RxStream & operator>>(int8_t & n);
+    
+    template<typename T>
+    RxStream & deserialize_integer(T & n);
+
     RxStream & operator>>(std::string & s);
     
     static void interpret_packets();

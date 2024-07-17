@@ -18,7 +18,7 @@ class DesertSubscriber
     DesertSubscriber(std::string topic_name, const rosidl_message_type_support_t * type_supports);
     
     bool has_data();
-    void * read_data();
+    void read_data(void * msg);
   
   private:
     cbor::RxStream _data_stream;

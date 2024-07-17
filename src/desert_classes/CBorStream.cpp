@@ -101,6 +101,13 @@ TxStream & TxStream::operator<<(const int8_t n)
   return *this;
 }
 
+TxStream & TxStream::operator<<(const char n)
+{
+  std::string single_char_string(1, n);
+  *this << single_char_string;
+  return *this;
+}
+
 TxStream & TxStream::operator<<(const float f)
 {
   cbor_error_t result = cbor_encode_float(_writer, f);
@@ -195,27 +202,76 @@ bool RxStream::data_available()
     else
     {
       _buffered_packet.clear();
+      available = false;
     }
   }
   else
   {
     _buffered_packet.clear();
+    available = false;
   }
   
   return available;
 }
 
+RxStream & RxStream::operator>>(uint64_t & n)
+{
+  return deserialize_integer<uint64_t>(n);
+}
+
+RxStream & RxStream::operator>>(uint32_t & n)
+{
+  return deserialize_integer<uint32_t>(n);
+}
+
+RxStream & RxStream::operator>>(uint16_t & n)
+{
+  return deserialize_integer<uint16_t>(n);
+}
+
+RxStream & RxStream::operator>>(uint8_t & n)
+{
+  return deserialize_integer<uint8_t>(n);
+}
+
+RxStream & RxStream::operator>>(int64_t & n)
+{
+  return deserialize_integer<int64_t>(n);
+}
+
+RxStream & RxStream::operator>>(int32_t & n)
+{
+  return deserialize_integer<int32_t>(n);
+}
+
+RxStream & RxStream::operator>>(int16_t & n)
+{
+  return deserialize_integer<int16_t>(n);
+}
+
+RxStream & RxStream::operator>>(int8_t & n)
+{
+  return deserialize_integer<int8_t>(n);
+}
+
+template<typename T>
+RxStream & RxStream::deserialize_integer(T & n)
+{
+  if (_buffered_packet.size() > _buffered_iterator && _buffered_packet[_buffered_iterator].second == CBOR_ITEM_INTEGER)
+    n = *static_cast<T *>(_buffered_packet[_buffered_iterator].first);
+
+  printf("INT: %i\n", n);
+  _buffered_iterator++;
+  
+  return *this;
+}
+
 RxStream & RxStream::operator>>(std::string & s)
 {
   if (_buffered_packet.size() > _buffered_iterator && _buffered_packet[_buffered_iterator].second == CBOR_ITEM_STRING)
-  {
     s = *static_cast<std::string *>(_buffered_packet[_buffered_iterator].first);
-    _buffered_iterator++;
-  }
-  else
-  {
-    s = std::string();
-  }
+
+  _buffered_iterator++;
   
   return *this;
 }

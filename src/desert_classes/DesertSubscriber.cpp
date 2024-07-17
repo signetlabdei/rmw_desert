@@ -14,7 +14,7 @@ bool DesertSubscriber::has_data()
   return _data_stream.data_available();
 }
 
-void * DesertSubscriber::read_data()
+void DesertSubscriber::read_data(void * msg)
 {
   /*std::vector<std::pair<void *, int>> packet;
   _data_stream >> packet;
@@ -34,8 +34,6 @@ void * DesertSubscriber::read_data()
     }
   }*/
   
-  char aa[4096];
-  void * msg = (void*)aa;
   switch (_c_cpp_identifier)
   {
     case 0:
@@ -51,8 +49,6 @@ void * DesertSubscriber::read_data()
       break;
     }
   }
-  
-  return nullptr;
 }
 
 template<typename MembersType>
@@ -70,26 +66,34 @@ void DesertSubscriber::deserialize(void * msg, const MembersType * casted_member
         throw std::runtime_error("OCTET type unsupported");
         break;
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT8:
+        deserialize_field<uint8_t>(member, field);
         break;
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_CHAR:
         break;
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_INT8:
+        deserialize_field<int8_t>(member, field);
         break;
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_FLOAT:
         break;
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_DOUBLE:
         break;
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_INT16:
+        deserialize_field<int16_t>(member, field);
         break;
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT16:
+        deserialize_field<uint16_t>(member, field);
         break;
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_INT32:
+        deserialize_field<int32_t>(member, field);
         break;
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT32:
+        deserialize_field<uint32_t>(member, field);
         break;
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_INT64:
+        deserialize_field<int64_t>(member, field);
         break;
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT64:
+        deserialize_field<uint64_t>(member, field);
         break;
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_STRING:
         deserialize_field<std::string>(member, field);
@@ -107,10 +111,7 @@ template<typename T>
 void DesertSubscriber::deserialize_field(const INTROSPECTION_CPP_MEMBER * member, void * field)
 {
   if (!member->is_array_) {
-    std::string dato;
-    _data_stream >> dato;
-    if (!dato.empty())
-      printf("FIELD: %s\n", dato.c_str());
+    _data_stream >> *static_cast<T *>(field);
   }
 }
 
