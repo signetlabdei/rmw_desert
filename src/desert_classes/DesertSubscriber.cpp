@@ -46,6 +46,12 @@ void DesertSubscriber::deserialize(void * msg, const MembersType * casted_member
           if (!member->is_array_) {
             deserialize(field, sub_members);
           }
+          else if (member->array_size_ && !member->is_upper_bound_)
+          {
+            for (size_t index = 0; index < member->array_size_; ++index) {
+              deserialize(member->get_function(field, index), sub_members);
+            }
+          }
         }
         break;
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN:

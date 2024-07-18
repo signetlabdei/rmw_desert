@@ -45,9 +45,15 @@ void DesertPublisher::serialize(const void * msg, const MembersType * casted_mem
           if (!member->is_array_) {
             serialize(field, sub_members);
           }
+          else if (member->array_size_ && !member->is_upper_bound_)
+          {
+            for (size_t index = 0; index < member->array_size_; ++index) {
+              serialize(member->get_function(field, index), sub_members);
+            }
+          }
           else
           {
-            printf("WARNING: messages containing an array are currently unsupported by the stream\n");
+            printf("WARNING: messages containing a non-fixed size sequence are currently unsupported by the stream\n");
           }
         }
         break;
