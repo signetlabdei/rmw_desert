@@ -136,6 +136,13 @@ TxStream & TxStream::operator<<(const std::u16string s)
   return *this;
 }
 
+TxStream & TxStream::operator<<(const bool b)
+{
+  cbor_error_t result = cbor_encode_bool(_writer, b);
+  handle_overrun(result);
+  return *this;
+}
+
 template<typename T>
 TxStream & TxStream::operator<<(const std::vector<T> v)
 {
