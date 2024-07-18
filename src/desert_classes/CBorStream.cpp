@@ -171,7 +171,7 @@ std::string TxStream::toUTF8(const std::u16string source)
 {
     std::string result;
 
-    std::wstring_convert<std::codecvt_utf8_utf16<std::u16string >, std::u16string> convertor;
+    std::wstring_convert<std::codecvt_utf8_utf16<char16_t>, char16_t> convertor;
     result = convertor.to_bytes(source);
 
     return result;
@@ -260,9 +260,36 @@ RxStream & RxStream::deserialize_integer(T & n)
   if (_buffered_packet.size() > _buffered_iterator && _buffered_packet[_buffered_iterator].second == CBOR_ITEM_INTEGER)
     n = *static_cast<T *>(_buffered_packet[_buffered_iterator].first);
 
-  printf("INT: %i\n", n);
   _buffered_iterator++;
   
+  return *this;
+}
+
+RxStream & RxStream::operator>>(char & n)
+{
+  if (_buffered_packet.size() > _buffered_iterator && _buffered_packet[_buffered_iterator].second == CBOR_ITEM_STRING)
+    n = (*static_cast<std::string *>(_buffered_packet[_buffered_iterator].first))[0];
+
+  _buffered_iterator++;
+  
+  return *this;
+}
+
+RxStream & RxStream::operator>>(float & f)
+{
+  if (_buffered_packet.size() > _buffered_iterator && _buffered_packet[_buffered_iterator].second == CBOR_ITEM_FLOAT)
+    f = *static_cast<float *>(_buffered_packet[_buffered_iterator].first);
+
+  _buffered_iterator++;
+  
+  return *this;
+}
+
+RxStream & RxStream::operator>>(double & d)
+{
+  float value;
+  *this >> value;
+  d = static_cast<double>(value);
   return *this;
 }
 
@@ -273,6 +300,44 @@ RxStream & RxStream::operator>>(std::string & s)
 
   _buffered_iterator++;
   
+  return *this;
+}
+
+RxStream & RxStream::operator>>(std::u16string & s)
+{
+  std::string str;
+  *this >> str;
+  
+  s = toUTF16(str);
+  return *this;
+}
+
+RxStream & RxStream::operator>>(bool & b)
+{
+  int8_t b_;
+  
+  if (_buffered_packet.size() > _buffered_iterator && _buffered_packet[_buffered_iterator].second == CBOR_ITEM_SIMPLE_VALUE)
+    b_ = *static_cast<int8_t *>(_buffered_packet[_buffered_iterator].first);
+
+  b = b_ ? true : false;
+  
+  _buffered_iterator++;
+  
+  return *this;
+}
+
+template<typename T>
+RxStream & RxStream::operator>>(const std::vector<T> v)
+{
+  return deserialize_sequence(v.data(), v.size());
+}
+
+template<typename T>
+RxStream & RxStream::deserialize_sequence(const T * items, size_t size)
+{
+  for (size_t i = 0; i < size; ++i) {
+    *this >> items[i];
+  }
   return *this;
 }
 
@@ -313,12 +378,17 @@ void RxStream::interpret_packets()
         {
           case CBOR_ITEM_INTEGER:
           {
-            char buf[16];
-            int len = sprintf(buf, "%d", val.i32);
-            buf[len] = '\0';
-            int * number = new int{atoi(buf)};
+            int * number = new int{val.i32};
             
             field = std::make_pair(static_cast<void *>(number), CBOR_ITEM_INTEGER);
+            interpreted_packet.push_back(field);
+            break;
+	  }
+          case CBOR_ITEM_FLOAT:
+          {
+            float * number = new float{val.f32};
+            
+            field = std::make_pair(static_cast<void *>(number), CBOR_ITEM_FLOAT);
             interpreted_packet.push_back(field);
             break;
 	  }
@@ -346,6 +416,16 @@ void RxStream::interpret_packets()
     }
     _interpreted_packets[topic].push(interpreted_packet);
   }
+}
+
+std::u16string RxStream::toUTF16(const std::string source)
+{
+    std::u16string result;
+
+    std::wstring_convert<std::codecvt_utf8_utf16<char16_t>, char16_t> convertor;
+    result = convertor.from_bytes(source);
+
+    return result;
 }
 
 }

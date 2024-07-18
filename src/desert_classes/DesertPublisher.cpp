@@ -45,6 +45,10 @@ void DesertPublisher::serialize(const void * msg, const MembersType * casted_mem
           if (!member->is_array_) {
             serialize(field, sub_members);
           }
+          else
+          {
+            printf("WARNING: messages containing an array are currently unsupported by the stream\n");
+          }
         }
         break;
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN:
@@ -120,6 +124,7 @@ void DesertPublisher::serialize_field(const INTROSPECTION_CPP_MEMBER * member, v
   }
   else
   {
+    printf("WARNING: non-fixed size sequences are currently unsupported by the stream\n");
     std::vector<T> & data = *reinterpret_cast<std::vector<T> *>(field);
     _data_stream << data;
   }
@@ -142,6 +147,7 @@ void DesertPublisher::serialize_field(const INTROSPECTION_C_MEMBER * member, voi
     }
     else
     {
+      printf("WARNING: non-fixed size sequences are currently unsupported by the stream\n");
       _data_stream << CStringHelper::convert_sequence_to_std_vector_string(field);
     }
   }
@@ -158,6 +164,7 @@ void DesertPublisher::serialize_field(const INTROSPECTION_C_MEMBER * member, voi
     }
     else
     {
+      printf("WARNING: non-fixed size sequences are currently unsupported by the stream\n");
       _data_stream << CStringHelper::convert_sequence_to_std_vector_u16string(field);
     }
   }
@@ -171,6 +178,10 @@ void DesertPublisher::serialize_field(const INTROSPECTION_C_MEMBER * member, voi
     else if (member->array_size_ && !member->is_upper_bound_)
     {
       _data_stream.serialize_sequence(static_cast<T *>(field), member->array_size_);
+    }
+    else
+    {
+      printf("WARNING: non-fixed size sequences are currently unsupported by the stream\n");
     }
   }
 }

@@ -22,6 +22,8 @@
 
 #include "rosidl_runtime_c/u16string.h"
 #include "rosidl_runtime_c/string.h"
+#include "rosidl_runtime_c/u16string_functions.h"
+#include "rosidl_runtime_c/string_functions.h"
 
 #include "desert_classes/DesertNode.h"
 #include "desert_classes/DesertPublisher.h"

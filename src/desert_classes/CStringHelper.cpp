@@ -60,3 +60,42 @@ std::vector<std::u16string> CStringHelper::convert_sequence_to_std_vector_u16str
   return cpp_string_vector;
 }
 
+void CStringHelper::assign_string(cbor::RxStream & stream, void * field)
+{
+  std::string str;
+  stream >> str;
+  rosidl_runtime_c__String * c_str = static_cast<rosidl_runtime_c__String *>(field);
+  rosidl_runtime_c__String__assign(c_str, str.c_str());
+}
+
+void CStringHelper::assign_vector_string(std::vector<std::string> cpp_string_vector, void * str_array, size_t size)
+{
+  auto string_field = static_cast<rosidl_runtime_c__String *>(str_array);
+  for (size_t i = 0; i < size; ++i)
+  {
+    if (!rosidl_runtime_c__String__assign(&string_field[i], cpp_string_vector[i].c_str()))
+    {
+      throw std::runtime_error("unable to assign rosidl_runtime_c__String");
+    }
+  }
+}
+
+void CStringHelper::assign_u16string(cbor::RxStream & stream, void * field)
+{
+  std::u16string str;
+  stream >> str;
+  rosidl_runtime_c__U16String * c_str = static_cast<rosidl_runtime_c__U16String *>(field);
+  rosidl_runtime_c__U16String__assign(c_str, reinterpret_cast<const uint16_t *>(str.c_str()));
+}
+
+void CStringHelper::assign_vector_u16string(std::vector<std::u16string> cpp_string_vector, void * str_array, size_t size)
+{
+  auto string_field = static_cast<rosidl_runtime_c__U16String *>(str_array);
+  for (size_t i = 0; i < size; ++i)
+  {
+    if (!rosidl_runtime_c__U16String__assign(&string_field[i], reinterpret_cast<const uint16_t *>(cpp_string_vector[i].c_str())))
+    {
+      throw std::runtime_error("unable to assign rosidl_runtime_c__U16String");
+    }
+  }
+}

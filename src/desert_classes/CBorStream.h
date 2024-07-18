@@ -36,7 +36,7 @@ class TxStream
     TxStream & operator<<(const uint32_t n);
     TxStream & operator<<(const uint16_t n);
     TxStream & operator<<(const uint8_t n);
-    TxStream & operator<<(const int64_t i);
+    TxStream & operator<<(const int64_t n);
     TxStream & operator<<(const int32_t n);
     TxStream & operator<<(const int16_t n);
     TxStream & operator<<(const int8_t n);
@@ -78,15 +78,25 @@ class RxStream
     RxStream & operator>>(uint32_t & n);
     RxStream & operator>>(uint16_t & n);
     RxStream & operator>>(uint8_t & n);
-    RxStream & operator>>(int64_t & i);
+    RxStream & operator>>(int64_t & n);
     RxStream & operator>>(int32_t & n);
     RxStream & operator>>(int16_t & n);
     RxStream & operator>>(int8_t & n);
     
     template<typename T>
     RxStream & deserialize_integer(T & n);
-
+    
+    RxStream & operator>>(char & n);
+    RxStream & operator>>(float & f);
+    RxStream & operator>>(double & d);
     RxStream & operator>>(std::string & s);
+    RxStream & operator>>(std::u16string & s);
+    RxStream & operator>>(bool & b);
+    
+    template<typename T>
+    RxStream & operator>>(const std::vector<T> v);
+    template<typename T>
+    RxStream & deserialize_sequence(const T * items, size_t size);
     
     static void interpret_packets();
   
@@ -109,6 +119,8 @@ class RxStream
 	char *str;
 	uint8_t str_copy[128];
     };
+    
+    std::u16string toUTF16(const std::string source);
 };
 
 }  // namespace cbor

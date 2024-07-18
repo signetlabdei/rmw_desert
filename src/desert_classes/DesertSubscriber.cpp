@@ -16,24 +16,6 @@ bool DesertSubscriber::has_data()
 
 void DesertSubscriber::read_data(void * msg)
 {
-  /*std::vector<std::pair<void *, int>> packet;
-  _data_stream >> packet;
-  
-  if (packet.size() > 0)
-  {
-    for (int i=0; i < packet.size(); i++)
-    {
-      if (packet[i].second == CBOR_ITEM_STRING)
-      {
-        printf("FIELD %i: %s\n", i, static_cast<std::string *>(packet[i].first)->c_str());
-      }
-      else if (packet[0].second == CBOR_ITEM_INTEGER)
-      {
-        printf("FIELD %i: %i\n", i, *static_cast<uint32_t *>(packet[i].first));
-      }
-    }
-  }*/
-  
   switch (_c_cpp_identifier)
   {
     case 0:
@@ -59,8 +41,15 @@ void DesertSubscriber::deserialize(void * msg, const MembersType * casted_member
     void * field = static_cast<char *>(msg) + member->offset_;
     switch (member->type_id_) {
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_MESSAGE:
+        {
+          auto sub_members = static_cast<const MembersType *>(member->members_->data);
+          if (!member->is_array_) {
+            deserialize(field, sub_members);
+          }
+        }
         break;
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN:
+        deserialize_field<bool>(member, field);
         break;
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_OCTET:
         throw std::runtime_error("OCTET type unsupported");
@@ -69,13 +58,16 @@ void DesertSubscriber::deserialize(void * msg, const MembersType * casted_member
         deserialize_field<uint8_t>(member, field);
         break;
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_CHAR:
+        deserialize_field<char>(member, field);
         break;
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_INT8:
         deserialize_field<int8_t>(member, field);
         break;
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_FLOAT:
+        deserialize_field<float>(member, field);
         break;
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_DOUBLE:
+        deserialize_field<double>(member, field);
         break;
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_INT16:
         deserialize_field<int16_t>(member, field);
@@ -99,6 +91,7 @@ void DesertSubscriber::deserialize(void * msg, const MembersType * casted_member
         deserialize_field<std::string>(member, field);
         break;
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_WSTRING:
+        deserialize_field<std::u16string>(member, field);
         break;
       default:
         throw std::runtime_error("unknown type");
@@ -113,12 +106,58 @@ void DesertSubscriber::deserialize_field(const INTROSPECTION_CPP_MEMBER * member
   if (!member->is_array_) {
     _data_stream >> *static_cast<T *>(field);
   }
+  else if (member->array_size_ && !member->is_upper_bound_)
+  {
+    _data_stream.deserialize_sequence(static_cast<T *>(field), member->array_size_);
+  }
 }
 
 // C specialization
 template<typename T>
 void DesertSubscriber::deserialize_field(const INTROSPECTION_C_MEMBER * member, void * field)
 {
+  // String specific implementation
+  if constexpr(std::is_same_v<T, std::string>)
+  {
+    if (!member->is_array_) 
+    {
+      CStringHelper::assign_string(_data_stream, field);
+    }
+    else if (member->array_size_ && !member->is_upper_bound_)
+    {
+      std::vector<std::string> cpp_string_vector(member->array_size_, "");
+      _data_stream >> cpp_string_vector;
+      
+      CStringHelper::assign_vector_string(cpp_string_vector, field, member->array_size_);
+    }
+  }
+  // U16string specific implementation
+  else if constexpr(std::is_same_v<T, std::u16string>)
+  {
+    if (!member->is_array_) 
+    {
+      CStringHelper::assign_u16string(_data_stream, field);
+    }
+    else if (member->array_size_ && !member->is_upper_bound_)
+    {
+      std::vector<std::u16string> cpp_string_vector(member->array_size_, u"");
+      _data_stream >> cpp_string_vector;
+      
+      CStringHelper::assign_vector_u16string(cpp_string_vector, field, member->array_size_);
+    }
+  }
+  // Generic implementation
+  else
+  {
+    if (!member->is_array_) 
+    {
+      _data_stream >> * static_cast<T *>(field);
+    }
+    else if (member->array_size_ && !member->is_upper_bound_)
+    {
+      _data_stream.deserialize_sequence(static_cast<T *>(field), member->array_size_);
+    }
+  }
 }
 
 const void * DesertSubscriber::get_members(const rosidl_message_type_support_t * type_support)
