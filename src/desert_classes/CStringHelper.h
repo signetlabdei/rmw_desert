@@ -17,9 +17,11 @@ namespace CStringHelper
   
   void assign_string(cbor::RxStream & stream, void * field);
   void assign_vector_string(std::vector<std::string> cpp_string_vector, void * str_array, size_t size);
+  void assign_vector_string_to_sequence(std::vector<std::string> cpp_string_vector, void * str_seq);
   
   void assign_u16string(cbor::RxStream & stream, void * field);
   void assign_vector_u16string(std::vector<std::u16string> cpp_string_vector, void * str_array, size_t size);
+  void assign_vector_u16string_to_sequence(std::vector<std::u16string> cpp_string_vector, void * str_seq);
 }
 
 

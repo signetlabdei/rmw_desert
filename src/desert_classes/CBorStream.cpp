@@ -143,25 +143,12 @@ TxStream & TxStream::operator<<(const bool b)
   return *this;
 }
 
-template<typename T>
-TxStream & TxStream::operator<<(const std::vector<T> v)
-{
-  return serialize_sequence(v.data(), v.size());
-}
-
 TxStream & TxStream::operator<<(const std::vector<bool> v)
 {
-  for (size_t i = 0; i < v.size(); ++i) {
+  *this << static_cast<const uint32_t>(v.size());
+  for (size_t i = 0; i < v.size(); ++i)
+  {
     *this << v[i];
-  }
-  return *this;
-}
-
-template<typename T>
-TxStream & TxStream::serialize_sequence(const T * items, size_t size)
-{
-  for (size_t i = 0; i < size; ++i) {
-    *this << items[i];
   }
   return *this;
 }
@@ -333,17 +320,15 @@ RxStream & RxStream::operator>>(bool & b)
   return *this;
 }
 
-template<typename T>
-RxStream & RxStream::operator>>(const std::vector<T> v)
+RxStream & RxStream::operator>>(std::vector<bool> v)
 {
-  return deserialize_sequence(v.data(), v.size());
-}
-
-template<typename T>
-RxStream & RxStream::deserialize_sequence(const T * items, size_t size)
-{
-  for (size_t i = 0; i < size; ++i) {
-    *this >> items[i];
+  uint32_t size;
+  *this >> size;
+  for (size_t i = 0; i < size; ++i)
+  {
+    int b;
+    *this >> b;
+    v[i] = b ? true : false;
   }
   return *this;
 }

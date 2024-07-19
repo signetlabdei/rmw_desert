@@ -48,10 +48,22 @@ class TxStream
     TxStream & operator<<(const bool b);
     
     template<typename T>
-    TxStream & operator<<(const std::vector<T> v);
+    inline TxStream & operator<<(const std::vector<T> v)
+    {
+      *this << static_cast<const uint32_t>(v.size());
+      return serialize_sequence(v.data(), v.size());
+    }
+    
     TxStream & operator<<(const std::vector<bool> v);
+    
     template<typename T>
-    TxStream & serialize_sequence(const T * items, size_t size);
+    inline TxStream & serialize_sequence(const T * items, size_t size)
+    {
+      for (size_t i = 0; i < size; ++i) {
+        *this << items[i];
+      }
+      return *this;
+    }
 
   private:
     size_t size_;
@@ -94,9 +106,23 @@ class RxStream
     RxStream & operator>>(bool & b);
     
     template<typename T>
-    RxStream & operator>>(const std::vector<T> v);
+    inline RxStream & operator>>(std::vector<T> v)
+    {
+      uint32_t size;
+      *this >> size;
+      return deserialize_sequence(v.data(), size);
+    }
+    
+    RxStream & operator>>(std::vector<bool> v);
+    
     template<typename T>
-    RxStream & deserialize_sequence(const T * items, size_t size);
+    inline RxStream & deserialize_sequence(T * items, size_t size)
+    {
+      for (size_t i = 0; i < size; ++i) {
+        *this >> items[i];
+      }
+      return *this;
+    }
     
     static void interpret_packets();
   

@@ -80,6 +80,24 @@ void CStringHelper::assign_vector_string(std::vector<std::string> cpp_string_vec
   }
 }
 
+void CStringHelper::assign_vector_string_to_sequence(std::vector<std::string> cpp_string_vector, void * str_seq)
+{
+  auto & string_sequence_field = *reinterpret_cast<rosidl_runtime_c__String__Sequence *>(str_seq);
+  
+  if (!rosidl_runtime_c__String__Sequence__init(&string_sequence_field, cpp_string_vector.size()))
+  {
+    throw std::runtime_error("unable to initialize rosidl_generator_c__String sequence");
+  }
+  
+  for (size_t i = 0; i < cpp_string_vector.size(); ++i)
+  {
+    if (!rosidl_runtime_c__String__assign(&string_sequence_field.data[i], cpp_string_vector[i].c_str()))
+    {
+      throw std::runtime_error("unable to assign rosidl_runtime_c__String");
+    }
+  }
+}
+
 void CStringHelper::assign_u16string(cbor::RxStream & stream, void * field)
 {
   std::u16string str;
@@ -94,6 +112,24 @@ void CStringHelper::assign_vector_u16string(std::vector<std::u16string> cpp_stri
   for (size_t i = 0; i < size; ++i)
   {
     if (!rosidl_runtime_c__U16String__assign(&string_field[i], reinterpret_cast<const uint16_t *>(cpp_string_vector[i].c_str())))
+    {
+      throw std::runtime_error("unable to assign rosidl_runtime_c__U16String");
+    }
+  }
+}
+
+void CStringHelper::assign_vector_u16string_to_sequence(std::vector<std::u16string> cpp_string_vector, void * str_seq)
+{
+  auto & string_sequence_field = *reinterpret_cast<rosidl_runtime_c__U16String__Sequence *>(str_seq);
+  
+  if (!rosidl_runtime_c__U16String__Sequence__init(&string_sequence_field, cpp_string_vector.size()))
+  {
+    throw std::runtime_error("unable to initialize rosidl_generator_c__U16String sequence");
+  }
+  
+  for (size_t i = 0; i < cpp_string_vector.size(); ++i)
+  {
+    if (!rosidl_runtime_c__U16String__assign(&string_sequence_field.data[i], reinterpret_cast<const uint16_t *>(cpp_string_vector[i].c_str())))
     {
       throw std::runtime_error("unable to assign rosidl_runtime_c__U16String");
     }

@@ -52,13 +52,28 @@ void DesertSubscriber::deserialize(void * msg, const MembersType * casted_member
               deserialize(member->get_function(field, index), sub_members);
             }
           }
+          else
+          {
+            printf("WARNING: messages containing a non-fixed size sequence are currently sperimental\n");
+            // Deserialize length
+            uint32_t array_size = 0;
+            _data_stream >> array_size;
+            
+            auto vector = reinterpret_cast<std::vector<unsigned char> *>(field);
+            new(vector) std::vector<unsigned char>;
+            member->resize_function(field, array_size);
+            
+            for (size_t index = 0; index < array_size; ++index) {
+              deserialize(member->get_function(field, index), sub_members);
+            }
+          }
         }
         break;
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN:
         deserialize_field<bool>(member, field);
         break;
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_OCTET:
-        throw std::runtime_error("OCTET type unsupported");
+        //throw std::runtime_error("OCTET type unsupported");
         break;
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT8:
         deserialize_field<uint8_t>(member, field);
@@ -116,6 +131,13 @@ void DesertSubscriber::deserialize_field(const INTROSPECTION_CPP_MEMBER * member
   {
     _data_stream.deserialize_sequence(static_cast<T *>(field), member->array_size_);
   }
+  else
+  {
+    printf("WARNING: non-fixed size sequences are currently sperimental\n");
+    auto & vector = *reinterpret_cast<std::vector<T> *>(field);
+    new(&vector) std::vector<T>;
+    _data_stream >> vector;
+  }
 }
 
 // C specialization
@@ -131,10 +153,18 @@ void DesertSubscriber::deserialize_field(const INTROSPECTION_C_MEMBER * member, 
     }
     else if (member->array_size_ && !member->is_upper_bound_)
     {
-      std::vector<std::string> cpp_string_vector(member->array_size_, "");
+      std::vector<std::string> cpp_string_vector;
       _data_stream >> cpp_string_vector;
       
       CStringHelper::assign_vector_string(cpp_string_vector, field, member->array_size_);
+    }
+    else
+    {
+      printf("WARNING: non-fixed size sequences are currently sperimental\n");
+      std::vector<std::string> cpp_string_vector;
+      _data_stream >> cpp_string_vector;
+      
+      CStringHelper::assign_vector_string_to_sequence(cpp_string_vector, field);
     }
   }
   // U16string specific implementation
@@ -146,10 +176,18 @@ void DesertSubscriber::deserialize_field(const INTROSPECTION_C_MEMBER * member, 
     }
     else if (member->array_size_ && !member->is_upper_bound_)
     {
-      std::vector<std::u16string> cpp_string_vector(member->array_size_, u"");
+      std::vector<std::u16string> cpp_string_vector;
       _data_stream >> cpp_string_vector;
       
       CStringHelper::assign_vector_u16string(cpp_string_vector, field, member->array_size_);
+    }
+    else
+    {
+      printf("WARNING: non-fixed size sequences are currently sperimental\n");
+      std::vector<std::u16string> cpp_string_vector;
+      _data_stream >> cpp_string_vector;
+      
+      CStringHelper::assign_vector_u16string_to_sequence(cpp_string_vector, field);
     }
   }
   // Generic implementation

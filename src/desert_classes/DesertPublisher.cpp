@@ -53,7 +53,20 @@ void DesertPublisher::serialize(const void * msg, const MembersType * casted_mem
           }
           else
           {
-            printf("WARNING: messages containing a non-fixed size sequence are currently unsupported by the stream\n");
+            printf("WARNING: messages containing a non-fixed size sequence are currently sperimental\n");
+            size_t array_size = member->size_function(field);
+            
+            if (member->is_upper_bound_ && array_size > member->array_size_)
+            {
+              throw std::runtime_error("Sequence overcomes the maximum length");
+            }
+            
+            // Serialize length
+            _data_stream << (uint32_t)array_size;
+            
+            for (size_t index = 0; index < array_size; ++index) {
+              serialize(member->get_function(field, index), sub_members);
+            }
           }
         }
         break;
@@ -69,7 +82,7 @@ void DesertPublisher::serialize(const void * msg, const MembersType * casted_mem
         }
         break;
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_OCTET:
-        throw std::runtime_error("OCTET type unsupported");
+        //throw std::runtime_error("OCTET type unsupported");
         break;
       case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT8:
         serialize_field<uint8_t>(member, field);
@@ -130,7 +143,7 @@ void DesertPublisher::serialize_field(const INTROSPECTION_CPP_MEMBER * member, v
   }
   else
   {
-    printf("WARNING: non-fixed size sequences are currently unsupported by the stream\n");
+    printf("WARNING: non-fixed size sequences are currently sperimental\n");
     std::vector<T> & data = *reinterpret_cast<std::vector<T> *>(field);
     _data_stream << data;
   }
@@ -153,7 +166,7 @@ void DesertPublisher::serialize_field(const INTROSPECTION_C_MEMBER * member, voi
     }
     else
     {
-      printf("WARNING: non-fixed size sequences are currently unsupported by the stream\n");
+      printf("WARNING: non-fixed size sequences are currently sperimental\n");
       _data_stream << CStringHelper::convert_sequence_to_std_vector_string(field);
     }
   }
@@ -170,7 +183,7 @@ void DesertPublisher::serialize_field(const INTROSPECTION_C_MEMBER * member, voi
     }
     else
     {
-      printf("WARNING: non-fixed size sequences are currently unsupported by the stream\n");
+      printf("WARNING: non-fixed size sequences are currently sperimental\n");
       _data_stream << CStringHelper::convert_sequence_to_std_vector_u16string(field);
     }
   }
