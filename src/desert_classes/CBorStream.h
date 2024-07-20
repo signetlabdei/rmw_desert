@@ -112,11 +112,7 @@ class RxStream
       *this >> size;
       v.resize(size);
       
-      for (size_t i = 0; i < size; ++i)
-      {
-        *this >> v[i];
-      }
-      return *this;
+      return deserialize_sequence(v.data(), size);
     }
     
     RxStream & operator>>(std::vector<bool> & v);
