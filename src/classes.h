@@ -3,6 +3,8 @@
 #include <string.h>
 #include <unistd.h>
 
+#include "macros.h"
+
 #include "rmw/rmw.h"
 #include "rmw/allocators.h"
 #include "rmw/error_handling.h"

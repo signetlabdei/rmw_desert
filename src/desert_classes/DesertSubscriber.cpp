@@ -54,7 +54,6 @@ void DesertSubscriber::deserialize(void * msg, const MembersType * casted_member
           }
           else
           {
-            printf("WARNING: messages containing a non-fixed size sequence are currently sperimental\n");
             // Deserialize length
             uint32_t array_size = 0;
             _data_stream >> array_size;
@@ -133,7 +132,6 @@ void DesertSubscriber::deserialize_field(const INTROSPECTION_CPP_MEMBER * member
   }
   else
   {
-    printf("WARNING: non-fixed size sequences are currently sperimental\n");
     auto & vector = *reinterpret_cast<std::vector<T> *>(field);
     new(&vector) std::vector<T>;
     _data_stream >> vector;
@@ -200,6 +198,21 @@ void DesertSubscriber::deserialize_field(const INTROSPECTION_C_MEMBER * member, 
     else if (member->array_size_ && !member->is_upper_bound_)
     {
       _data_stream.deserialize_sequence(static_cast<T *>(field), member->array_size_);
+    }
+    else
+    {
+      printf("WARNING: non-fixed size sequences are currently sperimental\n");
+      auto & data = *reinterpret_cast<typename GenericCSequence<T>::type *>(field);
+      uint32_t size = 0;
+      _data_stream >> size;
+      size_t dsize = static_cast<size_t>(size);
+      
+      if (!GenericCSequence<T>::init(&data, dsize))
+      {
+        throw std::runtime_error("unable to initialize GenericCSequence");
+      }
+      
+      _data_stream.deserialize_sequence(reinterpret_cast<T *>(data.data), dsize);
     }
   }
 }

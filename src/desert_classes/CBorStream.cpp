@@ -320,7 +320,7 @@ RxStream & RxStream::operator>>(bool & b)
   return *this;
 }
 
-RxStream & RxStream::operator>>(std::vector<bool> v)
+RxStream & RxStream::operator>>(std::vector<bool> & v)
 {
   uint32_t size;
   *this >> size;

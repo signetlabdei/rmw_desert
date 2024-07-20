@@ -59,7 +59,8 @@ class TxStream
     template<typename T>
     inline TxStream & serialize_sequence(const T * items, size_t size)
     {
-      for (size_t i = 0; i < size; ++i) {
+      for (size_t i = 0; i < size; ++i)
+      {
         *this << items[i];
       }
       return *this;
@@ -68,7 +69,6 @@ class TxStream
   private:
     size_t size_;
     bool _overflow;
-    int _sequence_id;
     uint8_t *  _packet;
     cbor_writer_t *  _writer;
     
@@ -106,19 +106,26 @@ class RxStream
     RxStream & operator>>(bool & b);
     
     template<typename T>
-    inline RxStream & operator>>(std::vector<T> v)
+    inline RxStream & operator>>(std::vector<T> & v)
     {
       uint32_t size;
       *this >> size;
-      return deserialize_sequence(v.data(), size);
+      v.resize(size);
+      
+      for (size_t i = 0; i < size; ++i)
+      {
+        *this >> v[i];
+      }
+      return *this;
     }
     
-    RxStream & operator>>(std::vector<bool> v);
+    RxStream & operator>>(std::vector<bool> & v);
     
     template<typename T>
     inline RxStream & deserialize_sequence(T * items, size_t size)
     {
-      for (size_t i = 0; i < size; ++i) {
+      for (size_t i = 0; i < size; ++i)
+      {
         *this >> items[i];
       }
       return *this;

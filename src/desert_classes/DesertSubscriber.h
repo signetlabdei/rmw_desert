@@ -12,6 +12,7 @@
 #define INTROSPECTION_C_MEMBERS rosidl_typesupport_introspection_c__MessageMembers
 #define INTROSPECTION_CPP_MEMBERS rosidl_typesupport_introspection_cpp::MessageMembers
 
+
 class DesertSubscriber
 {
   public:

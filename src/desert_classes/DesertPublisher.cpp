@@ -11,6 +11,8 @@ DesertPublisher::DesertPublisher(std::string topic_name, uint64_t id, const rosi
 
 void DesertPublisher::push(const void * msg)
 {
+  if (_name == "/rosout") return;
+  
   _data_stream.start_transmission(_name);
   
   switch (_c_cpp_identifier)
@@ -53,7 +55,6 @@ void DesertPublisher::serialize(const void * msg, const MembersType * casted_mem
           }
           else
           {
-            printf("WARNING: messages containing a non-fixed size sequence are currently sperimental\n");
             size_t array_size = member->size_function(field);
             
             if (member->is_upper_bound_ && array_size > member->array_size_)
@@ -143,7 +144,6 @@ void DesertPublisher::serialize_field(const INTROSPECTION_CPP_MEMBER * member, v
   }
   else
   {
-    printf("WARNING: non-fixed size sequences are currently sperimental\n");
     std::vector<T> & data = *reinterpret_cast<std::vector<T> *>(field);
     _data_stream << data;
   }
@@ -200,7 +200,13 @@ void DesertPublisher::serialize_field(const INTROSPECTION_C_MEMBER * member, voi
     }
     else
     {
-      printf("WARNING: non-fixed size sequences are currently unsupported by the stream\n");
+      printf("WARNING: non-fixed size sequences are currently sperimental\n");
+      auto & data = *reinterpret_cast<typename GenericCSequence<T>::type *>(field);
+      
+      // Serialize length
+      _data_stream << (uint32_t)data.size;
+            
+      _data_stream.serialize_sequence(reinterpret_cast<T *>(data.data), data.size);
     }
   }
 }
