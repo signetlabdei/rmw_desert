@@ -1,7 +1,14 @@
-#ifndef CSTRING_HELPER_HPP_
-#define CSTRING_HELPER_HPP_
+#ifndef CSTRING_HELPER_H_
+#define CSTRING_HELPER_H_
 
-#include "../classes.h"
+#include "rosidl_runtime_c/u16string.h"
+#include "rosidl_runtime_c/string.h"
+#include "rosidl_runtime_c/u16string_functions.h"
+#include "rosidl_runtime_c/string_functions.h"
+
+#include "CBorStream.h"
+
+#include <stdexcept>
 #include <vector>
 #include <string>
 

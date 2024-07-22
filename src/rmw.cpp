@@ -506,7 +506,6 @@ rmw_ret_t rmw_take_with_info(const rmw_subscription_t * subscription, void * ros
 rmw_ret_t rmw_trigger_guard_condition(const rmw_guard_condition_t * guard_condition)
 {
   DEBUG("rmw_trigger_guard_condition" "\n");
-  //RMW_SET_ERROR_MSG("guard condition is null");
   return RMW_RET_OK;
 }
 

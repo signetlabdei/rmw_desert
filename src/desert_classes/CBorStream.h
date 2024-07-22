@@ -1,5 +1,5 @@
-#ifndef CBORSTREAM_HPP_
-#define CBORSTREAM_HPP_
+#ifndef CBORSTREAM_H_
+#define CBORSTREAM_H_
 
 #include "TcpDaemon.h"
 

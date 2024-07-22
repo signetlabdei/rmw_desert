@@ -58,11 +58,6 @@ add_library(rmw_desert
 )
 
 INCLUDE (FindPkgConfig)
-pkg_check_modules (NDN_CXX libndn-cxx)
-
-include_directories(rmw_desert ${NDN_CXX_INCLUDE_DIRS})
-link_directories(rmw_desert ${NDN_CXX_LIBRARY_DIRS})
-target_link_libraries(rmw_desert ${NDN_CXX_LIBRARIES})
 
 #target_link_libraries(rmw_desert PUBLIC
 #  rmw::rmw)
