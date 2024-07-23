@@ -77,10 +77,18 @@ rmw_ret_t rmw_count_subscribers(const rmw_node_t * node, const char * topic_name
   return RMW_RET_OK;
 }
 
-rmw_client_t * rmw_create_client(const rmw_node_t * node, const rosidl_service_type_support_t * type_support, const char * service_name, const rmw_qos_profile_t * qos_policies)
+rmw_client_t * rmw_create_client(const rmw_node_t * node, const rosidl_service_type_support_t * type_supports, const char * service_name, const rmw_qos_profile_t * qos_policies)
 {
   DEBUG("rmw_create_client" "\n");
-  return nullptr;
+
+  rmw_client_t * ret = rmw_client_allocate();
+  ret->implementation_identifier = rmw_get_implementation_identifier();
+  ret->service_name = service_name;
+  
+  DesertClient * cli = new DesertClient(service_name, type_supports);
+  ret->data = (void *)cli;
+  
+  return ret;
 }
 
 rmw_guard_condition_t * rmw_create_guard_condition(rmw_context_t * context)
@@ -365,6 +373,10 @@ rmw_ret_t rmw_return_loaned_message_from_subscription(const rmw_subscription_t *
 rmw_ret_t rmw_send_request(const rmw_client_t * client, const void * ros_request, int64_t * sequence_id)
 {
   DEBUG("rmw_send_request" "\n");
+  
+  DesertClient * cli = static_cast<DesertClient *>(client->data);
+  cli->send_request(ros_request);
+  
   return RMW_RET_OK;
 }
 
@@ -512,7 +524,7 @@ rmw_ret_t rmw_trigger_guard_condition(const rmw_guard_condition_t * guard_condit
 rmw_ret_t rmw_wait(rmw_subscriptions_t * subscriptions, rmw_guard_conditions_t * guard_conditions, rmw_services_t * services, rmw_clients_t * clients, rmw_events_t * events, rmw_wait_set_t * wait_set, const rmw_time_t * wait_timeout)
 {
   DEBUG("rmw_wait" "\n");
-  usleep(1000);
+  usleep(100000);
   return RMW_RET_OK;
 }
 

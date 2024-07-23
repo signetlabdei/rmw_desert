@@ -19,6 +19,8 @@
 #include "cbor/parser.h"
 #include "cbor/helper.h"
 
+#include "half.hpp"
+
 #define MAX_PACKET_LENGTH 512
 
 namespace cbor

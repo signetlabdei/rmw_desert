@@ -117,8 +117,7 @@ TxStream & TxStream::operator<<(const float f)
 
 TxStream & TxStream::operator<<(const double d)
 {
-  cbor_error_t result = cbor_encode_double(_writer, d);
-  handle_overrun(result);
+  *this << static_cast<float>(d);
   return *this;
 }
 
@@ -378,7 +377,21 @@ void RxStream::interpret_packets()
 	  }
           case CBOR_ITEM_FLOAT:
           {
-            float * number = new float{val.f32};
+            float * number;
+            
+            if (val.i32 < 65536)
+            {
+              uint8_t * bin = new uint8_t[2];
+              *bin = (val.i32 & 0x00FF) >> 0;
+              *(bin+1) = (val.i32 & 0xFF00) >> 8;
+              
+              half_float::half * f16 = reinterpret_cast<half_float::half *>(bin);
+              number = new float{*f16};
+            }
+            else
+            {
+              number = new float{val.f32};
+            }
             
             field = std::make_pair(static_cast<void *>(number), CBOR_ITEM_FLOAT);
             interpreted_packet.push_back(field);

@@ -45,6 +45,7 @@ add_library(rmw_desert
   src/get_service_names_and_types.cpp
   src/desert_classes/DesertPublisher.cpp
   src/desert_classes/DesertSubscriber.cpp
+  src/desert_classes/DesertClient.cpp
   src/desert_classes/CBorStream.cpp
   src/desert_classes/CStringHelper.cpp
   src/desert_classes/TcpDaemon.cpp

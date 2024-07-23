@@ -12,6 +12,8 @@
 #include "rosidl_typesupport_c/type_support_map.h"
 #include "rosidl_typesupport_c/identifier.h"
 
+#include "rosidl_runtime_c/message_type_support_struct.h"
+
 #include "CBorStream.h"
 #include "MessageSerialization.h"
 
