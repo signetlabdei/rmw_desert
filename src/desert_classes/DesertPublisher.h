@@ -5,6 +5,8 @@
 #include "rosidl_typesupport_introspection_c/identifier.h"
 #include "rosidl_typesupport_introspection_cpp/message_introspection.hpp"
 #include "rosidl_typesupport_introspection_c/message_introspection.h"
+#include "rosidl_typesupport_introspection_cpp/service_introspection.hpp"
+#include "rosidl_typesupport_introspection_c/service_introspection.h"
 #include "rosidl_typesupport_introspection_cpp/field_types.hpp"
 #include "rosidl_typesupport_introspection_c/field_types.h"
 
@@ -31,7 +33,6 @@ class DesertPublisher
   private:
     cbor::TxStream _data_stream;
     std::string _name;
-    uint64_t _id;
     
     int _c_cpp_identifier;
     const void * _members;

@@ -20,13 +20,24 @@ void TxStream::new_packet()
   cbor_writer_init(_writer, _packet, MAX_PACKET_LENGTH);
 }
 
+void TxStream::start_transmission(uint64_t sequence_id)
+{
+  new_packet();
+  _overflow = false;
+  
+  // Stream type, service name and sequence id
+  *this << _stream_type;
+  *this << _stream_name;
+  *this << sequence_id;
+}
+
 void TxStream::start_transmission()
 {
   new_packet();
   _overflow = false;
   
   // Stream type and topic name
-  *this << PUBLISHER_TYPE;
+  *this << _stream_type;
   *this << _stream_name;
 }
 
@@ -181,19 +192,41 @@ RxStream::RxStream(uint8_t stream_type, std::string stream_name)
       , _stream_name(stream_name)
 {
 }
-std::map<std::string, std::queue<std::vector<std::pair<void *, int>>>> RxStream::_interpreted_packets;
 
-bool RxStream::data_available()
+std::map<std::string, std::queue<std::vector<std::pair<void *, int>>>> RxStream::_interpreted_publications;
+std::map<std::string, std::queue<std::vector<std::pair<void *, int>>>> RxStream::_interpreted_requests;
+std::map<std::string, std::queue<std::vector<std::pair<void *, int>>>> RxStream::_interpreted_responses;
+
+bool RxStream::data_available(uint64_t sequence_id)
 {
-  bool available = (_interpreted_packets.find(_stream_name) != _interpreted_packets.end());
+  bool available = false;
+  std::map<std::string, std::queue<std::vector<std::pair<void *, int>>>>::iterator packets_iterator;
+  
+  switch (_stream_type)
+  {
+    case SUBSCRIBER_TYPE:
+      packets_iterator = _interpreted_publications.find(_stream_name);
+      available = (packets_iterator != _interpreted_publications.end());
+      break;
+    case SERVICE_TYPE:
+      packets_iterator = _interpreted_requests.find(_stream_name);
+      available = (packets_iterator != _interpreted_requests.end());
+      break;
+    case CLIENT_TYPE:
+      packets_iterator = _interpreted_responses.find(_stream_name + std::to_string(sequence_id));
+      available = (packets_iterator != _interpreted_responses.end());
+      break;
+  }
+  
+  // NOTE For services the first reading is the sequence identifier while for clients its merged in the key
+  //      so subscribers and services receive all packets, while clients receive only the ones with their sequence id
   
   if (available)
   {
-    auto topic_with_packets = _interpreted_packets.find(_stream_name);
-    if (topic_with_packets->second.size() > 0)
+    if (packets_iterator->second.size() > 0)
     {
-      _buffered_packet = topic_with_packets->second.front();
-      topic_with_packets->second.pop();
+      _buffered_packet = packets_iterator->second.front();
+      packets_iterator->second.pop();
       _buffered_iterator = 0;
     }
     else
@@ -350,7 +383,10 @@ void RxStream::interpret_packets()
     cbor_reader_init(&reader, items, sizeof(items) / sizeof(items[0]));
     cbor_parse(&reader, buffer, packet.size(), &n);
     
-    std::string topic;
+    uint8_t stream_type;
+    uint64_t sequence_id;
+    std::string stream_name;
+    
     std::vector<std::pair<void *, int>> interpreted_packet;
     
     for (size_t i = 0; i < n; i++)
@@ -362,11 +398,16 @@ void RxStream::interpret_packets()
       
       if (i == 0)
       {
+        stream_type = val.i8;
       }
       else if (i == 1)
       {
         val.str_copy[items[i].size] = '\0';
-        topic = reinterpret_cast<const char *>(val.str_copy);
+        stream_name = reinterpret_cast<const char *>(val.str_copy);
+      }
+      else if (i == 2 && stream_type == CLIENT_TYPE)
+      {
+        sequence_id = val.i64;
       }
       else
       {
@@ -378,7 +419,19 @@ void RxStream::interpret_packets()
         }
       }
     }
-    _interpreted_packets[topic].push(interpreted_packet);
+    
+    switch (stream_type)
+    {
+      case PUBLISHER_TYPE:
+        _interpreted_publications[stream_name].push(interpreted_packet);
+        break;
+      case CLIENT_TYPE:
+        _interpreted_requests[stream_name].push(interpreted_packet);
+        break;
+      case SERVICE_TYPE:
+        _interpreted_responses[stream_name + std::to_string(sequence_id)].push(interpreted_packet);
+        break;
+    }
   }
 }
 

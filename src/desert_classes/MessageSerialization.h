@@ -14,6 +14,9 @@
 #define INTROSPECTION_C_MEMBERS rosidl_typesupport_introspection_c__MessageMembers
 #define INTROSPECTION_CPP_MEMBERS rosidl_typesupport_introspection_cpp::MessageMembers
 
+#define INTROSPECTION_C_SERVICE_MEMBERS rosidl_typesupport_introspection_c__ServiceMembers
+#define INTROSPECTION_CPP_SERVICE_MEMBERS rosidl_typesupport_introspection_cpp::ServiceMembers
+
 namespace MessageSerialization
 {
 

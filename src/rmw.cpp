@@ -374,8 +374,10 @@ rmw_ret_t rmw_send_request(const rmw_client_t * client, const void * ros_request
 {
   DEBUG("rmw_send_request" "\n");
   
+  *sequence_id = std::rand();
+  
   DesertClient * cli = static_cast<DesertClient *>(client->data);
-  cli->send_request(ros_request);
+  cli->send_request(ros_request, *sequence_id);
   
   return RMW_RET_OK;
 }

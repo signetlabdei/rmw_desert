@@ -94,7 +94,7 @@ class RxStream
   public:
     RxStream(uint8_t stream_type, std::string stream_name);
     
-    bool data_available();
+    bool data_available(uint64_t sequence_id = 0);
     
     RxStream & operator>>(uint64_t & n);
     RxStream & operator>>(uint32_t & n);
@@ -146,9 +146,13 @@ class RxStream
     int _buffered_iterator;
     std::vector<std::pair<void *, int>> _buffered_packet;
     
-    // TODO Split this in interpreted_publications, requests and responses
     // <topic, packets <packet <field, field_type>>>
-    static std::map<std::string, std::queue<std::vector<std::pair<void *, int>>>> _interpreted_packets;
+    static std::map<std::string, std::queue<std::vector<std::pair<void *, int>>>> _interpreted_publications;
+    // <service, packets <packet <field, field_type>>>
+    static std::map<std::string, std::queue<std::vector<std::pair<void *, int>>>> _interpreted_requests;
+    // <service + id, packets <packet <field, field_type>>>
+    static std::map<std::string, std::queue<std::vector<std::pair<void *, int>>>> _interpreted_responses;
+    
     union _cbor_value {
 	int8_t i8;
 	int16_t i16;

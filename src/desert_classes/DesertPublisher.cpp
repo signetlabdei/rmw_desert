@@ -14,20 +14,15 @@ void DesertPublisher::push(const void * msg)
   
   _data_stream.start_transmission();
   
-  switch (_c_cpp_identifier)
+  if (_c_cpp_identifier == 0)
   {
-    case 0:
-    {
-      auto casted_members = static_cast<const INTROSPECTION_C_MEMBERS *>(_members);
-      MessageSerialization::serialize<INTROSPECTION_C_MEMBERS>(msg, casted_members, _data_stream);
-      break;
-    }
-    case 1:
-    {
-      auto casted_members = static_cast<const INTROSPECTION_CPP_MEMBERS *>(_members);
-      MessageSerialization::serialize<INTROSPECTION_CPP_MEMBERS>(msg, casted_members, _data_stream);
-      break;
-    }
+    auto casted_members = static_cast<const INTROSPECTION_C_MEMBERS *>(_members);
+    MessageSerialization::serialize<INTROSPECTION_C_MEMBERS>(msg, casted_members, _data_stream);
+  }
+  else if (_c_cpp_identifier == 1)
+  {
+    auto casted_members = static_cast<const INTROSPECTION_CPP_MEMBERS *>(_members);
+    MessageSerialization::serialize<INTROSPECTION_CPP_MEMBERS>(msg, casted_members, _data_stream);
   }
   
   _data_stream.end_transmission();
