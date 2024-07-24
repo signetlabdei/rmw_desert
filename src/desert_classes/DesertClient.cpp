@@ -2,7 +2,7 @@
 
 DesertClient::DesertClient(std::string service_name, const rosidl_service_type_support_t * type_supports)
       : _name(service_name)
-      , _data_stream(cbor::TxStream())
+      , _data_stream(cbor::TxStream(CLIENT_TYPE, service_name))
 {
   const rosidl_service_type_support_t * type_support = get_type_support(type_supports);
   _members = get_members(type_support);

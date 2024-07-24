@@ -23,7 +23,7 @@
 class DesertPublisher
 {
   public:
-    DesertPublisher(std::string topic_name, uint64_t id, const rosidl_message_type_support_t * type_supports);
+    DesertPublisher(std::string topic_name, const rosidl_message_type_support_t * type_supports);
     
     void push(const void * msg);
     

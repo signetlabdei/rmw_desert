@@ -21,6 +21,11 @@
 
 #include "half.hpp"
 
+#define PUBLISHER_TYPE  0
+#define SUBSCRIBER_TYPE 1
+#define CLIENT_TYPE     2
+#define SERVICE_TYPE    3
+
 #define MAX_PACKET_LENGTH 512
 
 namespace cbor
@@ -29,9 +34,10 @@ namespace cbor
 class TxStream
 {
   public:
-    TxStream();
+    TxStream(uint8_t stream_type, std::string stream_name);
     
-    void start_transmission(std::string topic_name);
+    void start_transmission(uint64_t sequence_id);
+    void start_transmission();
     void end_transmission();
 
     TxStream & operator<<(const uint64_t n);
@@ -69,7 +75,9 @@ class TxStream
     }
 
   private:
-    size_t size_;
+    uint8_t _stream_type;
+    std::string _stream_name;
+    
     bool _overflow;
     uint8_t *  _packet;
     cbor_writer_t *  _writer;
@@ -84,7 +92,7 @@ class TxStream
 class RxStream
 {
   public:
-    RxStream(std::string topic_name);
+    RxStream(uint8_t stream_type, std::string stream_name);
     
     bool data_available();
     
@@ -132,11 +140,13 @@ class RxStream
     static void interpret_packets();
   
   private:
-    std::string _topic_name;
+    uint8_t _stream_type;
+    std::string _stream_name;
     
     int _buffered_iterator;
     std::vector<std::pair<void *, int>> _buffered_packet;
     
+    // TODO Split this in interpreted_publications, requests and responses
     // <topic, packets <packet <field, field_type>>>
     static std::map<std::string, std::queue<std::vector<std::pair<void *, int>>>> _interpreted_packets;
     union _cbor_value {
@@ -151,6 +161,7 @@ class RxStream
 	uint8_t str_copy[128];
     };
     
+    static std::pair<void *, int> interpret_field(cbor_item_t * items, size_t i, union _cbor_value & val);
     std::u16string toUTF16(const std::string source);
 };
 

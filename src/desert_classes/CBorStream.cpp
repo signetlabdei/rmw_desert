@@ -5,7 +5,9 @@ namespace cbor
 
 // TX stream
 
-TxStream::TxStream()
+TxStream::TxStream(uint8_t stream_type, std::string stream_name)
+      : _stream_type(stream_type)
+      , _stream_name(stream_name)
 {
 }
 
@@ -18,13 +20,14 @@ void TxStream::new_packet()
   cbor_writer_init(_writer, _packet, MAX_PACKET_LENGTH);
 }
 
-void TxStream::start_transmission(std::string topic_name)
+void TxStream::start_transmission()
 {
   new_packet();
   _overflow = false;
   
-  // Topic name
-  cbor_encode_text_string(_writer, topic_name.c_str(), topic_name.size());
+  // Stream type and topic name
+  *this << PUBLISHER_TYPE;
+  *this << _stream_name;
 }
 
 void TxStream::end_transmission()
@@ -173,19 +176,20 @@ std::string TxStream::toUTF8(const std::u16string source)
 
 // RX stream
 
-RxStream::RxStream(std::string topic_name)
-      : _topic_name(topic_name)
+RxStream::RxStream(uint8_t stream_type, std::string stream_name)
+      : _stream_type(stream_type)
+      , _stream_name(stream_name)
 {
 }
 std::map<std::string, std::queue<std::vector<std::pair<void *, int>>>> RxStream::_interpreted_packets;
 
 bool RxStream::data_available()
 {
-  bool available = (_interpreted_packets.find(_topic_name) != _interpreted_packets.end());
+  bool available = (_interpreted_packets.find(_stream_name) != _interpreted_packets.end());
   
   if (available)
   {
-    auto topic_with_packets = _interpreted_packets.find(_topic_name);
+    auto topic_with_packets = _interpreted_packets.find(_stream_name);
     if (topic_with_packets->second.size() > 0)
     {
       _buffered_packet = topic_with_packets->second.front();
@@ -358,68 +362,71 @@ void RxStream::interpret_packets()
       
       if (i == 0)
       {
+      }
+      else if (i == 1)
+      {
         val.str_copy[items[i].size] = '\0';
         topic = reinterpret_cast<const char *>(val.str_copy);
       }
       else
       {
-        std::pair<void *, int> field;
+        std::pair<void *, int> field = interpret_field(items, i, val);
         
-        switch (items[i].type)
+        if (field.first)
         {
-          case CBOR_ITEM_INTEGER:
-          {
-            int * number = new int{val.i32};
-            
-            field = std::make_pair(static_cast<void *>(number), CBOR_ITEM_INTEGER);
-            interpreted_packet.push_back(field);
-            break;
-	  }
-          case CBOR_ITEM_FLOAT:
-          {
-            float * number;
-            
-            if (val.i32 < 65536)
-            {
-              uint8_t * bin = new uint8_t[2];
-              *bin = (val.i32 & 0x00FF) >> 0;
-              *(bin+1) = (val.i32 & 0xFF00) >> 8;
-              
-              half_float::half * f16 = reinterpret_cast<half_float::half *>(bin);
-              number = new float{*f16};
-            }
-            else
-            {
-              number = new float{val.f32};
-            }
-            
-            field = std::make_pair(static_cast<void *>(number), CBOR_ITEM_FLOAT);
-            interpreted_packet.push_back(field);
-            break;
-	  }
-          case CBOR_ITEM_STRING: 
-          {
-            val.str_copy[items[i].size] = '\0';
-            std::string * str = new std::string{reinterpret_cast<const char *>(val.str_copy)};
-            
-            field = std::make_pair(static_cast<void *>(str), CBOR_ITEM_STRING);
-            interpreted_packet.push_back(field);
-            break;
-	  }
-          case CBOR_ITEM_SIMPLE_VALUE:
-          {
-            uint8_t * value = new uint8_t{val.i8};
-            
-            field = std::make_pair(static_cast<void *>(value), CBOR_ITEM_SIMPLE_VALUE);
-            interpreted_packet.push_back(field);
-            break;
-	  }
-          default:
-            break;
+          interpreted_packet.push_back(field);
         }
       }
     }
     _interpreted_packets[topic].push(interpreted_packet);
+  }
+}
+
+std::pair<void *, int> RxStream::interpret_field(cbor_item_t * items, size_t i, union _cbor_value & val)
+{
+  switch (items[i].type)
+  {
+    case CBOR_ITEM_INTEGER:
+    {
+      int * number = new int{val.i32};
+      
+      return std::make_pair(static_cast<void *>(number), CBOR_ITEM_INTEGER);
+    }
+    case CBOR_ITEM_FLOAT:
+    {
+      float * number;
+      
+      if (val.i32 < 65536)
+      {
+        uint8_t * bin = new uint8_t[2];
+        *bin = (val.i32 & 0x00FF) >> 0;
+        *(bin+1) = (val.i32 & 0xFF00) >> 8;
+        
+        half_float::half * f16 = reinterpret_cast<half_float::half *>(bin);
+        number = new float{*f16};
+      }
+      else
+      {
+        number = new float{val.f32};
+      }
+      
+      return std::make_pair(static_cast<void *>(number), CBOR_ITEM_FLOAT);
+    }
+    case CBOR_ITEM_STRING: 
+    {
+      val.str_copy[items[i].size] = '\0';
+      std::string * str = new std::string{reinterpret_cast<const char *>(val.str_copy)};
+      
+      return std::make_pair(static_cast<void *>(str), CBOR_ITEM_STRING);
+    }
+    case CBOR_ITEM_SIMPLE_VALUE:
+    {
+      uint8_t * value = new uint8_t{val.i8};
+      
+      return std::make_pair(static_cast<void *>(value), CBOR_ITEM_SIMPLE_VALUE);
+    }
+    default:
+      return std::make_pair(nullptr, 0);
   }
 }
 
