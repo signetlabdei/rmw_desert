@@ -451,9 +451,7 @@ std::pair<void *, int> RxStream::interpret_field(cbor_item_t * items, size_t i, 
       
       if (val.i32 < 65536)
       {
-        uint8_t * bin = new uint8_t[2];
-        *bin = (val.i32 & 0x00FF) >> 0;
-        *(bin+1) = (val.i32 & 0xFF00) >> 8;
+        uint16_t * bin = new uint16_t{val.i16};
         
         half_float::half * f16 = reinterpret_cast<half_float::half *>(bin);
         number = new float{*f16};

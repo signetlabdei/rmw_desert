@@ -19,12 +19,12 @@ void DesertSubscriber::read_data(void * msg)
   if (_c_cpp_identifier == 0)
   {
     auto casted_members = static_cast<const INTROSPECTION_C_MEMBERS *>(_members);
-    MessageSerialization::deserialize<INTROSPECTION_C_MEMBERS>(msg, casted_members, _data_stream);
+    MessageSerialization::deserialize(msg, casted_members, _data_stream);
   }
   else if (_c_cpp_identifier == 1)
   {
     auto casted_members = static_cast<const INTROSPECTION_CPP_MEMBERS *>(_members);
-    MessageSerialization::deserialize<INTROSPECTION_CPP_MEMBERS>(msg, casted_members, _data_stream);
+    MessageSerialization::deserialize(msg, casted_members, _data_stream);
   }
 }
 

@@ -17,12 +17,12 @@ void DesertPublisher::push(const void * msg)
   if (_c_cpp_identifier == 0)
   {
     auto casted_members = static_cast<const INTROSPECTION_C_MEMBERS *>(_members);
-    MessageSerialization::serialize<INTROSPECTION_C_MEMBERS>(msg, casted_members, _data_stream);
+    MessageSerialization::serialize(msg, casted_members, _data_stream);
   }
   else if (_c_cpp_identifier == 1)
   {
     auto casted_members = static_cast<const INTROSPECTION_CPP_MEMBERS *>(_members);
-    MessageSerialization::serialize<INTROSPECTION_CPP_MEMBERS>(msg, casted_members, _data_stream);
+    MessageSerialization::serialize(msg, casted_members, _data_stream);
   }
   
   _data_stream.end_transmission();

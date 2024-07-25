@@ -19,12 +19,12 @@ void DesertClient::send_request(const void * req, int64_t sequence_id)
   if (_c_cpp_identifier == 0)
   {
     auto casted_service = static_cast<const INTROSPECTION_C_SERVICE_MEMBERS *>(_service);
-    MessageSerialization::serialize<INTROSPECTION_C_MEMBERS>(req, casted_service->request_members_, _request_data_stream);
+    MessageSerialization::serialize(req, casted_service->request_members_, _request_data_stream);
   }
   else if (_c_cpp_identifier == 1)
   {
     auto casted_service = static_cast<const INTROSPECTION_CPP_SERVICE_MEMBERS *>(_service);
-    MessageSerialization::serialize<INTROSPECTION_CPP_MEMBERS>(req, casted_service->request_members_, _request_data_stream);
+    MessageSerialization::serialize(req, casted_service->request_members_, _request_data_stream);
   }
   
   _request_data_stream.end_transmission();
