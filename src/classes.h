@@ -1,5 +1,6 @@
 #include <mutex>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 
@@ -12,4 +13,5 @@
 #include "desert_classes/DesertSubscriber.h"
 #include "desert_classes/DesertWaitSet.h"
 #include "desert_classes/DesertClient.h"
+#include "desert_classes/DesertService.h"
 #include "desert_classes/TcpDaemon.h"

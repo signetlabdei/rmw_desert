@@ -197,7 +197,7 @@ std::map<std::string, std::queue<std::vector<std::pair<void *, int>>>> RxStream:
 std::map<std::string, std::queue<std::vector<std::pair<void *, int>>>> RxStream::_interpreted_requests;
 std::map<std::string, std::queue<std::vector<std::pair<void *, int>>>> RxStream::_interpreted_responses;
 
-bool RxStream::data_available(uint64_t sequence_id)
+bool RxStream::data_available(int64_t sequence_id)
 {
   bool available = false;
   std::map<std::string, std::queue<std::vector<std::pair<void *, int>>>>::iterator packets_iterator;
@@ -384,7 +384,7 @@ void RxStream::interpret_packets()
     cbor_parse(&reader, buffer, packet.size(), &n);
     
     uint8_t stream_type;
-    uint64_t sequence_id;
+    int64_t sequence_id;
     std::string stream_name;
     
     std::vector<std::pair<void *, int>> interpreted_packet;
@@ -405,7 +405,7 @@ void RxStream::interpret_packets()
         val.str_copy[items[i].size] = '\0';
         stream_name = reinterpret_cast<const char *>(val.str_copy);
       }
-      else if (i == 2 && stream_type == CLIENT_TYPE)
+      else if (i == 2 && stream_type == SERVICE_TYPE)
       {
         sequence_id = val.i64;
       }
@@ -441,7 +441,7 @@ std::pair<void *, int> RxStream::interpret_field(cbor_item_t * items, size_t i, 
   {
     case CBOR_ITEM_INTEGER:
     {
-      int * number = new int{val.i32};
+      int64_t * number = new int64_t{val.i64};
       
       return std::make_pair(static_cast<void *>(number), CBOR_ITEM_INTEGER);
     }

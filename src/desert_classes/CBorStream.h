@@ -94,7 +94,7 @@ class RxStream
   public:
     RxStream(uint8_t stream_type, std::string stream_name);
     
-    bool data_available(uint64_t sequence_id = 0);
+    bool data_available(int64_t sequence_id = 0);
     
     RxStream & operator>>(uint64_t & n);
     RxStream & operator>>(uint32_t & n);

@@ -133,7 +133,7 @@ rmw_publisher_t * rmw_create_publisher(const rmw_node_t * node, const rosidl_mes
   return ret;
 }
 
-rmw_service_t * rmw_create_service(const rmw_node_t * node, const rosidl_service_type_support_t * type_support, const char * service_name, const rmw_qos_profile_t * qos_profile)
+rmw_service_t * rmw_create_service(const rmw_node_t * node, const rosidl_service_type_support_t * type_supports, const char * service_name, const rmw_qos_profile_t * qos_profile)
 {
   DEBUG("rmw_create_service" "\n");
 
@@ -141,7 +141,8 @@ rmw_service_t * rmw_create_service(const rmw_node_t * node, const rosidl_service
   ret->implementation_identifier = rmw_get_implementation_identifier();
   ret->service_name = service_name;
   
-  ret->data = NULL;
+  DesertService * ser = new DesertService(service_name, type_supports);
+  ret->data = (void *)ser;
   
   return ret;
 }
@@ -374,10 +375,10 @@ rmw_ret_t rmw_send_request(const rmw_client_t * client, const void * ros_request
 {
   DEBUG("rmw_send_request" "\n");
   
-  *sequence_id = std::rand();
+  *sequence_id = rand() % 1000;
   
   DesertClient * cli = static_cast<DesertClient *>(client->data);
-  cli->send_request(ros_request, *sequence_id);
+  cli->send_request(ros_request, sequence_id);
   
   return RMW_RET_OK;
 }
@@ -385,6 +386,10 @@ rmw_ret_t rmw_send_request(const rmw_client_t * client, const void * ros_request
 rmw_ret_t rmw_send_response(const rmw_service_t * service, rmw_request_id_t * request_header, void * ros_response)
 {
   DEBUG("rmw_send_response" "\n");
+  
+  DesertService * ser = static_cast<DesertService *>(service->data);
+  ser->send_response(ros_response, request_header);
+  
   return RMW_RET_OK;
 }
 
@@ -475,12 +480,30 @@ rmw_ret_t rmw_take_loaned_message_with_info(const rmw_subscription_t * subscript
 rmw_ret_t rmw_take_request(const rmw_service_t * service, rmw_service_info_t * request_header, void * ros_request, bool * taken)
 {
   DEBUG("rmw_take_request" "\n");
+  
+  DesertService * ser = static_cast<DesertService *>(service->data);
+  if (ser->has_data())
+  {
+    ser->read_request(ros_request, request_header);
+    *taken = true;
+  }
+  
+  usleep(10000);
   return RMW_RET_OK;
 }
 
 rmw_ret_t rmw_take_response(const rmw_client_t * client, rmw_service_info_t * request_header, void * ros_response, bool * taken)
 {
   DEBUG("rmw_take_response" "\n");
+  
+  DesertClient * cli = static_cast<DesertClient *>(client->data);
+  if (cli->has_data())
+  {
+    cli->read_response(ros_response, request_header);
+    *taken = true;
+  }
+  
+  usleep(10000);
   return RMW_RET_OK;
 }
 
@@ -513,7 +536,7 @@ rmw_ret_t rmw_take_with_info(const rmw_subscription_t * subscription, void * ros
     *taken = true;
   }
   
-  usleep(100000);
+  usleep(10000);
   return RMW_RET_OK;
 }
 
@@ -526,7 +549,7 @@ rmw_ret_t rmw_trigger_guard_condition(const rmw_guard_condition_t * guard_condit
 rmw_ret_t rmw_wait(rmw_subscriptions_t * subscriptions, rmw_guard_conditions_t * guard_conditions, rmw_services_t * services, rmw_clients_t * clients, rmw_events_t * events, rmw_wait_set_t * wait_set, const rmw_time_t * wait_timeout)
 {
   DEBUG("rmw_wait" "\n");
-  usleep(100000);
+  usleep(10000);
   return RMW_RET_OK;
 }
 
