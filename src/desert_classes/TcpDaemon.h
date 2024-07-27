@@ -16,7 +16,7 @@
 
 #include "rmw/error_handling.h"
 
-#define ADDRESS "192.168.1.110"
+#define ADDRESS "127.0.0.1"
 #define PORT 4000
 
 #define END_MARKER 0b01010101

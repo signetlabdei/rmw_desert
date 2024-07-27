@@ -489,7 +489,7 @@ rmw_ret_t rmw_take_request(const rmw_service_t * service, rmw_service_info_t * r
     *taken = true;
   }
   
-  usleep(10000);
+  usleep(1000);
   return RMW_RET_OK;
 }
 
@@ -504,7 +504,7 @@ rmw_ret_t rmw_take_response(const rmw_client_t * client, rmw_service_info_t * re
     *taken = true;
   }
   
-  usleep(10000);
+  usleep(1000);
   return RMW_RET_OK;
 }
 
@@ -537,7 +537,7 @@ rmw_ret_t rmw_take_with_info(const rmw_subscription_t * subscription, void * ros
     *taken = true;
   }
   
-  usleep(10000);
+  usleep(1000);
   return RMW_RET_OK;
 }
 
@@ -550,7 +550,7 @@ rmw_ret_t rmw_trigger_guard_condition(const rmw_guard_condition_t * guard_condit
 rmw_ret_t rmw_wait(rmw_subscriptions_t * subscriptions, rmw_guard_conditions_t * guard_conditions, rmw_services_t * services, rmw_clients_t * clients, rmw_events_t * events, rmw_wait_set_t * wait_set, const rmw_time_t * wait_timeout)
 {
   DEBUG("rmw_wait" "\n");
-  usleep(10000);
+  usleep(1000);
   return RMW_RET_OK;
 }
 
