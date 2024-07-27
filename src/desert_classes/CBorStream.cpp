@@ -377,7 +377,7 @@ void RxStream::interpret_packets()
     // Initialize buffer and reader
     uint8_t * buffer = &packet[0];
     cbor_reader_t reader;
-    cbor_item_t items[16];
+    cbor_item_t items[64];
     size_t n;
 
     cbor_reader_init(&reader, items, sizeof(items) / sizeof(items[0]));
@@ -449,7 +449,7 @@ std::pair<void *, int> RxStream::interpret_field(cbor_item_t * items, size_t i, 
     {
       float * number;
       
-      if (val.i32 < 65536)
+      if (abs(val.i32) < 65536)
       {
         uint16_t * bin = new uint16_t{val.i16};
         

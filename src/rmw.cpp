@@ -414,6 +414,7 @@ rmw_ret_t rmw_service_response_publisher_get_actual_qos(const rmw_service_t * se
 rmw_ret_t rmw_service_server_is_available(const rmw_node_t * node, const rmw_client_t * client, bool * is_available)
 {
   DEBUG("rmw_service_server_is_available" "\n");
+  //*is_available = true;
   return RMW_RET_OK;
 }
 
