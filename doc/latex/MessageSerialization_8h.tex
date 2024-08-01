@@ -1,0 +1,75 @@
+\doxysection{src/desert\+\_\+classes/\+Message\+Serialization.h File Reference}
+\hypertarget{MessageSerialization_8h}{}\label{MessageSerialization_8h}\index{src/desert\_classes/MessageSerialization.h@{src/desert\_classes/MessageSerialization.h}}
+
+
+Namespace containing serialization functions.  
+
+
+{\ttfamily \#include "{}CBor\+Stream.\+h"{}}\newline
+{\ttfamily \#include "{}CString\+Helper.\+h"{}}\newline
+{\ttfamily \#include "{}macros.\+h"{}}\newline
+Include dependency graph for Message\+Serialization.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{MessageSerialization_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{MessageSerialization_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespaceMessageSerialization}{Message\+Serialization}}
+\begin{DoxyCompactList}\small\item\em Namespace containing serialization functions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{MessageSerialization_8h_aadc37c35808a5ba6977f4b5c32c04409}\label{MessageSerialization_8h_aadc37c35808a5ba6977f4b5c32c04409} 
+\#define {\bfseries INTROSPECTION\+\_\+\+C\+\_\+\+MEMBER}~rosidl\+\_\+typesupport\+\_\+introspection\+\_\+c\+\_\+\+\_\+\+Message\+Member
+\item 
+\Hypertarget{MessageSerialization_8h_a0dddc8e23670c45996b6e501ad0f5961}\label{MessageSerialization_8h_a0dddc8e23670c45996b6e501ad0f5961} 
+\#define {\bfseries INTROSPECTION\+\_\+\+CPP\+\_\+\+MEMBER}~rosidl\+\_\+typesupport\+\_\+introspection\+\_\+cpp\+::\+Message\+Member
+\item 
+\Hypertarget{MessageSerialization_8h_a3164c7257dc7b766bf709c6119c83cb4}\label{MessageSerialization_8h_a3164c7257dc7b766bf709c6119c83cb4} 
+\#define {\bfseries INTROSPECTION\+\_\+\+C\+\_\+\+MEMBERS}~rosidl\+\_\+typesupport\+\_\+introspection\+\_\+c\+\_\+\+\_\+\+Message\+Members
+\item 
+\Hypertarget{MessageSerialization_8h_ab3c125e5e1ec2f70d59a690d09ac4b6d}\label{MessageSerialization_8h_ab3c125e5e1ec2f70d59a690d09ac4b6d} 
+\#define {\bfseries INTROSPECTION\+\_\+\+CPP\+\_\+\+MEMBERS}~rosidl\+\_\+typesupport\+\_\+introspection\+\_\+cpp\+::\+Message\+Members
+\item 
+\Hypertarget{MessageSerialization_8h_a0c195cf9ef09ca77227920d7dc7092fa}\label{MessageSerialization_8h_a0c195cf9ef09ca77227920d7dc7092fa} 
+\#define {\bfseries INTROSPECTION\+\_\+\+C\+\_\+\+SERVICE\+\_\+\+MEMBERS}~rosidl\+\_\+typesupport\+\_\+introspection\+\_\+c\+\_\+\+\_\+\+Service\+Members
+\item 
+\Hypertarget{MessageSerialization_8h_ae5419f9f6eb1d091f18a967d7c202d2e}\label{MessageSerialization_8h_ae5419f9f6eb1d091f18a967d7c202d2e} 
+\#define {\bfseries INTROSPECTION\+\_\+\+CPP\+\_\+\+SERVICE\+\_\+\+MEMBERS}~rosidl\+\_\+typesupport\+\_\+introspection\+\_\+cpp\+::\+Service\+Members
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{Message\+Serialization\+::serialize\+\_\+field}} (const INTROSPECTION\+\_\+\+CPP\+\_\+\+MEMBER \texorpdfstring{$\ast$}{*}member, void \texorpdfstring{$\ast$}{*}field, \mbox{\hyperlink{classcbor_1_1TxStream}{cbor\+::\+Tx\+Stream}} \&stream)
+\begin{DoxyCompactList}\small\item\em Serialize a C++ field. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{namespaceMessageSerialization_afd266190807c8abdbce73fecefb39f5f}{Message\+Serialization\+::serialize\+\_\+field}} (const INTROSPECTION\+\_\+\+C\+\_\+\+MEMBER \texorpdfstring{$\ast$}{*}member, void \texorpdfstring{$\ast$}{*}field, \mbox{\hyperlink{classcbor_1_1TxStream}{cbor\+::\+Tx\+Stream}} \&stream)
+\begin{DoxyCompactList}\small\item\em Serialize a C field. \end{DoxyCompactList}\item 
+{\footnotesize template$<$\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{typename}} \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{Members\+Type}} $>$ }\\\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{void}} \mbox{\hyperlink{namespaceMessageSerialization_ad0baadb3e6c0ac806d2904860ab3124b}{Message\+Serialization\+::serialize}} (\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{const}} \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{void}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{msg}}, \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{const}} \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{Members\+Type}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{casted\+\_\+members}}, \mbox{\hyperlink{classcbor_1_1TxStream}{cbor\+::\+Tx\+Stream}} \&\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}})
+\begin{DoxyCompactList}\small\item\em Serialize a ROS message, request or response. \end{DoxyCompactList}\item 
+{\footnotesize template$<$\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{typename}} \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{T}} $>$ }\\\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{void}} \mbox{\hyperlink{namespaceMessageSerialization_adb3d7de7d957d5cf2d5e1e9aad6a4695}{Message\+Serialization\+::deserialize\+\_\+field}} (\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{const}} INTROSPECTION\+\_\+\+CPP\+\_\+\+MEMBER \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}}, \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{void}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}}, \mbox{\hyperlink{classcbor_1_1RxStream}{cbor\+::\+Rx\+Stream}} \&\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}})
+\begin{DoxyCompactList}\small\item\em Deserialize a C++ field. \end{DoxyCompactList}\item 
+{\footnotesize template$<$\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{typename}} \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{T}} $>$ }\\\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{void}} \mbox{\hyperlink{namespaceMessageSerialization_ac8330b75a9db755484f6433db2f7cdf8}{Message\+Serialization\+::deserialize\+\_\+field}} (\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{const}} INTROSPECTION\+\_\+\+C\+\_\+\+MEMBER \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}}, \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{void}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}}, \mbox{\hyperlink{classcbor_1_1RxStream}{cbor\+::\+Rx\+Stream}} \&\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}})
+\begin{DoxyCompactList}\small\item\em Deserialize a C field. \end{DoxyCompactList}\item 
+{\footnotesize template$<$\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{typename}} \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{Members\+Type}} $>$ }\\\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{void}} \mbox{\hyperlink{namespaceMessageSerialization_acfef23282ae72daec9f0822a80c07cf1}{Message\+Serialization\+::deserialize}} (\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{void}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{msg}}, \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{const}} \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{Members\+Type}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{casted\+\_\+members}}, \mbox{\hyperlink{classcbor_1_1RxStream}{cbor\+::\+Rx\+Stream}} \&\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}})
+\begin{DoxyCompactList}\small\item\em Deserialize a ROS message, request or response. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Namespace containing serialization functions. 
+
+The message data structure coming from upper layers is interpreted using type support informations passed by ROS2 during the creation of publishers, subscribers, clients and services. Those functions are used to compute the exact position that every data type must assume in memory an then calls Tx\+Stream or Rx\+Stream to receive or write them in the assigned location.
+
+\begin{DoxyAuthor}{Author}
+Prof. Davide Costa 
+\end{DoxyAuthor}

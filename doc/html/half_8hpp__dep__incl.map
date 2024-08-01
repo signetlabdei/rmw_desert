@@ -1,0 +1,19 @@
+<map id="src/desert_classes/half.hpp" name="src/desert_classes/half.hpp">
+<area shape="rect" id="Node000001" title="Main header file for half&#45;precision functionality." alt="" coords="239,5,380,45"/>
+<area shape="rect" id="Node000002" href="$CBorStream_8h.html" title="Classes used to convert data types into a CBOR encoded stream." alt="" coords="239,93,380,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="312,59,312,93,307,93,307,59"/>
+<area shape="rect" id="Node000003" href="$DesertClient_8h.html" title="Implementation of the Client structure for DESERT." alt="" coords="5,269,147,309"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="264,142,199,183,142,229,97,271,93,267,139,225,196,179,261,138"/>
+<area shape="rect" id="Node000004" href="$DesertPublisher_8h.html" title="Implementation of the Publisher structure for DESERT." alt="" coords="171,269,312,309"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="251,142,228,160,210,183,205,204,209,227,218,249,229,268,224,270,213,251,203,228,200,204,206,180,224,156,248,138"/>
+<area shape="rect" id="Node000005" href="$DesertService_8h.html" title="Implementation of the Service structure for DESERT." alt="" coords="336,269,477,309"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="370,138,393,156,412,180,419,203,421,227,415,269,410,269,416,227,414,204,407,183,389,160,366,143"/>
+<area shape="rect" id="Node000006" href="$DesertSubscriber_8h.html" title="Implementation of the Subscriber structure for DESERT." alt="" coords="502,269,650,309"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="361,137,435,179,501,225,555,267,551,271,498,230,432,184,359,142"/>
+<area shape="rect" id="Node000007" href="$MessageSerialization_8h.html" title="Namespace containing serialization functions." alt="" coords="221,181,398,221"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="312,147,312,181,307,181,307,147"/>
+<area shape="poly" id="edge7_Node000007_Node000003" title=" " alt="" coords="246,229,128,272,126,267,244,224"/>
+<area shape="poly" id="edge8_Node000007_Node000004" title=" " alt="" coords="288,234,258,271,254,267,284,231"/>
+<area shape="poly" id="edge9_Node000007_Node000005" title=" " alt="" coords="343,228,387,267,383,271,339,232"/>
+<area shape="poly" id="edge10_Node000007_Node000006" title=" " alt="" coords="382,223,518,267,517,272,380,228"/>
+</map>

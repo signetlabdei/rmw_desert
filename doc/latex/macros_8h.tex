@@ -1,0 +1,55 @@
+\doxysection{src/desert\+\_\+classes/macros.h File Reference}
+\hypertarget{macros_8h}{}\label{macros_8h}\index{src/desert\_classes/macros.h@{src/desert\_classes/macros.h}}
+
+
+Header containing C sequence macros.  
+
+
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{macros_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{macros_8h_a1e2cc3ce37947ce64996f2b89dedd983}{SPECIALIZE\+\_\+\+GENERIC\+\_\+\+C\+\_\+\+SEQUENCE}}(C\+\_\+\+NAME,  C\+\_\+\+TYPE)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header containing C sequence macros. 
+
+The C data type implementation is more complicated than the C++ one, because complex types like vectors have to be manually managed and this header contains definitions used to create dynamic element sequences.
+
+\begin{DoxyAuthor}{Author}
+Prof. Davide Costa 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{macros_8h_a1e2cc3ce37947ce64996f2b89dedd983}\label{macros_8h_a1e2cc3ce37947ce64996f2b89dedd983} 
+\index{macros.h@{macros.h}!SPECIALIZE\_GENERIC\_C\_SEQUENCE@{SPECIALIZE\_GENERIC\_C\_SEQUENCE}}
+\index{SPECIALIZE\_GENERIC\_C\_SEQUENCE@{SPECIALIZE\_GENERIC\_C\_SEQUENCE}!macros.h@{macros.h}}
+\doxysubsubsection{\texorpdfstring{SPECIALIZE\_GENERIC\_C\_SEQUENCE}{SPECIALIZE\_GENERIC\_C\_SEQUENCE}}
+{\footnotesize\ttfamily \#define SPECIALIZE\+\_\+\+GENERIC\+\_\+\+C\+\_\+\+SEQUENCE(\begin{DoxyParamCaption}\item[{}]{C\+\_\+\+NAME,  }\item[{}]{C\+\_\+\+TYPE }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \textcolor{keyword}{template}<>\ \(\backslash\)}
+\DoxyCodeLine{\ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structGenericCSequence}{GenericCSequence}}<C\_TYPE>\ \(\backslash\)}
+\DoxyCodeLine{\ \ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{using\ }type\ =\ rosidl\_runtime\_c\_\_\ \#\#\ C\_NAME\ \#\#\ \_\_Sequence;\ \(\backslash\)}
+\DoxyCodeLine{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ fini(type\ *\ sequence)\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ rosidl\_runtime\_c\_\_\ \#\#\ C\_NAME\ \#\#\ \_\_Sequence\_\_fini(sequence);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}\ \(\backslash\)}
+\DoxyCodeLine{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ init(type\ *\ sequence,\ \textcolor{keywordtype}{size\_t}\ size)\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \textcolor{keywordflow}{return}\ rosidl\_runtime\_c\_\_\ \#\#\ C\_NAME\ \#\#\ \_\_Sequence\_\_init(sequence,\ size);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}\ \(\backslash\)}
+\DoxyCodeLine{\ \ \};}
+
+\end{DoxyCode}

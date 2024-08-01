@@ -1,0 +1,63 @@
+\doxysection{src/desert\+\_\+classes/\+CBor\+Stream.h File Reference}
+\hypertarget{CBorStream_8h}{}\label{CBorStream_8h}\index{src/desert\_classes/CBorStream.h@{src/desert\_classes/CBorStream.h}}
+
+
+Classes used to convert data types into a CBOR encoded stream.  
+
+
+{\ttfamily \#include "{}Tcp\+Daemon.\+h"{}}\newline
+{\ttfamily \#include "{}cbor/encoder.\+h"{}}\newline
+{\ttfamily \#include "{}cbor/ieee754.\+h"{}}\newline
+{\ttfamily \#include "{}cbor/decoder.\+h"{}}\newline
+{\ttfamily \#include "{}cbor/parser.\+h"{}}\newline
+{\ttfamily \#include "{}cbor/helper.\+h"{}}\newline
+{\ttfamily \#include "{}half.\+hpp"{}}\newline
+Include dependency graph for CBor\+Stream.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{CBorStream_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{CBorStream_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classcbor_1_1TxStream}{cbor\+::\+Tx\+Stream}}
+\item 
+class \mbox{\hyperlink{classcbor_1_1RxStream}{cbor\+::\+Rx\+Stream}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{CBorStream_8h_a5c4af009fa7e050ebd340425935a05b1}\label{CBorStream_8h_a5c4af009fa7e050ebd340425935a05b1} 
+\#define {\bfseries PUBLISHER\+\_\+\+TYPE}~0
+\item 
+\Hypertarget{CBorStream_8h_a2e38e71831141ce14a426cb3a5087e7b}\label{CBorStream_8h_a2e38e71831141ce14a426cb3a5087e7b} 
+\#define {\bfseries SUBSCRIBER\+\_\+\+TYPE}~1
+\item 
+\Hypertarget{CBorStream_8h_accd5ec8a5f2ae3ba97f67bd9b5ef8656}\label{CBorStream_8h_accd5ec8a5f2ae3ba97f67bd9b5ef8656} 
+\#define {\bfseries CLIENT\+\_\+\+TYPE}~2
+\item 
+\Hypertarget{CBorStream_8h_a13b6dc3c4fac17dee4581535ff59bf24}\label{CBorStream_8h_a13b6dc3c4fac17dee4581535ff59bf24} 
+\#define {\bfseries SERVICE\+\_\+\+TYPE}~3
+\item 
+\Hypertarget{CBorStream_8h_a973c680573b37fc359fc68d0707da355}\label{CBorStream_8h_a973c680573b37fc359fc68d0707da355} 
+\#define {\bfseries MAX\+\_\+\+PACKET\+\_\+\+LENGTH}~512
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classes used to convert data types into a CBOR encoded stream. 
+
+In order to perform a socket communication different data types needs to be encoded into binary representations so they can be sent through the same channel. CBOR fits perfectly with the DESERT requirements because only a minimal overhead is introduced in the stream and all the data types are sent using only the minimal quantity of bytes possible.
+
+\begin{DoxyAuthor}{Author}
+Prof. Davide Costa 
+\end{DoxyAuthor}

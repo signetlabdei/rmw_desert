@@ -1,0 +1,13 @@
+<map id="src/desert_classes/macros.h" name="src/desert_classes/macros.h">
+<area shape="rect" id="Node000001" title="Header containing C sequence macros." alt="" coords="253,5,395,45"/>
+<area shape="rect" id="Node000002" href="$MessageSerialization_8h.html" title="Namespace containing serialization functions." alt="" coords="235,93,413,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="327,59,327,93,321,93,321,59"/>
+<area shape="rect" id="Node000003" href="$DesertClient_8h.html" title="Implementation of the Client structure for DESERT." alt="" coords="5,181,147,221"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="257,140,131,184,129,179,256,135"/>
+<area shape="rect" id="Node000004" href="$DesertPublisher_8h.html" title="Implementation of the Publisher structure for DESERT." alt="" coords="171,181,312,221"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="298,145,262,183,258,179,294,142"/>
+<area shape="rect" id="Node000005" href="$DesertService_8h.html" title="Implementation of the Service structure for DESERT." alt="" coords="336,181,477,221"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="354,142,390,179,386,183,350,145"/>
+<area shape="rect" id="Node000006" href="$DesertSubscriber_8h.html" title="Implementation of the Subscriber structure for DESERT." alt="" coords="502,181,650,221"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="393,135,522,179,520,184,391,140"/>
+</map>

@@ -1,0 +1,412 @@
+\doxysection{Message\+Serialization.\+h}
+\hypertarget{MessageSerialization_8h_source}{}\label{MessageSerialization_8h_source}\index{src/desert\_classes/MessageSerialization.h@{src/desert\_classes/MessageSerialization.h}}
+\mbox{\hyperlink{MessageSerialization_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ Copyright\ (C)\ 2024\ Davide\ Costa\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ This\ file\ is\ part\ of\ RMW\ desert.\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ \ \ RMW\ desert\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify\ it\ \ *}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ \ \ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by\ the\ \ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ \ \ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or\ any\ \ \ \ \ \ *}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ \ \ later\ version.\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ \ \ RMW\ desert\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,\ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ \ \ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of\ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ \ \ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the\ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ \ GNU\ General\ Public\ License\ for\ more\ details.\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ \ \ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License\ \ \ \ \ \ *}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ \ \ along\ with\ RMW\ desert.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.\ \ \ \ *}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ ****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#ifndef\ MESSAGE\_SERIALIZATION\_H\_}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ MESSAGE\_SERIALIZATION\_H\_}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{CBorStream_8h}{CBorStream.h}}"{}}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{CStringHelper_8h}{CStringHelper.h}}"{}}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{macros_8h}{macros.h}}"{}}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ INTROSPECTION\_C\_MEMBER\ rosidl\_typesupport\_introspection\_c\_\_MessageMember}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ INTROSPECTION\_CPP\_MEMBER\ rosidl\_typesupport\_introspection\_cpp::MessageMember}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ INTROSPECTION\_C\_MEMBERS\ rosidl\_typesupport\_introspection\_c\_\_MessageMembers}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ INTROSPECTION\_CPP\_MEMBERS\ rosidl\_typesupport\_introspection\_cpp::MessageMembers}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ INTROSPECTION\_C\_SERVICE\_MEMBERS\ rosidl\_typesupport\_introspection\_c\_\_ServiceMembers}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ INTROSPECTION\_CPP\_SERVICE\_MEMBERS\ rosidl\_typesupport\_introspection\_cpp::ServiceMembers}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00067\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceMessageSerialization}{MessageSerialization}}}
+\DoxyCodeLine{00068\ \{}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00081\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00082\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{serialize\_field}}(\textcolor{keyword}{const}\ INTROSPECTION\_CPP\_MEMBER\ *\ member,\ \textcolor{keywordtype}{void}\ *\ field,\ \mbox{\hyperlink{classcbor_1_1TxStream}{cbor::TxStream}}\ \&\ stream)}
+\DoxyCodeLine{00083\ \ \ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordflow}{if}\ (!member-\/>is\_array\_)}
+\DoxyCodeLine{00085\ \ \ \ \ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ stream\ <<\ *\ static\_cast<T\ *>(field);}
+\DoxyCodeLine{00087\ \ \ \ \ \}}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (member-\/>array\_size\_\ \&\&\ !member-\/>is\_upper\_bound\_)}
+\DoxyCodeLine{00089\ \ \ \ \ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ stream.\mbox{\hyperlink{classcbor_1_1TxStream_a3431c0b1f28dbf862f9b337ffd0c9272}{serialize\_sequence}}(\textcolor{keyword}{static\_cast<}T\ *\textcolor{keyword}{>}(field),\ member-\/>array\_size\_);}
+\DoxyCodeLine{00091\ \ \ \ \ \}}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00093\ \ \ \ \ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ std::vector<T>\ \&\ data\ =\ *\textcolor{keyword}{reinterpret\_cast<}std::vector<T>\ *\textcolor{keyword}{>}(field);}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ stream\ <<\ data;}
+\DoxyCodeLine{00096\ \ \ \ \ \}}
+\DoxyCodeLine{00097\ \ \ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00110\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00111\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{serialize\_field}}(\textcolor{keyword}{const}\ INTROSPECTION\_C\_MEMBER\ *\ member,\ \textcolor{keywordtype}{void}\ *\ field,\ \mbox{\hyperlink{classcbor_1_1TxStream}{cbor::TxStream}}\ \&\ stream)}
+\DoxyCodeLine{00112\ \ \ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{comment}{//\ String\ specific\ implementation}}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_same\_v<T,\ std::string>)}
+\DoxyCodeLine{00115\ \ \ \ \ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!member-\/>is\_array\_)\ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ stream\ <<\ \mbox{\hyperlink{namespaceCStringHelper_afdd1746a13b7caa09a79880e048e083f}{CStringHelper::convert\_to\_std\_string}}(field);}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (member-\/>array\_size\_\ \&\&\ !member-\/>is\_upper\_bound\_)}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ stream\ <<\ \mbox{\hyperlink{namespaceCStringHelper_a46c9096e1ecb6f6bc0fb672bd915e80f}{CStringHelper::convert\_to\_std\_vector\_string}}(field,\ member-\/>array\_size\_);}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}WARNING:\ non-\/fixed\ size\ sequences\ are\ currently\ sperimental\(\backslash\)n"{}});}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ stream\ <<\ \mbox{\hyperlink{namespaceCStringHelper_af1fb65516cba6b268c562c9e5541c688}{CStringHelper::convert\_sequence\_to\_std\_vector\_string}}(field);}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00129\ \ \ \ \ \}}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{comment}{//\ U16string\ specific\ implementation}}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_same\_v<T,\ std::u16string>)}
+\DoxyCodeLine{00132\ \ \ \ \ \{}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!member-\/>is\_array\_)\ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ stream\ <<\ \mbox{\hyperlink{namespaceCStringHelper_a67a072527df76b6105dc694d0d65e317}{CStringHelper::convert\_to\_std\_u16string}}(field);}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (member-\/>array\_size\_\ \&\&\ !member-\/>is\_upper\_bound\_)}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ stream\ <<\ \mbox{\hyperlink{namespaceCStringHelper_a7cd36550ae2df76c2b9d94fdb4f95fae}{CStringHelper::convert\_to\_std\_vector\_u16string}}(field,\ member-\/>array\_size\_);}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}WARNING:\ non-\/fixed\ size\ sequences\ are\ currently\ sperimental\(\backslash\)n"{}});}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ stream\ <<\ \mbox{\hyperlink{namespaceCStringHelper_aca7d541ea4477361e7d97080edf124ea}{CStringHelper::convert\_sequence\_to\_std\_vector\_u16string}}(field);}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00146\ \ \ \ \ \}}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{comment}{//\ Generic\ implementation}}
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00149\ \ \ \ \ \{}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!member-\/>is\_array\_)\ }
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ stream\ <<\ *\ static\_cast<T\ *>(field);}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (member-\/>array\_size\_\ \&\&\ !member-\/>is\_upper\_bound\_)}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ stream.\mbox{\hyperlink{classcbor_1_1TxStream_a3431c0b1f28dbf862f9b337ffd0c9272}{serialize\_sequence}}(\textcolor{keyword}{static\_cast<}T\ *\textcolor{keyword}{>}(field),\ member-\/>array\_size\_);}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}WARNING:\ non-\/fixed\ size\ sequences\ are\ currently\ sperimental\(\backslash\)n"{}});}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \&\ data\ =\ *\textcolor{keyword}{reinterpret\_cast<}typename\ \mbox{\hyperlink{structGenericCSequence}{GenericCSequence<T>::type}}\ *\textcolor{keyword}{>}(field);}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Serialize\ length}}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ stream\ <<\ (uint32\_t)data.size;}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ stream.\mbox{\hyperlink{classcbor_1_1TxStream_a3431c0b1f28dbf862f9b337ffd0c9272}{serialize\_sequence}}(\textcolor{keyword}{reinterpret\_cast<}T\ *\textcolor{keyword}{>}(data.data),\ data.size);}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00168\ \ \ \ \ \}}
+\DoxyCodeLine{00169\ \ \ \}}
+\DoxyCodeLine{00170\ \ \ }
+\DoxyCodeLine{00183\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ MembersType>}
+\DoxyCodeLine{00184\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceMessageSerialization_ad0baadb3e6c0ac806d2904860ab3124b}{serialize}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *\ msg,\ \textcolor{keyword}{const}\ MembersType\ *\ casted\_members,\ \mbox{\hyperlink{classcbor_1_1TxStream}{cbor::TxStream}}\ \&\ stream)}
+\DoxyCodeLine{00185\ \ \ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keywordflow}{for}\ (uint32\_t\ i\ =\ 0;\ i\ <\ casted\_members-\/>member\_count\_;\ ++i)\ \{}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ member\ =\ casted\_members-\/>members\_\ +\ i;}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ *\ field\ =\ \textcolor{keyword}{const\_cast<}\textcolor{keywordtype}{char}\ *\textcolor{keyword}{>}(\textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}\ *\textcolor{keyword}{>}(msg))\ +\ member-\/>offset\_;}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (member-\/>type\_id\_)\ \{}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ case\ ::rosidl\_typesupport\_introspection\_cpp::ROS\_TYPE\_MESSAGE:}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ sub\_members\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }MembersType\ *\textcolor{keyword}{>}(member-\/>members\_-\/>data);}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!member-\/>is\_array\_)\ \{}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_ad0baadb3e6c0ac806d2904860ab3124b}{serialize}}(field,\ sub\_members,\ stream);}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (member-\/>array\_size\_\ \&\&\ !member-\/>is\_upper\_bound\_)}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ index\ =\ 0;\ index\ <\ member-\/>array\_size\_;\ ++index)\ \{}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_ad0baadb3e6c0ac806d2904860ab3124b}{serialize}}(member-\/>get\_function(field,\ index),\ sub\_members,\ stream);}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ array\_size\ =\ member-\/>size\_function(field);}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (member-\/>is\_upper\_bound\_\ \&\&\ array\_size\ >\ member-\/>array\_size\_)}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Sequence\ overcomes\ the\ maximum\ length"{}});}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Serialize\ length}}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ stream\ <<\ (uint32\_t)array\_size;}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ index\ =\ 0;\ index\ <\ array\_size;\ ++index)\ \{}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_ad0baadb3e6c0ac806d2904860ab3124b}{serialize}}(member-\/>get\_function(field,\ index),\ sub\_members,\ stream);}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ case\ ::rosidl\_typesupport\_introspection\_cpp::ROS\_TYPE\_BOOLEAN:}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!member-\/>is\_array\_)}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Don't\ cast\ to\ bool\ here\ because\ if\ the\ bool\ is\ uninitialized\ the\ random\ value\ can't\ be\ deserialized}}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ stream\ <<\ (*static\_cast<uint8\_t\ *>(field)\ ?\ true\ :\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{serialize\_field<bool>}}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}});}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ case\ ::rosidl\_typesupport\_introspection\_cpp::ROS\_TYPE\_OCTET:}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//throw\ std::runtime\_error("{}OCTET\ type\ unsupported"{});}}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ case\ ::rosidl\_typesupport\_introspection\_cpp::ROS\_TYPE\_UINT8:}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{serialize\_field<uint8\_t>}}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}});}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ case\ ::rosidl\_typesupport\_introspection\_cpp::ROS\_TYPE\_CHAR:}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{serialize\_field<char>}}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}});}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ case\ ::rosidl\_typesupport\_introspection\_cpp::ROS\_TYPE\_INT8:}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{serialize\_field<int8\_t>}}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}});}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ case\ ::rosidl\_typesupport\_introspection\_cpp::ROS\_TYPE\_FLOAT:}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{serialize\_field<float>}}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}});}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ case\ ::rosidl\_typesupport\_introspection\_cpp::ROS\_TYPE\_DOUBLE:}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{serialize\_field<double>}}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}});}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ case\ ::rosidl\_typesupport\_introspection\_cpp::ROS\_TYPE\_INT16:}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{serialize\_field<int16\_t>}}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}});}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ case\ ::rosidl\_typesupport\_introspection\_cpp::ROS\_TYPE\_UINT16:}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{serialize\_field<uint16\_t>}}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}});}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ case\ ::rosidl\_typesupport\_introspection\_cpp::ROS\_TYPE\_INT32:}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{serialize\_field<int32\_t>}}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}});}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ case\ ::rosidl\_typesupport\_introspection\_cpp::ROS\_TYPE\_UINT32:}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{serialize\_field<uint32\_t>}}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}});}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ case\ ::rosidl\_typesupport\_introspection\_cpp::ROS\_TYPE\_INT64:}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{serialize\_field<int64\_t>}}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}});}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ case\ ::rosidl\_typesupport\_introspection\_cpp::ROS\_TYPE\_UINT64:}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{serialize\_field<uint64\_t>}}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}});}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ case\ ::rosidl\_typesupport\_introspection\_cpp::ROS\_TYPE\_STRING:}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{serialize\_field<std::string>}}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}});}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ case\ ::rosidl\_typesupport\_introspection\_cpp::ROS\_TYPE\_WSTRING:}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{serialize\_field<std::u16string>}}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}});}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}unknown\ type"{}});}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00276\ \ \ \ \ \}}
+\DoxyCodeLine{00277\ \ \ \}}
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00290\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00291\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceMessageSerialization_adb3d7de7d957d5cf2d5e1e9aad6a4695}{deserialize\_field}}(\textcolor{keyword}{const}\ INTROSPECTION\_CPP\_MEMBER\ *\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}},\ \textcolor{keywordtype}{void}\ *\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}},\ \mbox{\hyperlink{classcbor_1_1RxStream}{cbor::RxStream}}\ \&\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}})}
+\DoxyCodeLine{00292\ \ \ \{}
+\DoxyCodeLine{00293\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}}-\/>is\_array\_)\ \{}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}}\ >>\ *\textcolor{keyword}{static\_cast<}\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{T}}\ *\textcolor{keyword}{>}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}});}
+\DoxyCodeLine{00295\ \ \ \ \ \}}
+\DoxyCodeLine{00296\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}}-\/>array\_size\_\ \&\&\ !\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}}-\/>is\_upper\_bound\_)}
+\DoxyCodeLine{00297\ \ \ \ \ \{}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}}.deserialize\_sequence(\textcolor{keyword}{static\_cast<}\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{T}}\ *\textcolor{keyword}{>}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}}),\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}}-\/>array\_size\_);}
+\DoxyCodeLine{00299\ \ \ \ \ \}}
+\DoxyCodeLine{00300\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00301\ \ \ \ \ \{}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \&\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{vector}}\ =\ *\textcolor{keyword}{reinterpret\_cast<}std::vector<T>\ *\textcolor{keyword}{>}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}});}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \textcolor{keyword}{new}(\&\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{vector}})\ std::vector<T>;}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}}\ >>\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{vector}};}
+\DoxyCodeLine{00305\ \ \ \ \ \}}
+\DoxyCodeLine{00306\ \ \ \}}
+\DoxyCodeLine{00307\ }
+\DoxyCodeLine{00319\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00320\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceMessageSerialization_adb3d7de7d957d5cf2d5e1e9aad6a4695}{deserialize\_field}}(\textcolor{keyword}{const}\ INTROSPECTION\_C\_MEMBER\ *\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}},\ \textcolor{keywordtype}{void}\ *\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}},\ \mbox{\hyperlink{classcbor_1_1RxStream}{cbor::RxStream}}\ \&\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}})}
+\DoxyCodeLine{00321\ \ \ \{}
+\DoxyCodeLine{00322\ \ \ \ \ \textcolor{comment}{//\ String\ specific\ implementation}}
+\DoxyCodeLine{00323\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_same\_v<T,\ std::string>)}
+\DoxyCodeLine{00324\ \ \ \ \ \{}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}}-\/>is\_array\_)\ }
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ std::string\ str;}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}}\ >>\ str;}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceCStringHelper_acd385ff8fc21921cc8b1cb875b52fdd0}{CStringHelper::assign\_string}}(str,\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}});}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}}-\/>array\_size\_\ \&\&\ !\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}}-\/>is\_upper\_bound\_)}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ std::vector<std::string>\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{cpp\_string\_vector}};}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}}\ >>\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{cpp\_string\_vector}};}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceCStringHelper_a2b8b924dc2903c7055bfb7e4a413f392}{CStringHelper::assign\_vector\_string}}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{cpp\_string\_vector}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}}-\/>array\_size\_);}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{printf}}(\textcolor{stringliteral}{"{}WARNING:\ non-\/fixed\ size\ sequences\ are\ currently\ sperimental\(\backslash\)n"{}});}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ std::vector<std::string>\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{cpp\_string\_vector}};}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}}\ >>\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{cpp\_string\_vector}};}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceCStringHelper_a7e136add8498b7a4ea9c065825961c7b}{CStringHelper::assign\_vector\_string\_to\_sequence}}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{cpp\_string\_vector}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}});}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00346\ \ \ \ \ \}}
+\DoxyCodeLine{00347\ \ \ \ \ \textcolor{comment}{//\ U16string\ specific\ implementation}}
+\DoxyCodeLine{00348\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_same\_v<T,\ std::u16string>)}
+\DoxyCodeLine{00349\ \ \ \ \ \{}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}}-\/>is\_array\_)\ }
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ std::u16string\ str;}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}}\ >>\ str;}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceCStringHelper_ae78445b8ee145086048078bb0b6ee3cc}{CStringHelper::assign\_u16string}}(str,\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}});}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}}-\/>array\_size\_\ \&\&\ !\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}}-\/>is\_upper\_bound\_)}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ std::vector<std::u16string>\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{cpp\_string\_vector}};}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}}\ >>\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{cpp\_string\_vector}};}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceCStringHelper_aecd6afde0b4be23924a25101a11921a8}{CStringHelper::assign\_vector\_u16string}}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{cpp\_string\_vector}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}}-\/>array\_size\_);}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{printf}}(\textcolor{stringliteral}{"{}WARNING:\ non-\/fixed\ size\ sequences\ are\ currently\ sperimental\(\backslash\)n"{}});}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ std::vector<std::u16string>\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{cpp\_string\_vector}};}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}}\ >>\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{cpp\_string\_vector}};}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceCStringHelper_a2d98ad81c785c470ee14cc3a98857c22}{CStringHelper::assign\_vector\_u16string\_to\_sequence}}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{cpp\_string\_vector}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}});}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00371\ \ \ \ \ \}}
+\DoxyCodeLine{00372\ \ \ \ \ \textcolor{comment}{//\ Generic\ implementation}}
+\DoxyCodeLine{00373\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00374\ \ \ \ \ \{}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}}-\/>is\_array\_)\ }
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}}\ >>\ *\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{T}}\ *\textcolor{keyword}{>}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}});}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}}-\/>array\_size\_\ \&\&\ !\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}}-\/>is\_upper\_bound\_)}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}}.deserialize\_sequence(\textcolor{keyword}{static\_cast<}\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{T}}\ *\textcolor{keyword}{>}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}}),\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}}-\/>array\_size\_);}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{printf}}(\textcolor{stringliteral}{"{}WARNING:\ non-\/fixed\ size\ sequences\ are\ currently\ sperimental\(\backslash\)n"{}});}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \&\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{data}}\ =\ *\textcolor{keyword}{reinterpret\_cast<}\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{typename}}\ \mbox{\hyperlink{structGenericCSequence}{GenericCSequence<T>::type}}\ *\textcolor{keyword}{>}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}});}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{uint32\_t}}\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{size}}\ =\ 0;}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}}\ >>\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{size}};}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{dsize}}\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{size\_t}\textcolor{keyword}{>}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{size}});}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{structGenericCSequence}{GenericCSequence<T>::init}}(\&\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{data}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{dsize}}))}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}unable\ to\ initialize\ GenericCSequence"{}});}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}}.deserialize\_sequence(\textcolor{keyword}{reinterpret\_cast<}\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{T}}\ *\textcolor{keyword}{>}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{data}}.data),\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{dsize}});}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00398\ \ \ \ \ \}}
+\DoxyCodeLine{00399\ \ \ \}}
+\DoxyCodeLine{00400\ }
+\DoxyCodeLine{00414\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ MembersType>}
+\DoxyCodeLine{00415\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceMessageSerialization_acfef23282ae72daec9f0822a80c07cf1}{deserialize}}(\textcolor{keywordtype}{void}\ *\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{msg}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{MembersType}}\ *\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{casted\_members}},\ \mbox{\hyperlink{classcbor_1_1RxStream}{cbor::RxStream}}\ \&\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}})}
+\DoxyCodeLine{00416\ \ \ \{}
+\DoxyCodeLine{00417\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{uint32\_t}}\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{i}}\ =\ 0;\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{i}}\ <\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{casted\_members}}-\/>member\_count\_;\ ++\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{i}})\ \{}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}}\ =\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{casted\_members}}-\/>members\_\ +\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{i}};}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ *\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}}\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{char}\ *\textcolor{keyword}{>}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{msg}})\ +\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}}-\/>offset\_;}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}}-\/>type\_id\_)\ \{}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ case\ ::rosidl\_typesupport\_introspection\_cpp::ROS\_TYPE\_MESSAGE:}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{sub\_members}}\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{MembersType}}\ *\textcolor{keyword}{>}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}}-\/>members\_-\/>data);}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}}-\/>is\_array\_)\ \{}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_acfef23282ae72daec9f0822a80c07cf1}{deserialize}}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{sub\_members}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}});}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}}-\/>array\_size\_\ \&\&\ !\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}}-\/>is\_upper\_bound\_)}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{index}}\ =\ 0;\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{index}}\ <\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}}-\/>array\_size\_;\ ++\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{index}})\ \{}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_acfef23282ae72daec9f0822a80c07cf1}{deserialize}}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}}-\/>get\_function(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{index}}),\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{sub\_members}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}});}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Deserialize\ length}}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{uint32\_t}}\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{array\_size}}\ =\ 0;}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}}\ >>\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{array\_size}};}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{vector}}\ =\ \textcolor{keyword}{reinterpret\_cast<}std::vector<unsigned\ char>\ *\textcolor{keyword}{>}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}});}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{vector}})\ std::vector<unsigned\ char>;}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}}-\/>resize\_function(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{array\_size}});}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{index}}\ =\ 0;\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{index}}\ <\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{array\_size}};\ ++\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{index}})\ \{}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_acfef23282ae72daec9f0822a80c07cf1}{deserialize}}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}}-\/>get\_function(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{index}}),\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{sub\_members}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}});}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ case\ ::rosidl\_typesupport\_introspection\_cpp::ROS\_TYPE\_BOOLEAN:}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{deserialize\_field<bool>}}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}});}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ case\ ::rosidl\_typesupport\_introspection\_cpp::ROS\_TYPE\_OCTET:}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//throw\ std::runtime\_error("{}OCTET\ type\ unsupported"{});}}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ case\ ::rosidl\_typesupport\_introspection\_cpp::ROS\_TYPE\_UINT8:}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{deserialize\_field<uint8\_t>}}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}});}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ case\ ::rosidl\_typesupport\_introspection\_cpp::ROS\_TYPE\_CHAR:}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{deserialize\_field<char>}}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}});}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ case\ ::rosidl\_typesupport\_introspection\_cpp::ROS\_TYPE\_INT8:}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{deserialize\_field<int8\_t>}}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}});}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ case\ ::rosidl\_typesupport\_introspection\_cpp::ROS\_TYPE\_FLOAT:}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{deserialize\_field<float>}}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}});}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ case\ ::rosidl\_typesupport\_introspection\_cpp::ROS\_TYPE\_DOUBLE:}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{deserialize\_field<double>}}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}});}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ case\ ::rosidl\_typesupport\_introspection\_cpp::ROS\_TYPE\_INT16:}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{deserialize\_field<int16\_t>}}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}});}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ case\ ::rosidl\_typesupport\_introspection\_cpp::ROS\_TYPE\_UINT16:}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{deserialize\_field<uint16\_t>}}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}});}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ case\ ::rosidl\_typesupport\_introspection\_cpp::ROS\_TYPE\_INT32:}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{deserialize\_field<int32\_t>}}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}});}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ case\ ::rosidl\_typesupport\_introspection\_cpp::ROS\_TYPE\_UINT32:}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{deserialize\_field<uint32\_t>}}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}});}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ case\ ::rosidl\_typesupport\_introspection\_cpp::ROS\_TYPE\_INT64:}
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{deserialize\_field<int64\_t>}}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}});}
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ case\ ::rosidl\_typesupport\_introspection\_cpp::ROS\_TYPE\_UINT64:}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{deserialize\_field<uint64\_t>}}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}});}
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ case\ ::rosidl\_typesupport\_introspection\_cpp::ROS\_TYPE\_STRING:}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{deserialize\_field<std::string>}}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}});}
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ case\ ::rosidl\_typesupport\_introspection\_cpp::ROS\_TYPE\_WSTRING:}
+\DoxyCodeLine{00492\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{deserialize\_field<std::u16string>}}(\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}},\ \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}});}
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00494\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}unknown\ type"{}});}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00497\ \ \ \ \ \}}
+\DoxyCodeLine{00498\ \ \ \}}
+\DoxyCodeLine{00499\ }
+\DoxyCodeLine{00500\ \}}
+\DoxyCodeLine{00501\ }
+\DoxyCodeLine{00502\ }
+\DoxyCodeLine{00503\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

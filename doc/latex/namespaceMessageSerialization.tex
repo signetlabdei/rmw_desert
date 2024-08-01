@@ -1,0 +1,162 @@
+\doxysection{Message\+Serialization Namespace Reference}
+\hypertarget{namespaceMessageSerialization}{}\label{namespaceMessageSerialization}\index{MessageSerialization@{MessageSerialization}}
+
+
+Namespace containing serialization functions.  
+
+
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{serialize\+\_\+field}} (const INTROSPECTION\+\_\+\+CPP\+\_\+\+MEMBER \texorpdfstring{$\ast$}{*}member, void \texorpdfstring{$\ast$}{*}field, \mbox{\hyperlink{classcbor_1_1TxStream}{cbor\+::\+Tx\+Stream}} \&stream)
+\begin{DoxyCompactList}\small\item\em Serialize a C++ field. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{namespaceMessageSerialization_afd266190807c8abdbce73fecefb39f5f}{serialize\+\_\+field}} (const INTROSPECTION\+\_\+\+C\+\_\+\+MEMBER \texorpdfstring{$\ast$}{*}member, void \texorpdfstring{$\ast$}{*}field, \mbox{\hyperlink{classcbor_1_1TxStream}{cbor\+::\+Tx\+Stream}} \&stream)
+\begin{DoxyCompactList}\small\item\em Serialize a C field. \end{DoxyCompactList}\item 
+{\footnotesize template$<$\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{typename}} \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{Members\+Type}} $>$ }\\\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{void}} \mbox{\hyperlink{namespaceMessageSerialization_ad0baadb3e6c0ac806d2904860ab3124b}{serialize}} (\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{const}} \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{void}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{msg}}, \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{const}} \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{Members\+Type}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{casted\+\_\+members}}, \mbox{\hyperlink{classcbor_1_1TxStream}{cbor\+::\+Tx\+Stream}} \&\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}})
+\begin{DoxyCompactList}\small\item\em Serialize a ROS message, request or response. \end{DoxyCompactList}\item 
+{\footnotesize template$<$\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{typename}} \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{T}} $>$ }\\\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{void}} \mbox{\hyperlink{namespaceMessageSerialization_adb3d7de7d957d5cf2d5e1e9aad6a4695}{deserialize\+\_\+field}} (\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{const}} INTROSPECTION\+\_\+\+CPP\+\_\+\+MEMBER \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}}, \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{void}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}}, \mbox{\hyperlink{classcbor_1_1RxStream}{cbor\+::\+Rx\+Stream}} \&\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}})
+\begin{DoxyCompactList}\small\item\em Deserialize a C++ field. \end{DoxyCompactList}\item 
+{\footnotesize template$<$\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{typename}} \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{T}} $>$ }\\\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{void}} \mbox{\hyperlink{namespaceMessageSerialization_ac8330b75a9db755484f6433db2f7cdf8}{deserialize\+\_\+field}} (\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{const}} INTROSPECTION\+\_\+\+C\+\_\+\+MEMBER \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{member}}, \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{void}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{field}}, \mbox{\hyperlink{classcbor_1_1RxStream}{cbor\+::\+Rx\+Stream}} \&\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}})
+\begin{DoxyCompactList}\small\item\em Deserialize a C field. \end{DoxyCompactList}\item 
+{\footnotesize template$<$\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{typename}} \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{Members\+Type}} $>$ }\\\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{void}} \mbox{\hyperlink{namespaceMessageSerialization_acfef23282ae72daec9f0822a80c07cf1}{deserialize}} (\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{void}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{msg}}, \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{const}} \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{Members\+Type}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{casted\+\_\+members}}, \mbox{\hyperlink{classcbor_1_1RxStream}{cbor\+::\+Rx\+Stream}} \&\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{stream}})
+\begin{DoxyCompactList}\small\item\em Deserialize a ROS message, request or response. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Namespace containing serialization functions. 
+
+The message data structure coming from upper layers is interpreted using type support informations passed by ROS2 during the creation of publishers, subscribers, clients and services. Those functions are used to compute the exact position that every data type must assume in memory an then calls Tx\+Stream or Rx\+Stream to receive or write them in the assigned location. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{namespaceMessageSerialization_acfef23282ae72daec9f0822a80c07cf1}\label{namespaceMessageSerialization_acfef23282ae72daec9f0822a80c07cf1} 
+\index{MessageSerialization@{MessageSerialization}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!MessageSerialization@{MessageSerialization}}
+\doxysubsubsection{\texorpdfstring{deserialize()}{deserialize()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{typename}} \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{Members\+Type}} $>$ \\
+\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{void}} Message\+Serialization\+::deserialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{void}} \texorpdfstring{$\ast$}{*}}]{msg,  }\item[{\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{const}} \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{Members\+Type}} \texorpdfstring{$\ast$}{*}}]{casted\+\_\+members,  }\item[{\mbox{\hyperlink{classcbor_1_1RxStream}{cbor\+::\+Rx\+Stream}} \&}]{stream }\end{DoxyParamCaption})}
+
+
+
+Deserialize a ROS message, request or response. 
+
+Every time DESERT receives data from the channel a memory location is used to store the corresponding member type, and this function merges all the elementary C or C++ types into the whole message. To perform this operation the deserialize\+\_\+field function is called to decode every specific data.
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & Pointer to the first byte of the message in memory \\
+\hline
+{\em casted\+\_\+members} & Pointer to the member containing type support informations \\
+\hline
+{\em stream} & The stream used to receive data \\
+\hline
+\end{DoxyParams}
+\Hypertarget{namespaceMessageSerialization_ac8330b75a9db755484f6433db2f7cdf8}\label{namespaceMessageSerialization_ac8330b75a9db755484f6433db2f7cdf8} 
+\index{MessageSerialization@{MessageSerialization}!deserialize\_field@{deserialize\_field}}
+\index{deserialize\_field@{deserialize\_field}!MessageSerialization@{MessageSerialization}}
+\doxysubsubsection{\texorpdfstring{deserialize\_field()}{deserialize\_field()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{typename}} \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{T}} $>$ \\
+\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{void}} Message\+Serialization\+::deserialize\+\_\+field (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{const}} INTROSPECTION\+\_\+\+C\+\_\+\+MEMBER \texorpdfstring{$\ast$}{*}}]{member,  }\item[{\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{void}} \texorpdfstring{$\ast$}{*}}]{field,  }\item[{\mbox{\hyperlink{classcbor_1_1RxStream}{cbor\+::\+Rx\+Stream}} \&}]{stream }\end{DoxyParamCaption})}
+
+
+
+Deserialize a C field. 
+
+The type support introspection information is used to know if a specific data type is a single item, a sequence or a variable length sequence. Based on this conclusion a specific interpretation is passed to the stream.
+
+
+\begin{DoxyParams}{Parameters}
+{\em member} & Pointer to the member containing type support informations \\
+\hline
+{\em field} & Pointer to the destination memory address of the elementary data \\
+\hline
+{\em stream} & The stream used to receive data \\
+\hline
+\end{DoxyParams}
+\Hypertarget{namespaceMessageSerialization_adb3d7de7d957d5cf2d5e1e9aad6a4695}\label{namespaceMessageSerialization_adb3d7de7d957d5cf2d5e1e9aad6a4695} 
+\index{MessageSerialization@{MessageSerialization}!deserialize\_field@{deserialize\_field}}
+\index{deserialize\_field@{deserialize\_field}!MessageSerialization@{MessageSerialization}}
+\doxysubsubsection{\texorpdfstring{deserialize\_field()}{deserialize\_field()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{typename}} \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{T}} $>$ \\
+\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{void}} Message\+Serialization\+::deserialize\+\_\+field (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{const}} INTROSPECTION\+\_\+\+CPP\+\_\+\+MEMBER \texorpdfstring{$\ast$}{*}}]{member,  }\item[{\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{void}} \texorpdfstring{$\ast$}{*}}]{field,  }\item[{\mbox{\hyperlink{classcbor_1_1RxStream}{cbor\+::\+Rx\+Stream}} \&}]{stream }\end{DoxyParamCaption})}
+
+
+
+Deserialize a C++ field. 
+
+The type support introspection information is used to know if a specific data type is a single item, a sequence or a vector. Based on this conclusion a specific interpretation is passed to the stream.
+
+
+\begin{DoxyParams}{Parameters}
+{\em member} & Pointer to the member containing type support informations \\
+\hline
+{\em field} & Pointer to the destination memory address of the elementary data \\
+\hline
+{\em stream} & The stream used to receive data \\
+\hline
+\end{DoxyParams}
+\Hypertarget{namespaceMessageSerialization_ad0baadb3e6c0ac806d2904860ab3124b}\label{namespaceMessageSerialization_ad0baadb3e6c0ac806d2904860ab3124b} 
+\index{MessageSerialization@{MessageSerialization}!serialize@{serialize}}
+\index{serialize@{serialize}!MessageSerialization@{MessageSerialization}}
+\doxysubsubsection{\texorpdfstring{serialize()}{serialize()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{typename}} \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{Members\+Type}} $>$ \\
+\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{void}} Message\+Serialization\+::serialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{const}} \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{void}} \texorpdfstring{$\ast$}{*}}]{msg,  }\item[{\mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{const}} \mbox{\hyperlink{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}{Members\+Type}} \texorpdfstring{$\ast$}{*}}]{casted\+\_\+members,  }\item[{\mbox{\hyperlink{classcbor_1_1TxStream}{cbor\+::\+Tx\+Stream}} \&}]{stream }\end{DoxyParamCaption})}
+
+
+
+Serialize a ROS message, request or response. 
+
+Every time ROS has data to send in the channel a memory location is passed with the corresponding message member type, and this function separates all the fields into elementary C or C++ types. Then the serialize\+\_\+field function is called to encode the specific data.
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & Pointer to the first byte of the message in memory \\
+\hline
+{\em casted\+\_\+members} & Pointer to the member containing type support informations \\
+\hline
+{\em stream} & The stream used to send data \\
+\hline
+\end{DoxyParams}
+\Hypertarget{namespaceMessageSerialization_afd266190807c8abdbce73fecefb39f5f}\label{namespaceMessageSerialization_afd266190807c8abdbce73fecefb39f5f} 
+\index{MessageSerialization@{MessageSerialization}!serialize\_field@{serialize\_field}}
+\index{serialize\_field@{serialize\_field}!MessageSerialization@{MessageSerialization}}
+\doxysubsubsection{\texorpdfstring{serialize\_field()}{serialize\_field()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void Message\+Serialization\+::serialize\+\_\+field (\begin{DoxyParamCaption}\item[{const INTROSPECTION\+\_\+\+C\+\_\+\+MEMBER \texorpdfstring{$\ast$}{*}}]{member,  }\item[{void \texorpdfstring{$\ast$}{*}}]{field,  }\item[{\mbox{\hyperlink{classcbor_1_1TxStream}{cbor\+::\+Tx\+Stream}} \&}]{stream }\end{DoxyParamCaption})}
+
+
+
+Serialize a C field. 
+
+The type support introspection information is used to know if a specific data type is a single item, a sequence or a variable length sequence. Based on this conclusion a specific interpretation is passed to the stream.
+
+
+\begin{DoxyParams}{Parameters}
+{\em member} & Pointer to the member containing type support informations \\
+\hline
+{\em field} & Pointer to the origin memory address of the elementary data \\
+\hline
+{\em stream} & The stream used to send data \\
+\hline
+\end{DoxyParams}
+\Hypertarget{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a}\label{namespaceMessageSerialization_a4653b01605e1faeff5d18e1934bc953a} 
+\index{MessageSerialization@{MessageSerialization}!serialize\_field@{serialize\_field}}
+\index{serialize\_field@{serialize\_field}!MessageSerialization@{MessageSerialization}}
+\doxysubsubsection{\texorpdfstring{serialize\_field()}{serialize\_field()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void Message\+Serialization\+::serialize\+\_\+field (\begin{DoxyParamCaption}\item[{const INTROSPECTION\+\_\+\+CPP\+\_\+\+MEMBER \texorpdfstring{$\ast$}{*}}]{member,  }\item[{void \texorpdfstring{$\ast$}{*}}]{field,  }\item[{\mbox{\hyperlink{classcbor_1_1TxStream}{cbor\+::\+Tx\+Stream}} \&}]{stream }\end{DoxyParamCaption})}
+
+
+
+Serialize a C++ field. 
+
+The type support introspection information is used to know if a specific data type is a single item, a sequence or a vector. Based on this conclusion a specific interpretation is passed to the stream.
+
+
+\begin{DoxyParams}{Parameters}
+{\em member} & Pointer to the member containing type support informations \\
+\hline
+{\em field} & Pointer to the origin memory address of the elementary data \\
+\hline
+{\em stream} & The stream used to send data \\
+\hline
+\end{DoxyParams}

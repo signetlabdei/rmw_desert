@@ -1,0 +1,168 @@
+\chapter{CBOR}
+\hypertarget{md_cbor_2README}{}\label{md_cbor_2README}\index{CBOR@{CBOR}}
+\label{md_cbor_2README_autotoc_md4}%
+\Hypertarget{md_cbor_2README_autotoc_md4}%
+This is a minimalistic implementation for CBOR, the Concise Binary Object Representation. CBOR is defined by \href{https://datatracker.ietf.org/doc/html/rfc8949}{\texttt{ IETF RFC 8949}}, and Wikipedia has \href{https://en.wikipedia.org/wiki/CBOR}{\texttt{ a good description}}.\hypertarget{md_cbor_2README_autotoc_md5}{}\doxysection{\texorpdfstring{Features}{Features}}\label{md_cbor_2README_autotoc_md5}
+
+\begin{DoxyItemize}
+\item C99
+\item No dynamic memory allocation
+\item Small code footprint
+\end{DoxyItemize}\hypertarget{md_cbor_2README_autotoc_md6}{}\doxysection{\texorpdfstring{Build}{Build}}\label{md_cbor_2README_autotoc_md6}
+\hypertarget{md_cbor_2README_autotoc_md7}{}\doxysubsection{\texorpdfstring{Make}{Make}}\label{md_cbor_2README_autotoc_md7}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{CBOR\_ROOT\ ?=\ <THIRD\_PARTY\_DIR>/cbor}
+\DoxyCodeLine{include\ \$(CBOR\_ROOT)/cbor.mk}
+
+\end{DoxyCode}
+\hypertarget{md_cbor_2README_autotoc_md8}{}\doxysubsection{\texorpdfstring{CMake}{CMake}}\label{md_cbor_2README_autotoc_md8}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{include(FetchContent)}
+\DoxyCodeLine{FetchContent\_Declare(cbor}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GIT\_REPOSITORY\ https://github.com/libmcu/cbor.git}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GIT\_TAG\ main}
+\DoxyCodeLine{)}
+\DoxyCodeLine{FetchContent\_MakeAvailable(cbor)}
+
+\end{DoxyCode}
+
+
+or
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{set(CBOR\_ROOT\ <THIRD\_PARTY\_DIR>/cbor)}
+\DoxyCodeLine{include(\$\{CBOR\_ROOT\}/cbor.cmake)}
+
+\end{DoxyCode}
+\hypertarget{md_cbor_2README_autotoc_md9}{}\doxysection{\texorpdfstring{Usage}{Usage}}\label{md_cbor_2README_autotoc_md9}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ parse\_cert(\textcolor{keyword}{const}\ cbor\_reader\_t\ *reader,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{struct}\ cbor\_parser\ *parser,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ cbor\_item\_t\ *item,\ \textcolor{keywordtype}{void}\ *arg)\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{struct\ }your\_data\_type\ *out\ =\ arg;}
+\DoxyCodeLine{\ \ \ \ cbor\_decode(reader,\ item,\ out-\/>cert,\ \textcolor{keyword}{sizeof}(out-\/>cert));}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ parse\_key(\textcolor{keyword}{const}\ cbor\_reader\_t\ *reader,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{struct}\ cbor\_parser\ *parser,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ cbor\_item\_t\ *item,\ \textcolor{keywordtype}{void}\ *arg)\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{struct\ }your\_data\_type\ *out\ =\ arg;}
+\DoxyCodeLine{\ \ \ \ cbor\_decode(reader,\ item,\ out-\/>key,\ \textcolor{keyword}{sizeof}(out-\/>key));}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keyword}{struct\ }cbor\_parser\ parsers[]\ =\ \{}
+\DoxyCodeLine{\ \ \ \ \{\ .key\ =\ \textcolor{stringliteral}{"{}certificate"{}},\ .run\ =\ parse\_cert\ \},}
+\DoxyCodeLine{\ \ \ \ \{\ .key\ =\ \textcolor{stringliteral}{"{}privateKey"{}},\ \ .run\ =\ parse\_key\ \},}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{cbor\_reader\_t\ reader;}
+\DoxyCodeLine{cbor\_item\_t\ items[MAX\_ITEMS];}
+\DoxyCodeLine{}
+\DoxyCodeLine{cbor\_reader\_init(\&reader,\ items,\ \textcolor{keyword}{sizeof}(items)\ /\ \textcolor{keyword}{sizeof}(*items));}
+\DoxyCodeLine{cbor\_unmarshal(\&reader,\ parsers,\ \textcolor{keyword}{sizeof}(parsers)\ /\ \textcolor{keyword}{sizeof}(*parsers),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ msg,\ msglen,\ \&your\_data\_type);}
+\DoxyCodeLine{}
+\DoxyCodeLine{...}
+
+\end{DoxyCode}
+
+
+Please refer to \mbox{[}examples\mbox{]}(examples).\hypertarget{md_cbor_2README_autotoc_md10}{}\doxysubsection{\texorpdfstring{Option}{Option}}\label{md_cbor_2README_autotoc_md10}
+
+\begin{DoxyItemize}
+\item {\ttfamily CBOR\+\_\+\+BIG\+\_\+\+ENDIAN}
+\begin{DoxyItemize}
+\item Define the macro for big endian machine. The default is little endian.
+\end{DoxyItemize}
+\item {\ttfamily CBOR\+\_\+\+RECURSION\+\_\+\+MAX\+\_\+\+LEVEL}
+\begin{DoxyItemize}
+\item This is set to avoid stack overflow from recursion. The default maximum depth is 8.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md_cbor_2README_autotoc_md11}{}\doxysubsection{\texorpdfstring{Parser}{Parser}}\label{md_cbor_2README_autotoc_md11}
+The parser takes 626 bytes on ARM Cortex-\/\+M0 optimizing for code size {\ttfamily -\/Os}. \href{https://developer.arm.com/-/media/Files/downloads/gnu-rm/10-2020q4/gcc-arm-none-eabi-10-2020-q4-major-src.tar.bz2?revision=8f69a18b-dbe3-45ec-b896-3ba56844938d&hash=946C702B1C99A84CD0C441357D578E80B2A56EF9}{\texttt{ arm-\/none-\/eabi-\/gcc 10-\/2020-\/q4-\/major}} was used for the check.
+
+Stack usage per the major type functions\+:
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Major type   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bytes    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Major type   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bytes    }\\\cline{1-2}
+\endhead
+0\+: unsigned integer   &12    \\\cline{1-2}
+1\+: negative integer   &12    \\\cline{1-2}
+2\+: byte string   &32    \\\cline{1-2}
+3\+: text string   &32    \\\cline{1-2}
+4\+: array   &32    \\\cline{1-2}
+5\+: map   &32    \\\cline{1-2}
+6\+: tag(not implemented yet)   &0    \\\cline{1-2}
+7\+: floating-\/point numbers, simple values and break   &32   \\\cline{1-2}
+\end{longtabu}
+
+
+And the call stack for each recursion is 24 bytes.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cbor\_reader\_t\ reader;}
+\DoxyCodeLine{cbor\_item\_t\ items[MAX\_ITEMS];}
+\DoxyCodeLine{\textcolor{keywordtype}{size\_t}\ n;}
+\DoxyCodeLine{}
+\DoxyCodeLine{cbor\_reader\_init(\&reader,\ items,\ \textcolor{keyword}{sizeof}(items)\ /\ \textcolor{keyword}{sizeof}(*items));}
+\DoxyCodeLine{cbor\_parse(\&reader,\ cbor\_message,\ cbor\_message\_len,\ \&n);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ n;\ i++)\ \{}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}item:\ \%s,\ size:\ \%zu\(\backslash\)n"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ cbor\_stringify\_item(\&items[i]),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ cbor\_get\_item\_size(\&items[i]);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md_cbor_2README_autotoc_md12}{}\doxysubsection{\texorpdfstring{Decoder}{Decoder}}\label{md_cbor_2README_autotoc_md12}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{union\ }\{}
+\DoxyCodeLine{\ \ \ \ int8\_t\ i8;}
+\DoxyCodeLine{\ \ \ \ int16\_t\ i16;}
+\DoxyCodeLine{\ \ \ \ int32\_t\ i32;}
+\DoxyCodeLine{\ \ \ \ int64\_t\ i64;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{float}\ f32;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{double}\ f64;}
+\DoxyCodeLine{\ \ \ \ uint8\_t\ s[MTU];}
+\DoxyCodeLine{\}\ val;}
+\DoxyCodeLine{}
+\DoxyCodeLine{cbor\_decode(\&reader,\ \&items[i],\ \&val,\ \textcolor{keyword}{sizeof}(val));}
+
+\end{DoxyCode}
+\hypertarget{md_cbor_2README_autotoc_md13}{}\doxysubsection{\texorpdfstring{Encoder}{Encoder}}\label{md_cbor_2README_autotoc_md13}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cbor\_writer\_t\ writer;}
+\DoxyCodeLine{}
+\DoxyCodeLine{cbor\_writer\_init(\&reader,\ buf,\ \textcolor{keyword}{sizeof}(buf));}
+\DoxyCodeLine{}
+\DoxyCodeLine{cbor\_encode\_map(\&writer,\ 2);}
+\DoxyCodeLine{\ \ \textcolor{comment}{/*\ 1st\ */}}
+\DoxyCodeLine{\ \ cbor\_encode\_text\_string(\&writer,\ \textcolor{stringliteral}{"{}key"{}});}
+\DoxyCodeLine{\ \ cbor\_encode\_text\_string(\&writer,\ \textcolor{stringliteral}{"{}value"{}});}
+\DoxyCodeLine{\ \ \textcolor{comment}{/*\ 2nd\ */}}
+\DoxyCodeLine{\ \ cbor\_encode\_text\_string(\&writer,\ \textcolor{stringliteral}{"{}age"{}});}
+\DoxyCodeLine{\ \ cbor\_encode\_negative\_integer(\&writer,\ -\/1);}
+
+\end{DoxyCode}
+\hypertarget{md_cbor_2README_autotoc_md14}{}\doxysection{\texorpdfstring{Limitation}{Limitation}}\label{md_cbor_2README_autotoc_md14}
+
+\begin{DoxyItemize}
+\item The maximum item length is {\ttfamily size\+\_\+t} because the interface return type is {\ttfamily size\+\_\+t}. The argument\textquotesingle{}s value in the specification can go up to {\ttfamily uint64\+\_\+t} though
+\item A negative integer ranges down to -\/2\texorpdfstring{$^\wedge$}{\string^}63-\/1 other than -\/2\texorpdfstring{$^\wedge$}{\string^}64 in the specification
+\item Sorting of encoded map keys is not supported
+\item Tag item is not implemented yet
+\item {\ttfamily cbor\+\_\+unmarshal()} only works on the major type 5\+: map with string key 
+\end{DoxyItemize}

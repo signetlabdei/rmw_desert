@@ -1,0 +1,95 @@
+\doxysection{Desert\+Service Class Reference}
+\hypertarget{classDesertService}{}\label{classDesertService}\index{DesertService@{DesertService}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classDesertService_af0a367a13f4bf180d930087a76b66489}{Desert\+Service}} (std\+::string service\+\_\+name, const rosidl\+\_\+service\+\_\+type\+\_\+support\+\_\+t \texorpdfstring{$\ast$}{*}type\+\_\+supports)
+\begin{DoxyCompactList}\small\item\em Create a service. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classDesertService_a9f9cc643d67425dcd6f1dc1df5029643}{has\+\_\+data}} ()
+\begin{DoxyCompactList}\small\item\em Check if there is available data for the current service instance. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDesertService_abf15af03595c4766af4b0ca8272349c3}{read\+\_\+request}} (void \texorpdfstring{$\ast$}{*}req, rmw\+\_\+service\+\_\+info\+\_\+t \texorpdfstring{$\ast$}{*}req\+\_\+header)
+\begin{DoxyCompactList}\small\item\em Read a request from a client. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDesertService_a15f4dfeedb27ccd96f535a5c9a859029}{send\+\_\+response}} (void \texorpdfstring{$\ast$}{*}res, rmw\+\_\+request\+\_\+id\+\_\+t \texorpdfstring{$\ast$}{*}req\+\_\+header)
+\begin{DoxyCompactList}\small\item\em Send the response to a client. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classDesertService_af0a367a13f4bf180d930087a76b66489}\label{classDesertService_af0a367a13f4bf180d930087a76b66489} 
+\index{DesertService@{DesertService}!DesertService@{DesertService}}
+\index{DesertService@{DesertService}!DesertService@{DesertService}}
+\doxysubsubsection{\texorpdfstring{DesertService()}{DesertService()}}
+{\footnotesize\ttfamily Desert\+Service\+::\+Desert\+Service (\begin{DoxyParamCaption}\item[{std\+::string}]{service\+\_\+name,  }\item[{const rosidl\+\_\+service\+\_\+type\+\_\+support\+\_\+t \texorpdfstring{$\ast$}{*}}]{type\+\_\+supports }\end{DoxyParamCaption})}
+
+
+
+Create a service. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em service\+\_\+name} & Name of the service to receive requests and send responses \\
+\hline
+{\em type\+\_\+supports} & Pointer to the message data structure coming from the ROS upper layers \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classDesertService_a9f9cc643d67425dcd6f1dc1df5029643}\label{classDesertService_a9f9cc643d67425dcd6f1dc1df5029643} 
+\index{DesertService@{DesertService}!has\_data@{has\_data}}
+\index{has\_data@{has\_data}!DesertService@{DesertService}}
+\doxysubsubsection{\texorpdfstring{has\_data()}{has\_data()}}
+{\footnotesize\ttfamily bool Desert\+Service\+::has\+\_\+data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Check if there is available data for the current service instance. 
+
+The has\+\_\+data function calls the interpret\+\_\+packets method in Rx\+Stream and then verifies if in the map of service packets there is a correspondence with the service name of the current instance.
+
+\begin{DoxyReturn}{Returns}
+True if data is present otherwise false 
+\end{DoxyReturn}
+\Hypertarget{classDesertService_abf15af03595c4766af4b0ca8272349c3}\label{classDesertService_abf15af03595c4766af4b0ca8272349c3} 
+\index{DesertService@{DesertService}!read\_request@{read\_request}}
+\index{read\_request@{read\_request}!DesertService@{DesertService}}
+\doxysubsubsection{\texorpdfstring{read\_request()}{read\_request()}}
+{\footnotesize\ttfamily void Desert\+Service\+::read\+\_\+request (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{req,  }\item[{rmw\+\_\+service\+\_\+info\+\_\+t \texorpdfstring{$\ast$}{*}}]{req\+\_\+header }\end{DoxyParamCaption})}
+
+
+
+Read a request from a client. 
+
+The read\+\_\+request function interprets a transmission with the service name in the current instance deserializing the message using the method from the \doxylink{namespaceMessageSerialization}{Message\+Serialization} namespace. A discrimination is made between C members and C++ members based on the type support.
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & Pointer to the memory location used to store the request \\
+\hline
+{\em req\+\_\+header} & Pointer to the request header used to store the service sequence identifier \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classDesertService_a15f4dfeedb27ccd96f535a5c9a859029}\label{classDesertService_a15f4dfeedb27ccd96f535a5c9a859029} 
+\index{DesertService@{DesertService}!send\_response@{send\_response}}
+\index{send\_response@{send\_response}!DesertService@{DesertService}}
+\doxysubsubsection{\texorpdfstring{send\_response()}{send\_response()}}
+{\footnotesize\ttfamily void Desert\+Service\+::send\+\_\+response (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{res,  }\item[{rmw\+\_\+request\+\_\+id\+\_\+t \texorpdfstring{$\ast$}{*}}]{req\+\_\+header }\end{DoxyParamCaption})}
+
+
+
+Send the response to a client. 
+
+The send\+\_\+response function starts a transmission with the sequence identifier in req\+\_\+header and then serializes the message using the method from the \doxylink{namespaceMessageSerialization}{Message\+Serialization} namespace. A discrimination is made between C members and C++ members based on the type support.
+
+
+\begin{DoxyParams}{Parameters}
+{\em res} & Pointer to the response to send \\
+\hline
+{\em sequence\+\_\+id} & Pointer to the service sequence identifier \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/desert\+\_\+classes/\mbox{\hyperlink{DesertService_8h}{Desert\+Service.\+h}}\item 
+src/desert\+\_\+classes/Desert\+Service.\+cpp\end{DoxyCompactItemize}

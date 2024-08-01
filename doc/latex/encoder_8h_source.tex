@@ -1,0 +1,56 @@
+\doxysection{encoder.\+h}
+\hypertarget{encoder_8h_source}{}\label{encoder_8h_source}\index{cbor/include/cbor/encoder.h@{cbor/include/cbor/encoder.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ SPDX-\/FileCopyrightText:\ 2021\ Kyunghwan\ Kwon\ <k@mononn.com>}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifndef\ CBOR\_ENCODER\_H}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ CBOR\_ENCODER\_H}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#if\ defined(\_\_cplusplus)}}
+\DoxyCodeLine{00011\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}cbor/base.h"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ cbor\_error\_t\ cbor\_encode\_unsigned\_integer(\mbox{\hyperlink{structcbor__writer__t}{cbor\_writer\_t}}\ *writer,\ uint64\_t\ value);}
+\DoxyCodeLine{00018\ cbor\_error\_t\ cbor\_encode\_negative\_integer(\mbox{\hyperlink{structcbor__writer__t}{cbor\_writer\_t}}\ *writer,\ int64\_t\ value);}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ cbor\_error\_t\ cbor\_encode\_byte\_string(\mbox{\hyperlink{structcbor__writer__t}{cbor\_writer\_t}}\ *writer,}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ uint8\_t\ \textcolor{keyword}{const}\ *data,\ \textcolor{keywordtype}{size\_t}\ datasize);}
+\DoxyCodeLine{00022\ cbor\_error\_t\ cbor\_encode\_byte\_string\_indefinite(\mbox{\hyperlink{structcbor__writer__t}{cbor\_writer\_t}}\ *writer);}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ cbor\_error\_t\ cbor\_encode\_text\_string(\mbox{\hyperlink{structcbor__writer__t}{cbor\_writer\_t}}\ *writer,}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ \textcolor{keyword}{const}\ *text,\ \textcolor{keywordtype}{size\_t}\ textsize);}
+\DoxyCodeLine{00026\ cbor\_error\_t\ cbor\_encode\_null\_terminated\_text\_string(\mbox{\hyperlink{structcbor__writer__t}{cbor\_writer\_t}}\ *writer,}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ \textcolor{keyword}{const}\ *text);}
+\DoxyCodeLine{00028\ cbor\_error\_t\ cbor\_encode\_text\_string\_indefinite(\mbox{\hyperlink{structcbor__writer__t}{cbor\_writer\_t}}\ *writer);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ cbor\_error\_t\ cbor\_encode\_array(\mbox{\hyperlink{structcbor__writer__t}{cbor\_writer\_t}}\ *writer,\ \textcolor{keywordtype}{size\_t}\ length);}
+\DoxyCodeLine{00031\ cbor\_error\_t\ cbor\_encode\_array\_indefinite(\mbox{\hyperlink{structcbor__writer__t}{cbor\_writer\_t}}\ *writer);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ cbor\_error\_t\ cbor\_encode\_map(\mbox{\hyperlink{structcbor__writer__t}{cbor\_writer\_t}}\ *writer,\ \textcolor{keywordtype}{size\_t}\ length);}
+\DoxyCodeLine{00034\ cbor\_error\_t\ cbor\_encode\_map\_indefinite(\mbox{\hyperlink{structcbor__writer__t}{cbor\_writer\_t}}\ *writer);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ cbor\_error\_t\ cbor\_encode\_break(\mbox{\hyperlink{structcbor__writer__t}{cbor\_writer\_t}}\ *writer);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ cbor\_error\_t\ cbor\_encode\_simple(\mbox{\hyperlink{structcbor__writer__t}{cbor\_writer\_t}}\ *writer,\ uint8\_t\ value);}
+\DoxyCodeLine{00039\ cbor\_error\_t\ cbor\_encode\_bool(\mbox{\hyperlink{structcbor__writer__t}{cbor\_writer\_t}}\ *writer,\ \textcolor{keywordtype}{bool}\ value);}
+\DoxyCodeLine{00040\ cbor\_error\_t\ cbor\_encode\_null(\mbox{\hyperlink{structcbor__writer__t}{cbor\_writer\_t}}\ *writer);}
+\DoxyCodeLine{00041\ cbor\_error\_t\ cbor\_encode\_undefined(\mbox{\hyperlink{structcbor__writer__t}{cbor\_writer\_t}}\ *writer);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ cbor\_error\_t\ cbor\_encode\_float(\mbox{\hyperlink{structcbor__writer__t}{cbor\_writer\_t}}\ *writer,\ \textcolor{keywordtype}{float}\ value);}
+\DoxyCodeLine{00044\ cbor\_error\_t\ cbor\_encode\_double(\mbox{\hyperlink{structcbor__writer__t}{cbor\_writer\_t}}\ *writer,\ \textcolor{keywordtype}{double}\ value);}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#if\ defined(\_\_cplusplus)}}
+\DoxyCodeLine{00047\ \}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ CBOR\_ENCODER\_H\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

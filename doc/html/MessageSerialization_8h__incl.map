@@ -1,0 +1,23 @@
+<map id="src/desert_classes/MessageSerialization.h" name="src/desert_classes/MessageSerialization.h">
+<area shape="rect" id="Node000001" title="Namespace containing serialization functions." alt="" coords="535,5,712,45"/>
+<area shape="rect" id="Node000002" href="$CBorStream_8h.html" title="Classes used to convert data types into a CBOR encoded stream." alt="" coords="426,93,538,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="591,48,516,89,514,84,588,43"/>
+<area shape="rect" id="Node000010" href="$CStringHelper_8h.html" title="Namespace containing C sequence handling functions." alt="" coords="562,93,685,119"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="626,46,626,79,621,79,621,46"/>
+<area shape="rect" id="Node000011" href="$macros_8h.html" title="Header containing C sequence macros." alt="" coords="709,93,791,119"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="655,43,721,84,719,88,653,48"/>
+<area shape="rect" id="Node000003" href="$TcpDaemon_8h.html" title="Class used to send and receive data from the DESERT socket." alt="" coords="5,167,116,192"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="426,119,130,169,129,164,425,114"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="141,167,258,192"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="437,121,259,166,257,161,436,116"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="281,167,400,192"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="460,121,377,163,375,158,458,116"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="423,167,541,192"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="485,119,485,153,479,153,479,119"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="565,167,671,192"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="505,116,585,158,583,163,503,121"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="695,167,802,192"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="526,116,693,160,691,166,524,121"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="826,167,901,192"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="539,114,813,164,812,169,538,120"/>
+</map>

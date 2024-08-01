@@ -60,10 +60,8 @@ std::vector<std::u16string> CStringHelper::convert_sequence_to_std_vector_u16str
   return cpp_string_vector;
 }
 
-void CStringHelper::assign_string(cbor::RxStream & stream, void * field)
+void CStringHelper::assign_string(std::string str, void * field)
 {
-  std::string str;
-  stream >> str;
   rosidl_runtime_c__String * c_str = static_cast<rosidl_runtime_c__String *>(field);
   rosidl_runtime_c__String__assign(c_str, str.c_str());
 }
@@ -98,10 +96,8 @@ void CStringHelper::assign_vector_string_to_sequence(std::vector<std::string> cp
   }
 }
 
-void CStringHelper::assign_u16string(cbor::RxStream & stream, void * field)
+void CStringHelper::assign_u16string(std::u16string str, void * field)
 {
-  std::u16string str;
-  stream >> str;
   rosidl_runtime_c__U16String * c_str = static_cast<rosidl_runtime_c__U16String *>(field);
   rosidl_runtime_c__U16String__assign(c_str, reinterpret_cast<const uint16_t *>(str.c_str()));
 }

@@ -1,0 +1,16 @@
+\doxysection{debug.\+h}
+\hypertarget{debug_8h_source}{}\label{debug_8h_source}\index{src/debug.h@{src/debug.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}rmw/impl/cpp/macros.hpp"{}}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ DEBUG\_ENABLED\ 0}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#if\ DEBUG\_ENABLED}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ DEBUG(...)\ printf(\_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ DEBUG(...)\ }}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

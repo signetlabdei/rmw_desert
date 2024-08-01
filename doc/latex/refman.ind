@@ -1,0 +1,190 @@
+\begin{theindex}
+
+  \item {assign\_string}
+    \subitem {CStringHelper}, \hyperpage{8}
+  \item {assign\_u16string}
+    \subitem {CStringHelper}, \hyperpage{8}
+  \item {assign\_vector\_string}
+    \subitem {CStringHelper}, \hyperpage{8}
+  \item {assign\_vector\_string\_to\_sequence}
+    \subitem {CStringHelper}, \hyperpage{9}
+  \item {assign\_vector\_u16string}
+    \subitem {CStringHelper}, \hyperpage{9}
+  \item {assign\_vector\_u16string\_to\_sequence}
+    \subitem {CStringHelper}, \hyperpage{9}
+
+  \indexspace
+
+  \item {cbor::RxStream}, \hyperpage{23}
+    \subitem {data\_available}, \hyperpage{25}
+    \subitem {deserialize\_integer}, \hyperpage{25}
+    \subitem {deserialize\_sequence}, \hyperpage{25}
+    \subitem {interpret\_packets}, \hyperpage{25}
+    \subitem {operator$>$$>$}, \hyperpage{26--28}, \hyperpage{30}
+    \subitem {RxStream}, \hyperpage{24}
+  \item {cbor::TxStream}, \hyperpage{32}
+    \subitem {end\_transmission}, \hyperpage{33}
+    \subitem {operator$<$$<$}, \hyperpage{33--37}
+    \subitem {serialize\_sequence}, \hyperpage{37}
+    \subitem {start\_transmission}, \hyperpage{37}
+    \subitem {TxStream}, \hyperpage{33}
+  \item {convert\_sequence\_to\_std\_vector\_string}
+    \subitem {CStringHelper}, \hyperpage{10}
+  \item {convert\_sequence\_to\_std\_vector\_u16string}
+    \subitem {CStringHelper}, \hyperpage{10}
+  \item {convert\_to\_std\_string}
+    \subitem {CStringHelper}, \hyperpage{10}
+  \item {convert\_to\_std\_u16string}
+    \subitem {CStringHelper}, \hyperpage{11}
+  \item {convert\_to\_std\_vector\_string}
+    \subitem {CStringHelper}, \hyperpage{11}
+  \item {convert\_to\_std\_vector\_u16string}
+    \subitem {CStringHelper}, \hyperpage{12}
+  \item {CStringHelper}, \hyperpage{7}
+    \subitem {assign\_string}, \hyperpage{8}
+    \subitem {assign\_u16string}, \hyperpage{8}
+    \subitem {assign\_vector\_string}, \hyperpage{8}
+    \subitem {assign\_vector\_string\_to\_sequence}, \hyperpage{9}
+    \subitem {assign\_vector\_u16string}, \hyperpage{9}
+    \subitem {assign\_vector\_u16string\_to\_sequence}, \hyperpage{9}
+    \subitem {convert\_sequence\_to\_std\_vector\_string}, 
+		\hyperpage{10}
+    \subitem {convert\_sequence\_to\_std\_vector\_u16string}, 
+		\hyperpage{10}
+    \subitem {convert\_to\_std\_string}, \hyperpage{10}
+    \subitem {convert\_to\_std\_u16string}, \hyperpage{11}
+    \subitem {convert\_to\_std\_vector\_string}, \hyperpage{11}
+    \subitem {convert\_to\_std\_vector\_u16string}, \hyperpage{12}
+
+  \indexspace
+
+  \item {data\_available}
+    \subitem {cbor::RxStream}, \hyperpage{25}
+  \item {deserialize}
+    \subitem {MessageSerialization}, \hyperpage{13}
+  \item {deserialize\_field}
+    \subitem {MessageSerialization}, \hyperpage{13}
+  \item {deserialize\_integer}
+    \subitem {cbor::RxStream}, \hyperpage{25}
+  \item {deserialize\_sequence}
+    \subitem {cbor::RxStream}, \hyperpage{25}
+  \item {DesertClient}, \hyperpage{17}
+    \subitem {DesertClient}, \hyperpage{17}
+    \subitem {has\_data}, \hyperpage{17}
+    \subitem {read\_response}, \hyperpage{18}
+    \subitem {send\_request}, \hyperpage{18}
+  \item {DesertNode}, \hyperpage{19}
+  \item {DesertPublisher}, \hyperpage{19}
+    \subitem {DesertPublisher}, \hyperpage{19}
+    \subitem {push}, \hyperpage{19}
+  \item {DesertService}, \hyperpage{20}
+    \subitem {DesertService}, \hyperpage{20}
+    \subitem {has\_data}, \hyperpage{20}
+    \subitem {read\_request}, \hyperpage{21}
+    \subitem {send\_response}, \hyperpage{21}
+  \item {DesertSubscriber}, \hyperpage{21}
+    \subitem {DesertSubscriber}, \hyperpage{22}
+    \subitem {has\_data}, \hyperpage{22}
+    \subitem {read\_data}, \hyperpage{22}
+  \item {DesertWaitset}, \hyperpage{23}
+
+  \indexspace
+
+  \item {end\_transmission}
+    \subitem {cbor::TxStream}, \hyperpage{33}
+  \item {enqueue\_packet}
+    \subitem {TcpDaemon}, \hyperpage{31}
+
+  \indexspace
+
+  \item {GenericCSequence$<$ T $>$}, \hyperpage{23}
+
+  \indexspace
+
+  \item {has\_data}
+    \subitem {DesertClient}, \hyperpage{17}
+    \subitem {DesertService}, \hyperpage{20}
+    \subitem {DesertSubscriber}, \hyperpage{22}
+
+  \indexspace
+
+  \item {init}
+    \subitem {TcpDaemon}, \hyperpage{31}
+  \item {interpret\_packets}
+    \subitem {cbor::RxStream}, \hyperpage{25}
+
+  \indexspace
+
+  \item {macros.h}
+    \subitem {SPECIALIZE\_GENERIC\_C\_SEQUENCE}, \hyperpage{53}
+  \item {MessageSerialization}, \hyperpage{12}
+    \subitem {deserialize}, \hyperpage{13}
+    \subitem {deserialize\_field}, \hyperpage{13}
+    \subitem {serialize}, \hyperpage{14}
+    \subitem {serialize\_field}, \hyperpage{14, 15}
+
+  \indexspace
+
+  \item {operator$<$$<$}
+    \subitem {cbor::TxStream}, \hyperpage{33--37}
+  \item {operator$>$$>$}
+    \subitem {cbor::RxStream}, \hyperpage{26--28}, \hyperpage{30}
+
+  \indexspace
+
+  \item {push}
+    \subitem {DesertPublisher}, \hyperpage{19}
+
+  \indexspace
+
+  \item {read\_data}
+    \subitem {DesertSubscriber}, \hyperpage{22}
+  \item {read\_packet}
+    \subitem {TcpDaemon}, \hyperpage{31}
+  \item {read\_request}
+    \subitem {DesertService}, \hyperpage{21}
+  \item {read\_response}
+    \subitem {DesertClient}, \hyperpage{18}
+  \item {RxStream}
+    \subitem {cbor::RxStream}, \hyperpage{24}
+
+  \indexspace
+
+  \item {send\_request}
+    \subitem {DesertClient}, \hyperpage{18}
+  \item {send\_response}
+    \subitem {DesertService}, \hyperpage{21}
+  \item {serialize}
+    \subitem {MessageSerialization}, \hyperpage{14}
+  \item {serialize\_field}
+    \subitem {MessageSerialization}, \hyperpage{14, 15}
+  \item {serialize\_sequence}
+    \subitem {cbor::TxStream}, \hyperpage{37}
+  \item {SPECIALIZE\_GENERIC\_C\_SEQUENCE}
+    \subitem {macros.h}, \hyperpage{53}
+  \item {src/desert\_classes/CBorStream.h}, \hyperpage{39, 40}
+  \item {src/desert\_classes/CStringHelper.h}, \hyperpage{42}, 
+		\hyperpage{44}
+  \item {src/desert\_classes/DesertClient.h}, \hyperpage{45}
+  \item {src/desert\_classes/DesertNode.h}, \hyperpage{46, 47}
+  \item {src/desert\_classes/DesertPublisher.h}, \hyperpage{47, 48}
+  \item {src/desert\_classes/DesertService.h}, \hyperpage{49}
+  \item {src/desert\_classes/DesertSubscriber.h}, \hyperpage{50, 51}
+  \item {src/desert\_classes/DesertWaitSet.h}, \hyperpage{52}
+  \item {src/desert\_classes/macros.h}, \hyperpage{53, 54}
+  \item {src/desert\_classes/MessageSerialization.h}, \hyperpage{54}, 
+		\hyperpage{56}
+  \item {src/desert\_classes/TcpDaemon.h}, \hyperpage{61, 62}
+  \item {start\_transmission}
+    \subitem {cbor::TxStream}, \hyperpage{37}
+
+  \indexspace
+
+  \item {TcpDaemon}, \hyperpage{30}
+    \subitem {enqueue\_packet}, \hyperpage{31}
+    \subitem {init}, \hyperpage{31}
+    \subitem {read\_packet}, \hyperpage{31}
+  \item {TxStream}
+    \subitem {cbor::TxStream}, \hyperpage{33}
+
+\end{theindex}

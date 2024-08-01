@@ -1,0 +1,28 @@
+\chapter{v0.3.1 -\/ December 9, 2022}
+\hypertarget{md_cbor_2CHANGELOG}{}\label{md_cbor_2CHANGELOG}\index{v0.3.1 -\/ December 9, 2022@{v0.3.1 -\/ December 9, 2022}}
+\label{md_cbor_2CHANGELOG_autotoc_md0}%
+\Hypertarget{md_cbor_2CHANGELOG_autotoc_md0}%
+
+\begin{DoxyItemize}
+\item Add CMake scaffolding
+\item Fix garbage data in the uninitialized buffer when decoding
+\item Separate base.\+h from cbor.\+h to use cbor.\+h as single header file with all the necessary includes
+\item Add unmarshal functionality for map
+\item Fix not working break stop code on indefinite array
+\end{DoxyItemize}\hypertarget{md_cbor_2CHANGELOG_autotoc_md1}{}\doxysection{\texorpdfstring{v0.\+3.\+0 -\/ September 23, 2022}{v0.3.0 - September 23, 2022}}\label{md_cbor_2CHANGELOG_autotoc_md1}
+
+\begin{DoxyItemize}
+\item {\bfseries{Breaking Change}}\+: Revert {\ttfamily cbor\+\_\+encode\+\_\+text\+\_\+string()} to its original version
+\item Add {\ttfamily cbor\+\_\+encode\+\_\+null\+\_\+terminated\+\_\+string()}
+\item Fix to conform to C99 standard removing {\ttfamily strnlen()}
+\item Increase the maximum recursion level from 4 to 8
+\end{DoxyItemize}\hypertarget{md_cbor_2CHANGELOG_autotoc_md2}{}\doxysection{\texorpdfstring{v0.\+2.\+0 -\/ August 24, 2022}{v0.2.0 - August 24, 2022}}\label{md_cbor_2CHANGELOG_autotoc_md2}
+
+\begin{DoxyItemize}
+\item {\bfseries{Breaking Change}}\+: Change the reader and the parser initializer prototypes
+\begin{DoxyItemize}
+\item {\ttfamily cbor\+\_\+reader\+\_\+init()} and {\ttfamily cbor\+\_\+parse()}
+\item Now a reader can be reusable to different messages
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md_cbor_2CHANGELOG_autotoc_md3}{}\doxysection{\texorpdfstring{v0.\+1.\+0 -\/ August 24, 2022}{v0.1.0 - August 24, 2022}}\label{md_cbor_2CHANGELOG_autotoc_md3}
+The initial release. 

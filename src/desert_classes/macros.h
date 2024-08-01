@@ -1,11 +1,43 @@
+/****************************************************************************
+ * Copyright (C) 2024 Davide Costa                                          *
+ *                                                                          *
+ * This file is part of RMW desert.                                         *
+ *                                                                          *
+ *   RMW desert is free software: you can redistribute it and/or modify it  *
+ *   under the terms of the GNU General Public License as published by the  *
+ *   Free Software Foundation, either version 3 of the License, or any      *
+ *   later version.                                                         *
+ *                                                                          *
+ *   RMW desert is distributed in the hope that it will be useful,          *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of         *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          *
+ *   GNU General Public License for more details.                           *
+ *                                                                          *
+ *   You should have received a copy of the GNU General Public License      *
+ *   along with RMW desert.  If not, see <http://www.gnu.org/licenses/>.    *
+ ****************************************************************************/
+
+/**
+ * @file macros.h
+ * @brief Header containing C sequence macros
+ * 
+ * The C data type implementation is more complicated than the C++ one, because complex 
+ * types like vectors have to be manually managed and this header contains definitions 
+ * used to create dynamic element sequences.
+ *
+ * @author Prof. Davide Costa
+ *
+ */
+
 #ifndef MACROS_HPP_
 #define MACROS_HPP_
 
-#include <limits>
-#include <string>
+/** @cond */
 
 #include "rosidl_runtime_c/primitives_sequence.h"
 #include "rosidl_runtime_c/primitives_sequence_functions.h"
+
+/** @endcond */
 
 #define SPECIALIZE_GENERIC_C_SEQUENCE(C_NAME, C_TYPE) \
   template<> \

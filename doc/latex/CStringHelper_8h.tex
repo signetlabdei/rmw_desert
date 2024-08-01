@@ -1,0 +1,56 @@
+\doxysection{src/desert\+\_\+classes/\+CString\+Helper.h File Reference}
+\hypertarget{CStringHelper_8h}{}\label{CStringHelper_8h}\index{src/desert\_classes/CStringHelper.h@{src/desert\_classes/CStringHelper.h}}
+
+
+Namespace containing C sequence handling functions.  
+
+
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{CStringHelper_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespaceCStringHelper}{CString\+Helper}}
+\begin{DoxyCompactList}\small\item\em Namespace containing C sequence handling functions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{namespaceCStringHelper_afdd1746a13b7caa09a79880e048e083f}{CString\+Helper\+::convert\+\_\+to\+\_\+std\+\_\+string}} (void \texorpdfstring{$\ast$}{*}str)
+\begin{DoxyCompactList}\small\item\em Convert a rosidl\+\_\+runtime\+\_\+c\+\_\+\+\_\+\+String into std\+::string. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{namespaceCStringHelper_a46c9096e1ecb6f6bc0fb672bd915e80f}{CString\+Helper\+::convert\+\_\+to\+\_\+std\+\_\+vector\+\_\+string}} (void \texorpdfstring{$\ast$}{*}str\+\_\+array, size\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Convert a rosidl\+\_\+runtime\+\_\+c\+\_\+\+\_\+\+String into a vector of std\+::string. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{namespaceCStringHelper_af1fb65516cba6b268c562c9e5541c688}{CString\+Helper\+::convert\+\_\+sequence\+\_\+to\+\_\+std\+\_\+vector\+\_\+string}} (void \texorpdfstring{$\ast$}{*}str\+\_\+seq)
+\begin{DoxyCompactList}\small\item\em Convert a rosidl\+\_\+runtime\+\_\+c\+\_\+\+\_\+\+String\+\_\+\+\_\+\+Sequence into a vector of std\+::string. \end{DoxyCompactList}\item 
+std\+::u16string \mbox{\hyperlink{namespaceCStringHelper_a67a072527df76b6105dc694d0d65e317}{CString\+Helper\+::convert\+\_\+to\+\_\+std\+\_\+u16string}} (void \texorpdfstring{$\ast$}{*}str)
+\begin{DoxyCompactList}\small\item\em Convert a rosidl\+\_\+runtime\+\_\+c\+\_\+\+\_\+\+U16\+String into std\+::u16string. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::u16string $>$ \mbox{\hyperlink{namespaceCStringHelper_a7cd36550ae2df76c2b9d94fdb4f95fae}{CString\+Helper\+::convert\+\_\+to\+\_\+std\+\_\+vector\+\_\+u16string}} (void \texorpdfstring{$\ast$}{*}str\+\_\+array, size\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Convert a rosidl\+\_\+runtime\+\_\+c\+\_\+\+\_\+\+U16\+String into a vector of std\+::u16string. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::u16string $>$ \mbox{\hyperlink{namespaceCStringHelper_aca7d541ea4477361e7d97080edf124ea}{CString\+Helper\+::convert\+\_\+sequence\+\_\+to\+\_\+std\+\_\+vector\+\_\+u16string}} (void \texorpdfstring{$\ast$}{*}str\+\_\+seq)
+\begin{DoxyCompactList}\small\item\em Convert a rosidl\+\_\+runtime\+\_\+c\+\_\+\+\_\+\+U16\+String\+\_\+\+\_\+\+Sequence into a vector of std\+::u16string. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespaceCStringHelper_acd385ff8fc21921cc8b1cb875b52fdd0}{CString\+Helper\+::assign\+\_\+string}} (std\+::string str, void \texorpdfstring{$\ast$}{*}field)
+\begin{DoxyCompactList}\small\item\em Assing to a rosidl\+\_\+runtime\+\_\+c\+\_\+\+\_\+\+String the value contained in a std\+::string. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespaceCStringHelper_a2b8b924dc2903c7055bfb7e4a413f392}{CString\+Helper\+::assign\+\_\+vector\+\_\+string}} (std\+::vector$<$ std\+::string $>$ cpp\+\_\+string\+\_\+vector, void \texorpdfstring{$\ast$}{*}str\+\_\+array, size\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Assing to a rosidl\+\_\+runtime\+\_\+c\+\_\+\+\_\+\+String the value contained in a vector of std\+::string. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespaceCStringHelper_a7e136add8498b7a4ea9c065825961c7b}{CString\+Helper\+::assign\+\_\+vector\+\_\+string\+\_\+to\+\_\+sequence}} (std\+::vector$<$ std\+::string $>$ cpp\+\_\+string\+\_\+vector, void \texorpdfstring{$\ast$}{*}str\+\_\+seq)
+\begin{DoxyCompactList}\small\item\em Assing to a rosidl\+\_\+runtime\+\_\+c\+\_\+\+\_\+\+String\+\_\+\+\_\+\+Sequence the value contained in a vector of std\+::string. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespaceCStringHelper_ae78445b8ee145086048078bb0b6ee3cc}{CString\+Helper\+::assign\+\_\+u16string}} (std\+::u16string str, void \texorpdfstring{$\ast$}{*}field)
+\begin{DoxyCompactList}\small\item\em Assing to a rosidl\+\_\+runtime\+\_\+c\+\_\+\+\_\+\+U16\+String the value contained in a std\+::u16string. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespaceCStringHelper_aecd6afde0b4be23924a25101a11921a8}{CString\+Helper\+::assign\+\_\+vector\+\_\+u16string}} (std\+::vector$<$ std\+::u16string $>$ cpp\+\_\+string\+\_\+vector, void \texorpdfstring{$\ast$}{*}str\+\_\+array, size\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Assing to a rosidl\+\_\+runtime\+\_\+c\+\_\+\+\_\+\+U16\+String the value contained in a vector of std\+::u16string. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespaceCStringHelper_a2d98ad81c785c470ee14cc3a98857c22}{CString\+Helper\+::assign\+\_\+vector\+\_\+u16string\+\_\+to\+\_\+sequence}} (std\+::vector$<$ std\+::u16string $>$ cpp\+\_\+string\+\_\+vector, void \texorpdfstring{$\ast$}{*}str\+\_\+seq)
+\begin{DoxyCompactList}\small\item\em Assing to a rosidl\+\_\+runtime\+\_\+c\+\_\+\+\_\+\+U16\+String\+\_\+\+\_\+\+Sequence the value contained in a vector of std\+::u16string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Namespace containing C sequence handling functions. 
+
+The C data type implementation is more complicated than the C++ one, because complex types like vectors have to be manually managed and this header contains functions to convert C strings and generic sequences into respectively C++ strings and vectors.
+
+\begin{DoxyAuthor}{Author}
+Prof. Davide Costa 
+\end{DoxyAuthor}

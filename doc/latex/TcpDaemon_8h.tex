@@ -1,0 +1,44 @@
+\doxysection{src/desert\+\_\+classes/\+Tcp\+Daemon.h File Reference}
+\hypertarget{TcpDaemon_8h}{}\label{TcpDaemon_8h}\index{src/desert\_classes/TcpDaemon.h@{src/desert\_classes/TcpDaemon.h}}
+
+
+Class used to send and receive data from the DESERT socket.  
+
+
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{TcpDaemon_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classTcpDaemon}{Tcp\+Daemon}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{TcpDaemon_8h_a280feb883e9d4a7edcc69c8bcb9f38f2}\label{TcpDaemon_8h_a280feb883e9d4a7edcc69c8bcb9f38f2} 
+\#define {\bfseries ADDRESS}~"{}127.\+0.\+0.\+1"{}
+\item 
+\Hypertarget{TcpDaemon_8h_a614217d263be1fb1a5f76e2ff7be19a2}\label{TcpDaemon_8h_a614217d263be1fb1a5f76e2ff7be19a2} 
+\#define {\bfseries PORT}~4000
+\item 
+\Hypertarget{TcpDaemon_8h_ab1ab098f867604f4f2672430b0fd7550}\label{TcpDaemon_8h_ab1ab098f867604f4f2672430b0fd7550} 
+\#define {\bfseries END\+\_\+\+MARKER}~0b01010101
+\item 
+\Hypertarget{TcpDaemon_8h_a25c8363b88d9b8f73cc6b1a98bba8d9c}\label{TcpDaemon_8h_a25c8363b88d9b8f73cc6b1a98bba8d9c} 
+\#define {\bfseries BYTE\+\_\+\+MASK}~0b11111111
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class used to send and receive data from the DESERT socket. 
+
+The DESERT protocol stack interacts with the application level through a socket, used to send and receive a binary stream containing packets. This class connects to the socket and creates two threads, that run continously to store and send packets in the static members rx\+\_\+packets and tx\+\_\+packets
+
+\begin{DoxyAuthor}{Author}
+Prof. Davide Costa 
+\end{DoxyAuthor}

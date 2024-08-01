@@ -1,0 +1,93 @@
+\doxysection{base.\+h}
+\hypertarget{base_8h_source}{}\label{base_8h_source}\index{cbor/include/cbor/base.h@{cbor/include/cbor/base.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ SPDX-\/FileCopyrightText:\ 2021\ Kyunghwan\ Kwon\ <k@mononn.com>}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifndef\ CBOR\_BASE\_H}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ CBOR\_BASE\_H}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#if\ defined(\_\_cplusplus)}}
+\DoxyCodeLine{00011\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <stddef.h>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#if\ !defined(CBOR\_RECURSION\_MAX\_LEVEL)}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ CBOR\_RECURSION\_MAX\_LEVEL\ \ \ \ \ \ \ \ 8}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ CBOR\_INDEFINITE\_VALUE\ \ \ \ \ \ \ \ \ \ \ (-\/1)}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ CBOR\_RESERVED\_VALUE\ \ \ \ \ \ \ \ \ (-\/2)}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ CBOR\_ADDITIONAL\_INFO\_MASK\ \ \ \ \ \ \ 0x1fu\ }\textcolor{comment}{/*\ the\ low-\/order\ 5\ bits\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ get\_cbor\_major\_type(data\_item)\ \ \ \ \ \ ((data\_item)\ >>\ 5)}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ get\_cbor\_additional\_info(major\_type)\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\ \ \ \ ((major\_type)\ \&\ CBOR\_ADDITIONAL\_INFO\_MASK)}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ CBOR\_SUCCESS,\ }
+\DoxyCodeLine{00031\ \ \ \ \ CBOR\_ILLEGAL,\ }
+\DoxyCodeLine{00032\ \ \ \ \ CBOR\_INVALID,\ }
+\DoxyCodeLine{00033\ \ \ \ \ CBOR\_OVERRUN,\ }
+\DoxyCodeLine{00034\ \ \ \ \ CBOR\_BREAK,}
+\DoxyCodeLine{00035\ \ \ \ \ CBOR\_EXCESSIVE,\ }
+\DoxyCodeLine{00036\ \}\ cbor\_error\_t;}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ CBOR\_ITEM\_UNKNOWN,}
+\DoxyCodeLine{00040\ \ \ \ \ CBOR\_ITEM\_INTEGER,\ }
+\DoxyCodeLine{00041\ \ \ \ \ CBOR\_ITEM\_STRING,\ }
+\DoxyCodeLine{00042\ \ \ \ \ CBOR\_ITEM\_ARRAY,}
+\DoxyCodeLine{00043\ \ \ \ \ CBOR\_ITEM\_MAP,}
+\DoxyCodeLine{00044\ \ \ \ \ CBOR\_ITEM\_FLOAT,}
+\DoxyCodeLine{00045\ \ \ \ \ CBOR\_ITEM\_SIMPLE\_VALUE,}
+\DoxyCodeLine{00046\ \}\ cbor\_item\_data\_t;}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00049\ \ \ \ \ cbor\_item\_data\_t\ type;}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ offset;}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{structcbor__item__t_aadb1c9e0affb14cd188d67fe8ffb3889}{size}};\ }
+\DoxyCodeLine{00053\ \}\ \mbox{\hyperlink{structcbor__item__t}{cbor\_item\_t}};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00056\ \ \ \ \ uint8\_t\ \textcolor{keyword}{const}\ *msg;}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ msgsize;}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ msgidx;}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{structcbor__item__t}{cbor\_item\_t}}\ *items;}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ itemidx;}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ maxitems;}
+\DoxyCodeLine{00063\ \}\ \mbox{\hyperlink{structcbor__reader__t}{cbor\_reader\_t}};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00066\ \ \ \ \ uint8\_t\ *buf;}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ bufsize;}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ bufidx;}
+\DoxyCodeLine{00069\ \}\ \mbox{\hyperlink{structcbor__writer__t}{cbor\_writer\_t}};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00078\ \textcolor{keywordtype}{void}\ cbor\_reader\_init(\mbox{\hyperlink{structcbor__reader__t}{cbor\_reader\_t}}\ *reader,\ \mbox{\hyperlink{structcbor__item__t}{cbor\_item\_t}}\ *items,\ \textcolor{keywordtype}{size\_t}\ maxitems);}
+\DoxyCodeLine{00079\ \textcolor{keywordtype}{void}\ cbor\_writer\_init(\mbox{\hyperlink{structcbor__writer__t}{cbor\_writer\_t}}\ *writer,\ \textcolor{keywordtype}{void}\ *buf,\ \textcolor{keywordtype}{size\_t}\ bufsize);}
+\DoxyCodeLine{00080\ \textcolor{keywordtype}{size\_t}\ cbor\_writer\_len(\mbox{\hyperlink{structcbor__writer__t}{cbor\_writer\_t}}\ \textcolor{keyword}{const}\ *writer);}
+\DoxyCodeLine{00081\ uint8\_t\ \textcolor{keyword}{const}\ *cbor\_writer\_get\_encoded(\mbox{\hyperlink{structcbor__writer__t}{cbor\_writer\_t}}\ \textcolor{keyword}{const}\ *writer);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ cbor\_item\_data\_t\ cbor\_get\_item\_type(\mbox{\hyperlink{structcbor__item__t}{cbor\_item\_t}}\ \textcolor{keyword}{const}\ *item);}
+\DoxyCodeLine{00084\ \textcolor{keywordtype}{size\_t}\ cbor\_get\_item\_size(\mbox{\hyperlink{structcbor__item__t}{cbor\_item\_t}}\ \textcolor{keyword}{const}\ *item);}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ uint8\_t\ cbor\_get\_following\_bytes(uint8\_t\ additional\_info);}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{keywordtype}{size\_t}\ cbor\_copy(uint8\_t\ *dst,\ uint8\_t\ \textcolor{keyword}{const}\ *src,\ \textcolor{keywordtype}{size\_t}\ len);}
+\DoxyCodeLine{00089\ \textcolor{keywordtype}{size\_t}\ cbor\_copy\_be(uint8\_t\ *dst,\ uint8\_t\ \textcolor{keyword}{const}\ *src,\ \textcolor{keywordtype}{size\_t}\ len);}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#if\ defined(\_\_cplusplus)}}
+\DoxyCodeLine{00092\ \}}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ CBOR\_BASE\_H\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

@@ -1,0 +1,55 @@
+\doxysection{Desert\+Publisher Class Reference}
+\hypertarget{classDesertPublisher}{}\label{classDesertPublisher}\index{DesertPublisher@{DesertPublisher}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classDesertPublisher_aa99959c9cd94f9f51e97d3d9e7c3239e}{Desert\+Publisher}} (std\+::string topic\+\_\+name, const rosidl\+\_\+message\+\_\+type\+\_\+support\+\_\+t \texorpdfstring{$\ast$}{*}type\+\_\+supports)
+\begin{DoxyCompactList}\small\item\em Create a publisher. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDesertPublisher_a0a8d1a319c9ff5d7ae488f573464801d}{push}} (const void \texorpdfstring{$\ast$}{*}msg)
+\begin{DoxyCompactList}\small\item\em Send a publication on the topic. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classDesertPublisher_aa99959c9cd94f9f51e97d3d9e7c3239e}\label{classDesertPublisher_aa99959c9cd94f9f51e97d3d9e7c3239e} 
+\index{DesertPublisher@{DesertPublisher}!DesertPublisher@{DesertPublisher}}
+\index{DesertPublisher@{DesertPublisher}!DesertPublisher@{DesertPublisher}}
+\doxysubsubsection{\texorpdfstring{DesertPublisher()}{DesertPublisher()}}
+{\footnotesize\ttfamily Desert\+Publisher\+::\+Desert\+Publisher (\begin{DoxyParamCaption}\item[{std\+::string}]{topic\+\_\+name,  }\item[{const rosidl\+\_\+message\+\_\+type\+\_\+support\+\_\+t \texorpdfstring{$\ast$}{*}}]{type\+\_\+supports }\end{DoxyParamCaption})}
+
+
+
+Create a publisher. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em topic\+\_\+name} & Name of the topic used to push the messages \\
+\hline
+{\em type\+\_\+supports} & Pointer to the message data structure coming from the ROS upper layers \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classDesertPublisher_a0a8d1a319c9ff5d7ae488f573464801d}\label{classDesertPublisher_a0a8d1a319c9ff5d7ae488f573464801d} 
+\index{DesertPublisher@{DesertPublisher}!push@{push}}
+\index{push@{push}!DesertPublisher@{DesertPublisher}}
+\doxysubsubsection{\texorpdfstring{push()}{push()}}
+{\footnotesize\ttfamily void Desert\+Publisher\+::push (\begin{DoxyParamCaption}\item[{const void \texorpdfstring{$\ast$}{*}}]{msg }\end{DoxyParamCaption})}
+
+
+
+Send a publication on the topic. 
+
+The push function starts a transmission with the topic name in the current instance and then serializes the message using the method from the \doxylink{namespaceMessageSerialization}{Message\+Serialization} namespace. A discrimination is made between C members and C++ members based on the type support.
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & Pointer to the message to send \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/desert\+\_\+classes/\mbox{\hyperlink{DesertPublisher_8h}{Desert\+Publisher.\+h}}\item 
+src/desert\+\_\+classes/Desert\+Publisher.\+cpp\end{DoxyCompactItemize}

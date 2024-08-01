@@ -1,0 +1,58 @@
+\doxysection{CString\+Helper.\+h}
+\hypertarget{CStringHelper_8h_source}{}\label{CStringHelper_8h_source}\index{src/desert\_classes/CStringHelper.h@{src/desert\_classes/CStringHelper.h}}
+\mbox{\hyperlink{CStringHelper_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ Copyright\ (C)\ 2024\ Davide\ Costa\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ This\ file\ is\ part\ of\ RMW\ desert.\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ \ \ RMW\ desert\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify\ it\ \ *}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ \ \ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by\ the\ \ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ \ \ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or\ any\ \ \ \ \ \ *}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ \ \ later\ version.\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ \ \ RMW\ desert\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,\ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ \ \ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of\ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ \ \ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the\ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ \ GNU\ General\ Public\ License\ for\ more\ details.\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ \ \ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License\ \ \ \ \ \ *}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ \ \ along\ with\ RMW\ desert.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.\ \ \ \ *}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ ****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#ifndef\ CSTRING\_HELPER\_H\_}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ CSTRING\_HELPER\_H\_}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#include\ "{}rosidl\_runtime\_c/u16string.h"{}}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#include\ "{}rosidl\_runtime\_c/string.h"{}}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#include\ "{}rosidl\_runtime\_c/u16string\_functions.h"{}}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#include\ "{}rosidl\_runtime\_c/string\_functions.h"{}}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00056\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceCStringHelper}{CStringHelper}}}
+\DoxyCodeLine{00057\ \{}
+\DoxyCodeLine{00066\ \ \ std::string\ \mbox{\hyperlink{namespaceCStringHelper_afdd1746a13b7caa09a79880e048e083f}{convert\_to\_std\_string}}(\textcolor{keywordtype}{void}\ *\ str);}
+\DoxyCodeLine{00077\ \ \ std::vector<std::string>\ \mbox{\hyperlink{namespaceCStringHelper_a46c9096e1ecb6f6bc0fb672bd915e80f}{convert\_to\_std\_vector\_string}}(\textcolor{keywordtype}{void}\ *\ str\_array,\ \textcolor{keywordtype}{size\_t}\ size);}
+\DoxyCodeLine{00087\ \ \ std::vector<std::string>\ \mbox{\hyperlink{namespaceCStringHelper_af1fb65516cba6b268c562c9e5541c688}{convert\_sequence\_to\_std\_vector\_string}}(\textcolor{keywordtype}{void}\ *\ str\_seq);}
+\DoxyCodeLine{00088\ \ \ }
+\DoxyCodeLine{00097\ \ \ std::u16string\ \mbox{\hyperlink{namespaceCStringHelper_a67a072527df76b6105dc694d0d65e317}{convert\_to\_std\_u16string}}(\textcolor{keywordtype}{void}\ *\ str);}
+\DoxyCodeLine{00108\ \ \ std::vector<std::u16string>\ \mbox{\hyperlink{namespaceCStringHelper_a7cd36550ae2df76c2b9d94fdb4f95fae}{convert\_to\_std\_vector\_u16string}}(\textcolor{keywordtype}{void}\ *\ str\_array,\ \textcolor{keywordtype}{size\_t}\ size);}
+\DoxyCodeLine{00118\ \ \ std::vector<std::u16string>\ \mbox{\hyperlink{namespaceCStringHelper_aca7d541ea4477361e7d97080edf124ea}{convert\_sequence\_to\_std\_vector\_u16string}}(\textcolor{keywordtype}{void}\ *\ str\_seq);}
+\DoxyCodeLine{00119\ \ \ }
+\DoxyCodeLine{00129\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceCStringHelper_acd385ff8fc21921cc8b1cb875b52fdd0}{assign\_string}}(std::string\ str,\ \textcolor{keywordtype}{void}\ *\ field);}
+\DoxyCodeLine{00140\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceCStringHelper_a2b8b924dc2903c7055bfb7e4a413f392}{assign\_vector\_string}}(std::vector<std::string>\ cpp\_string\_vector,\ \textcolor{keywordtype}{void}\ *\ str\_array,\ \textcolor{keywordtype}{size\_t}\ size);}
+\DoxyCodeLine{00150\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceCStringHelper_a7e136add8498b7a4ea9c065825961c7b}{assign\_vector\_string\_to\_sequence}}(std::vector<std::string>\ cpp\_string\_vector,\ \textcolor{keywordtype}{void}\ *\ str\_seq);}
+\DoxyCodeLine{00151\ \ \ }
+\DoxyCodeLine{00161\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceCStringHelper_ae78445b8ee145086048078bb0b6ee3cc}{assign\_u16string}}(std::u16string\ str,\ \textcolor{keywordtype}{void}\ *\ field);}
+\DoxyCodeLine{00172\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceCStringHelper_aecd6afde0b4be23924a25101a11921a8}{assign\_vector\_u16string}}(std::vector<std::u16string>\ cpp\_string\_vector,\ \textcolor{keywordtype}{void}\ *\ str\_array,\ \textcolor{keywordtype}{size\_t}\ size);}
+\DoxyCodeLine{00182\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceCStringHelper_a2d98ad81c785c470ee14cc3a98857c22}{assign\_vector\_u16string\_to\_sequence}}(std::vector<std::u16string>\ cpp\_string\_vector,\ \textcolor{keywordtype}{void}\ *\ str\_seq);}
+\DoxyCodeLine{00183\ \}}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

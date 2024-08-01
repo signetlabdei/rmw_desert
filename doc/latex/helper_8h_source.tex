@@ -1,0 +1,49 @@
+\doxysection{helper.\+h}
+\hypertarget{helper_8h_source}{}\label{helper_8h_source}\index{cbor/include/cbor/helper.h@{cbor/include/cbor/helper.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ SPDX-\/FileCopyrightText:\ 2021\ Kyunghwan\ Kwon\ <k@mononn.com>}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifndef\ CBOR\_HELPER\_H}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ CBOR\_HELPER\_H}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#if\ defined(\_\_cplusplus)}}
+\DoxyCodeLine{00011\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}cbor/base.h"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structcbor__parser}{cbor\_parser}}\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *key;}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ keylen;}
+\DoxyCodeLine{00020\ \ \ \ \ void\ (*run)(\textcolor{keyword}{const}\ \mbox{\hyperlink{structcbor__reader__t}{cbor\_reader\_t}}\ *reader,}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structcbor__parser}{cbor\_parser}}\ *parser,}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structcbor__item__t}{cbor\_item\_t}}\ *item,\ \textcolor{keywordtype}{void}\ *arg);}
+\DoxyCodeLine{00023\ \};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keywordtype}{bool}\ cbor\_unmarshal(\mbox{\hyperlink{structcbor__reader__t}{cbor\_reader\_t}}\ *reader,}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{struct}\ \mbox{\hyperlink{structcbor__parser}{cbor\_parser}}\ *parsers,\ \textcolor{keywordtype}{size\_t}\ nr\_parsers,}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *msg,\ \textcolor{keywordtype}{size\_t}\ msglen,\ \textcolor{keywordtype}{void}\ *arg);}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keywordtype}{size\_t}\ cbor\_iterate(\textcolor{keyword}{const}\ \mbox{\hyperlink{structcbor__reader__t}{cbor\_reader\_t}}\ *reader,}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structcbor__item__t}{cbor\_item\_t}}\ *parent,}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ (*callback\_each)(\textcolor{keyword}{const}\ \mbox{\hyperlink{structcbor__reader__t}{cbor\_reader\_t}}\ *reader,}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structcbor__item__t}{cbor\_item\_t}}\ *item,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structcbor__item__t}{cbor\_item\_t}}\ *parent,}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ *arg),}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ *arg);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *cbor\_stringify\_error(cbor\_error\_t\ err);}
+\DoxyCodeLine{00037\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *cbor\_stringify\_item(\mbox{\hyperlink{structcbor__item__t}{cbor\_item\_t}}\ *item);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#if\ defined(\_\_cplusplus)}}
+\DoxyCodeLine{00040\ \}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ CBOR\_HELPER\_H\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

@@ -1,0 +1,372 @@
+\doxysection{cbor\+::Tx\+Stream Class Reference}
+\hypertarget{classcbor_1_1TxStream}{}\label{classcbor_1_1TxStream}\index{cbor::TxStream@{cbor::TxStream}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcbor_1_1TxStream_a836cd3f8c42db37d0a181769a1d9e9bf}{Tx\+Stream}} (uint8\+\_\+t stream\+\_\+type, std\+::string stream\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Create a transmission stream. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcbor_1_1TxStream_ae6c6dc165f3411ea5dfa7d3e0e90e80c}{start\+\_\+transmission}} (uint64\+\_\+t sequence\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Tell the stream to create a new packet. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcbor_1_1TxStream_acd05bc87a3a3b29b584e4bb3e507b694}{start\+\_\+transmission}} ()
+\begin{DoxyCompactList}\small\item\em Tell the stream to create a new packet. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcbor_1_1TxStream_a7c08187453b92347ee439af8648a1379}{end\+\_\+transmission}} ()
+\begin{DoxyCompactList}\small\item\em Tell the stream to send down the packet. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcbor_1_1TxStream}{Tx\+Stream}} \& \mbox{\hyperlink{classcbor_1_1TxStream_a340159644e1ba667e95c256cbd5f210f}{operator$<$$<$}} (const uint64\+\_\+t n)
+\begin{DoxyCompactList}\small\item\em Encode uint64. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcbor_1_1TxStream}{Tx\+Stream}} \& \mbox{\hyperlink{classcbor_1_1TxStream_a7928d422bfc4cd074c2c412ca2b60068}{operator$<$$<$}} (const uint32\+\_\+t n)
+\begin{DoxyCompactList}\small\item\em Encode uint32. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcbor_1_1TxStream}{Tx\+Stream}} \& \mbox{\hyperlink{classcbor_1_1TxStream_a9f71994937257efbe95486ab9e2addb3}{operator$<$$<$}} (const uint16\+\_\+t n)
+\begin{DoxyCompactList}\small\item\em Encode uint16. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcbor_1_1TxStream}{Tx\+Stream}} \& \mbox{\hyperlink{classcbor_1_1TxStream_ae90966bd257c79110a350f5f1792a1f9}{operator$<$$<$}} (const uint8\+\_\+t n)
+\begin{DoxyCompactList}\small\item\em Encode uint8. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcbor_1_1TxStream}{Tx\+Stream}} \& \mbox{\hyperlink{classcbor_1_1TxStream_a20d9a7b3be7f8707d8b8e7ad9da70e9b}{operator$<$$<$}} (const int64\+\_\+t n)
+\begin{DoxyCompactList}\small\item\em Encode int64. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcbor_1_1TxStream}{Tx\+Stream}} \& \mbox{\hyperlink{classcbor_1_1TxStream_a8148ae09b08356fdf3cef994005223b9}{operator$<$$<$}} (const int32\+\_\+t n)
+\begin{DoxyCompactList}\small\item\em Encode int32. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcbor_1_1TxStream}{Tx\+Stream}} \& \mbox{\hyperlink{classcbor_1_1TxStream_ad8eaa08a95f7bbbe76ef4ec9b5b5aa6f}{operator$<$$<$}} (const int16\+\_\+t n)
+\begin{DoxyCompactList}\small\item\em Encode int16. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcbor_1_1TxStream}{Tx\+Stream}} \& \mbox{\hyperlink{classcbor_1_1TxStream_aaaab5243aa797554bb3f8b7526aa9676}{operator$<$$<$}} (const int8\+\_\+t n)
+\begin{DoxyCompactList}\small\item\em Encode int8. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcbor_1_1TxStream}{Tx\+Stream}} \& \mbox{\hyperlink{classcbor_1_1TxStream_acc74c1814c605a48c5b19e7dcd127739}{operator$<$$<$}} (const char n)
+\begin{DoxyCompactList}\small\item\em Encode char. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcbor_1_1TxStream}{Tx\+Stream}} \& \mbox{\hyperlink{classcbor_1_1TxStream_a0a34414def8c60b960f6eed361e3b990}{operator$<$$<$}} (const float f)
+\begin{DoxyCompactList}\small\item\em Encode float. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcbor_1_1TxStream}{Tx\+Stream}} \& \mbox{\hyperlink{classcbor_1_1TxStream_ab5415b18eb72fd55d2dfc05a5cfb58b0}{operator$<$$<$}} (const double d)
+\begin{DoxyCompactList}\small\item\em Encode double. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcbor_1_1TxStream}{Tx\+Stream}} \& \mbox{\hyperlink{classcbor_1_1TxStream_ab404fbf014bc7bdd0f2023bdac869381}{operator$<$$<$}} (const std\+::string s)
+\begin{DoxyCompactList}\small\item\em Encode string. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcbor_1_1TxStream}{Tx\+Stream}} \& \mbox{\hyperlink{classcbor_1_1TxStream_a61803d99bdc0f29b987fc76a035fe007}{operator$<$$<$}} (const std\+::u16string s)
+\begin{DoxyCompactList}\small\item\em Encode u16string. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcbor_1_1TxStream}{Tx\+Stream}} \& \mbox{\hyperlink{classcbor_1_1TxStream_a62e50e587d5982bcb42b206784dd75e8}{operator$<$$<$}} (const bool b)
+\begin{DoxyCompactList}\small\item\em Encode bool. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\\mbox{\hyperlink{classcbor_1_1TxStream}{Tx\+Stream}} \& \mbox{\hyperlink{classcbor_1_1TxStream_a73ff9d3efdfc2cde9b6ae1b287dd4b71}{operator$<$$<$}} (const std\+::vector$<$ T $>$ v)
+\begin{DoxyCompactList}\small\item\em Encode vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcbor_1_1TxStream}{Tx\+Stream}} \& \mbox{\hyperlink{classcbor_1_1TxStream_a4812a44a95710781cfed934d54ce0c23}{operator$<$$<$}} (const std\+::vector$<$ bool $>$ v)
+\begin{DoxyCompactList}\small\item\em Encode bool vector. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\\mbox{\hyperlink{classcbor_1_1TxStream}{Tx\+Stream}} \& \mbox{\hyperlink{classcbor_1_1TxStream_a3431c0b1f28dbf862f9b337ffd0c9272}{serialize\+\_\+sequence}} (const T \texorpdfstring{$\ast$}{*}items, size\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Serialize a sequence of uniform elements. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcbor_1_1TxStream_a836cd3f8c42db37d0a181769a1d9e9bf}\label{classcbor_1_1TxStream_a836cd3f8c42db37d0a181769a1d9e9bf} 
+\index{cbor::TxStream@{cbor::TxStream}!TxStream@{TxStream}}
+\index{TxStream@{TxStream}!cbor::TxStream@{cbor::TxStream}}
+\doxysubsubsection{\texorpdfstring{TxStream()}{TxStream()}}
+{\footnotesize\ttfamily cbor\+::\+Tx\+Stream\+::\+Tx\+Stream (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{stream\+\_\+type,  }\item[{std\+::string}]{stream\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Create a transmission stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stream\+\_\+type} & Type of the object using the current instance \\
+\hline
+{\em stream\+\_\+name} & Name of the topic or the service to which the communication belongs \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcbor_1_1TxStream_a7c08187453b92347ee439af8648a1379}\label{classcbor_1_1TxStream_a7c08187453b92347ee439af8648a1379} 
+\index{cbor::TxStream@{cbor::TxStream}!end\_transmission@{end\_transmission}}
+\index{end\_transmission@{end\_transmission}!cbor::TxStream@{cbor::TxStream}}
+\doxysubsubsection{\texorpdfstring{end\_transmission()}{end\_transmission()}}
+{\footnotesize\ttfamily void cbor\+::\+Tx\+Stream\+::end\+\_\+transmission (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Tell the stream to send down the packet. 
+
+When the transmission is finished the packet is stored in the static member of \doxylink{classTcpDaemon}{Tcp\+Daemon} in order to be sent to DESERT. \Hypertarget{classcbor_1_1TxStream_a62e50e587d5982bcb42b206784dd75e8}\label{classcbor_1_1TxStream_a62e50e587d5982bcb42b206784dd75e8} 
+\index{cbor::TxStream@{cbor::TxStream}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!cbor::TxStream@{cbor::TxStream}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [1/16]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcbor_1_1TxStream}{Tx\+Stream}} \& cbor\+::\+Tx\+Stream\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{const bool}]{b }\end{DoxyParamCaption})}
+
+
+
+Encode bool. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & Field to encode \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcbor_1_1TxStream_acc74c1814c605a48c5b19e7dcd127739}\label{classcbor_1_1TxStream_acc74c1814c605a48c5b19e7dcd127739} 
+\index{cbor::TxStream@{cbor::TxStream}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!cbor::TxStream@{cbor::TxStream}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [2/16]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcbor_1_1TxStream}{Tx\+Stream}} \& cbor\+::\+Tx\+Stream\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{const char}]{n }\end{DoxyParamCaption})}
+
+
+
+Encode char. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & Field to encode \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcbor_1_1TxStream_ab5415b18eb72fd55d2dfc05a5cfb58b0}\label{classcbor_1_1TxStream_ab5415b18eb72fd55d2dfc05a5cfb58b0} 
+\index{cbor::TxStream@{cbor::TxStream}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!cbor::TxStream@{cbor::TxStream}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [3/16]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcbor_1_1TxStream}{Tx\+Stream}} \& cbor\+::\+Tx\+Stream\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{const double}]{d }\end{DoxyParamCaption})}
+
+
+
+Encode double. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & Field to encode \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcbor_1_1TxStream_a0a34414def8c60b960f6eed361e3b990}\label{classcbor_1_1TxStream_a0a34414def8c60b960f6eed361e3b990} 
+\index{cbor::TxStream@{cbor::TxStream}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!cbor::TxStream@{cbor::TxStream}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [4/16]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcbor_1_1TxStream}{Tx\+Stream}} \& cbor\+::\+Tx\+Stream\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{const float}]{f }\end{DoxyParamCaption})}
+
+
+
+Encode float. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & Field to encode \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcbor_1_1TxStream_ad8eaa08a95f7bbbe76ef4ec9b5b5aa6f}\label{classcbor_1_1TxStream_ad8eaa08a95f7bbbe76ef4ec9b5b5aa6f} 
+\index{cbor::TxStream@{cbor::TxStream}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!cbor::TxStream@{cbor::TxStream}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [5/16]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcbor_1_1TxStream}{Tx\+Stream}} \& cbor\+::\+Tx\+Stream\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{const int16\+\_\+t}]{n }\end{DoxyParamCaption})}
+
+
+
+Encode int16. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & Field to encode \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcbor_1_1TxStream_a8148ae09b08356fdf3cef994005223b9}\label{classcbor_1_1TxStream_a8148ae09b08356fdf3cef994005223b9} 
+\index{cbor::TxStream@{cbor::TxStream}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!cbor::TxStream@{cbor::TxStream}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [6/16]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcbor_1_1TxStream}{Tx\+Stream}} \& cbor\+::\+Tx\+Stream\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{const int32\+\_\+t}]{n }\end{DoxyParamCaption})}
+
+
+
+Encode int32. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & Field to encode \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcbor_1_1TxStream_a20d9a7b3be7f8707d8b8e7ad9da70e9b}\label{classcbor_1_1TxStream_a20d9a7b3be7f8707d8b8e7ad9da70e9b} 
+\index{cbor::TxStream@{cbor::TxStream}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!cbor::TxStream@{cbor::TxStream}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [7/16]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcbor_1_1TxStream}{Tx\+Stream}} \& cbor\+::\+Tx\+Stream\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{const int64\+\_\+t}]{n }\end{DoxyParamCaption})}
+
+
+
+Encode int64. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & Field to encode \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcbor_1_1TxStream_aaaab5243aa797554bb3f8b7526aa9676}\label{classcbor_1_1TxStream_aaaab5243aa797554bb3f8b7526aa9676} 
+\index{cbor::TxStream@{cbor::TxStream}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!cbor::TxStream@{cbor::TxStream}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [8/16]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcbor_1_1TxStream}{Tx\+Stream}} \& cbor\+::\+Tx\+Stream\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{const int8\+\_\+t}]{n }\end{DoxyParamCaption})}
+
+
+
+Encode int8. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & Field to encode \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcbor_1_1TxStream_ab404fbf014bc7bdd0f2023bdac869381}\label{classcbor_1_1TxStream_ab404fbf014bc7bdd0f2023bdac869381} 
+\index{cbor::TxStream@{cbor::TxStream}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!cbor::TxStream@{cbor::TxStream}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [9/16]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcbor_1_1TxStream}{Tx\+Stream}} \& cbor\+::\+Tx\+Stream\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{const std\+::string}]{s }\end{DoxyParamCaption})}
+
+
+
+Encode string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & Field to encode \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcbor_1_1TxStream_a61803d99bdc0f29b987fc76a035fe007}\label{classcbor_1_1TxStream_a61803d99bdc0f29b987fc76a035fe007} 
+\index{cbor::TxStream@{cbor::TxStream}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!cbor::TxStream@{cbor::TxStream}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [10/16]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcbor_1_1TxStream}{Tx\+Stream}} \& cbor\+::\+Tx\+Stream\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{const std\+::u16string}]{s }\end{DoxyParamCaption})}
+
+
+
+Encode u16string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & Field to encode \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcbor_1_1TxStream_a4812a44a95710781cfed934d54ce0c23}\label{classcbor_1_1TxStream_a4812a44a95710781cfed934d54ce0c23} 
+\index{cbor::TxStream@{cbor::TxStream}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!cbor::TxStream@{cbor::TxStream}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [11/16]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcbor_1_1TxStream}{Tx\+Stream}} \& cbor\+::\+Tx\+Stream\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ bool $>$}]{v }\end{DoxyParamCaption})}
+
+
+
+Encode bool vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & Field to encode \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcbor_1_1TxStream_a73ff9d3efdfc2cde9b6ae1b287dd4b71}\label{classcbor_1_1TxStream_a73ff9d3efdfc2cde9b6ae1b287dd4b71} 
+\index{cbor::TxStream@{cbor::TxStream}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!cbor::TxStream@{cbor::TxStream}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [12/16]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classcbor_1_1TxStream}{Tx\+Stream}} \& cbor\+::\+Tx\+Stream\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Encode vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & Field to encode \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcbor_1_1TxStream_a9f71994937257efbe95486ab9e2addb3}\label{classcbor_1_1TxStream_a9f71994937257efbe95486ab9e2addb3} 
+\index{cbor::TxStream@{cbor::TxStream}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!cbor::TxStream@{cbor::TxStream}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [13/16]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcbor_1_1TxStream}{Tx\+Stream}} \& cbor\+::\+Tx\+Stream\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{const uint16\+\_\+t}]{n }\end{DoxyParamCaption})}
+
+
+
+Encode uint16. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & Field to encode \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcbor_1_1TxStream_a7928d422bfc4cd074c2c412ca2b60068}\label{classcbor_1_1TxStream_a7928d422bfc4cd074c2c412ca2b60068} 
+\index{cbor::TxStream@{cbor::TxStream}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!cbor::TxStream@{cbor::TxStream}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [14/16]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcbor_1_1TxStream}{Tx\+Stream}} \& cbor\+::\+Tx\+Stream\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{const uint32\+\_\+t}]{n }\end{DoxyParamCaption})}
+
+
+
+Encode uint32. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & Field to encode \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcbor_1_1TxStream_a340159644e1ba667e95c256cbd5f210f}\label{classcbor_1_1TxStream_a340159644e1ba667e95c256cbd5f210f} 
+\index{cbor::TxStream@{cbor::TxStream}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!cbor::TxStream@{cbor::TxStream}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [15/16]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcbor_1_1TxStream}{Tx\+Stream}} \& cbor\+::\+Tx\+Stream\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{const uint64\+\_\+t}]{n }\end{DoxyParamCaption})}
+
+
+
+Encode uint64. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & Field to encode \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcbor_1_1TxStream_ae90966bd257c79110a350f5f1792a1f9}\label{classcbor_1_1TxStream_ae90966bd257c79110a350f5f1792a1f9} 
+\index{cbor::TxStream@{cbor::TxStream}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!cbor::TxStream@{cbor::TxStream}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [16/16]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcbor_1_1TxStream}{Tx\+Stream}} \& cbor\+::\+Tx\+Stream\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{n }\end{DoxyParamCaption})}
+
+
+
+Encode uint8. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & Field to encode \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcbor_1_1TxStream_a3431c0b1f28dbf862f9b337ffd0c9272}\label{classcbor_1_1TxStream_a3431c0b1f28dbf862f9b337ffd0c9272} 
+\index{cbor::TxStream@{cbor::TxStream}!serialize\_sequence@{serialize\_sequence}}
+\index{serialize\_sequence@{serialize\_sequence}!cbor::TxStream@{cbor::TxStream}}
+\doxysubsubsection{\texorpdfstring{serialize\_sequence()}{serialize\_sequence()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classcbor_1_1TxStream}{Tx\+Stream}} \& cbor\+::\+Tx\+Stream\+::serialize\+\_\+sequence (\begin{DoxyParamCaption}\item[{const T \texorpdfstring{$\ast$}{*}}]{items,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Serialize a sequence of uniform elements. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em items} & Pointer to the first element \\
+\hline
+{\em size} & Size of the items array \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcbor_1_1TxStream_acd05bc87a3a3b29b584e4bb3e507b694}\label{classcbor_1_1TxStream_acd05bc87a3a3b29b584e4bb3e507b694} 
+\index{cbor::TxStream@{cbor::TxStream}!start\_transmission@{start\_transmission}}
+\index{start\_transmission@{start\_transmission}!cbor::TxStream@{cbor::TxStream}}
+\doxysubsubsection{\texorpdfstring{start\_transmission()}{start\_transmission()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void cbor\+::\+Tx\+Stream\+::start\+\_\+transmission (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Tell the stream to create a new packet. 
+
+Every time a transmission in started, a new empty packet must be generated and saved as a private member. Then type and topic name are put in front of the data. \Hypertarget{classcbor_1_1TxStream_ae6c6dc165f3411ea5dfa7d3e0e90e80c}\label{classcbor_1_1TxStream_ae6c6dc165f3411ea5dfa7d3e0e90e80c} 
+\index{cbor::TxStream@{cbor::TxStream}!start\_transmission@{start\_transmission}}
+\index{start\_transmission@{start\_transmission}!cbor::TxStream@{cbor::TxStream}}
+\doxysubsubsection{\texorpdfstring{start\_transmission()}{start\_transmission()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void cbor\+::\+Tx\+Stream\+::start\+\_\+transmission (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{sequence\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+Tell the stream to create a new packet. 
+
+Every time a transmission in started, a new empty packet must be generated and saved as a private member. Then type, service name and sequence id are put in front of the data.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sequence\+\_\+id} & The id of the client service communication \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/desert\+\_\+classes/\mbox{\hyperlink{CBorStream_8h}{CBor\+Stream.\+h}}\item 
+src/desert\+\_\+classes/CBor\+Stream.\+cpp\end{DoxyCompactItemize}

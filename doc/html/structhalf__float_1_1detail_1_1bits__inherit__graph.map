@@ -1,0 +1,9 @@
+<map id="half_float::detail::bits&lt; T &gt;" name="half_float::detail::bits&lt; T &gt;">
+<area shape="rect" id="Node000001" title="Type traits for floating&#45;point bits." alt="" coords="5,69,133,109"/>
+<area shape="rect" id="Node000002" href="$structhalf__float_1_1detail_1_1bits_3_01const_01T_01_4.html" title=" " alt="" coords="208,5,339,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="146,63,208,43,210,48,148,68"/>
+<area shape="rect" id="Node000003" href="$structhalf__float_1_1detail_1_1bits_3_01const_01volatile_01T_01_4.html" title=" " alt="" coords="181,69,365,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="147,87,181,87,181,92,147,92"/>
+<area shape="rect" id="Node000004" href="$structhalf__float_1_1detail_1_1bits_3_01volatile_01T_01_4.html" title=" " alt="" coords="201,133,346,173"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="148,111,210,131,208,136,146,116"/>
+</map>

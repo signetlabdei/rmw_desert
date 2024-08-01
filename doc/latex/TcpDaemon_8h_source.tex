@@ -1,0 +1,70 @@
+\doxysection{Tcp\+Daemon.\+h}
+\hypertarget{TcpDaemon_8h_source}{}\label{TcpDaemon_8h_source}\index{src/desert\_classes/TcpDaemon.h@{src/desert\_classes/TcpDaemon.h}}
+\mbox{\hyperlink{TcpDaemon_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ Copyright\ (C)\ 2024\ Davide\ Costa\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ This\ file\ is\ part\ of\ RMW\ desert.\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ \ \ RMW\ desert\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify\ it\ \ *}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ \ \ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by\ the\ \ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ \ \ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or\ any\ \ \ \ \ \ *}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ \ \ later\ version.\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ \ \ RMW\ desert\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,\ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ \ \ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of\ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ \ \ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the\ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ \ GNU\ General\ Public\ License\ for\ more\ details.\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ \ \ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License\ \ \ \ \ \ *}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ \ \ along\ with\ RMW\ desert.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.\ \ \ \ *}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ ****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#ifndef\ TCP\_DAEMON\_H\_}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ TCP\_DAEMON\_H\_}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#include\ <queue>}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#include\ <cstdio>}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#include\ <cstring>}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#include\ <chrono>}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#include\ <arpa/inet.h>}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#include\ <sys/socket.h>}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#include\ <sys/poll.h>}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#include\ <unistd.h>}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#include\ "{}rmw/error\_handling.h"{}}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ ADDRESS\ "{}127.0.0.1"{}}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ PORT\ 4000}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#define\ END\_MARKER\ 0b01010101}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#define\ BYTE\_MASK\ 0b11111111}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classTcpDaemon}{TcpDaemon}}}
+\DoxyCodeLine{00062\ \{}
+\DoxyCodeLine{00063\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00064\ \ \ \ \ \mbox{\hyperlink{classTcpDaemon}{TcpDaemon}}();}
+\DoxyCodeLine{00065\ \ \ \ \ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classTcpDaemon_a7025ee77314962b239777383aaf80a13}{init}}();}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{static}\ std::vector<uint8\_t>\ \mbox{\hyperlink{classTcpDaemon_a523b53e96972960a1695fb0fedf86802}{read\_packet}}();}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classTcpDaemon_a160887a42b7411a2a07828b3ff6f91eb}{enqueue\_packet}}(std::vector<uint8\_t>\ packet);}
+\DoxyCodeLine{00091\ \ \ \ \ }
+\DoxyCodeLine{00092\ \ \ \ \ }
+\DoxyCodeLine{00093\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \_client\_fd;}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keyword}{static}\ std::queue<std::vector<uint8\_t>>\ \_rx\_packets;}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keyword}{static}\ std::queue<std::vector<uint8\_t>>\ \_tx\_packets;}
+\DoxyCodeLine{00097\ \ \ \ \ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{void}\ socket\_rx\_communication();}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordtype}{void}\ socket\_tx\_communication();}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \};}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

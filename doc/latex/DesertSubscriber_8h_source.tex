@@ -1,0 +1,70 @@
+\doxysection{Desert\+Subscriber.\+h}
+\hypertarget{DesertSubscriber_8h_source}{}\label{DesertSubscriber_8h_source}\index{src/desert\_classes/DesertSubscriber.h@{src/desert\_classes/DesertSubscriber.h}}
+\mbox{\hyperlink{DesertSubscriber_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ Copyright\ (C)\ 2024\ Davide\ Costa\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ This\ file\ is\ part\ of\ RMW\ desert.\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ \ \ RMW\ desert\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify\ it\ \ *}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ \ \ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by\ the\ \ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ \ \ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or\ any\ \ \ \ \ \ *}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ \ \ later\ version.\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ \ \ RMW\ desert\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,\ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ \ \ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of\ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ \ \ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the\ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ \ GNU\ General\ Public\ License\ for\ more\ details.\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ \ \ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License\ \ \ \ \ \ *}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ \ \ along\ with\ RMW\ desert.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.\ \ \ \ *}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ ****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#ifndef\ DESERT\_SUBSCRIBER\_H\_}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ DESERT\_SUBSCRIBER\_H\_}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#include\ "{}rosidl\_typesupport\_introspection\_cpp/identifier.hpp"{}}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#include\ "{}rosidl\_typesupport\_introspection\_c/identifier.h"{}}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#include\ "{}rosidl\_typesupport\_introspection\_cpp/message\_introspection.hpp"{}}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#include\ "{}rosidl\_typesupport\_introspection\_c/message\_introspection.h"{}}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#include\ "{}rosidl\_typesupport\_introspection\_cpp/service\_introspection.hpp"{}}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#include\ "{}rosidl\_typesupport\_introspection\_c/service\_introspection.h"{}}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#include\ "{}rosidl\_typesupport\_introspection\_cpp/field\_types.hpp"{}}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#include\ "{}rosidl\_typesupport\_introspection\_c/field\_types.h"{}}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#include\ "{}rosidl\_typesupport\_cpp/identifier.hpp"{}}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#include\ "{}rosidl\_typesupport\_c/type\_support\_map.h"{}}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#include\ "{}rosidl\_typesupport\_c/identifier.h"{}}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#include\ "{}rosidl\_runtime\_c/message\_type\_support\_struct.h"{}}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{CBorStream_8h}{CBorStream.h}}"{}}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{MessageSerialization_8h}{MessageSerialization.h}}"{}}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classDesertSubscriber}{DesertSubscriber}}}
+\DoxyCodeLine{00061\ \{}
+\DoxyCodeLine{00062\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{classDesertSubscriber}{DesertSubscriber}}(std::string\ topic\_name,\ \textcolor{keyword}{const}\ rosidl\_message\_type\_support\_t\ *\ type\_supports);}
+\DoxyCodeLine{00070\ \ \ \ \ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classDesertSubscriber_ae8a99cb6180868be903a06e4e3a8a81d}{has\_data}}();}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDesertSubscriber_a147c99efc5d5784ee75b54914f59cd5c}{read\_data}}(\textcolor{keywordtype}{void}\ *\ msg);}
+\DoxyCodeLine{00091\ \ \ }
+\DoxyCodeLine{00092\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00093\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1RxStream}{cbor::RxStream}}\ \_data\_stream;}
+\DoxyCodeLine{00094\ \ \ \ \ std::string\ \_name;}
+\DoxyCodeLine{00095\ \ \ \ \ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{int}\ \_c\_cpp\_identifier;}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *\ \_members;}
+\DoxyCodeLine{00098\ \ \ \ \ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *\ get\_members(\textcolor{keyword}{const}\ rosidl\_message\_type\_support\_t\ *\ type\_support);}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keyword}{const}\ rosidl\_message\_type\_support\_t\ *\ get\_type\_support(\textcolor{keyword}{const}\ rosidl\_message\_type\_support\_t\ *\ type\_supports);}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \};}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

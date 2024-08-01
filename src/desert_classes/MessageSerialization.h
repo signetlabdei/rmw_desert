@@ -1,3 +1,36 @@
+/****************************************************************************
+ * Copyright (C) 2024 Davide Costa                                          *
+ *                                                                          *
+ * This file is part of RMW desert.                                         *
+ *                                                                          *
+ *   RMW desert is free software: you can redistribute it and/or modify it  *
+ *   under the terms of the GNU General Public License as published by the  *
+ *   Free Software Foundation, either version 3 of the License, or any      *
+ *   later version.                                                         *
+ *                                                                          *
+ *   RMW desert is distributed in the hope that it will be useful,          *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of         *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          *
+ *   GNU General Public License for more details.                           *
+ *                                                                          *
+ *   You should have received a copy of the GNU General Public License      *
+ *   along with RMW desert.  If not, see <http://www.gnu.org/licenses/>.    *
+ ****************************************************************************/
+
+/**
+ * @file MessageSerialization.h
+ * @brief Namespace containing serialization functions
+ * 
+ * The message data structure coming from upper layers is interpreted using type 
+ * support informations passed by ROS2 during the creation of publishers, subscribers, 
+ * clients and services. Those functions are used to compute the exact position that 
+ * every data type must assume in memory an then calls TxStream or RxStream to receive 
+ * or write them in the assigned location.
+ *
+ * @author Prof. Davide Costa
+ *
+ */
+
 #ifndef MESSAGE_SERIALIZATION_H_
 #define MESSAGE_SERIALIZATION_H_
 
@@ -5,8 +38,12 @@
 #include "CStringHelper.h"
 #include "macros.h"
 
+/** @cond */
+
 #include <vector>
 #include <string>
+
+/** @endcond */
 
 #define INTROSPECTION_C_MEMBER rosidl_typesupport_introspection_c__MessageMember
 #define INTROSPECTION_CPP_MEMBER rosidl_typesupport_introspection_cpp::MessageMember
@@ -17,10 +54,30 @@
 #define INTROSPECTION_C_SERVICE_MEMBERS rosidl_typesupport_introspection_c__ServiceMembers
 #define INTROSPECTION_CPP_SERVICE_MEMBERS rosidl_typesupport_introspection_cpp::ServiceMembers
 
+/**
+ * @namespace MessageSerialization
+ * @brief Namespace containing serialization functions
+ * 
+ * The message data structure coming from upper layers is interpreted using type 
+ * support informations passed by ROS2 during the creation of publishers, subscribers, 
+ * clients and services. Those functions are used to compute the exact position that 
+ * every data type must assume in memory an then calls TxStream or RxStream to receive 
+ * or write them in the assigned location.
+ */
 namespace MessageSerialization
 {
 
-  // C++ specialization
+ /**
+  * @brief Serialize a C++ field
+  *
+  * The type support introspection information is used to know if a specific 
+  * data type is a single item, a sequence or a vector. Based on this conclusion 
+  * a specific interpretation is passed to the stream.
+  *
+  * @param member  Pointer to the member containing type support informations
+  * @param field   Pointer to the origin memory address of the elementary data
+  * @param stream  The stream used to send data
+  */
   template<typename T>
   void serialize_field(const INTROSPECTION_CPP_MEMBER * member, void * field, cbor::TxStream & stream)
   {
@@ -39,7 +96,17 @@ namespace MessageSerialization
     }
   }
 
-  // C specialization
+ /**
+  * @brief Serialize a C field
+  *
+  * The type support introspection information is used to know if a specific 
+  * data type is a single item, a sequence or a variable length sequence. 
+  * Based on this conclusion a specific interpretation is passed to the stream.
+  *
+  * @param member  Pointer to the member containing type support informations
+  * @param field   Pointer to the origin memory address of the elementary data
+  * @param stream  The stream used to send data
+  */
   template<typename T>
   void serialize_field(const INTROSPECTION_C_MEMBER * member, void * field, cbor::TxStream & stream)
   {
@@ -101,6 +168,18 @@ namespace MessageSerialization
     }
   }
   
+ /**
+  * @brief Serialize a ROS message, request or response
+  *
+  * Every time ROS has data to send in the channel a memory location is 
+  * passed with the corresponding message member type, and this function 
+  * separates all the fields into elementary C or C++ types. Then the 
+  * serialize_field function is called to encode the specific data.
+  *
+  * @param msg            Pointer to the first byte of the message in memory
+  * @param casted_members Pointer to the member containing type support informations
+  * @param stream         The stream used to send data
+  */
   template<typename MembersType>
   void serialize(const void * msg, const MembersType * casted_members, cbor::TxStream & stream)
   {
@@ -197,7 +276,17 @@ namespace MessageSerialization
     }
   }
 
-  // C++ specialization
+ /**
+  * @brief Deserialize a C++ field
+  *
+  * The type support introspection information is used to know if a specific 
+  * data type is a single item, a sequence or a vector. Based on this conclusion 
+  * a specific interpretation is passed to the stream.
+  *
+  * @param member  Pointer to the member containing type support informations
+  * @param field   Pointer to the destination memory address of the elementary data
+  * @param stream  The stream used to receive data
+  */
   template<typename T>
   void deserialize_field(const INTROSPECTION_CPP_MEMBER * member, void * field, cbor::RxStream & stream)
   {
@@ -216,7 +305,17 @@ namespace MessageSerialization
     }
   }
 
-  // C specialization
+ /**
+  * @brief Deserialize a C field
+  *
+  * The type support introspection information is used to know if a specific 
+  * data type is a single item, a sequence or a variable length sequence. 
+  * Based on this conclusion a specific interpretation is passed to the stream.
+  *
+  * @param member  Pointer to the member containing type support informations
+  * @param field   Pointer to the destination memory address of the elementary data
+  * @param stream  The stream used to receive data
+  */
   template<typename T>
   void deserialize_field(const INTROSPECTION_C_MEMBER * member, void * field, cbor::RxStream & stream)
   {
@@ -225,7 +324,9 @@ namespace MessageSerialization
     {
       if (!member->is_array_) 
       {
-        CStringHelper::assign_string(stream, field);
+        std::string str;
+        stream >> str;
+        CStringHelper::assign_string(str, field);
       }
       else if (member->array_size_ && !member->is_upper_bound_)
       {
@@ -248,7 +349,9 @@ namespace MessageSerialization
     {
       if (!member->is_array_) 
       {
-        CStringHelper::assign_u16string(stream, field);
+        std::u16string str;
+        stream >> str;
+        CStringHelper::assign_u16string(str, field);
       }
       else if (member->array_size_ && !member->is_upper_bound_)
       {
@@ -295,6 +398,19 @@ namespace MessageSerialization
     }
   }
 
+ /**
+  * @brief Deserialize a ROS message, request or response
+  *
+  * Every time DESERT receives data from the channel a memory location is 
+  * used to store the corresponding member type, and this function merges 
+  * all the elementary C or C++ types into the whole message. To perform 
+  * this operation the deserialize_field function is called to decode every 
+  * specific data.
+  *
+  * @param msg            Pointer to the first byte of the message in memory
+  * @param casted_members Pointer to the member containing type support informations
+  * @param stream         The stream used to receive data
+  */
   template<typename MembersType>
   void deserialize(void * msg, const MembersType * casted_members, cbor::RxStream & stream)
   {

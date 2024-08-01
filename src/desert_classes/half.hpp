@@ -18,6 +18,8 @@
 
 /// \file
 /// Main header file for half-precision functionality.
+/// \brief
+/// Main header file for half-precision functionality.
 
 #ifndef HALF_HALF_HPP
 #define HALF_HALF_HPP
@@ -121,7 +123,9 @@
 #endif
 
 // check C++11 library features
+// \cond
 #include <utility>
+// \endcond
 #if defined(_LIBCPP_VERSION)								// libc++
 	#if defined(__GXX_EXPERIMENTAL_CXX0X__) || __cplusplus >= 201103
 		#ifndef HALF_ENABLE_CPP11_TYPE_TRAITS
@@ -241,6 +245,7 @@
 	#define HALF_THREAD_LOCAL	static
 #endif
 
+// \cond
 #include <utility>
 #include <algorithm>
 #include <istream>
@@ -266,7 +271,7 @@
 #if HALF_ENABLE_CPP11_HASH
 	#include <functional>
 #endif
-
+// \endcond
 
 #ifndef HALF_ENABLE_F16C_INTRINSICS
 	/// Enable F16C intruction set intrinsics.

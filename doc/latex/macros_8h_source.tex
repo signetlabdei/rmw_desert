@@ -1,0 +1,64 @@
+\doxysection{macros.\+h}
+\hypertarget{macros_8h_source}{}\label{macros_8h_source}\index{src/desert\_classes/macros.h@{src/desert\_classes/macros.h}}
+\mbox{\hyperlink{macros_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ Copyright\ (C)\ 2024\ Davide\ Costa\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ This\ file\ is\ part\ of\ RMW\ desert.\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ \ \ RMW\ desert\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify\ it\ \ *}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ \ \ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by\ the\ \ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ \ \ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or\ any\ \ \ \ \ \ *}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ \ \ later\ version.\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ \ \ RMW\ desert\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,\ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ \ \ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of\ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ \ \ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the\ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ \ GNU\ General\ Public\ License\ for\ more\ details.\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ \ \ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License\ \ \ \ \ \ *}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ \ \ along\ with\ RMW\ desert.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.\ \ \ \ *}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ ****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#ifndef\ MACROS\_HPP\_}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ MACROS\_HPP\_}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#include\ "{}rosidl\_runtime\_c/primitives\_sequence.h"{}}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#include\ "{}rosidl\_runtime\_c/primitives\_sequence\_functions.h"{}}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ SPECIALIZE\_GENERIC\_C\_SEQUENCE(C\_NAME,\ C\_TYPE)\ \(\backslash\)}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\ \ template<>\ \(\backslash\)}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\ \ struct\ GenericCSequence<C\_TYPE>\ \(\backslash\)}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\ \ \{\ \(\backslash\)}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\ \ \ \ using\ type\ =\ rosidl\_runtime\_c\_\_\ \#\#\ C\_NAME\ \#\#\ \_\_Sequence;\ \(\backslash\)}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\ \(\backslash\)}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\ \ \ \ static\ void\ fini(type\ *\ sequence)\ \{\ \(\backslash\)}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\ \ \ \ \ \ rosidl\_runtime\_c\_\_\ \#\#\ C\_NAME\ \#\#\ \_\_Sequence\_\_fini(sequence);\ \(\backslash\)}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\ \ \ \ \}\ \(\backslash\)}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\ \(\backslash\)}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\ \ \ \ static\ bool\ init(type\ *\ sequence,\ size\_t\ size)\ \{\ \(\backslash\)}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\ \ \ \ \ \ return\ rosidl\_runtime\_c\_\_\ \#\#\ C\_NAME\ \#\#\ \_\_Sequence\_\_init(sequence,\ size);\ \(\backslash\)}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\ \ \ \ \}\ \(\backslash\)}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\ \ \};}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00058\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structGenericCSequence}{GenericCSequence}};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{comment}{//\ multiple\ definitions\ of\ ambiguous\ primitive\ types}}
+\DoxyCodeLine{00061\ SPECIALIZE\_GENERIC\_C\_SEQUENCE(\textcolor{keywordtype}{bool},\ \textcolor{keywordtype}{bool})}
+\DoxyCodeLine{00062\ SPECIALIZE\_GENERIC\_C\_SEQUENCE(\textcolor{keywordtype}{byte},\ uint8\_t)}
+\DoxyCodeLine{00063\ SPECIALIZE\_GENERIC\_C\_SEQUENCE(\textcolor{keywordtype}{char},\ \textcolor{keywordtype}{char})}
+\DoxyCodeLine{00064\ SPECIALIZE\_GENERIC\_C\_SEQUENCE(float32,\ \textcolor{keywordtype}{float})}
+\DoxyCodeLine{00065\ SPECIALIZE\_GENERIC\_C\_SEQUENCE(float64,\ \textcolor{keywordtype}{double})}
+\DoxyCodeLine{00066\ SPECIALIZE\_GENERIC\_C\_SEQUENCE(int8,\ int8\_t)}
+\DoxyCodeLine{00067\ SPECIALIZE\_GENERIC\_C\_SEQUENCE(int16,\ int16\_t)}
+\DoxyCodeLine{00068\ SPECIALIZE\_GENERIC\_C\_SEQUENCE(uint16,\ uint16\_t)}
+\DoxyCodeLine{00069\ SPECIALIZE\_GENERIC\_C\_SEQUENCE(int32,\ int32\_t)}
+\DoxyCodeLine{00070\ SPECIALIZE\_GENERIC\_C\_SEQUENCE(uint32,\ uint32\_t)}
+\DoxyCodeLine{00071\ SPECIALIZE\_GENERIC\_C\_SEQUENCE(int64,\ int64\_t)}
+\DoxyCodeLine{00072\ SPECIALIZE\_GENERIC\_C\_SEQUENCE(uint64,\ uint64\_t)}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ MACROS\_HPP\_}}
+
+\end{DoxyCode}

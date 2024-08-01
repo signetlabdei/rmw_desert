@@ -1,5 +1,39 @@
+/****************************************************************************
+ * Copyright (C) 2024 Davide Costa                                          *
+ *                                                                          *
+ * This file is part of RMW desert.                                         *
+ *                                                                          *
+ *   RMW desert is free software: you can redistribute it and/or modify it  *
+ *   under the terms of the GNU General Public License as published by the  *
+ *   Free Software Foundation, either version 3 of the License, or any      *
+ *   later version.                                                         *
+ *                                                                          *
+ *   RMW desert is distributed in the hope that it will be useful,          *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of         *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          *
+ *   GNU General Public License for more details.                           *
+ *                                                                          *
+ *   You should have received a copy of the GNU General Public License      *
+ *   along with RMW desert.  If not, see <http://www.gnu.org/licenses/>.    *
+ ****************************************************************************/
+
+/**
+ * @file DesertClient.h
+ * @brief Implementation of the Client structure for DESERT
+ * 
+ * The DesertClient class is used to create instances of the various clients 
+ * registered by ROS. Each of them contains the informations needed to decode 
+ * the data structure of the messages in the service and allows to send and 
+ * receive data through specific public functions.
+ *
+ * @author Prof. Davide Costa
+ *
+ */
+
 #ifndef DESERT_CLIENT_H_
 #define DESERT_CLIENT_H_
+
+/** @cond */
 
 #include "rosidl_typesupport_introspection_cpp/identifier.hpp"
 #include "rosidl_typesupport_introspection_c/identifier.h"
@@ -18,19 +52,56 @@
 
 #include "rmw/types.h"
 
-#include "CBorStream.h"
-#include "MessageSerialization.h"
-
 #include <vector>
 #include <string>
+
+/** @endcond */
+
+#include "CBorStream.h"
+#include "MessageSerialization.h"
 
 class DesertClient
 {
   public:
+   /**
+    * @brief Create a client
+    *
+    * @param service_name  Name of the service to send requests and receive responses
+    * @param type_supports Pointer to the message data structure coming from the ROS upper layers
+    */
     DesertClient(std::string service_name, const rosidl_service_type_support_t * type_supports);
     
+   /**
+    * @brief Check if there is available data for the current client instance
+    *
+    * The has_data function calls the interpret_packets method in RxStream and then verifies 
+    * if in the map of client packets there is a correspondence with the service name and the
+    * sequence identifier of the current instance.
+    *
+    * @return True if data is present otherwise false
+    */
     bool has_data();
+   /**
+    * @brief Send a request to the service
+    *
+    * The send_request function starts a transmission with the current sequence identifier 
+    * and then serializes the message using the method from the MessageSerialization namespace. 
+    * A discrimination is made between C members and C++ members based on the type support.
+    *
+    * @param req         Pointer to the request to send
+    * @param sequence_id Pointer to the random service sequence identifier
+    */
     void send_request(const void * req, int64_t * sequence_id);
+   /**
+    * @brief Read a response from the service
+    *
+    * The read_response function interprets a transmission with the current sequence identifier 
+    * deserializing the message using the method from the MessageSerialization namespace. 
+    * A discrimination is made between C members and C++ members based on the type support.
+    *
+    * @param req        Pointer to the memory location used to store the reading
+    * @param req_header Pointer to the request header used to store the service sequence identifier
+    */
     void read_response(void * res, rmw_service_info_t * req_header);
     
     

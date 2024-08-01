@@ -1,5 +1,39 @@
+/****************************************************************************
+ * Copyright (C) 2024 Davide Costa                                          *
+ *                                                                          *
+ * This file is part of RMW desert.                                         *
+ *                                                                          *
+ *   RMW desert is free software: you can redistribute it and/or modify it  *
+ *   under the terms of the GNU General Public License as published by the  *
+ *   Free Software Foundation, either version 3 of the License, or any      *
+ *   later version.                                                         *
+ *                                                                          *
+ *   RMW desert is distributed in the hope that it will be useful,          *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of         *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          *
+ *   GNU General Public License for more details.                           *
+ *                                                                          *
+ *   You should have received a copy of the GNU General Public License      *
+ *   along with RMW desert.  If not, see <http://www.gnu.org/licenses/>.    *
+ ****************************************************************************/
+
+/**
+ * @file TcpDaemon.h
+ * @brief Class used to send and receive data from the DESERT socket
+ * 
+ * The DESERT protocol stack interacts with the application level through a socket,
+ * used to send and receive a binary stream containing packets. This class connects
+ * to the socket and creates two threads, that run continously to store and send packets
+ * in the static members rx_packets and tx_packets
+ *
+ * @author Prof. Davide Costa
+ *
+ */
+
 #ifndef TCP_DAEMON_H_
 #define TCP_DAEMON_H_
+
+/** @cond */
 
 #include <queue>
 #include <vector>
@@ -16,6 +50,8 @@
 
 #include "rmw/error_handling.h"
 
+/** @endcond */
+
 #define ADDRESS "127.0.0.1"
 #define PORT 4000
 
@@ -27,8 +63,30 @@ class TcpDaemon
   public:
     TcpDaemon();
     
+   /**
+    * @brief Initialize the socket communication
+    *
+    * This function allows the middleware to estabilish a connection to the
+    * DESERT stack through a TCP socket.
+    */
     bool init();
+   /**
+    * @brief Read a packet from the _rx_packets member as vector of bytes
+    *
+    * This function is used by the various RxStream instances contained in 
+    * subscribers, clients and services.
+    *
+    * @return The packet that was read from the DESERT stack
+    */
     static std::vector<uint8_t> read_packet();
+   /**
+    * @brief Enqueue a packet in the _tx_packets member as vector of bytes
+    *
+    * This function is used by the various TxStream instances contained in 
+    * publishers, clients and services.
+    *
+    * @param packet The packet that has to be sent through the DESERT stack
+    */
     static void enqueue_packet(std::vector<uint8_t> packet);
     
     

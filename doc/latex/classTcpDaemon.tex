@@ -1,0 +1,65 @@
+\doxysection{Tcp\+Daemon Class Reference}
+\hypertarget{classTcpDaemon}{}\label{classTcpDaemon}\index{TcpDaemon@{TcpDaemon}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classTcpDaemon_a7025ee77314962b239777383aaf80a13}{init}} ()
+\begin{DoxyCompactList}\small\item\em Initialize the socket communication. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::vector$<$ uint8\+\_\+t $>$ \mbox{\hyperlink{classTcpDaemon_a523b53e96972960a1695fb0fedf86802}{read\+\_\+packet}} ()
+\begin{DoxyCompactList}\small\item\em Read a packet from the \+\_\+rx\+\_\+packets member as vector of bytes. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classTcpDaemon_a160887a42b7411a2a07828b3ff6f91eb}{enqueue\+\_\+packet}} (std\+::vector$<$ uint8\+\_\+t $>$ packet)
+\begin{DoxyCompactList}\small\item\em Enqueue a packet in the \+\_\+tx\+\_\+packets member as vector of bytes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classTcpDaemon_a160887a42b7411a2a07828b3ff6f91eb}\label{classTcpDaemon_a160887a42b7411a2a07828b3ff6f91eb} 
+\index{TcpDaemon@{TcpDaemon}!enqueue\_packet@{enqueue\_packet}}
+\index{enqueue\_packet@{enqueue\_packet}!TcpDaemon@{TcpDaemon}}
+\doxysubsubsection{\texorpdfstring{enqueue\_packet()}{enqueue\_packet()}}
+{\footnotesize\ttfamily void Tcp\+Daemon\+::enqueue\+\_\+packet (\begin{DoxyParamCaption}\item[{std\+::vector$<$ uint8\+\_\+t $>$}]{packet }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Enqueue a packet in the \+\_\+tx\+\_\+packets member as vector of bytes. 
+
+This function is used by the various Tx\+Stream instances contained in publishers, clients and services.
+
+
+\begin{DoxyParams}{Parameters}
+{\em packet} & The packet that has to be sent through the DESERT stack \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classTcpDaemon_a7025ee77314962b239777383aaf80a13}\label{classTcpDaemon_a7025ee77314962b239777383aaf80a13} 
+\index{TcpDaemon@{TcpDaemon}!init@{init}}
+\index{init@{init}!TcpDaemon@{TcpDaemon}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily bool Tcp\+Daemon\+::init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialize the socket communication. 
+
+This function allows the middleware to estabilish a connection to the DESERT stack through a TCP socket. \Hypertarget{classTcpDaemon_a523b53e96972960a1695fb0fedf86802}\label{classTcpDaemon_a523b53e96972960a1695fb0fedf86802} 
+\index{TcpDaemon@{TcpDaemon}!read\_packet@{read\_packet}}
+\index{read\_packet@{read\_packet}!TcpDaemon@{TcpDaemon}}
+\doxysubsubsection{\texorpdfstring{read\_packet()}{read\_packet()}}
+{\footnotesize\ttfamily std\+::vector$<$ uint8\+\_\+t $>$ Tcp\+Daemon\+::read\+\_\+packet (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Read a packet from the \+\_\+rx\+\_\+packets member as vector of bytes. 
+
+This function is used by the various Rx\+Stream instances contained in subscribers, clients and services.
+
+\begin{DoxyReturn}{Returns}
+The packet that was read from the DESERT stack 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/desert\+\_\+classes/\mbox{\hyperlink{TcpDaemon_8h}{Tcp\+Daemon.\+h}}\item 
+src/desert\+\_\+classes/Tcp\+Daemon.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,19 @@
+<map id="half_float::detail::bool_type&lt; bool &gt;" name="half_float::detail::bool_type&lt; bool &gt;">
+<area shape="rect" id="Node000001" title="Helper for tag dispatching." alt="" coords="5,197,157,237"/>
+<area shape="rect" id="Node000002" href="$structhalf__float_1_1detail_1_1is__float.html" title=" " alt="" coords="233,69,361,109"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="112,186,154,152,204,119,231,106,233,111,207,124,157,156,116,190"/>
+<area shape="rect" id="Node000006" href="$structhalf__float_1_1detail_1_1is__float.html" title="Type traits for floating&#45;point types." alt="" coords="210,133,383,173"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="162,191,228,171,230,176,163,196"/>
+<area shape="rect" id="Node000007" href="$structhalf__float_1_1detail_1_1is__float_3_01double_01_4.html" title=" " alt="" coords="221,197,372,237"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="171,215,221,215,221,220,171,220"/>
+<area shape="rect" id="Node000008" href="$structhalf__float_1_1detail_1_1is__float_3_01float_01_4.html" title=" " alt="" coords="229,261,365,301"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="163,239,230,259,228,264,162,244"/>
+<area shape="rect" id="Node000009" href="$structhalf__float_1_1detail_1_1is__float_3_01long_01double_01_4.html" title=" " alt="" coords="205,325,388,365"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="116,244,157,279,207,311,232,323,230,328,204,316,154,283,112,248"/>
+<area shape="rect" id="Node000003" href="$structhalf__float_1_1detail_1_1is__float_3_01const_01T_01_4.html" title=" " alt="" coords="462,5,617,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="374,66,462,43,464,48,375,72"/>
+<area shape="rect" id="Node000004" href="$structhalf__float_1_1detail_1_1is__float_3_01const_01volatile_01T_01_4.html" title=" " alt="" coords="436,69,643,109"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="375,87,436,87,436,92,375,92"/>
+<area shape="rect" id="Node000005" href="$structhalf__float_1_1detail_1_1is__float_3_01volatile_01T_01_4.html" title=" " alt="" coords="455,133,623,173"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="375,107,464,131,462,136,374,112"/>
+</map>

@@ -1,0 +1,72 @@
+\doxysection{Desert\+Subscriber Class Reference}
+\hypertarget{classDesertSubscriber}{}\label{classDesertSubscriber}\index{DesertSubscriber@{DesertSubscriber}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classDesertSubscriber_a8f83b811e02c28534cc5b7d3f10c99ff}{Desert\+Subscriber}} (std\+::string topic\+\_\+name, const rosidl\+\_\+message\+\_\+type\+\_\+support\+\_\+t \texorpdfstring{$\ast$}{*}type\+\_\+supports)
+\begin{DoxyCompactList}\small\item\em Create a subscriber. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classDesertSubscriber_ae8a99cb6180868be903a06e4e3a8a81d}{has\+\_\+data}} ()
+\begin{DoxyCompactList}\small\item\em Check if there is available data for the registered topic. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDesertSubscriber_a147c99efc5d5784ee75b54914f59cd5c}{read\+\_\+data}} (void \texorpdfstring{$\ast$}{*}msg)
+\begin{DoxyCompactList}\small\item\em Read a publication from the publisher. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classDesertSubscriber_a8f83b811e02c28534cc5b7d3f10c99ff}\label{classDesertSubscriber_a8f83b811e02c28534cc5b7d3f10c99ff} 
+\index{DesertSubscriber@{DesertSubscriber}!DesertSubscriber@{DesertSubscriber}}
+\index{DesertSubscriber@{DesertSubscriber}!DesertSubscriber@{DesertSubscriber}}
+\doxysubsubsection{\texorpdfstring{DesertSubscriber()}{DesertSubscriber()}}
+{\footnotesize\ttfamily Desert\+Subscriber\+::\+Desert\+Subscriber (\begin{DoxyParamCaption}\item[{std\+::string}]{topic\+\_\+name,  }\item[{const rosidl\+\_\+message\+\_\+type\+\_\+support\+\_\+t \texorpdfstring{$\ast$}{*}}]{type\+\_\+supports }\end{DoxyParamCaption})}
+
+
+
+Create a subscriber. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em topic\+\_\+name} & Name of the topic used for the registration \\
+\hline
+{\em type\+\_\+supports} & Pointer to the message data structure coming from the ROS upper layers \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classDesertSubscriber_ae8a99cb6180868be903a06e4e3a8a81d}\label{classDesertSubscriber_ae8a99cb6180868be903a06e4e3a8a81d} 
+\index{DesertSubscriber@{DesertSubscriber}!has\_data@{has\_data}}
+\index{has\_data@{has\_data}!DesertSubscriber@{DesertSubscriber}}
+\doxysubsubsection{\texorpdfstring{has\_data()}{has\_data()}}
+{\footnotesize\ttfamily bool Desert\+Subscriber\+::has\+\_\+data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Check if there is available data for the registered topic. 
+
+The has\+\_\+data function calls the interpret\+\_\+packets method in Rx\+Stream and then verifies if in the map of subscriber packets there is a correspondence with the topic name of the current instance.
+
+\begin{DoxyReturn}{Returns}
+True if data is present otherwise false 
+\end{DoxyReturn}
+\Hypertarget{classDesertSubscriber_a147c99efc5d5784ee75b54914f59cd5c}\label{classDesertSubscriber_a147c99efc5d5784ee75b54914f59cd5c} 
+\index{DesertSubscriber@{DesertSubscriber}!read\_data@{read\_data}}
+\index{read\_data@{read\_data}!DesertSubscriber@{DesertSubscriber}}
+\doxysubsubsection{\texorpdfstring{read\_data()}{read\_data()}}
+{\footnotesize\ttfamily void Desert\+Subscriber\+::read\+\_\+data (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{msg }\end{DoxyParamCaption})}
+
+
+
+Read a publication from the publisher. 
+
+The read\+\_\+data function interprets a transmission with the topic name present in the current instance deserializing the message using the method from the \doxylink{namespaceMessageSerialization}{Message\+Serialization} namespace. A discrimination is made between C members and C++ members based on the type support.
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & Pointer to the memory location used to store the message \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/desert\+\_\+classes/\mbox{\hyperlink{DesertSubscriber_8h}{Desert\+Subscriber.\+h}}\item 
+src/desert\+\_\+classes/Desert\+Subscriber.\+cpp\end{DoxyCompactItemize}
