@@ -63,8 +63,6 @@
 #define CLIENT_TYPE     2
 #define SERVICE_TYPE    3
 
-#define MAX_PACKET_LENGTH 512
-
 namespace cbor
 {
 

@@ -52,11 +52,14 @@
 
 /** @endcond */
 
+#define MAX_PACKET_LENGTH 512
+
 #define ADDRESS "127.0.0.1"
 #define PORT 4000
 
-#define END_MARKER 0b01010101
-#define BYTE_MASK 0b11111111
+#define START_MARKER 0b10011001
+#define END_MARKER   0b01010101
+#define BYTE_MASK    0b11111111
 
 class TcpDaemon
 {

@@ -57,18 +57,14 @@ std::vector<uint8_t> TcpDaemon::read_packet()
 
 void TcpDaemon::enqueue_packet(std::vector<uint8_t> packet)
 {
-  packet.push_back(packet.size() & BYTE_MASK);
-  packet.push_back(END_MARKER);
-  packet.push_back(END_MARKER);
-  packet.push_back(END_MARKER);
-    
-
   _tx_packets.push(packet);
 }
 
 void TcpDaemon::socket_rx_communication()
 {
   std::vector<uint8_t> packet;
+  bool found_header = false;
+  uint8_t dimension_in_header = 0;
   
   while (true)
   {
@@ -95,28 +91,39 @@ void TcpDaemon::socket_rx_communication()
       {
         uint8_t field = static_cast<uint8_t>(* (buffer + i));
         packet.push_back(field);
-
-        bool found_end_sequence = true;
-        for (int c=1; c <= 3; c++)
+        
+        // Found header
+        if (!found_header && packet.end()[-2] == START_MARKER && packet.end()[-3] == START_MARKER)
         {
-          if (packet.end()[-c] != END_MARKER)
-          {
-            found_end_sequence = false;
-          }
+          packet.clear();
+          found_header = true;
+          dimension_in_header = field;
         }
-        if (found_end_sequence)
+        
+        // Found tail
+        if (found_header && packet.end()[-1] == END_MARKER)
         {
-          uint8_t read_size = packet.end()[-4];
-          uint8_t real_size = (packet.size() - 4) & BYTE_MASK;
-          if (read_size == real_size)
+          uint8_t real_size = (packet.size() - 1) & BYTE_MASK;
+          if (dimension_in_header == real_size)
           {
-            packet.pop_back();
-            packet.pop_back();
-            packet.pop_back();
             packet.pop_back();
             _rx_packets.push(packet);
+            found_header = false;
+            packet.clear();
           }
+        }
+        
+        // Erase oldest element if a RMR_desert header was not found
+        if (!found_header && packet.size() > 5)
+        {
+          packet.erase(packet.begin());
+        }
+        
+        // Overflow
+        if (packet.size() > MAX_PACKET_LENGTH)
+        {
           packet.clear();
+          found_header = false;
         }
       }
           
@@ -135,6 +142,17 @@ void TcpDaemon::socket_tx_communication()
     for(size_t i=0; i < _tx_packets.size(); i++)
     {
       std::vector<uint8_t> packet = _tx_packets.front();
+      
+      // Header
+      uint8_t payload_size = packet.size() & BYTE_MASK;
+      
+      packet.insert(packet.begin(), payload_size);
+      packet.insert(packet.begin(), START_MARKER);
+      packet.insert(packet.begin(), START_MARKER);
+      
+      // Tail
+      packet.push_back(END_MARKER);
+    
       const char * casted_packet = reinterpret_cast<const char *>(packet.data());
       send(_client_fd, casted_packet, packet.size(), 0);
       _tx_packets.pop();
