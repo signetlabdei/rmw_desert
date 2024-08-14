@@ -113,13 +113,20 @@ void TcpDaemon::socket_rx_communication()
           }
         }
         
-        // Erase oldest element if a RMR_desert header was not found
+        // Erase oldest element if a RMW_desert header was not found
         if (!found_header && packet.size() > 5)
         {
           packet.erase(packet.begin());
         }
         
-        // Overflow
+        // Overflow first type
+        if (found_header && packet.size() > dimension_in_header)
+        {
+          packet.clear();
+          found_header = false;
+        }
+        
+        // Overflow second type
         if (packet.size() > MAX_PACKET_LENGTH)
         {
           packet.clear();
