@@ -119,14 +119,7 @@ void TcpDaemon::socket_rx_communication()
           packet.erase(packet.begin());
         }
         
-        // Overflow first type
-        if (found_header && packet.size() > dimension_in_header)
-        {
-          packet.clear();
-          found_header = false;
-        }
-        
-        // Overflow second type
+        // Overflow
         if (packet.size() > MAX_PACKET_LENGTH)
         {
           packet.clear();
