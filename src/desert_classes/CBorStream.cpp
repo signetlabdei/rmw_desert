@@ -5,9 +5,10 @@ namespace cbor
 
 // TX stream
 
-TxStream::TxStream(uint8_t stream_type, std::string stream_name)
+TxStream::TxStream(uint8_t stream_type, std::string stream_name, uint8_t stream_identifier)
       : _stream_type(stream_type)
       , _stream_name(stream_name)
+      , _stream_identifier(stream_identifier)
 {
 }
 
@@ -25,9 +26,9 @@ void TxStream::start_transmission(uint64_t sequence_id)
   new_packet();
   _overflow = false;
   
-  // Stream type, service name and sequence id
+  // Stream type, service name/identifier and sequence id
   *this << _stream_type;
-  *this << _stream_name;
+  *this << _stream_identifier;
   *this << sequence_id;
 }
 
@@ -36,9 +37,9 @@ void TxStream::start_transmission()
   new_packet();
   _overflow = false;
   
-  // Stream type and topic name
+  // Stream type and topic name/identifier
   *this << _stream_type;
-  *this << _stream_name;
+  *this << _stream_identifier;
 }
 
 void TxStream::end_transmission()
@@ -187,9 +188,10 @@ std::string TxStream::toUTF8(const std::u16string source)
 
 // RX stream
 
-RxStream::RxStream(uint8_t stream_type, std::string stream_name)
+RxStream::RxStream(uint8_t stream_type, std::string stream_name, uint8_t stream_identifier)
       : _stream_type(stream_type)
       , _stream_name(stream_name)
+      , _stream_identifier(stream_identifier)
 {
 }
 
@@ -385,6 +387,7 @@ void RxStream::interpret_packets()
     
     uint8_t stream_type;
     int64_t sequence_id;
+    uint8_t stream_identifier;
     std::string stream_name;
     
     std::vector<std::pair<void *, int>> interpreted_packet;
@@ -402,8 +405,13 @@ void RxStream::interpret_packets()
       }
       else if (i == 1)
       {
-        val.str_copy[items[i].size] = '\0';
-        stream_name = reinterpret_cast<const char *>(val.str_copy);
+        stream_identifier = val.i8;
+        stream_name = TopicsConfig::get_identifier_topic(stream_identifier);
+        
+        if (stream_name.empty())
+        {
+          break;
+        }
       }
       else if (i == 2 && stream_type == SERVICE_TYPE)
       {
@@ -418,6 +426,11 @@ void RxStream::interpret_packets()
           interpreted_packet.push_back(field);
         }
       }
+    }
+    
+    if (stream_name.empty())
+    {
+      continue;
     }
     
     switch (stream_type)

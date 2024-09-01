@@ -90,8 +90,9 @@ class DesertSubscriber
     void read_data(void * msg);
   
   private:
-    cbor::RxStream _data_stream;
+    uint8_t _id;
     std::string _name;
+    cbor::RxStream _data_stream;
     
     int _c_cpp_identifier;
     const void * _members;

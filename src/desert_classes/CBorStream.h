@@ -35,6 +35,7 @@
 #define CBORSTREAM_H_
 
 #include "TcpDaemon.h"
+#include "TopicsConfig.h"
 
 /** @cond */
 
@@ -72,10 +73,11 @@ class TxStream
    /**
     * @brief Create a transmission stream
     *
-    * @param stream_type  Type of the object using the current instance
-    * @param stream_name  Name of the topic or the service to which the communication belongs
+    * @param stream_type        Type of the object using the current instance
+    * @param stream_name        Name of the topic or the service to which the communication belongs
+    * @param stream_identifier  Identifier of the topic or the service read from configuration
     */
-    TxStream(uint8_t stream_type, std::string stream_name);
+    TxStream(uint8_t stream_type, std::string stream_name, uint8_t stream_identifier);
     
    /**
     * @brief Tell the stream to create a new packet
@@ -209,6 +211,7 @@ class TxStream
   private:
     uint8_t _stream_type;
     std::string _stream_name;
+    uint8_t _stream_identifier;
     
     bool _overflow;
     uint8_t *  _packet;
@@ -227,10 +230,11 @@ class RxStream
    /**
     * @brief Create a reception stream
     *
-    * @param stream_type  Type of the object using the current instance
-    * @param stream_name  Name of the topic or the service to which the communication belongs
+    * @param stream_type        Type of the object using the current instance
+    * @param stream_name        Name of the topic or the service to which the communication belongs
+    * @param stream_identifier  Identifier of the topic or the service read from configuration
     */
-    RxStream(uint8_t stream_type, std::string stream_name);
+    RxStream(uint8_t stream_type, std::string stream_name, uint8_t stream_identifier);
     
    /**
     * @brief Check if there are data
@@ -369,6 +373,7 @@ class RxStream
   private:
     uint8_t _stream_type;
     std::string _stream_name;
+    uint8_t _stream_identifier;
     
     int _buffered_iterator;
     std::vector<std::pair<void *, int>> _buffered_packet;

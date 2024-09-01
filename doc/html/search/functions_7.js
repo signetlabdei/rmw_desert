@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['push_0',['push',['../classDesertPublisher.html#a0a8d1a319c9ff5d7ae488f573464801d',1,'DesertPublisher']]]
+  ['load_5fconfiguration_0',['load_configuration',['../classTopicsConfig.html#a1780e7196a87bde3af5db2c19d4325e2',1,'TopicsConfig']]]
 ];

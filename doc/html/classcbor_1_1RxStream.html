@@ -84,9 +84,9 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a3b387fcb4dbc9280e2c74c9f88528bee" id="r_a3b387fcb4dbc9280e2c74c9f88528bee"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcbor_1_1RxStream.html#a3b387fcb4dbc9280e2c74c9f88528bee">RxStream</a> (uint8_t stream_type, std::string stream_name)</td></tr>
-<tr class="memdesc:a3b387fcb4dbc9280e2c74c9f88528bee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a reception stream.  <br /></td></tr>
-<tr class="separator:a3b387fcb4dbc9280e2c74c9f88528bee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69c580c78b5cf3cab873d750ba2afc50" id="r_a69c580c78b5cf3cab873d750ba2afc50"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcbor_1_1RxStream.html#a69c580c78b5cf3cab873d750ba2afc50">RxStream</a> (uint8_t stream_type, std::string stream_name, uint8_t stream_identifier)</td></tr>
+<tr class="memdesc:a69c580c78b5cf3cab873d750ba2afc50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a reception stream.  <br /></td></tr>
+<tr class="separator:a69c580c78b5cf3cab873d750ba2afc50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7dde7a85f3cc8d9ad63aa78a13e767cb" id="r_a7dde7a85f3cc8d9ad63aa78a13e767cb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcbor_1_1RxStream.html#a7dde7a85f3cc8d9ad63aa78a13e767cb">data_available</a> (int64_t sequence_id=0)</td></tr>
 <tr class="memdesc:a7dde7a85f3cc8d9ad63aa78a13e767cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if there are data.  <br /></td></tr>
 <tr class="separator:a7dde7a85f3cc8d9ad63aa78a13e767cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -155,8 +155,8 @@ Static Public Member Functions</h2></td></tr>
 <tr class="separator:a51fd2cb5fd15348118c4107beb3d7ad8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a3b387fcb4dbc9280e2c74c9f88528bee" name="a3b387fcb4dbc9280e2c74c9f88528bee"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3b387fcb4dbc9280e2c74c9f88528bee">&#9670;&#160;</a></span>RxStream()</h2>
+<a id="a69c580c78b5cf3cab873d750ba2afc50" name="a69c580c78b5cf3cab873d750ba2afc50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69c580c78b5cf3cab873d750ba2afc50">&#9670;&#160;</a></span>RxStream()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -171,7 +171,13 @@ Static Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>stream_name</em>&#160;</td>
+          <td class="paramname"><em>stream_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>stream_identifier</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -186,6 +192,7 @@ Static Public Member Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">stream_type</td><td>Type of the object using the current instance </td></tr>
     <tr><td class="paramname">stream_name</td><td>Name of the topic or the service to which the communication belongs </td></tr>
+    <tr><td class="paramname">stream_identifier</td><td>Identifier of the topic or the service read from configuration </td></tr>
   </table>
   </dd>
 </dl>

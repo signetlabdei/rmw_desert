@@ -50,6 +50,7 @@ add_library(rmw_desert
   src/desert_classes/CBorStream.cpp
   src/desert_classes/CStringHelper.cpp
   src/desert_classes/TcpDaemon.cpp
+  src/desert_classes/TopicsConfig.cpp
   
   ${CBOR_ROOT}/src/common.c
   ${CBOR_ROOT}/src/parser.c

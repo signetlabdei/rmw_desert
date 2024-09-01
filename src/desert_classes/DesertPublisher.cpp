@@ -2,7 +2,8 @@
 
 DesertPublisher::DesertPublisher(std::string topic_name, const rosidl_message_type_support_t * type_supports)
       : _name(topic_name)
-      , _data_stream(cbor::TxStream(PUBLISHER_TYPE, topic_name))
+      , _id(TopicsConfig::get_topic_identifier(topic_name))
+      , _data_stream(cbor::TxStream(PUBLISHER_TYPE, topic_name, _id))
 {
   const rosidl_message_type_support_t * type_support = get_type_support(type_supports);
   _members = get_members(type_support);
@@ -10,7 +11,8 @@ DesertPublisher::DesertPublisher(std::string topic_name, const rosidl_message_ty
 
 void DesertPublisher::push(const void * msg)
 {
-  if (_name == "/rosout") return;
+  // Stream identifier equals to zero means that the corresponding topic is disabled
+  if (_id == 0) return;
   
   _data_stream.start_transmission();
   

@@ -2,7 +2,8 @@
 
 DesertSubscriber::DesertSubscriber(std::string topic_name, const rosidl_message_type_support_t * type_supports)
       : _name(topic_name)
-      , _data_stream(cbor::RxStream(SUBSCRIBER_TYPE, topic_name))
+      , _id(TopicsConfig::get_topic_identifier(topic_name))
+      , _data_stream(cbor::RxStream(SUBSCRIBER_TYPE, topic_name, _id))
 {
   const rosidl_message_type_support_t * type_support = get_type_support(type_supports);
   _members = get_members(type_support);

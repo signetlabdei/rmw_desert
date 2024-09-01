@@ -13,6 +13,8 @@ rmw_ret_t rmw_init(const rmw_init_options_t * options,  rmw_context_t * context)
 {
   DEBUG("rmw_init" "\n");
   srand (time(NULL));
+  
+  TopicsConfig::load_configuration();
   TcpDaemon tcp = TcpDaemon();
   
   if (tcp.init() == 0)

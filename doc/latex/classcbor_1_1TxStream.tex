@@ -3,7 +3,7 @@
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classcbor_1_1TxStream_a836cd3f8c42db37d0a181769a1d9e9bf}{Tx\+Stream}} (uint8\+\_\+t stream\+\_\+type, std\+::string stream\+\_\+name)
+\mbox{\hyperlink{classcbor_1_1TxStream_a556c2ccd8d419899b011c256104fdec6}{Tx\+Stream}} (uint8\+\_\+t stream\+\_\+type, std\+::string stream\+\_\+name, uint8\+\_\+t stream\+\_\+identifier)
 \begin{DoxyCompactList}\small\item\em Create a transmission stream. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classcbor_1_1TxStream_ae6c6dc165f3411ea5dfa7d3e0e90e80c}{start\+\_\+transmission}} (uint64\+\_\+t sequence\+\_\+id)
 \begin{DoxyCompactList}\small\item\em Tell the stream to create a new packet. \end{DoxyCompactList}\item 
@@ -48,11 +48,11 @@ void \mbox{\hyperlink{classcbor_1_1TxStream_a7c08187453b92347ee439af8648a1379}{e
 
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\Hypertarget{classcbor_1_1TxStream_a836cd3f8c42db37d0a181769a1d9e9bf}\label{classcbor_1_1TxStream_a836cd3f8c42db37d0a181769a1d9e9bf} 
+\Hypertarget{classcbor_1_1TxStream_a556c2ccd8d419899b011c256104fdec6}\label{classcbor_1_1TxStream_a556c2ccd8d419899b011c256104fdec6} 
 \index{cbor::TxStream@{cbor::TxStream}!TxStream@{TxStream}}
 \index{TxStream@{TxStream}!cbor::TxStream@{cbor::TxStream}}
 \doxysubsubsection{\texorpdfstring{TxStream()}{TxStream()}}
-{\footnotesize\ttfamily cbor\+::\+Tx\+Stream\+::\+Tx\+Stream (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{stream\+\_\+type,  }\item[{std\+::string}]{stream\+\_\+name }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily cbor\+::\+Tx\+Stream\+::\+Tx\+Stream (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{stream\+\_\+type,  }\item[{std\+::string}]{stream\+\_\+name,  }\item[{uint8\+\_\+t}]{stream\+\_\+identifier }\end{DoxyParamCaption})}
 
 
 
@@ -63,6 +63,8 @@ Create a transmission stream.
 {\em stream\+\_\+type} & Type of the object using the current instance \\
 \hline
 {\em stream\+\_\+name} & Name of the topic or the service to which the communication belongs \\
+\hline
+{\em stream\+\_\+identifier} & Identifier of the topic or the service read from configuration \\
 \hline
 \end{DoxyParams}
 

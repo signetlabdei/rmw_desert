@@ -82,8 +82,9 @@ class DesertPublisher
     
     
   private:
-    cbor::TxStream _data_stream;
+    uint8_t _id;
     std::string _name;
+    cbor::TxStream _data_stream;
     
     int _c_cpp_identifier;
     const void * _members;

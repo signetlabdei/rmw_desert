@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['macros_2eh_0',['macros.h',['../macros_8h.html',1,'']]],
-  ['messageserialization_1',['MessageSerialization',['../namespaceMessageSerialization.html',1,'']]],
-  ['messageserialization_2eh_2',['MessageSerialization.h',['../MessageSerialization_8h.html',1,'']]]
+  ['load_5fconfiguration_0',['load_configuration',['../classTopicsConfig.html#a1780e7196a87bde3af5db2c19d4325e2',1,'TopicsConfig']]]
 ];

@@ -1,17 +1,21 @@
 <map id="src/desert_classes/CBorStream.h" name="src/desert_classes/CBorStream.h">
-<area shape="rect" id="Node000001" title="Classes used to convert data types into a CBOR encoded stream." alt="" coords="411,5,553,45"/>
+<area shape="rect" id="Node000001" title="Classes used to convert data types into a CBOR encoded stream." alt="" coords="479,5,621,45"/>
 <area shape="rect" id="Node000002" href="$TcpDaemon_8h.html" title="Class used to send and receive data from the DESERT socket." alt="" coords="5,93,116,119"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="411,42,130,94,129,89,411,37"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="141,93,258,119"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="415,48,254,92,253,87,414,43"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="281,93,400,119"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="449,48,375,89,373,84,447,43"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="423,93,541,119"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="485,46,485,79,479,79,479,46"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="565,93,671,119"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="516,43,587,84,585,89,513,48"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="695,93,802,119"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="547,43,697,87,696,92,545,48"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="826,93,901,119"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="553,38,813,90,812,96,552,43"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="480,40,130,96,129,91,479,35"/>
+<area shape="rect" id="Node000003" href="$TopicsConfig_8h.html" title="Class used to store configurations." alt="" coords="141,93,255,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="480,45,263,93,262,88,479,40"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="279,93,397,119"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="500,48,383,91,381,86,498,43"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="420,93,539,119"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="535,47,501,85,497,81,531,44"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="562,93,679,119"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="569,44,603,81,599,85,565,47"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="703,93,810,119"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="600,43,715,86,713,91,599,48"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="834,93,941,119"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="621,40,825,88,824,93,620,46"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="965,93,1039,119"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="621,34,769,58,952,91,951,96,768,63,620,40"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="159,167,237,192"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="201,119,201,153,195,153,195,119"/>
 </map>

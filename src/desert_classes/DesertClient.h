@@ -106,9 +106,11 @@ class DesertClient
     
     
   private:
+    uint8_t _id;
+    std::string _name;
     cbor::TxStream _request_data_stream;
     cbor::RxStream _response_data_stream;
-    std::string _name;
+    
     int64_t _sequence_id;
     
     int _c_cpp_identifier;

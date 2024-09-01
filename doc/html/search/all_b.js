@@ -1,9 +1,8 @@
 var searchData=
 [
-  ['send_5frequest_0',['send_request',['../classDesertClient.html#a5e3d1cda4c4e42f571600b7363fb1ff1',1,'DesertClient']]],
-  ['send_5fresponse_1',['send_response',['../classDesertService.html#a15f4dfeedb27ccd96f535a5c9a859029',1,'DesertService']]],
-  ['serialize_2',['serialize',['../namespaceMessageSerialization.html#ad0baadb3e6c0ac806d2904860ab3124b',1,'MessageSerialization']]],
-  ['serialize_5ffield_3',['serialize_field',['../namespaceMessageSerialization.html#a4653b01605e1faeff5d18e1934bc953a',1,'MessageSerialization::serialize_field(const INTROSPECTION_CPP_MEMBER *member, void *field, cbor::TxStream &amp;stream)'],['../namespaceMessageSerialization.html#afd266190807c8abdbce73fecefb39f5f',1,'MessageSerialization::serialize_field(const INTROSPECTION_C_MEMBER *member, void *field, cbor::TxStream &amp;stream)']]],
-  ['serialize_5fsequence_4',['serialize_sequence',['../classcbor_1_1TxStream.html#a3431c0b1f28dbf862f9b337ffd0c9272',1,'cbor::TxStream']]],
-  ['start_5ftransmission_5',['start_transmission',['../classcbor_1_1TxStream.html#ae6c6dc165f3411ea5dfa7d3e0e90e80c',1,'cbor::TxStream::start_transmission(uint64_t sequence_id)'],['../classcbor_1_1TxStream.html#acd05bc87a3a3b29b584e4bb3e507b694',1,'cbor::TxStream::start_transmission()']]]
+  ['read_5fdata_0',['read_data',['../classDesertSubscriber.html#a147c99efc5d5784ee75b54914f59cd5c',1,'DesertSubscriber']]],
+  ['read_5fpacket_1',['read_packet',['../classTcpDaemon.html#a523b53e96972960a1695fb0fedf86802',1,'TcpDaemon']]],
+  ['read_5frequest_2',['read_request',['../classDesertService.html#abf15af03595c4766af4b0ca8272349c3',1,'DesertService']]],
+  ['read_5fresponse_3',['read_response',['../classDesertClient.html#aa8fc3251826e492e850c714db6b39d11',1,'DesertClient']]],
+  ['rxstream_4',['rxstream',['../classcbor_1_1RxStream.html',1,'cbor::RxStream'],['../classcbor_1_1RxStream.html#a69c580c78b5cf3cab873d750ba2afc50',1,'cbor::RxStream::RxStream()']]]
 ];

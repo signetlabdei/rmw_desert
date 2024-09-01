@@ -1,0 +1,51 @@
+\doxysection{Topics\+Config.\+h}
+\hypertarget{TopicsConfig_8h_source}{}\label{TopicsConfig_8h_source}\index{src/desert\_classes/TopicsConfig.h@{src/desert\_classes/TopicsConfig.h}}
+\mbox{\hyperlink{TopicsConfig_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ Copyright\ (C)\ 2024\ Davide\ Costa\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ This\ file\ is\ part\ of\ RMW\ desert.\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ \ \ RMW\ desert\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify\ it\ \ *}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ \ \ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by\ the\ \ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ \ \ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or\ any\ \ \ \ \ \ *}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ \ \ later\ version.\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ \ \ RMW\ desert\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,\ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ \ \ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of\ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ \ \ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the\ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ \ GNU\ General\ Public\ License\ for\ more\ details.\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ \ \ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License\ \ \ \ \ \ *}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ \ \ along\ with\ RMW\ desert.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.\ \ \ \ *}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ ****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#ifndef\ TOPICS\_CONFIG\_H\_}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ TOPICS\_CONFIG\_H\_}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#include\ "{}json.hpp"{}}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{using\ namespace\ }nlohmann::json\_abi\_v3\_11\_3;}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classTopicsConfig}{TopicsConfig}}}
+\DoxyCodeLine{00049\ \{}
+\DoxyCodeLine{00050\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00051\ \ \ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classTopicsConfig_a1780e7196a87bde3af5db2c19d4325e2}{load\_configuration}}();}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{static}\ uint8\_t\ \mbox{\hyperlink{classTopicsConfig_a99f984e6d12761368f5e3c104c218bf3}{get\_topic\_identifier}}(std::string\ name);}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{static}\ std::string\ \mbox{\hyperlink{classTopicsConfig_a8cf3ec39e7ef281a0d93e69a16699d5f}{get\_identifier\_topic}}(uint8\_t\ identifier);}
+\DoxyCodeLine{00077\ \ \ }
+\DoxyCodeLine{00078\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{static}\ std::map<std::string,\ uint8\_t>\ \_topics\_list;}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keyword}{static}\ std::map<uint8\_t,\ std::string>\ \_identifiers\_list;}
+\DoxyCodeLine{00081\ \};}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ MACROS\_HPP\_}}
+
+\end{DoxyCode}

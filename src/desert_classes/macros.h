@@ -29,8 +29,8 @@
  *
  */
 
-#ifndef MACROS_HPP_
-#define MACROS_HPP_
+#ifndef MACROS_H_
+#define MACROS_H_
 
 /** @cond */
 

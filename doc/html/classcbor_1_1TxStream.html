@@ -82,9 +82,9 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a836cd3f8c42db37d0a181769a1d9e9bf" id="r_a836cd3f8c42db37d0a181769a1d9e9bf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcbor_1_1TxStream.html#a836cd3f8c42db37d0a181769a1d9e9bf">TxStream</a> (uint8_t stream_type, std::string stream_name)</td></tr>
-<tr class="memdesc:a836cd3f8c42db37d0a181769a1d9e9bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a transmission stream.  <br /></td></tr>
-<tr class="separator:a836cd3f8c42db37d0a181769a1d9e9bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a556c2ccd8d419899b011c256104fdec6" id="r_a556c2ccd8d419899b011c256104fdec6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcbor_1_1TxStream.html#a556c2ccd8d419899b011c256104fdec6">TxStream</a> (uint8_t stream_type, std::string stream_name, uint8_t stream_identifier)</td></tr>
+<tr class="memdesc:a556c2ccd8d419899b011c256104fdec6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a transmission stream.  <br /></td></tr>
+<tr class="separator:a556c2ccd8d419899b011c256104fdec6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6c6dc165f3411ea5dfa7d3e0e90e80c" id="r_ae6c6dc165f3411ea5dfa7d3e0e90e80c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcbor_1_1TxStream.html#ae6c6dc165f3411ea5dfa7d3e0e90e80c">start_transmission</a> (uint64_t sequence_id)</td></tr>
 <tr class="memdesc:ae6c6dc165f3411ea5dfa7d3e0e90e80c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tell the stream to create a new packet.  <br /></td></tr>
 <tr class="separator:ae6c6dc165f3411ea5dfa7d3e0e90e80c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -149,8 +149,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a3431c0b1f28dbf862f9b337ffd0c9272"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a836cd3f8c42db37d0a181769a1d9e9bf" name="a836cd3f8c42db37d0a181769a1d9e9bf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a836cd3f8c42db37d0a181769a1d9e9bf">&#9670;&#160;</a></span>TxStream()</h2>
+<a id="a556c2ccd8d419899b011c256104fdec6" name="a556c2ccd8d419899b011c256104fdec6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a556c2ccd8d419899b011c256104fdec6">&#9670;&#160;</a></span>TxStream()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -165,7 +165,13 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>stream_name</em>&#160;</td>
+          <td class="paramname"><em>stream_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>stream_identifier</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -180,6 +186,7 @@ Public Member Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">stream_type</td><td>Type of the object using the current instance </td></tr>
     <tr><td class="paramname">stream_name</td><td>Name of the topic or the service to which the communication belongs </td></tr>
+    <tr><td class="paramname">stream_identifier</td><td>Identifier of the topic or the service read from configuration </td></tr>
   </table>
   </dd>
 </dl>

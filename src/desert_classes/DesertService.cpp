@@ -2,8 +2,9 @@
 
 DesertService::DesertService(std::string service_name, const rosidl_service_type_support_t * type_supports)
       : _name(service_name)
-      , _request_data_stream(cbor::RxStream(SERVICE_TYPE, service_name))
-      , _response_data_stream(cbor::TxStream(SERVICE_TYPE, service_name))
+      , _id(TopicsConfig::get_topic_identifier(service_name))
+      , _request_data_stream(cbor::RxStream(SERVICE_TYPE, service_name, _id))
+      , _response_data_stream(cbor::TxStream(SERVICE_TYPE, service_name, _id))
 {
   const rosidl_service_type_support_t * service_type_support = get_service_type_support(type_supports);
   _service = get_service(service_type_support);
@@ -34,6 +35,9 @@ void DesertService::read_request(void * req, rmw_service_info_t * req_header)
 
 void DesertService::send_response(void * res, rmw_request_id_t * req_header)
 {
+  // Stream identifier equals to zero means that the corresponding service is disabled
+  if (_id == 0) return;
+  
   req_header->sequence_number = _sequence_id;
   _response_data_stream.start_transmission(_sequence_id);
   
