@@ -195,27 +195,27 @@ RxStream::RxStream(uint8_t stream_type, std::string stream_name, uint8_t stream_
 {
 }
 
-std::map<std::string, std::queue<std::vector<std::pair<void *, int>>>> RxStream::_interpreted_publications;
-std::map<std::string, std::queue<std::vector<std::pair<void *, int>>>> RxStream::_interpreted_requests;
-std::map<std::string, std::queue<std::vector<std::pair<void *, int>>>> RxStream::_interpreted_responses;
+std::map<uint32_t, std::queue<std::vector<std::pair<void *, int>>>> RxStream::_interpreted_publications;
+std::map<uint32_t, std::queue<std::vector<std::pair<void *, int>>>> RxStream::_interpreted_requests;
+std::map<uint32_t, std::queue<std::vector<std::pair<void *, int>>>> RxStream::_interpreted_responses;
 
 bool RxStream::data_available(int64_t sequence_id)
 {
   bool available = false;
-  std::map<std::string, std::queue<std::vector<std::pair<void *, int>>>>::iterator packets_iterator;
+  std::map<uint32_t, std::queue<std::vector<std::pair<void *, int>>>>::iterator packets_iterator;
   
   switch (_stream_type)
   {
     case SUBSCRIBER_TYPE:
-      packets_iterator = _interpreted_publications.find(_stream_name);
+      packets_iterator = _interpreted_publications.find(_stream_identifier);
       available = (packets_iterator != _interpreted_publications.end());
       break;
     case SERVICE_TYPE:
-      packets_iterator = _interpreted_requests.find(_stream_name);
+      packets_iterator = _interpreted_requests.find(_stream_identifier);
       available = (packets_iterator != _interpreted_requests.end());
       break;
     case CLIENT_TYPE:
-      packets_iterator = _interpreted_responses.find(_stream_name + std::to_string(sequence_id));
+      packets_iterator = _interpreted_responses.find(_stream_identifier + ((sequence_id & 0xFFF) << 8));
       available = (packets_iterator != _interpreted_responses.end());
       break;
   }
@@ -436,13 +436,13 @@ void RxStream::interpret_packets()
     switch (stream_type)
     {
       case PUBLISHER_TYPE:
-        _interpreted_publications[stream_name].push(interpreted_packet);
+        _interpreted_publications[stream_identifier].push(interpreted_packet);
         break;
       case CLIENT_TYPE:
-        _interpreted_requests[stream_name].push(interpreted_packet);
+        _interpreted_requests[stream_identifier].push(interpreted_packet);
         break;
       case SERVICE_TYPE:
-        _interpreted_responses[stream_name + std::to_string(sequence_id)].push(interpreted_packet);
+        _interpreted_responses[stream_identifier + ((sequence_id & 0xFFF) << 8)].push(interpreted_packet);
         break;
     }
   }

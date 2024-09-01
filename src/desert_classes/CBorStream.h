@@ -379,11 +379,11 @@ class RxStream
     std::vector<std::pair<void *, int>> _buffered_packet;
     
     // <topic, packets <packet <field, field_type>>>
-    static std::map<std::string, std::queue<std::vector<std::pair<void *, int>>>> _interpreted_publications;
+    static std::map<uint32_t, std::queue<std::vector<std::pair<void *, int>>>> _interpreted_publications;
     // <service, packets <packet <field, field_type>>>
-    static std::map<std::string, std::queue<std::vector<std::pair<void *, int>>>> _interpreted_requests;
+    static std::map<uint32_t, std::queue<std::vector<std::pair<void *, int>>>> _interpreted_requests;
     // <service + id, packets <packet <field, field_type>>>
-    static std::map<std::string, std::queue<std::vector<std::pair<void *, int>>>> _interpreted_responses;
+    static std::map<uint32_t, std::queue<std::vector<std::pair<void *, int>>>> _interpreted_responses;
     
     union _cbor_value {
 	int8_t i8;
