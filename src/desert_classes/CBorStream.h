@@ -64,6 +64,21 @@
 #define CLIENT_TYPE     2
 #define SERVICE_TYPE    3
 
+#define MAX_BUFFER_CAPACITY 100
+
+template <typename T, int MaxLen, typename Container=std::deque<T>>
+class CircularQueue : public std::queue<T, Container> {
+  public:
+    void push(const T& value)
+    {
+        if (this->size() == MaxLen)
+        {
+           this->c.pop_front();
+        }
+        std::queue<T, Container>::push(value);
+    }
+};
+
 namespace cbor
 {
 
@@ -379,11 +394,11 @@ class RxStream
     std::vector<std::pair<void *, int>> _buffered_packet;
     
     // <topic, packets <packet <field, field_type>>>
-    static std::map<uint32_t, std::queue<std::vector<std::pair<void *, int>>>> _interpreted_publications;
+    static std::map<uint32_t, CircularQueue<std::vector<std::pair<void *, int>>, MAX_BUFFER_CAPACITY>> _interpreted_publications;
     // <service, packets <packet <field, field_type>>>
-    static std::map<uint32_t, std::queue<std::vector<std::pair<void *, int>>>> _interpreted_requests;
+    static std::map<uint32_t, CircularQueue<std::vector<std::pair<void *, int>>, MAX_BUFFER_CAPACITY>> _interpreted_requests;
     // <service + id, packets <packet <field, field_type>>>
-    static std::map<uint32_t, std::queue<std::vector<std::pair<void *, int>>>> _interpreted_responses;
+    static std::map<uint32_t, CircularQueue<std::vector<std::pair<void *, int>>, MAX_BUFFER_CAPACITY>> _interpreted_responses;
     
     union _cbor_value {
 	int8_t i8;

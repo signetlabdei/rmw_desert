@@ -185,6 +185,12 @@ rmw_ret_t rmw_deserialize(const rmw_serialized_message_t * serialized_message, c
 rmw_ret_t rmw_destroy_client(rmw_node_t * node,  rmw_client_t * client)
 {
   DEBUG("rmw_destroy_client" "\n");
+  
+  DesertClient * cli = static_cast<DesertClient *>(client->data);
+  
+  delete cli;
+  delete client;
+  
   return RMW_RET_OK;
 }
 
@@ -197,30 +203,60 @@ rmw_ret_t rmw_destroy_guard_condition(rmw_guard_condition_t * guard_condition)
 rmw_ret_t rmw_destroy_node(rmw_node_t * node)
 {
   DEBUG("rmw_destroy_node" "\n");
+  
+  DesertNode * nod = static_cast<DesertNode *>(node->data);
+  
+  delete nod;
+  delete node;
+  
   return RMW_RET_OK;
 }
 
 rmw_ret_t rmw_destroy_publisher(rmw_node_t * node,  rmw_publisher_t * publisher)
 {
   DEBUG("rmw_destroy_publisher" "\n");
+  
+  DesertPublisher * pub = static_cast<DesertPublisher *>(publisher->data);
+  
+  delete pub;
+  delete publisher;
+  
   return RMW_RET_OK;
 }
 
 rmw_ret_t rmw_destroy_service(rmw_node_t * node,  rmw_service_t * service)
 {
   DEBUG("rmw_destroy_service" "\n");
+  
+  DesertService * ser = static_cast<DesertService *>(service->data);
+  
+  delete ser;
+  delete service;
+  
   return RMW_RET_OK;
 }
 
 rmw_ret_t rmw_destroy_subscription(rmw_node_t * node,  rmw_subscription_t * subscription)
 {
   DEBUG("rmw_destroy_subscription" "\n");
+  
+  DesertSubscriber * sub = static_cast<DesertSubscriber *>(subscription->data);
+  
+  delete sub;
+  delete subscription;
+  
   return RMW_RET_OK;
 }
 
 rmw_ret_t rmw_destroy_wait_set(rmw_wait_set_t * wait_set)
 {
   DEBUG("rmw_destroy_wait_set" "\n");
+  
+  DesertWaitset * ws = static_cast<DesertWaitset *>(wait_set->data);
+  
+  delete ws;
+  delete wait_set;
+  
   return RMW_RET_OK;
 }
 

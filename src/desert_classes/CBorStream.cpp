@@ -195,14 +195,14 @@ RxStream::RxStream(uint8_t stream_type, std::string stream_name, uint8_t stream_
 {
 }
 
-std::map<uint32_t, std::queue<std::vector<std::pair<void *, int>>>> RxStream::_interpreted_publications;
-std::map<uint32_t, std::queue<std::vector<std::pair<void *, int>>>> RxStream::_interpreted_requests;
-std::map<uint32_t, std::queue<std::vector<std::pair<void *, int>>>> RxStream::_interpreted_responses;
+std::map<uint32_t, CircularQueue<std::vector<std::pair<void *, int>>, MAX_BUFFER_CAPACITY>> RxStream::_interpreted_publications;
+std::map<uint32_t, CircularQueue<std::vector<std::pair<void *, int>>, MAX_BUFFER_CAPACITY>> RxStream::_interpreted_requests;
+std::map<uint32_t, CircularQueue<std::vector<std::pair<void *, int>>, MAX_BUFFER_CAPACITY>> RxStream::_interpreted_responses;
 
 bool RxStream::data_available(int64_t sequence_id)
 {
   bool available = false;
-  std::map<uint32_t, std::queue<std::vector<std::pair<void *, int>>>>::iterator packets_iterator;
+  std::map<uint32_t, CircularQueue<std::vector<std::pair<void *, int>>, MAX_BUFFER_CAPACITY>>::iterator packets_iterator;
   
   switch (_stream_type)
   {
