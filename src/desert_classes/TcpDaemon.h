@@ -55,7 +55,6 @@
 #define MAX_PACKET_LENGTH 512
 
 #define ADDRESS "127.0.0.1"
-#define PORT 4000
 
 #define START_MARKER 0b10011001
 #define END_MARKER   0b01010101
@@ -71,8 +70,10 @@ class TcpDaemon
     *
     * This function allows the middleware to estabilish a connection to the
     * DESERT stack through a TCP socket.
+    *
+    * @param port The TCP port of the DESERT application layer
     */
-    bool init();
+    bool init(int port);
    /**
     * @brief Read a packet from the _rx_packets member as vector of bytes
     *

@@ -8,7 +8,7 @@ int TcpDaemon::_client_fd;
 std::queue<std::vector<uint8_t>> TcpDaemon::_rx_packets;
 std::queue<std::vector<uint8_t>> TcpDaemon::_tx_packets;
 
-bool TcpDaemon::init()
+bool TcpDaemon::init(int port)
 {
   int status, valread;
   struct sockaddr_in serv_addr;
@@ -20,7 +20,7 @@ bool TcpDaemon::init()
   }
 
   serv_addr.sin_family = AF_INET;
-  serv_addr.sin_port = htons(PORT);
+  serv_addr.sin_port = htons(port);
 
   // Convert IPv4 and IPv6 addresses from text to binary form
   if (inet_pton(AF_INET, ADDRESS, &serv_addr.sin_addr) <= 0)
