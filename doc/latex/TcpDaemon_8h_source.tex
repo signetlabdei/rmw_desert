@@ -42,32 +42,31 @@
 \DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ MAX\_PACKET\_LENGTH\ 512}}
 \DoxyCodeLine{00056\ }
 \DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ ADDRESS\ "{}127.0.0.1"{}}}
-\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#define\ PORT\ 5000}}
-\DoxyCodeLine{00059\ }
-\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#define\ START\_MARKER\ 0b10011001}}
-\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ END\_MARKER\ \ \ 0b01010101}}
-\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ BYTE\_MASK\ \ \ \ 0b11111111}}
-\DoxyCodeLine{00063\ }
-\DoxyCodeLine{00064\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classTcpDaemon}{TcpDaemon}}}
-\DoxyCodeLine{00065\ \{}
-\DoxyCodeLine{00066\ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00067\ \ \ \ \ \mbox{\hyperlink{classTcpDaemon}{TcpDaemon}}();}
-\DoxyCodeLine{00068\ \ \ \ \ }
-\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classTcpDaemon_a7025ee77314962b239777383aaf80a13}{init}}();}
-\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{static}\ std::vector<uint8\_t>\ \mbox{\hyperlink{classTcpDaemon_a523b53e96972960a1695fb0fedf86802}{read\_packet}}();}
-\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classTcpDaemon_a160887a42b7411a2a07828b3ff6f91eb}{enqueue\_packet}}(std::vector<uint8\_t>\ packet);}
-\DoxyCodeLine{00094\ \ \ \ \ }
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#define\ START\_MARKER\ 0b10011001}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#define\ END\_MARKER\ \ \ 0b01010101}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ BYTE\_MASK\ \ \ \ 0b11111111}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classTcpDaemon}{TcpDaemon}}}
+\DoxyCodeLine{00064\ \{}
+\DoxyCodeLine{00065\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00066\ \ \ \ \ \mbox{\hyperlink{classTcpDaemon}{TcpDaemon}}();}
+\DoxyCodeLine{00067\ \ \ \ \ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classTcpDaemon_a454f4b0735ead9951d2b8c76de658398}{init}}(\textcolor{keywordtype}{int}\ port);}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{static}\ std::vector<uint8\_t>\ \mbox{\hyperlink{classTcpDaemon_a523b53e96972960a1695fb0fedf86802}{read\_packet}}();}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classTcpDaemon_a160887a42b7411a2a07828b3ff6f91eb}{enqueue\_packet}}(std::vector<uint8\_t>\ packet);}
 \DoxyCodeLine{00095\ \ \ \ \ }
-\DoxyCodeLine{00096\ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \_client\_fd;}
-\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{static}\ std::queue<std::vector<uint8\_t>>\ \_rx\_packets;}
-\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{static}\ std::queue<std::vector<uint8\_t>>\ \_tx\_packets;}
-\DoxyCodeLine{00100\ \ \ \ \ }
-\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordtype}{void}\ socket\_rx\_communication();}
-\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{void}\ socket\_tx\_communication();}
-\DoxyCodeLine{00103\ }
-\DoxyCodeLine{00104\ \};}
-\DoxyCodeLine{00105\ }
-\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00096\ \ \ \ \ }
+\DoxyCodeLine{00097\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \_client\_fd;}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{static}\ std::queue<std::vector<uint8\_t>>\ \_rx\_packets;}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keyword}{static}\ std::queue<std::vector<uint8\_t>>\ \_tx\_packets;}
+\DoxyCodeLine{00101\ \ \ \ \ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{void}\ socket\_rx\_communication();}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{void}\ socket\_tx\_communication();}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \};}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

@@ -3,7 +3,7 @@
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-bool \mbox{\hyperlink{classTcpDaemon_a7025ee77314962b239777383aaf80a13}{init}} ()
+bool \mbox{\hyperlink{classTcpDaemon_a454f4b0735ead9951d2b8c76de658398}{init}} (int port)
 \begin{DoxyCompactList}\small\item\em Initialize the socket communication. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
@@ -32,17 +32,24 @@ This function is used by the various Tx\+Stream instances contained in publisher
 {\em packet} & The packet that has to be sent through the DESERT stack \\
 \hline
 \end{DoxyParams}
-\Hypertarget{classTcpDaemon_a7025ee77314962b239777383aaf80a13}\label{classTcpDaemon_a7025ee77314962b239777383aaf80a13} 
+\Hypertarget{classTcpDaemon_a454f4b0735ead9951d2b8c76de658398}\label{classTcpDaemon_a454f4b0735ead9951d2b8c76de658398} 
 \index{TcpDaemon@{TcpDaemon}!init@{init}}
 \index{init@{init}!TcpDaemon@{TcpDaemon}}
 \doxysubsubsection{\texorpdfstring{init()}{init()}}
-{\footnotesize\ttfamily bool Tcp\+Daemon\+::init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool Tcp\+Daemon\+::init (\begin{DoxyParamCaption}\item[{int}]{port }\end{DoxyParamCaption})}
 
 
 
 Initialize the socket communication. 
 
-This function allows the middleware to estabilish a connection to the DESERT stack through a TCP socket. \Hypertarget{classTcpDaemon_a523b53e96972960a1695fb0fedf86802}\label{classTcpDaemon_a523b53e96972960a1695fb0fedf86802} 
+This function allows the middleware to estabilish a connection to the DESERT stack through a TCP socket.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The TCP port of the DESERT application layer \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classTcpDaemon_a523b53e96972960a1695fb0fedf86802}\label{classTcpDaemon_a523b53e96972960a1695fb0fedf86802} 
 \index{TcpDaemon@{TcpDaemon}!read\_packet@{read\_packet}}
 \index{read\_packet@{read\_packet}!TcpDaemon@{TcpDaemon}}
 \doxysubsubsection{\texorpdfstring{read\_packet()}{read\_packet()}}
