@@ -49,8 +49,11 @@
 
 #include "rosidl_runtime_c/message_type_support_struct.h"
 
+#include "rmw/types.h"
+
 #include <vector>
 #include <string>
+#include <regex>
 
 /** @endcond */
 
@@ -66,7 +69,7 @@ class DesertSubscriber
     * @param topic_name    Name of the topic used for the registration
     * @param type_supports Pointer to the message data structure coming from the ROS upper layers
     */
-    DesertSubscriber(std::string topic_name, const rosidl_message_type_support_t * type_supports);
+    DesertSubscriber(std::string topic_name, const rosidl_message_type_support_t * type_supports, rmw_gid_t gid);
     
    /**
     * @brief Check if there is available data for the registered topic
@@ -88,9 +91,14 @@ class DesertSubscriber
     * @param msg        Pointer to the memory location used to store the message
     */
     void read_data(void * msg);
+    
+    rmw_gid_t get_gid();
+    std::string get_topic_name();
+    std::string get_type_name();
   
   private:
     uint8_t _id;
+    rmw_gid_t _gid;
     std::string _name;
     cbor::RxStream _data_stream;
     

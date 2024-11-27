@@ -50,8 +50,11 @@
 
 #include "rosidl_runtime_c/message_type_support_struct.h"
 
+#include "rmw/types.h"
+
 #include <vector>
 #include <string>
+#include <regex>
 
 /** @endcond */
 
@@ -67,7 +70,7 @@ class DesertPublisher
     * @param topic_name    Name of the topic used to push the messages
     * @param type_supports Pointer to the message data structure coming from the ROS upper layers
     */
-    DesertPublisher(std::string topic_name, const rosidl_message_type_support_t * type_supports);
+    DesertPublisher(std::string topic_name, const rosidl_message_type_support_t * type_supports, rmw_gid_t gid);
     
    /**
     * @brief Send a publication on the topic
@@ -80,9 +83,14 @@ class DesertPublisher
     */
     void push(const void * msg);
     
+    rmw_gid_t get_gid();
+    std::string get_topic_name();
+    std::string get_type_name();
+    
     
   private:
     uint8_t _id;
+    rmw_gid_t _gid;
     std::string _name;
     cbor::TxStream _data_stream;
     

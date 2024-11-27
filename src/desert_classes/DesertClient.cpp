@@ -1,10 +1,11 @@
 #include "DesertClient.h"
 
-DesertClient::DesertClient(std::string service_name, const rosidl_service_type_support_t * type_supports)
+DesertClient::DesertClient(std::string service_name, const rosidl_service_type_support_t * type_supports, rmw_gid_t gid)
       : _name(service_name)
       , _id(TopicsConfig::get_topic_identifier(service_name))
       , _request_data_stream(cbor::TxStream(CLIENT_TYPE, service_name, _id))
       , _response_data_stream(cbor::RxStream(CLIENT_TYPE, service_name, _id))
+      , _gid(gid)
 {
   const rosidl_service_type_support_t * service_type_support = get_service_type_support(type_supports);
   _service = get_service(service_type_support);
@@ -53,6 +54,62 @@ void DesertClient::send_request(const void * req, int64_t * sequence_id)
   }
   
   _request_data_stream.end_transmission();
+}
+
+rmw_gid_t DesertClient::get_gid()
+{
+  return _gid;
+}
+
+std::string DesertClient::get_service_name()
+{
+  return _name;
+}
+
+std::string DesertClient::get_request_type_name()
+{
+  std::string namespace_;
+  std::string name_;
+    
+  if (_c_cpp_identifier == 0)
+  {
+    auto casted_service = static_cast<const INTROSPECTION_C_SERVICE_MEMBERS *>(_service);
+    namespace_ = casted_service->request_members_->message_namespace_;
+    name_ = casted_service->request_members_->message_name_;
+  }
+  else if (_c_cpp_identifier == 1)
+  {
+    auto casted_service = static_cast<const INTROSPECTION_CPP_SERVICE_MEMBERS *>(_service);
+    namespace_ = casted_service->request_members_->message_namespace_;
+    name_ = casted_service->request_members_->message_name_;
+  }
+
+  std::string namespace_sleshed = regex_replace(namespace_, std::regex("::"), "/");
+  
+  return namespace_sleshed + "/" + name_;
+}
+
+std::string DesertClient::get_response_type_name()
+{
+  std::string namespace_;
+  std::string name_;
+    
+  if (_c_cpp_identifier == 0)
+  {
+    auto casted_service = static_cast<const INTROSPECTION_C_SERVICE_MEMBERS *>(_service);
+    namespace_ = casted_service->response_members_->message_namespace_;
+    name_ = casted_service->response_members_->message_name_;
+  }
+  else if (_c_cpp_identifier == 1)
+  {
+    auto casted_service = static_cast<const INTROSPECTION_CPP_SERVICE_MEMBERS *>(_service);
+    namespace_ = casted_service->response_members_->message_namespace_;
+    name_ = casted_service->response_members_->message_name_;
+  }
+
+  std::string namespace_sleshed = regex_replace(namespace_, std::regex("::"), "/");
+  
+  return namespace_sleshed + "/" + name_;
 }
 
 const void * DesertClient::get_service(const rosidl_service_type_support_t * service_type_support)

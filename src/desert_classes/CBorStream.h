@@ -48,6 +48,7 @@
 #include <codecvt>
 #include <cstdint>
 #include <cstdio>
+#include <mutex>
 
 /** @endcond */
 
@@ -411,6 +412,8 @@ class RxStream
 	char *str;
 	uint8_t str_copy[128];
     };
+    
+    static std::mutex _rx_mutex;
     
     static std::pair<void *, int> interpret_field(cbor_item_t * items, size_t i, union _cbor_value & val);
     std::u16string toUTF16(const std::string source);

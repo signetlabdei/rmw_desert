@@ -54,6 +54,7 @@
 
 #include <vector>
 #include <string>
+#include <regex>
 
 /** @endcond */
 
@@ -69,7 +70,7 @@ class DesertClient
     * @param service_name  Name of the service to send requests and receive responses
     * @param type_supports Pointer to the message data structure coming from the ROS upper layers
     */
-    DesertClient(std::string service_name, const rosidl_service_type_support_t * type_supports);
+    DesertClient(std::string service_name, const rosidl_service_type_support_t * type_supports, rmw_gid_t gid);
     
    /**
     * @brief Check if there is available data for the current client instance
@@ -104,9 +105,15 @@ class DesertClient
     */
     void read_response(void * res, rmw_service_info_t * req_header);
     
+    rmw_gid_t get_gid();
+    std::string get_service_name();
+    std::string get_request_type_name();
+    std::string get_response_type_name();
+    
     
   private:
     uint8_t _id;
+    rmw_gid_t _gid;
     std::string _name;
     cbor::TxStream _request_data_stream;
     cbor::RxStream _response_data_stream;

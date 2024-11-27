@@ -23,6 +23,20 @@
 #include "debug.h"
 
 
+rmw_gid_t generate_gid()
+{
+  rmw_gid_t gid;
+  
+  gid.implementation_identifier = rmw_get_implementation_identifier();
+  
+  for (int i = 0; i < RMW_GID_STORAGE_SIZE; i++)
+  {
+    gid.data[i] = rand();
+  }
+  
+  return gid;
+}
+
 rmw_ret_t rmw_borrow_loaned_message(const rmw_publisher_t * publisher, const rosidl_message_type_support_t * type_support, void ** ros_message)
 {
   DEBUG("rmw_borrow_loaned_message" "\n");
@@ -56,37 +70,62 @@ rmw_ret_t rmw_compare_gids_equal(const rmw_gid_t * gid1,  const rmw_gid_t * gid2
 rmw_ret_t rmw_count_clients(const rmw_node_t * node, const char * service_name, size_t * count)
 {
   DEBUG("rmw_count_clients" "\n");
-  return RMW_RET_OK;
+  
+  auto common_context = &node->context->impl->common;
+  const std::string mangled_service_name = std::string(Discovery::ros_service_requester_prefix) + std::string(service_name);
+  
+  return common_context->graph_cache.get_writer_count(mangled_service_name, count);
 }
 
 rmw_ret_t rmw_count_publishers(const rmw_node_t * node, const char * topic_name, size_t * count)
 {
   DEBUG("rmw_count_publishers" "\n");
-  return RMW_RET_OK;
+  
+  auto common_context = &node->context->impl->common;
+  const std::string mangled_topic_name = std::string(Discovery::ros_topic_publisher_prefix) + std::string(topic_name);
+  
+  return common_context->graph_cache.get_writer_count(mangled_topic_name, count);
 }
 
 rmw_ret_t rmw_count_services(const rmw_node_t * node, const char * service_name, size_t * count)
 {
   DEBUG("rmw_count_services" "\n");
-  return RMW_RET_OK;
+  
+  auto common_context = &node->context->impl->common;
+  const std::string mangled_service_name = std::string(Discovery::ros_service_response_prefix) + std::string(service_name);
+  
+  return common_context->graph_cache.get_writer_count(mangled_service_name, count);
 }
 
 rmw_ret_t rmw_count_subscribers(const rmw_node_t * node, const char * topic_name, size_t * count)
 {
   DEBUG("rmw_count_subscribers" "\n");
-  return RMW_RET_OK;
+  
+  auto common_context = &node->context->impl->common;
+  const std::string mangled_topic_name = std::string(Discovery::ros_topic_subscriber_prefix) + std::string(topic_name);
+  
+  return common_context->graph_cache.get_reader_count(mangled_topic_name, count);
 }
 
 rmw_client_t * rmw_create_client(const rmw_node_t * node, const rosidl_service_type_support_t * type_supports, const char * service_name, const rmw_qos_profile_t * qos_policies)
 {
   DEBUG("rmw_create_client" "\n");
+  
+  if (strcmp(service_name, "/discovery") == 0 || strcmp(service_name, "/discovery_request") == 0)
+  {
+    RMW_SET_ERROR_MSG("Client applications are not allowed to use '/discovery' and '/discovery_request' topic names");
+    return nullptr;
+  }
 
   rmw_client_t * ret = rmw_client_allocate();
   ret->implementation_identifier = rmw_get_implementation_identifier();
   ret->service_name = service_name;
   
-  DesertClient * cli = new DesertClient(service_name, type_supports);
+  DesertClient * cli = new DesertClient(service_name, type_supports, generate_gid());
   ret->data = (void *)cli;
+  
+  DesertNode * nd = static_cast<DesertNode *>(node->data);
+  nd->add_client(cli);
   
   return ret;
 }
@@ -103,9 +142,10 @@ rmw_guard_condition_t * rmw_create_guard_condition(rmw_context_t * context)
 rmw_node_t * rmw_create_node(rmw_context_t * context, const char * name, const char * namespace_)
 {
   DEBUG("rmw_create_node" "\n");
-  rmw_node_t *node = rmw_node_allocate();
+  rmw_node_t * node = rmw_node_allocate();
   node->implementation_identifier = rmw_get_implementation_identifier();
-  node->data = (void*)new DesertNode(name);
+  DesertNode * nd = new DesertNode(name, namespace_, generate_gid());
+  node->data = (void*)nd;
   node->context = context;
 
   const size_t namelen = strlen(name) + 1;
@@ -115,6 +155,9 @@ rmw_node_t * rmw_create_node(rmw_context_t * context, const char * name, const c
   const size_t nslen = strlen(namespace_) + 1;
   node->namespace_ = (const char*)malloc(nslen);
   memcpy((char*)node->namespace_, namespace_, nslen);
+  
+  context->impl->common.graph_cache.add_participant(context->impl->common.gid, "");
+  rmw_ret_t ret = Discovery::discovery_thread_start(context->impl);
 
   return node;
 }
@@ -122,13 +165,22 @@ rmw_node_t * rmw_create_node(rmw_context_t * context, const char * name, const c
 rmw_publisher_t * rmw_create_publisher(const rmw_node_t * node, const rosidl_message_type_support_t * type_supports, const char * topic_name, const rmw_qos_profile_t * qos_profile, const rmw_publisher_options_t * publisher_options)
 {
   DEBUG("rmw_create_publisher" "\n");
+  
+  if (strcmp(topic_name, "/discovery") == 0 || strcmp(topic_name, "/discovery_request") == 0)
+  {
+    RMW_SET_ERROR_MSG("Client applications are not allowed to use '/discovery' and '/discovery_request' topic names");
+    return nullptr;
+  }
 
   rmw_publisher_t * ret = rmw_publisher_allocate();
   ret->implementation_identifier = rmw_get_implementation_identifier();
   ret->topic_name = topic_name;
   
-  DesertPublisher * pub = new DesertPublisher(topic_name, type_supports);
+  DesertPublisher * pub = new DesertPublisher(topic_name, type_supports, generate_gid());
   ret->data = (void *)pub;
+  
+  DesertNode * nd = static_cast<DesertNode *>(node->data);
+  nd->add_publisher(pub);
   
   return ret;
 }
@@ -136,13 +188,22 @@ rmw_publisher_t * rmw_create_publisher(const rmw_node_t * node, const rosidl_mes
 rmw_service_t * rmw_create_service(const rmw_node_t * node, const rosidl_service_type_support_t * type_supports, const char * service_name, const rmw_qos_profile_t * qos_profile)
 {
   DEBUG("rmw_create_service" "\n");
+  
+  if (strcmp(service_name, "/discovery") == 0 || strcmp(service_name, "/discovery_request") == 0)
+  {
+    RMW_SET_ERROR_MSG("Client applications are not allowed to use '/discovery' and '/discovery_request' topic names");
+    return nullptr;
+  }
 
   rmw_service_t * ret = rmw_service_allocate();
   ret->implementation_identifier = rmw_get_implementation_identifier();
   ret->service_name = service_name;
   
-  DesertService * ser = new DesertService(service_name, type_supports);
+  DesertService * ser = new DesertService(service_name, type_supports, generate_gid());
   ret->data = (void *)ser;
+  
+  DesertNode * nd = static_cast<DesertNode *>(node->data);
+  nd->add_service(ser);
   
   return ret;
 }
@@ -150,13 +211,22 @@ rmw_service_t * rmw_create_service(const rmw_node_t * node, const rosidl_service
 rmw_subscription_t * rmw_create_subscription(const rmw_node_t * node, const rosidl_message_type_support_t * type_supports, const char * topic_name, const rmw_qos_profile_t * qos_policies, const rmw_subscription_options_t * subscription_options)
 {
   DEBUG("rmw_create_subscription" "\n");
+  
+  if (strcmp(topic_name, "/discovery") == 0 || strcmp(topic_name, "/discovery_request") == 0)
+  {
+    RMW_SET_ERROR_MSG("Client applications are not allowed to use '/discovery' and '/discovery_request' topic names");
+    return nullptr;
+  }
 
   rmw_subscription_t * ret = rmw_subscription_allocate();
   ret->implementation_identifier = rmw_get_implementation_identifier();
   ret->topic_name = topic_name;
   
-  DesertSubscriber* sub = new DesertSubscriber(topic_name, type_supports);
+  DesertSubscriber* sub = new DesertSubscriber(topic_name, type_supports, generate_gid());
   ret->data = (void*)sub;
+  
+  DesertNode * nd = static_cast<DesertNode *>(node->data);
+  nd->add_subscriber(sub);
   
   return ret;
 }
@@ -188,6 +258,9 @@ rmw_ret_t rmw_destroy_client(rmw_node_t * node,  rmw_client_t * client)
   
   DesertClient * cli = static_cast<DesertClient *>(client->data);
   
+  DesertNode * nd = static_cast<DesertNode *>(node->data);
+  nd->remove_client(cli);
+  
   delete cli;
   delete client;
   
@@ -218,6 +291,9 @@ rmw_ret_t rmw_destroy_publisher(rmw_node_t * node,  rmw_publisher_t * publisher)
   
   DesertPublisher * pub = static_cast<DesertPublisher *>(publisher->data);
   
+  DesertNode * nd = static_cast<DesertNode *>(node->data);
+  nd->remove_publisher(pub);
+  
   delete pub;
   delete publisher;
   
@@ -230,6 +306,9 @@ rmw_ret_t rmw_destroy_service(rmw_node_t * node,  rmw_service_t * service)
   
   DesertService * ser = static_cast<DesertService *>(service->data);
   
+  DesertNode * nd = static_cast<DesertNode *>(node->data);
+  nd->remove_service(ser);
+  
   delete ser;
   delete service;
   
@@ -241,6 +320,9 @@ rmw_ret_t rmw_destroy_subscription(rmw_node_t * node,  rmw_subscription_t * subs
   DEBUG("rmw_destroy_subscription" "\n");
   
   DesertSubscriber * sub = static_cast<DesertSubscriber *>(subscription->data);
+  
+  DesertNode * nd = static_cast<DesertNode *>(node->data);
+  nd->remove_subscriber(sub);
   
   delete sub;
   delete subscription;
@@ -299,7 +381,15 @@ const char * rmw_get_implementation_identifier(void)
 rmw_ret_t rmw_get_node_names(const rmw_node_t * node, rcutils_string_array_t * node_names, rcutils_string_array_t * node_namespaces)
 {
   DEBUG("rmw_get_node_names" "\n");
-  return RMW_RET_OK;
+
+  auto common_context = &node->context->impl->common;
+  rcutils_allocator_t allocator = rcutils_get_default_allocator();
+
+  return common_context->graph_cache.get_node_names(
+    node_names,
+    node_namespaces,
+    nullptr,
+    &allocator);
 }
 
 rmw_ret_t rmw_get_node_names_with_enclaves(const rmw_node_t * node, rcutils_string_array_t * node_names, rcutils_string_array_t * node_namespaces, rcutils_string_array_t * enclaves)
@@ -450,7 +540,12 @@ rmw_ret_t rmw_service_response_publisher_get_actual_qos(const rmw_service_t * se
 rmw_ret_t rmw_service_server_is_available(const rmw_node_t * node, const rmw_client_t * client, bool * is_available)
 {
   DEBUG("rmw_service_server_is_available" "\n");
-  //*is_available = true;
+  
+  size_t * count = new size_t();
+  rmw_ret_t ret = rmw_count_services(node, client->service_name, count);
+  
+  *is_available = *count > 0;
+  
   return RMW_RET_OK;
 }
 
@@ -499,6 +594,15 @@ rmw_ret_t rmw_subscription_set_on_new_message_callback(rmw_subscription_t * subs
 rmw_ret_t rmw_take(const rmw_subscription_t * subscription, void * ros_message, bool * taken, rmw_subscription_allocation_t * allocation)
 {
   DEBUG("rmw_take" "\n");
+  
+  DesertSubscriber * sub = static_cast<DesertSubscriber *>(subscription->data);
+  if (sub->has_data())
+  {
+    sub->read_data(ros_message);
+    *taken = true;
+  }
+  
+  usleep(1000);
   return RMW_RET_OK;
 }
 

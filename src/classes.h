@@ -15,3 +15,7 @@
 #include "desert_classes/DesertClient.h"
 #include "desert_classes/DesertService.h"
 #include "desert_classes/TcpDaemon.h"
+#include "desert_classes/Discovery.h"
+
+#include "desert_classes/rmw_context_impl_s.h"
+#include "desert_classes/demangle.h"

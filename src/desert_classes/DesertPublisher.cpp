@@ -1,9 +1,10 @@
 #include "DesertPublisher.h"
 
-DesertPublisher::DesertPublisher(std::string topic_name, const rosidl_message_type_support_t * type_supports)
+DesertPublisher::DesertPublisher(std::string topic_name, const rosidl_message_type_support_t * type_supports, rmw_gid_t gid)
       : _name(topic_name)
       , _id(TopicsConfig::get_topic_identifier(topic_name))
       , _data_stream(cbor::TxStream(PUBLISHER_TYPE, topic_name, _id))
+      , _gid(gid)
 {
   const rosidl_message_type_support_t * type_support = get_type_support(type_supports);
   _members = get_members(type_support);
@@ -28,6 +29,39 @@ void DesertPublisher::push(const void * msg)
   }
   
   _data_stream.end_transmission();
+}
+
+rmw_gid_t DesertPublisher::get_gid()
+{
+  return _gid;
+}
+
+std::string DesertPublisher::get_topic_name()
+{
+  return _name;
+}
+
+std::string DesertPublisher::get_type_name()
+{
+  std::string namespace_;
+  std::string name_;
+    
+  if (_c_cpp_identifier == 0)
+  {
+    auto casted_members = static_cast<const INTROSPECTION_C_MEMBERS *>(_members);
+    namespace_ = casted_members->message_namespace_;
+    name_ = casted_members->message_name_;
+  }
+  else if (_c_cpp_identifier == 1)
+  {
+    auto casted_members = static_cast<const INTROSPECTION_CPP_MEMBERS *>(_members);
+    namespace_ = casted_members->message_namespace_;
+    name_ = casted_members->message_name_;
+  }
+
+  std::string namespace_sleshed = regex_replace(namespace_, std::regex("::"), "/");
+  
+  return namespace_sleshed + "/" + name_;
 }
 
 const void * DesertPublisher::get_members(const rosidl_message_type_support_t * type_support)

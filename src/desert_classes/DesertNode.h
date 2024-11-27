@@ -30,19 +30,61 @@
 #ifndef DESERT_NODE_H_
 #define DESERT_NODE_H_
 
+/** @cond */
+
+#include "rmw/rmw.h"
+#include "rmw/types.h"
+
+#include <vector>
+#include <string>
+
+#include "CBorStream.h"
+#include "DesertPublisher.h"
+#include "DesertSubscriber.h"
+#include "DesertClient.h"
+#include "DesertService.h"
+#include "Discovery.h"
+#include "TopicsConfig.h"
+
+/** @endcond */
+
 class DesertNode
 {
   public:
-    DesertNode(const char* name)
-    : _name(name)
-    {}
+    DesertNode(std::string name, std::string namespace_, rmw_gid_t gid);
+    ~DesertNode();
     
-    const char * getName()
-    {
-      return _name;
-    }
+    void add_publisher(DesertPublisher * pub);
+    void add_subscriber(DesertSubscriber * sub);
+    void add_client(DesertClient * cli);
+    void add_service(DesertService * ser);
+    
+    void remove_publisher(DesertPublisher * pub);
+    void remove_subscriber(DesertSubscriber * sub);
+    void remove_client(DesertClient * cli);
+    void remove_service(DesertService * ser);
+    
+    rmw_gid_t get_gid();
+    
   private:
-    const char * _name;
+    rmw_gid_t _gid;
+    std::string _name;
+    std::string _namespace;
+    cbor::TxStream _discovery_beacon_data_stream;
+    cbor::RxStream _discovery_request_data_stream;
+    
+    std::vector<DesertPublisher *> _publishers;
+    std::vector<DesertSubscriber *> _subscribers;
+    std::vector<DesertClient *> _clients;
+    std::vector<DesertService *> _services;
+    
+    void publish_all_beacons();
+    
+    bool _discovery_done;
+    std::thread _discovery_request_thread;
+    
+    void _discovery_request();
+    
 };
 
 #endif

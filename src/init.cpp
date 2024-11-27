@@ -11,7 +11,6 @@ int get_desert_port()
 
   if (value != NULL && atoi(value) > 0)
   {
-    printf("Connecting to DESERT through the TCP port %d\n", atoi(value));
     return atoi(value);
   }
   else
@@ -24,6 +23,8 @@ int get_desert_port()
 rmw_ret_t rmw_context_fini(rmw_context_t * context)
 {
   DEBUG("rmw_context_fini" "\n");
+  // Sleep needed to allow TcpDaemon sending disconnection beacons
+  usleep(100000);
   return RMW_RET_OK;
 }
 
@@ -36,6 +37,11 @@ rmw_ret_t rmw_init(const rmw_init_options_t * options,  rmw_context_t * context)
   
   TopicsConfig::load_configuration();
   TcpDaemon tcp = TcpDaemon();
+  
+  context->instance_id = options->instance_id;
+  context->implementation_identifier = rmw_get_implementation_identifier();
+  context->actual_domain_id = 0u;
+  context->impl = new rmw_context_impl_t();
   
   if (tcp.init(port) == 0)
     return RMW_RET_OK;

@@ -199,6 +199,8 @@ std::map<uint32_t, CircularQueue<std::vector<std::pair<void *, int>>, MAX_BUFFER
 std::map<uint32_t, CircularQueue<std::vector<std::pair<void *, int>>, MAX_BUFFER_CAPACITY>> RxStream::_interpreted_requests;
 std::map<uint32_t, CircularQueue<std::vector<std::pair<void *, int>>, MAX_BUFFER_CAPACITY>> RxStream::_interpreted_responses;
 
+std::mutex RxStream::_rx_mutex;
+
 bool RxStream::data_available(int64_t sequence_id)
 {
   bool available = false;
@@ -373,6 +375,8 @@ RxStream & RxStream::operator>>(std::vector<bool> & v)
 
 void RxStream::interpret_packets()
 {
+  std::lock_guard<std::mutex> lock(_rx_mutex);
+  
   std::vector<uint8_t> packet;
   for (packet = TcpDaemon::read_packet(); packet.size() != 0; packet = TcpDaemon::read_packet())
   {
