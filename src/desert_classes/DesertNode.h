@@ -21,7 +21,9 @@
  * @file DesertNode.h
  * @brief Implementation of the Node structure for DESERT
  * 
- * Unimplemented class included for future expansions
+ * The DesertNode class is used to keep track af all the entities created by a specific node. 
+ * Each of them is stored in a vector of pointers to the original memory locations mainly 
+ * used to provide discovery functionalities.
  *
  * @author Prof. Davide Costa
  *
@@ -38,6 +40,8 @@
 #include <vector>
 #include <string>
 
+/** @endcond */
+
 #include "CBorStream.h"
 #include "DesertPublisher.h"
 #include "DesertSubscriber.h"
@@ -46,24 +50,106 @@
 #include "Discovery.h"
 #include "TopicsConfig.h"
 
-/** @endcond */
-
 class DesertNode
 {
   public:
+   /**
+    * @brief Create a node
+    *
+    * @param name       Name of the node
+    * @param namespace_ Namespace of the node
+    * @param gid        Global identifier of the node
+    */
     DesertNode(std::string name, std::string namespace_, rmw_gid_t gid);
     ~DesertNode();
     
+   /**
+    * @brief Add a publisher to the current node
+    *
+    * This function pushes the pointer to a publisher in a vector of all the registered 
+    * publishers related to the current node.
+    *
+    * @param pub Pointer to a DesertPublisher instance
+    */
     void add_publisher(DesertPublisher * pub);
+    
+   /**
+    * @brief Add a subscriber to the current node
+    *
+    * This function pushes the pointer to a subscriber in a vector of all the registered 
+    * subscribers related to the current node.
+    *
+    * @param sub Pointer to a DesertSubscriber instance
+    */
     void add_subscriber(DesertSubscriber * sub);
+    
+   /**
+    * @brief Add a client to the current node
+    *
+    * This function pushes the pointer to a client in a vector of all the registered 
+    * clients related to the current node.
+    *
+    * @param cli Pointer to a DesertClient instance
+    */
     void add_client(DesertClient * cli);
+    
+   /**
+    * @brief Add a service to the current node
+    *
+    * This function pushes the pointer to a service in a vector of all the registered 
+    * services related to the current node.
+    *
+    * @param ser Pointer to a DesertService instance
+    */
     void add_service(DesertService * ser);
     
+   /**
+    * @brief Remove a publisher from the current node
+    *
+    * This function removes the pointer to a publisher from the vector of all the registered 
+    * publishers related to the current node.
+    *
+    * @param pub Pointer to a DesertPublisher instance
+    */
     void remove_publisher(DesertPublisher * pub);
+    
+   /**
+    * @brief Remove a subscriber from the current node
+    *
+    * This function removes the pointer to a subscriber from the vector of all the registered 
+    * subscribers related to the current node.
+    *
+    * @param sub Pointer to a DesertSubscriber instance
+    */
     void remove_subscriber(DesertSubscriber * sub);
+    
+   /**
+    * @brief Remove a client from the current node
+    *
+    * This function removes the pointer to a client from the vector of all the registered 
+    * clients related to the current node.
+    *
+    * @param cli Pointer to a DesertClient instance
+    */
     void remove_client(DesertClient * cli);
+    
+   /**
+    * @brief Remove a service from the current node
+    *
+    * This function removes the pointer to a service from the vector of all the registered 
+    * services related to the current node.
+    *
+    * @param ser Pointer to a DesertService instance
+    */
     void remove_service(DesertService * ser);
     
+   /**
+    * @brief Retreive the gid of the current entity
+    *
+    * This function returns the global identifier of the current entity in the rmw format.
+    *
+    * @return Global identifier of the entity
+    */
     rmw_gid_t get_gid();
     
   private:

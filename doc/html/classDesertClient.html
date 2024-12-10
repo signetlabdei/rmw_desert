@@ -78,9 +78,9 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:adb8900a6c6dd62811d2f206251d9c07d" id="r_adb8900a6c6dd62811d2f206251d9c07d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDesertClient.html#adb8900a6c6dd62811d2f206251d9c07d">DesertClient</a> (std::string service_name, const rosidl_service_type_support_t *type_supports)</td></tr>
-<tr class="memdesc:adb8900a6c6dd62811d2f206251d9c07d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a client.  <br /></td></tr>
-<tr class="separator:adb8900a6c6dd62811d2f206251d9c07d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1dc573307fe86906c4904847c88d8e12" id="r_a1dc573307fe86906c4904847c88d8e12"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDesertClient.html#a1dc573307fe86906c4904847c88d8e12">DesertClient</a> (std::string service_name, const rosidl_service_type_support_t *type_supports, rmw_gid_t gid)</td></tr>
+<tr class="memdesc:a1dc573307fe86906c4904847c88d8e12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a client.  <br /></td></tr>
+<tr class="separator:a1dc573307fe86906c4904847c88d8e12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aed6ddee999dcfc44b68b36486d836dbb" id="r_aed6ddee999dcfc44b68b36486d836dbb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDesertClient.html#aed6ddee999dcfc44b68b36486d836dbb">has_data</a> ()</td></tr>
 <tr class="memdesc:aed6ddee999dcfc44b68b36486d836dbb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if there is available data for the current client instance.  <br /></td></tr>
 <tr class="separator:aed6ddee999dcfc44b68b36486d836dbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -90,10 +90,22 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa8fc3251826e492e850c714db6b39d11" id="r_aa8fc3251826e492e850c714db6b39d11"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDesertClient.html#aa8fc3251826e492e850c714db6b39d11">read_response</a> (void *res, rmw_service_info_t *req_header)</td></tr>
 <tr class="memdesc:aa8fc3251826e492e850c714db6b39d11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a response from the service.  <br /></td></tr>
 <tr class="separator:aa8fc3251826e492e850c714db6b39d11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac907c59d520943dd4da050a0f6cb4dbe" id="r_ac907c59d520943dd4da050a0f6cb4dbe"><td class="memItemLeft" align="right" valign="top">rmw_gid_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDesertClient.html#ac907c59d520943dd4da050a0f6cb4dbe">get_gid</a> ()</td></tr>
+<tr class="memdesc:ac907c59d520943dd4da050a0f6cb4dbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retreive the gid of the current entity.  <br /></td></tr>
+<tr class="separator:ac907c59d520943dd4da050a0f6cb4dbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afce43484d051782a839564ed0a7bd574" id="r_afce43484d051782a839564ed0a7bd574"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDesertClient.html#afce43484d051782a839564ed0a7bd574">get_service_name</a> ()</td></tr>
+<tr class="memdesc:afce43484d051782a839564ed0a7bd574"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retreive the service name of the current entity.  <br /></td></tr>
+<tr class="separator:afce43484d051782a839564ed0a7bd574"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3df370ee026236c89425a95922ebd1d" id="r_ad3df370ee026236c89425a95922ebd1d"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDesertClient.html#ad3df370ee026236c89425a95922ebd1d">get_request_type_name</a> ()</td></tr>
+<tr class="memdesc:ad3df370ee026236c89425a95922ebd1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retreive the request type of the current entity.  <br /></td></tr>
+<tr class="separator:ad3df370ee026236c89425a95922ebd1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4881f0c2bdf98fe9d3104d85cc54a29b" id="r_a4881f0c2bdf98fe9d3104d85cc54a29b"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDesertClient.html#a4881f0c2bdf98fe9d3104d85cc54a29b">get_response_type_name</a> ()</td></tr>
+<tr class="memdesc:a4881f0c2bdf98fe9d3104d85cc54a29b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retreive the response type of the current entity.  <br /></td></tr>
+<tr class="separator:a4881f0c2bdf98fe9d3104d85cc54a29b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="adb8900a6c6dd62811d2f206251d9c07d" name="adb8900a6c6dd62811d2f206251d9c07d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adb8900a6c6dd62811d2f206251d9c07d">&#9670;&#160;</a></span>DesertClient()</h2>
+<a id="a1dc573307fe86906c4904847c88d8e12" name="a1dc573307fe86906c4904847c88d8e12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1dc573307fe86906c4904847c88d8e12">&#9670;&#160;</a></span>DesertClient()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -108,7 +120,13 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const rosidl_service_type_support_t *&#160;</td>
-          <td class="paramname"><em>type_supports</em>&#160;</td>
+          <td class="paramname"><em>type_supports</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">rmw_gid_t&#160;</td>
+          <td class="paramname"><em>gid</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -123,6 +141,7 @@ Public Member Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">service_name</td><td>Name of the service to send requests and receive responses </td></tr>
     <tr><td class="paramname">type_supports</td><td>Pointer to the message data structure coming from the ROS upper layers </td></tr>
+    <tr><td class="paramname">gid</td><td>Global identifier of the entity </td></tr>
   </table>
   </dd>
 </dl>
@@ -130,6 +149,90 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="ac907c59d520943dd4da050a0f6cb4dbe" name="ac907c59d520943dd4da050a0f6cb4dbe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac907c59d520943dd4da050a0f6cb4dbe">&#9670;&#160;</a></span>get_gid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">rmw_gid_t DesertClient::get_gid </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retreive the gid of the current entity. </p>
+<p>This function returns the global identifier of the current entity in the rmw format.</p>
+<dl class="section return"><dt>Returns</dt><dd>Global identifier of the entity </dd></dl>
+
+</div>
+</div>
+<a id="ad3df370ee026236c89425a95922ebd1d" name="ad3df370ee026236c89425a95922ebd1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3df370ee026236c89425a95922ebd1d">&#9670;&#160;</a></span>get_request_type_name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string DesertClient::get_request_type_name </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retreive the request type of the current entity. </p>
+<p>This function returns a string containing the service request type name of the current entity.</p>
+<dl class="section return"><dt>Returns</dt><dd>Type of the service request </dd></dl>
+
+</div>
+</div>
+<a id="a4881f0c2bdf98fe9d3104d85cc54a29b" name="a4881f0c2bdf98fe9d3104d85cc54a29b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4881f0c2bdf98fe9d3104d85cc54a29b">&#9670;&#160;</a></span>get_response_type_name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string DesertClient::get_response_type_name </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retreive the response type of the current entity. </p>
+<p>This function returns a string containing the service response type name of the current entity.</p>
+<dl class="section return"><dt>Returns</dt><dd>Type of the service response </dd></dl>
+
+</div>
+</div>
+<a id="afce43484d051782a839564ed0a7bd574" name="afce43484d051782a839564ed0a7bd574"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afce43484d051782a839564ed0a7bd574">&#9670;&#160;</a></span>get_service_name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string DesertClient::get_service_name </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retreive the service name of the current entity. </p>
+<p>This function returns a string containing the service name of the current entity.</p>
+<dl class="section return"><dt>Returns</dt><dd>Name of the service </dd></dl>
+
+</div>
+</div>
 <a id="aed6ddee999dcfc44b68b36486d836dbb" name="aed6ddee999dcfc44b68b36486d836dbb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aed6ddee999dcfc44b68b36486d836dbb">&#9670;&#160;</a></span>has_data()</h2>
 
@@ -181,7 +284,7 @@ Public Member Functions</h2></td></tr>
 <p>The read_response function interprets a transmission with the current sequence identifier deserializing the message using the method from the <a class="el" href="namespaceMessageSerialization.html" title="Namespace containing serialization functions.">MessageSerialization</a> namespace. A discrimination is made between C members and C++ members based on the type support.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">req</td><td>Pointer to the memory location used to store the reading </td></tr>
+    <tr><td class="paramname">res</td><td>Pointer to the memory location used to store the reading </td></tr>
     <tr><td class="paramname">req_header</td><td>Pointer to the request header used to store the service sequence identifier </td></tr>
   </table>
   </dd>

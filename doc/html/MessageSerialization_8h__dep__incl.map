@@ -2,10 +2,15 @@
 <area shape="rect" id="Node000001" title="Namespace containing serialization functions." alt="" coords="235,5,413,45"/>
 <area shape="rect" id="Node000002" href="$DesertClient_8h.html" title="Implementation of the Client structure for DESERT." alt="" coords="5,93,147,133"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="257,52,131,96,129,91,256,47"/>
-<area shape="rect" id="Node000003" href="$DesertPublisher_8h.html" title="Implementation of the Publisher structure for DESERT." alt="" coords="171,93,312,133"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="298,57,262,95,258,91,294,54"/>
-<area shape="rect" id="Node000004" href="$DesertService_8h.html" title="Implementation of the Service structure for DESERT." alt="" coords="336,93,477,133"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="354,54,390,91,386,95,350,57"/>
-<area shape="rect" id="Node000005" href="$DesertSubscriber_8h.html" title="Implementation of the Subscriber structure for DESERT." alt="" coords="502,93,650,133"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="393,47,522,91,520,96,391,52"/>
+<area shape="rect" id="Node000004" href="$DesertPublisher_8h.html" title="Implementation of the Publisher structure for DESERT." alt="" coords="171,93,312,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="298,57,262,95,258,91,294,54"/>
+<area shape="rect" id="Node000005" href="$DesertService_8h.html" title="Implementation of the Service structure for DESERT." alt="" coords="336,93,477,133"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="354,54,390,91,386,95,350,57"/>
+<area shape="rect" id="Node000006" href="$DesertSubscriber_8h.html" title="Implementation of the Subscriber structure for DESERT." alt="" coords="502,93,650,133"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="393,47,522,91,520,96,391,52"/>
+<area shape="rect" id="Node000003" href="$DesertNode_8h.html" title="Implementation of the Node structure for DESERT." alt="" coords="253,181,395,221"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="144,135,271,179,269,184,143,140"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="271,142,308,179,304,183,267,145"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="381,145,344,183,340,179,377,142"/>
+<area shape="poly" id="edge8_Node000006_Node000003" title=" " alt="" coords="509,140,380,184,378,179,507,135"/>
 </map>

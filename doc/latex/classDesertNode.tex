@@ -3,14 +3,205 @@
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{classDesertNode_a3dd0aafe553526000a026bc061abb6a2}\label{classDesertNode_a3dd0aafe553526000a026bc061abb6a2} 
-{\bfseries Desert\+Node} (const char \texorpdfstring{$\ast$}{*}name)
-\item 
-\Hypertarget{classDesertNode_a6eb3a7f549a0182e7c6aa41b4c232148}\label{classDesertNode_a6eb3a7f549a0182e7c6aa41b4c232148} 
-const char \texorpdfstring{$\ast$}{*} {\bfseries get\+Name} ()
-\end{DoxyCompactItemize}
+\mbox{\hyperlink{classDesertNode_a2faea70e1e4433ca7ad90888697096ad}{Desert\+Node}} (std\+::string name, std\+::string namespace\+\_\+, rmw\+\_\+gid\+\_\+t gid)
+\begin{DoxyCompactList}\small\item\em Create a node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDesertNode_a68330bfc791469e56904c857207ec9c6}{add\+\_\+publisher}} (\mbox{\hyperlink{classDesertPublisher}{Desert\+Publisher}} \texorpdfstring{$\ast$}{*}pub)
+\begin{DoxyCompactList}\small\item\em Add a publisher to the current node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDesertNode_a65b9f4049d5b747166e62a394fdab0bb}{add\+\_\+subscriber}} (\mbox{\hyperlink{classDesertSubscriber}{Desert\+Subscriber}} \texorpdfstring{$\ast$}{*}sub)
+\begin{DoxyCompactList}\small\item\em Add a subscriber to the current node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDesertNode_af62ad306607e8a7df2363a19a54577b4}{add\+\_\+client}} (\mbox{\hyperlink{classDesertClient}{Desert\+Client}} \texorpdfstring{$\ast$}{*}cli)
+\begin{DoxyCompactList}\small\item\em Add a client to the current node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDesertNode_a0e76cec19b63bf3c4038e5a1913f4e00}{add\+\_\+service}} (\mbox{\hyperlink{classDesertService}{Desert\+Service}} \texorpdfstring{$\ast$}{*}ser)
+\begin{DoxyCompactList}\small\item\em Add a service to the current node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDesertNode_aa89ff17eb045e7a3953d8a6be03d98e6}{remove\+\_\+publisher}} (\mbox{\hyperlink{classDesertPublisher}{Desert\+Publisher}} \texorpdfstring{$\ast$}{*}pub)
+\begin{DoxyCompactList}\small\item\em Remove a publisher from the current node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDesertNode_a9b3baab0cbd521a1f57f9d61627275af}{remove\+\_\+subscriber}} (\mbox{\hyperlink{classDesertSubscriber}{Desert\+Subscriber}} \texorpdfstring{$\ast$}{*}sub)
+\begin{DoxyCompactList}\small\item\em Remove a subscriber from the current node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDesertNode_aed8407f598fecadfb3e713f403b90e37}{remove\+\_\+client}} (\mbox{\hyperlink{classDesertClient}{Desert\+Client}} \texorpdfstring{$\ast$}{*}cli)
+\begin{DoxyCompactList}\small\item\em Remove a client from the current node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDesertNode_ad36251b2a6cf439f030236d78c3841ef}{remove\+\_\+service}} (\mbox{\hyperlink{classDesertService}{Desert\+Service}} \texorpdfstring{$\ast$}{*}ser)
+\begin{DoxyCompactList}\small\item\em Remove a service from the current node. \end{DoxyCompactList}\item 
+rmw\+\_\+gid\+\_\+t \mbox{\hyperlink{classDesertNode_a943dd1a2c9ef84a39874ea4579011fe9}{get\+\_\+gid}} ()
+\begin{DoxyCompactList}\small\item\em Retreive the gid of the current entity. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classDesertNode_a2faea70e1e4433ca7ad90888697096ad}\label{classDesertNode_a2faea70e1e4433ca7ad90888697096ad} 
+\index{DesertNode@{DesertNode}!DesertNode@{DesertNode}}
+\index{DesertNode@{DesertNode}!DesertNode@{DesertNode}}
+\doxysubsubsection{\texorpdfstring{DesertNode()}{DesertNode()}}
+{\footnotesize\ttfamily Desert\+Node\+::\+Desert\+Node (\begin{DoxyParamCaption}\item[{std\+::string}]{name,  }\item[{std\+::string}]{namespace\+\_\+,  }\item[{rmw\+\_\+gid\+\_\+t}]{gid }\end{DoxyParamCaption})}
+
+
+
+Create a node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name of the node \\
+\hline
+{\em namespace\+\_\+} & Namespace of the node \\
+\hline
+{\em gid} & Global identifier of the node \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classDesertNode_af62ad306607e8a7df2363a19a54577b4}\label{classDesertNode_af62ad306607e8a7df2363a19a54577b4} 
+\index{DesertNode@{DesertNode}!add\_client@{add\_client}}
+\index{add\_client@{add\_client}!DesertNode@{DesertNode}}
+\doxysubsubsection{\texorpdfstring{add\_client()}{add\_client()}}
+{\footnotesize\ttfamily void Desert\+Node\+::add\+\_\+client (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDesertClient}{Desert\+Client}} \texorpdfstring{$\ast$}{*}}]{cli }\end{DoxyParamCaption})}
+
+
+
+Add a client to the current node. 
+
+This function pushes the pointer to a client in a vector of all the registered clients related to the current node.
+
+
+\begin{DoxyParams}{Parameters}
+{\em cli} & Pointer to a \doxylink{classDesertClient}{Desert\+Client} instance \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classDesertNode_a68330bfc791469e56904c857207ec9c6}\label{classDesertNode_a68330bfc791469e56904c857207ec9c6} 
+\index{DesertNode@{DesertNode}!add\_publisher@{add\_publisher}}
+\index{add\_publisher@{add\_publisher}!DesertNode@{DesertNode}}
+\doxysubsubsection{\texorpdfstring{add\_publisher()}{add\_publisher()}}
+{\footnotesize\ttfamily void Desert\+Node\+::add\+\_\+publisher (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDesertPublisher}{Desert\+Publisher}} \texorpdfstring{$\ast$}{*}}]{pub }\end{DoxyParamCaption})}
+
+
+
+Add a publisher to the current node. 
+
+This function pushes the pointer to a publisher in a vector of all the registered publishers related to the current node.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pub} & Pointer to a \doxylink{classDesertPublisher}{Desert\+Publisher} instance \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classDesertNode_a0e76cec19b63bf3c4038e5a1913f4e00}\label{classDesertNode_a0e76cec19b63bf3c4038e5a1913f4e00} 
+\index{DesertNode@{DesertNode}!add\_service@{add\_service}}
+\index{add\_service@{add\_service}!DesertNode@{DesertNode}}
+\doxysubsubsection{\texorpdfstring{add\_service()}{add\_service()}}
+{\footnotesize\ttfamily void Desert\+Node\+::add\+\_\+service (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDesertService}{Desert\+Service}} \texorpdfstring{$\ast$}{*}}]{ser }\end{DoxyParamCaption})}
+
+
+
+Add a service to the current node. 
+
+This function pushes the pointer to a service in a vector of all the registered services related to the current node.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ser} & Pointer to a \doxylink{classDesertService}{Desert\+Service} instance \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classDesertNode_a65b9f4049d5b747166e62a394fdab0bb}\label{classDesertNode_a65b9f4049d5b747166e62a394fdab0bb} 
+\index{DesertNode@{DesertNode}!add\_subscriber@{add\_subscriber}}
+\index{add\_subscriber@{add\_subscriber}!DesertNode@{DesertNode}}
+\doxysubsubsection{\texorpdfstring{add\_subscriber()}{add\_subscriber()}}
+{\footnotesize\ttfamily void Desert\+Node\+::add\+\_\+subscriber (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDesertSubscriber}{Desert\+Subscriber}} \texorpdfstring{$\ast$}{*}}]{sub }\end{DoxyParamCaption})}
+
+
+
+Add a subscriber to the current node. 
+
+This function pushes the pointer to a subscriber in a vector of all the registered subscribers related to the current node.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sub} & Pointer to a \doxylink{classDesertSubscriber}{Desert\+Subscriber} instance \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classDesertNode_a943dd1a2c9ef84a39874ea4579011fe9}\label{classDesertNode_a943dd1a2c9ef84a39874ea4579011fe9} 
+\index{DesertNode@{DesertNode}!get\_gid@{get\_gid}}
+\index{get\_gid@{get\_gid}!DesertNode@{DesertNode}}
+\doxysubsubsection{\texorpdfstring{get\_gid()}{get\_gid()}}
+{\footnotesize\ttfamily rmw\+\_\+gid\+\_\+t Desert\+Node\+::get\+\_\+gid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retreive the gid of the current entity. 
+
+This function returns the global identifier of the current entity in the rmw format.
+
+\begin{DoxyReturn}{Returns}
+Global identifier of the entity 
+\end{DoxyReturn}
+\Hypertarget{classDesertNode_aed8407f598fecadfb3e713f403b90e37}\label{classDesertNode_aed8407f598fecadfb3e713f403b90e37} 
+\index{DesertNode@{DesertNode}!remove\_client@{remove\_client}}
+\index{remove\_client@{remove\_client}!DesertNode@{DesertNode}}
+\doxysubsubsection{\texorpdfstring{remove\_client()}{remove\_client()}}
+{\footnotesize\ttfamily void Desert\+Node\+::remove\+\_\+client (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDesertClient}{Desert\+Client}} \texorpdfstring{$\ast$}{*}}]{cli }\end{DoxyParamCaption})}
+
+
+
+Remove a client from the current node. 
+
+This function removes the pointer to a client from the vector of all the registered clients related to the current node.
+
+
+\begin{DoxyParams}{Parameters}
+{\em cli} & Pointer to a \doxylink{classDesertClient}{Desert\+Client} instance \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classDesertNode_aa89ff17eb045e7a3953d8a6be03d98e6}\label{classDesertNode_aa89ff17eb045e7a3953d8a6be03d98e6} 
+\index{DesertNode@{DesertNode}!remove\_publisher@{remove\_publisher}}
+\index{remove\_publisher@{remove\_publisher}!DesertNode@{DesertNode}}
+\doxysubsubsection{\texorpdfstring{remove\_publisher()}{remove\_publisher()}}
+{\footnotesize\ttfamily void Desert\+Node\+::remove\+\_\+publisher (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDesertPublisher}{Desert\+Publisher}} \texorpdfstring{$\ast$}{*}}]{pub }\end{DoxyParamCaption})}
+
+
+
+Remove a publisher from the current node. 
+
+This function removes the pointer to a publisher from the vector of all the registered publishers related to the current node.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pub} & Pointer to a \doxylink{classDesertPublisher}{Desert\+Publisher} instance \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classDesertNode_ad36251b2a6cf439f030236d78c3841ef}\label{classDesertNode_ad36251b2a6cf439f030236d78c3841ef} 
+\index{DesertNode@{DesertNode}!remove\_service@{remove\_service}}
+\index{remove\_service@{remove\_service}!DesertNode@{DesertNode}}
+\doxysubsubsection{\texorpdfstring{remove\_service()}{remove\_service()}}
+{\footnotesize\ttfamily void Desert\+Node\+::remove\+\_\+service (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDesertService}{Desert\+Service}} \texorpdfstring{$\ast$}{*}}]{ser }\end{DoxyParamCaption})}
+
+
+
+Remove a service from the current node. 
+
+This function removes the pointer to a service from the vector of all the registered services related to the current node.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ser} & Pointer to a \doxylink{classDesertService}{Desert\+Service} instance \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classDesertNode_a9b3baab0cbd521a1f57f9d61627275af}\label{classDesertNode_a9b3baab0cbd521a1f57f9d61627275af} 
+\index{DesertNode@{DesertNode}!remove\_subscriber@{remove\_subscriber}}
+\index{remove\_subscriber@{remove\_subscriber}!DesertNode@{DesertNode}}
+\doxysubsubsection{\texorpdfstring{remove\_subscriber()}{remove\_subscriber()}}
+{\footnotesize\ttfamily void Desert\+Node\+::remove\+\_\+subscriber (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDesertSubscriber}{Desert\+Subscriber}} \texorpdfstring{$\ast$}{*}}]{sub }\end{DoxyParamCaption})}
+
+
+
+Remove a subscriber from the current node. 
+
+This function removes the pointer to a subscriber from the vector of all the registered subscribers related to the current node.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sub} & Pointer to a \doxylink{classDesertSubscriber}{Desert\+Subscriber} instance \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-src/desert\+\_\+classes/\mbox{\hyperlink{DesertNode_8h}{Desert\+Node.\+h}}\end{DoxyCompactItemize}
+src/desert\+\_\+classes/\mbox{\hyperlink{DesertNode_8h}{Desert\+Node.\+h}}\item 
+src/desert\+\_\+classes/Desert\+Node.\+cpp\end{DoxyCompactItemize}

@@ -69,6 +69,7 @@ class DesertService
     *
     * @param service_name  Name of the service to receive requests and send responses
     * @param type_supports Pointer to the message data structure coming from the ROS upper layers
+    * @param gid           Global identifier of the entity
     */
     DesertService(std::string service_name, const rosidl_service_type_support_t * type_supports, rmw_gid_t gid);
     
@@ -101,13 +102,41 @@ class DesertService
     * A discrimination is made between C members and C++ members based on the type support.
     *
     * @param res         Pointer to the response to send
-    * @param sequence_id Pointer to the service sequence identifier
+    * @param req_header  Pointer to the request header used to store the service sequence identifier
     */
     void send_response(void * res, rmw_request_id_t * req_header);
     
+   /**
+    * @brief Retreive the gid of the current entity
+    *
+    * This function returns the global identifier of the current entity in the rmw format.
+    *
+    * @return Global identifier of the entity
+    */
     rmw_gid_t get_gid();
+   /**
+    * @brief Retreive the service name of the current entity
+    *
+    * This function returns a string containing the service name of the current entity.
+    *
+    * @return Name of the service
+    */
     std::string get_service_name();
+   /**
+    * @brief Retreive the request type of the current entity
+    *
+    * This function returns a string containing the service request type name of the current entity.
+    *
+    * @return Type of the service request
+    */
     std::string get_request_type_name();
+   /**
+    * @brief Retreive the response type of the current entity
+    *
+    * This function returns a string containing the service response type name of the current entity.
+    *
+    * @return Type of the service response
+    */
     std::string get_response_type_name();
     
     

@@ -81,7 +81,81 @@ $(function() {
 
 <p>Implementation of the Node structure for DESERT.  
 <a href="#details">More...</a></p>
-
+<div class="textblock"><code>#include &quot;<a class="el" href="CBorStream_8h_source.html">CBorStream.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="DesertPublisher_8h_source.html">DesertPublisher.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="DesertSubscriber_8h_source.html">DesertSubscriber.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="DesertClient_8h_source.html">DesertClient.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="DesertService_8h_source.html">DesertService.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Discovery_8h_source.html">Discovery.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="TopicsConfig_8h_source.html">TopicsConfig.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for DesertNode.h:</div>
+<div class="dyncontent">
+<div class="center"><img src="DesertNode_8h__incl.png" border="0" usemap="#asrc_2desert__classes_2DesertNode_8h" alt=""/></div>
+<map name="asrc_2desert__classes_2DesertNode_8h" id="asrc_2desert__classes_2DesertNode_8h">
+<area shape="rect" title="Implementation of the Node structure for DESERT." alt="" coords="415,5,556,45"/>
+<area shape="rect" href="CBorStream_8h.html" title="Classes used to convert data types into a CBOR encoded stream." alt="" coords="525,240,637,265"/>
+<area shape="poly" title=" " alt="" coords="557,25,596,31,637,43,675,62,706,92,716,112,715,133,707,154,693,173,656,208,616,235,613,231,652,204,689,170,703,151,710,132,710,113,702,95,672,67,635,48,595,36,556,30"/>
+<area shape="rect" href="TopicsConfig_8h.html" title="Class used to store configurations." alt="" coords="5,313,120,339"/>
+<area shape="poly" title=" " alt="" coords="415,31,327,37,230,48,144,67,112,80,90,95,73,118,62,144,55,172,51,200,53,256,59,300,54,300,47,256,46,200,49,171,57,142,69,115,86,91,109,75,142,62,229,43,326,31,414,26"/>
+<area shape="rect" href="DesertPublisher_8h.html" title="Implementation of the Publisher structure for DESERT." alt="" coords="100,93,236,119"/>
+<area shape="poly" title=" " alt="" coords="415,47,228,93,227,87,414,41"/>
+<area shape="rect" href="DesertSubscriber_8h.html" title="Implementation of the Subscriber structure for DESERT." alt="" coords="260,93,404,119"/>
+<area shape="poly" title=" " alt="" coords="450,48,368,89,365,85,447,43"/>
+<area shape="rect" href="DesertClient_8h.html" title="Implementation of the Client structure for DESERT." alt="" coords="428,93,543,119"/>
+<area shape="poly" title=" " alt="" coords="488,46,488,79,483,79,483,46"/>
+<area shape="rect" href="DesertService_8h.html" title="Implementation of the Service structure for DESERT." alt="" coords="567,93,692,119"/>
+<area shape="poly" title=" " alt="" coords="521,43,597,84,595,89,519,48"/>
+<area shape="rect" href="Discovery_8h.html" title="Namespace used to provide discovery functionalities." alt="" coords="919,93,1017,119"/>
+<area shape="poly" title=" " alt="" coords="556,35,906,92,906,97,556,41"/>
+<area shape="rect" href="TcpDaemon_8h.html" title="Class used to send and receive data from the DESERT socket." alt="" coords="646,313,757,339"/>
+<area shape="poly" title=" " alt="" coords="602,263,671,304,668,308,599,268"/>
+<area shape="poly" title=" " alt="" coords="525,264,134,316,133,311,525,259"/>
+<area shape="rect" title=" " alt="" coords="781,313,899,339"/>
+<area shape="poly" title=" " alt="" coords="624,263,786,307,784,312,622,268"/>
+<area shape="rect" title=" " alt="" coords="922,313,1041,339"/>
+<area shape="poly" title=" " alt="" coords="638,261,909,309,908,314,637,267"/>
+<area shape="rect" title=" " alt="" coords="144,313,261,339"/>
+<area shape="poly" title=" " alt="" coords="526,267,275,314,274,309,525,262"/>
+<area shape="rect" title=" " alt="" coords="285,313,392,339"/>
+<area shape="poly" title=" " alt="" coords="543,268,392,312,390,307,542,263"/>
+<area shape="rect" title=" " alt="" coords="416,313,523,339"/>
+<area shape="poly" title=" " alt="" coords="565,268,501,308,498,303,562,263"/>
+<area shape="rect" title=" " alt="" coords="547,313,621,339"/>
+<area shape="poly" title=" " alt="" coords="584,266,586,300,580,300,579,266"/>
+<area shape="rect" title=" " alt="" coords="24,387,101,412"/>
+<area shape="poly" title=" " alt="" coords="65,339,65,373,60,373,60,339"/>
+<area shape="poly" title=" " alt="" coords="184,117,236,153,306,190,397,214,512,237,511,242,396,219,304,194,234,157,181,121"/>
+<area shape="rect" href="MessageSerialization_8h.html" title="Namespace containing serialization functions." alt="" coords="317,167,491,192"/>
+<area shape="poly" title=" " alt="" coords="207,116,353,160,352,165,205,121"/>
+<area shape="poly" title=" " alt="" coords="433,190,541,232,539,237,432,194"/>
+<area shape="rect" href="CStringHelper_8h.html" title="Namespace containing C sequence handling functions." alt="" coords="359,240,481,265"/>
+<area shape="poly" title=" " alt="" coords="409,192,417,226,412,227,404,193"/>
+<area shape="rect" href="macros_8h.html" title="Header containing C sequence macros." alt="" coords="252,240,335,265"/>
+<area shape="poly" title=" " alt="" coords="388,194,325,235,322,230,385,190"/>
+<area shape="poly" title=" " alt="" coords="386,116,445,135,504,164,540,195,567,227,563,230,536,199,501,169,443,140,385,121"/>
+<area shape="poly" title=" " alt="" coords="346,117,384,155,381,159,342,121"/>
+<area shape="poly" title=" " alt="" coords="502,117,526,138,549,165,565,196,577,226,572,227,561,198,544,168,522,142,499,121"/>
+<area shape="poly" title=" " alt="" coords="474,121,429,160,426,156,471,117"/>
+<area shape="poly" title=" " alt="" coords="628,120,592,228,587,226,623,118"/>
+<area shape="poly" title=" " alt="" coords="594,121,454,165,453,160,592,116"/>
+<area shape="poly" title=" " alt="" coords="928,121,781,169,724,194,623,237,621,232,722,190,779,164,927,116"/>
+<area shape="rect" title=" " alt="" coords="792,167,856,192"/>
+<area shape="poly" title=" " alt="" coords="946,121,861,163,859,158,944,116"/>
+<area shape="rect" title=" " alt="" coords="880,167,947,192"/>
+<area shape="poly" title=" " alt="" coords="961,121,933,157,928,154,957,117"/>
+<area shape="rect" title=" " alt="" coords="971,167,1074,192"/>
+<area shape="poly" title=" " alt="" coords="979,117,1008,154,1003,157,975,121"/>
+<area shape="rect" title=" " alt="" coords="1098,167,1259,192"/>
+<area shape="poly" title=" " alt="" coords="1003,116,1133,160,1131,165,1001,121"/>
+<area shape="rect" href="rmw__context__impl__s_8h.html" title="Implementation for the context variable." alt="" coords="1283,167,1453,192"/>
+<area shape="poly" title=" " alt="" coords="1018,113,1291,162,1290,167,1017,119"/>
+<area shape="rect" href="demangle_8h.html" title="Functions used to demangle topic names during discovery operations." alt="" coords="1477,167,1576,192"/>
+<area shape="poly" title=" " alt="" coords="1017,109,1209,130,1464,164,1463,169,1208,136,1017,115"/>
+<area shape="poly" title=" " alt="" coords="1478,193,1466,195,1232,219,1001,236,651,252,651,247,1001,230,1231,214,1465,189,1477,188"/>
+</map>
+</div>
+</div>
 <p><a href="DesertNode_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
@@ -91,7 +165,7 @@ Classes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implementation of the Node structure for DESERT. </p>
-<p>Unimplemented class included for future expansions</p>
+<p>The <a class="el" href="classDesertNode.html">DesertNode</a> class is used to keep track af all the entities created by a specific node. Each of them is stored in a vector of pointers to the original memory locations mainly used to provide discovery functionalities.</p>
 <dl class="section author"><dt>Author</dt><dd>Prof. Davide Costa </dd></dl>
 </div></div><!-- contents -->
 <!-- start footer part -->

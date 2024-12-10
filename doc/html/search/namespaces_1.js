@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['messageserialization_0',['MessageSerialization',['../namespaceMessageSerialization.html',1,'']]]
+  ['discovery_0',['Discovery',['../namespaceDiscovery.html',1,'']]]
 ];

@@ -1,0 +1,36 @@
+<map id="src/desert_classes/Discovery.h" name="src/desert_classes/Discovery.h">
+<area shape="rect" id="Node000001" title="Namespace used to provide discovery functionalities." alt="" coords="273,5,414,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="62,93,126,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="284,48,140,93,138,88,283,43"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="150,93,217,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="306,48,220,90,218,85,304,43"/>
+<area shape="rect" id="Node000004" href="$CBorStream_8h.html" title="Classes used to convert data types into a CBOR encoded stream." alt="" coords="494,167,606,192"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="317,48,298,63,283,81,276,100,277,109,281,117,294,127,312,137,363,152,423,163,481,170,480,175,422,168,362,157,310,142,291,132,277,120,272,110,270,99,278,79,294,60,313,44"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="292,93,395,119"/>
+<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="346,46,346,79,341,79,341,46"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="419,93,580,119"/>
+<area shape="poly" id="edge14_Node000001_Node000015" title=" " alt="" coords="382,43,465,85,463,89,380,48"/>
+<area shape="rect" id="Node000016" href="$rmw__context__impl__s_8h.html" title="Implementation for the context variable." alt="" coords="604,93,773,119"/>
+<area shape="poly" id="edge15_Node000001_Node000016" title=" " alt="" coords="415,40,626,88,625,93,413,45"/>
+<area shape="rect" id="Node000017" href="$demangle_8h.html" title="Functions used to demangle topic names during discovery operations." alt="" coords="798,93,897,119"/>
+<area shape="poly" id="edge16_Node000001_Node000017" title=" " alt="" coords="415,34,785,90,784,96,414,39"/>
+<area shape="rect" id="Node000005" href="$TcpDaemon_8h.html" title="Class used to send and receive data from the DESERT socket." alt="" coords="5,240,116,265"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="494,191,130,243,129,237,493,185"/>
+<area shape="rect" id="Node000006" href="$TopicsConfig_8h.html" title="Class used to store configurations." alt="" coords="141,240,255,265"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="494,195,268,240,267,235,493,189"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="279,240,397,265"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="517,195,386,238,384,233,515,189"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="420,240,539,265"/>
+<area shape="poly" id="edge8_Node000004_Node000009" title=" " alt="" coords="540,194,502,232,498,228,536,190"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="562,240,679,265"/>
+<area shape="poly" id="edge9_Node000004_Node000010" title=" " alt="" coords="564,190,602,228,598,232,560,194"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="703,240,810,265"/>
+<area shape="poly" id="edge10_Node000004_Node000011" title=" " alt="" coords="584,189,711,233,709,238,582,195"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="834,240,941,265"/>
+<area shape="poly" id="edge11_Node000004_Node000012" title=" " alt="" coords="605,189,821,235,820,240,604,195"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="965,240,1039,265"/>
+<area shape="poly" id="edge12_Node000004_Node000013" title=" " alt="" coords="607,185,758,206,951,237,950,242,757,211,606,190"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="159,313,237,339"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="201,266,201,300,195,300,195,266"/>
+<area shape="poly" id="edge17_Node000017_Node000004" title=" " alt="" coords="800,121,612,166,611,161,799,116"/>
+</map>

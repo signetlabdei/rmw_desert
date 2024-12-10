@@ -11,7 +11,6 @@ char * Discovery::integer_to_string(int x)
     return buffer;
 }
 
-/// Returns `name` stripped of `prefix`.
 std::string Discovery::resolve_prefix(const std::string & name, const std::string & prefix)
 {
   if (name.rfind(prefix, 0) == 0 && name.at(prefix.length()) == '/') {
@@ -20,13 +19,11 @@ std::string Discovery::resolve_prefix(const std::string & name, const std::strin
   return "";
 }
 
-/// Return the topic name for a given topic if it is part of one, else "".
 std::string Discovery::demangle_publisher_from_topic(const std::string & topic_name)
 {
   return resolve_prefix(topic_name, ros_topic_publisher_prefix);
 }
 
-/// Return the topic name for a given topic if it is part of one, else "".
 std::string Discovery::demangle_subscriber_from_topic(const std::string & topic_name)
 {
   return resolve_prefix(topic_name, ros_topic_subscriber_prefix);

@@ -21,24 +21,68 @@
 \DoxyCodeLine{00017\ \textcolor{comment}{\ *\ \ \ along\ with\ RMW\ desert.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.\ \ \ \ *}}
 \DoxyCodeLine{00018\ \textcolor{comment}{\ ****************************************************************************/}}
 \DoxyCodeLine{00019\ }
-\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#ifndef\ DESERT\_NODE\_H\_}}
-\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ DESERT\_NODE\_H\_}}
-\DoxyCodeLine{00032\ }
-\DoxyCodeLine{00033\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classDesertNode}{DesertNode}}}
-\DoxyCodeLine{00034\ \{}
-\DoxyCodeLine{00035\ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{classDesertNode}{DesertNode}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ name)}
-\DoxyCodeLine{00037\ \ \ \ \ :\ \_name(name)}
-\DoxyCodeLine{00038\ \ \ \ \ \{\}}
-\DoxyCodeLine{00039\ \ \ \ \ }
-\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ getName()}
-\DoxyCodeLine{00041\ \ \ \ \ \{}
-\DoxyCodeLine{00042\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_name;}
-\DoxyCodeLine{00043\ \ \ \ \ \}}
-\DoxyCodeLine{00044\ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ \_name;}
-\DoxyCodeLine{00046\ \};}
-\DoxyCodeLine{00047\ }
-\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#ifndef\ DESERT\_NODE\_H\_}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ DESERT\_NODE\_H\_}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#include\ "{}rmw/rmw.h"{}}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#include\ "{}rmw/types.h"{}}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{CBorStream_8h}{CBorStream.h}}"{}}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{DesertPublisher_8h}{DesertPublisher.h}}"{}}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{DesertSubscriber_8h}{DesertSubscriber.h}}"{}}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{DesertClient_8h}{DesertClient.h}}"{}}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{DesertService_8h}{DesertService.h}}"{}}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Discovery_8h}{Discovery.h}}"{}}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{TopicsConfig_8h}{TopicsConfig.h}}"{}}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classDesertNode}{DesertNode}}}
+\DoxyCodeLine{00054\ \{}
+\DoxyCodeLine{00055\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00063\ \ \ \ \ \mbox{\hyperlink{classDesertNode}{DesertNode}}(std::string\ name,\ std::string\ namespace\_,\ rmw\_gid\_t\ gid);}
+\DoxyCodeLine{00064\ \ \ \ \ \mbox{\hyperlink{classDesertNode}{\string~DesertNode}}();}
+\DoxyCodeLine{00065\ \ \ \ \ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDesertNode_a68330bfc791469e56904c857207ec9c6}{add\_publisher}}(\mbox{\hyperlink{classDesertPublisher}{DesertPublisher}}\ *\ pub);}
+\DoxyCodeLine{00075\ \ \ \ \ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDesertNode_a65b9f4049d5b747166e62a394fdab0bb}{add\_subscriber}}(\mbox{\hyperlink{classDesertSubscriber}{DesertSubscriber}}\ *\ sub);}
+\DoxyCodeLine{00085\ \ \ \ \ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDesertNode_af62ad306607e8a7df2363a19a54577b4}{add\_client}}(\mbox{\hyperlink{classDesertClient}{DesertClient}}\ *\ cli);}
+\DoxyCodeLine{00095\ \ \ \ \ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDesertNode_a0e76cec19b63bf3c4038e5a1913f4e00}{add\_service}}(\mbox{\hyperlink{classDesertService}{DesertService}}\ *\ ser);}
+\DoxyCodeLine{00105\ \ \ \ \ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDesertNode_aa89ff17eb045e7a3953d8a6be03d98e6}{remove\_publisher}}(\mbox{\hyperlink{classDesertPublisher}{DesertPublisher}}\ *\ pub);}
+\DoxyCodeLine{00115\ \ \ \ \ }
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDesertNode_a9b3baab0cbd521a1f57f9d61627275af}{remove\_subscriber}}(\mbox{\hyperlink{classDesertSubscriber}{DesertSubscriber}}\ *\ sub);}
+\DoxyCodeLine{00125\ \ \ \ \ }
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDesertNode_aed8407f598fecadfb3e713f403b90e37}{remove\_client}}(\mbox{\hyperlink{classDesertClient}{DesertClient}}\ *\ cli);}
+\DoxyCodeLine{00135\ \ \ \ \ }
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDesertNode_ad36251b2a6cf439f030236d78c3841ef}{remove\_service}}(\mbox{\hyperlink{classDesertService}{DesertService}}\ *\ ser);}
+\DoxyCodeLine{00145\ \ \ \ \ }
+\DoxyCodeLine{00153\ \ \ \ \ rmw\_gid\_t\ \mbox{\hyperlink{classDesertNode_a943dd1a2c9ef84a39874ea4579011fe9}{get\_gid}}();}
+\DoxyCodeLine{00154\ \ \ \ \ }
+\DoxyCodeLine{00155\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00156\ \ \ \ \ rmw\_gid\_t\ \_gid;}
+\DoxyCodeLine{00157\ \ \ \ \ std::string\ \_name;}
+\DoxyCodeLine{00158\ \ \ \ \ std::string\ \_namespace;}
+\DoxyCodeLine{00159\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1TxStream}{cbor::TxStream}}\ \_discovery\_beacon\_data\_stream;}
+\DoxyCodeLine{00160\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1RxStream}{cbor::RxStream}}\ \_discovery\_request\_data\_stream;}
+\DoxyCodeLine{00161\ \ \ \ \ }
+\DoxyCodeLine{00162\ \ \ \ \ std::vector<DesertPublisher\ *>\ \_publishers;}
+\DoxyCodeLine{00163\ \ \ \ \ std::vector<DesertSubscriber\ *>\ \_subscribers;}
+\DoxyCodeLine{00164\ \ \ \ \ std::vector<DesertClient\ *>\ \_clients;}
+\DoxyCodeLine{00165\ \ \ \ \ std::vector<DesertService\ *>\ \_services;}
+\DoxyCodeLine{00166\ \ \ \ \ }
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keywordtype}{void}\ publish\_all\_beacons();}
+\DoxyCodeLine{00168\ \ \ \ \ }
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keywordtype}{bool}\ \_discovery\_done;}
+\DoxyCodeLine{00170\ \ \ \ \ std::thread\ \_discovery\_request\_thread;}
+\DoxyCodeLine{00171\ \ \ \ \ }
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordtype}{void}\ \_discovery\_request();}
+\DoxyCodeLine{00173\ \ \ \ \ }
+\DoxyCodeLine{00174\ \};}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

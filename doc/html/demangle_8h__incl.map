@@ -1,0 +1,23 @@
+<map id="src/desert_classes/demangle.h" name="src/desert_classes/demangle.h">
+<area shape="rect" id="Node000001" title="Functions used to demangle topic names during discovery operations." alt="" coords="479,5,621,45"/>
+<area shape="rect" id="Node000002" href="$CBorStream_8h.html" title="Classes used to convert data types into a CBOR encoded stream." alt="" coords="494,93,606,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="553,46,553,79,547,79,547,46"/>
+<area shape="rect" id="Node000003" href="$TcpDaemon_8h.html" title="Class used to send and receive data from the DESERT socket." alt="" coords="5,167,116,192"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="494,117,130,169,129,164,493,112"/>
+<area shape="rect" id="Node000004" href="$TopicsConfig_8h.html" title="Class used to store configurations." alt="" coords="141,167,255,192"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="494,121,268,167,267,161,493,116"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="279,167,397,192"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="517,121,386,165,384,160,515,116"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="420,167,539,192"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="540,121,502,159,498,155,536,117"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="562,167,679,192"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="564,117,602,155,598,159,560,121"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="703,167,810,192"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="584,116,711,160,709,165,582,121"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="834,167,941,192"/>
+<area shape="poly" id="edge9_Node000002_Node000010" title=" " alt="" coords="605,116,821,161,820,167,604,121"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="965,167,1039,192"/>
+<area shape="poly" id="edge10_Node000002_Node000011" title=" " alt="" coords="607,112,758,132,951,164,950,169,757,137,606,117"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="159,240,237,265"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="201,192,201,226,195,226,195,192"/>
+</map>

@@ -3,20 +3,26 @@
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classDesertSubscriber_a8f83b811e02c28534cc5b7d3f10c99ff}{Desert\+Subscriber}} (std\+::string topic\+\_\+name, const rosidl\+\_\+message\+\_\+type\+\_\+support\+\_\+t \texorpdfstring{$\ast$}{*}type\+\_\+supports)
+\mbox{\hyperlink{classDesertSubscriber_a0ee763a602d22542f54fbdc3257eacf4}{Desert\+Subscriber}} (std\+::string topic\+\_\+name, const rosidl\+\_\+message\+\_\+type\+\_\+support\+\_\+t \texorpdfstring{$\ast$}{*}type\+\_\+supports, rmw\+\_\+gid\+\_\+t gid)
 \begin{DoxyCompactList}\small\item\em Create a subscriber. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classDesertSubscriber_ae8a99cb6180868be903a06e4e3a8a81d}{has\+\_\+data}} ()
 \begin{DoxyCompactList}\small\item\em Check if there is available data for the registered topic. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classDesertSubscriber_a147c99efc5d5784ee75b54914f59cd5c}{read\+\_\+data}} (void \texorpdfstring{$\ast$}{*}msg)
-\begin{DoxyCompactList}\small\item\em Read a publication from the publisher. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Read a publication from the publisher. \end{DoxyCompactList}\item 
+rmw\+\_\+gid\+\_\+t \mbox{\hyperlink{classDesertSubscriber_a5ade27aec44d33dc3e84a894672680c0}{get\+\_\+gid}} ()
+\begin{DoxyCompactList}\small\item\em Retreive the gid of the current entity. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classDesertSubscriber_a16e7e170cc69eeafa1ca3f7bfafc0034}{get\+\_\+topic\+\_\+name}} ()
+\begin{DoxyCompactList}\small\item\em Retreive the topic name of the current entity. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classDesertSubscriber_afa0db373538c7cfece51424990c1363e}{get\+\_\+type\+\_\+name}} ()
+\begin{DoxyCompactList}\small\item\em Retreive the message type of the current entity. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\Hypertarget{classDesertSubscriber_a8f83b811e02c28534cc5b7d3f10c99ff}\label{classDesertSubscriber_a8f83b811e02c28534cc5b7d3f10c99ff} 
+\Hypertarget{classDesertSubscriber_a0ee763a602d22542f54fbdc3257eacf4}\label{classDesertSubscriber_a0ee763a602d22542f54fbdc3257eacf4} 
 \index{DesertSubscriber@{DesertSubscriber}!DesertSubscriber@{DesertSubscriber}}
 \index{DesertSubscriber@{DesertSubscriber}!DesertSubscriber@{DesertSubscriber}}
 \doxysubsubsection{\texorpdfstring{DesertSubscriber()}{DesertSubscriber()}}
-{\footnotesize\ttfamily Desert\+Subscriber\+::\+Desert\+Subscriber (\begin{DoxyParamCaption}\item[{std\+::string}]{topic\+\_\+name,  }\item[{const rosidl\+\_\+message\+\_\+type\+\_\+support\+\_\+t \texorpdfstring{$\ast$}{*}}]{type\+\_\+supports }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Desert\+Subscriber\+::\+Desert\+Subscriber (\begin{DoxyParamCaption}\item[{std\+::string}]{topic\+\_\+name,  }\item[{const rosidl\+\_\+message\+\_\+type\+\_\+support\+\_\+t \texorpdfstring{$\ast$}{*}}]{type\+\_\+supports,  }\item[{rmw\+\_\+gid\+\_\+t}]{gid }\end{DoxyParamCaption})}
 
 
 
@@ -28,10 +34,57 @@ Create a subscriber.
 \hline
 {\em type\+\_\+supports} & Pointer to the message data structure coming from the ROS upper layers \\
 \hline
+{\em gid} & Global identifier of the entity \\
+\hline
 \end{DoxyParams}
 
 
 \doxysubsection{Member Function Documentation}
+\Hypertarget{classDesertSubscriber_a5ade27aec44d33dc3e84a894672680c0}\label{classDesertSubscriber_a5ade27aec44d33dc3e84a894672680c0} 
+\index{DesertSubscriber@{DesertSubscriber}!get\_gid@{get\_gid}}
+\index{get\_gid@{get\_gid}!DesertSubscriber@{DesertSubscriber}}
+\doxysubsubsection{\texorpdfstring{get\_gid()}{get\_gid()}}
+{\footnotesize\ttfamily rmw\+\_\+gid\+\_\+t Desert\+Subscriber\+::get\+\_\+gid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retreive the gid of the current entity. 
+
+This function returns the global identifier of the current entity in the rmw format.
+
+\begin{DoxyReturn}{Returns}
+Global identifier of the entity 
+\end{DoxyReturn}
+\Hypertarget{classDesertSubscriber_a16e7e170cc69eeafa1ca3f7bfafc0034}\label{classDesertSubscriber_a16e7e170cc69eeafa1ca3f7bfafc0034} 
+\index{DesertSubscriber@{DesertSubscriber}!get\_topic\_name@{get\_topic\_name}}
+\index{get\_topic\_name@{get\_topic\_name}!DesertSubscriber@{DesertSubscriber}}
+\doxysubsubsection{\texorpdfstring{get\_topic\_name()}{get\_topic\_name()}}
+{\footnotesize\ttfamily std\+::string Desert\+Subscriber\+::get\+\_\+topic\+\_\+name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retreive the topic name of the current entity. 
+
+This function returns a string containing the topic name of the current entity.
+
+\begin{DoxyReturn}{Returns}
+Name of the topic 
+\end{DoxyReturn}
+\Hypertarget{classDesertSubscriber_afa0db373538c7cfece51424990c1363e}\label{classDesertSubscriber_afa0db373538c7cfece51424990c1363e} 
+\index{DesertSubscriber@{DesertSubscriber}!get\_type\_name@{get\_type\_name}}
+\index{get\_type\_name@{get\_type\_name}!DesertSubscriber@{DesertSubscriber}}
+\doxysubsubsection{\texorpdfstring{get\_type\_name()}{get\_type\_name()}}
+{\footnotesize\ttfamily std\+::string Desert\+Subscriber\+::get\+\_\+type\+\_\+name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retreive the message type of the current entity. 
+
+This function returns a string containing the message type name of the current entity.
+
+\begin{DoxyReturn}{Returns}
+Type of the message 
+\end{DoxyReturn}
 \Hypertarget{classDesertSubscriber_ae8a99cb6180868be903a06e4e3a8a81d}\label{classDesertSubscriber_ae8a99cb6180868be903a06e4e3a8a81d} 
 \index{DesertSubscriber@{DesertSubscriber}!has\_data@{has\_data}}
 \index{has\_data@{has\_data}!DesertSubscriber@{DesertSubscriber}}

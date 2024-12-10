@@ -78,19 +78,28 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a8f83b811e02c28534cc5b7d3f10c99ff" id="r_a8f83b811e02c28534cc5b7d3f10c99ff"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDesertSubscriber.html#a8f83b811e02c28534cc5b7d3f10c99ff">DesertSubscriber</a> (std::string topic_name, const rosidl_message_type_support_t *type_supports)</td></tr>
-<tr class="memdesc:a8f83b811e02c28534cc5b7d3f10c99ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a subscriber.  <br /></td></tr>
-<tr class="separator:a8f83b811e02c28534cc5b7d3f10c99ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ee763a602d22542f54fbdc3257eacf4" id="r_a0ee763a602d22542f54fbdc3257eacf4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDesertSubscriber.html#a0ee763a602d22542f54fbdc3257eacf4">DesertSubscriber</a> (std::string topic_name, const rosidl_message_type_support_t *type_supports, rmw_gid_t gid)</td></tr>
+<tr class="memdesc:a0ee763a602d22542f54fbdc3257eacf4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a subscriber.  <br /></td></tr>
+<tr class="separator:a0ee763a602d22542f54fbdc3257eacf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae8a99cb6180868be903a06e4e3a8a81d" id="r_ae8a99cb6180868be903a06e4e3a8a81d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDesertSubscriber.html#ae8a99cb6180868be903a06e4e3a8a81d">has_data</a> ()</td></tr>
 <tr class="memdesc:ae8a99cb6180868be903a06e4e3a8a81d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if there is available data for the registered topic.  <br /></td></tr>
 <tr class="separator:ae8a99cb6180868be903a06e4e3a8a81d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a147c99efc5d5784ee75b54914f59cd5c" id="r_a147c99efc5d5784ee75b54914f59cd5c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDesertSubscriber.html#a147c99efc5d5784ee75b54914f59cd5c">read_data</a> (void *msg)</td></tr>
 <tr class="memdesc:a147c99efc5d5784ee75b54914f59cd5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a publication from the publisher.  <br /></td></tr>
 <tr class="separator:a147c99efc5d5784ee75b54914f59cd5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ade27aec44d33dc3e84a894672680c0" id="r_a5ade27aec44d33dc3e84a894672680c0"><td class="memItemLeft" align="right" valign="top">rmw_gid_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDesertSubscriber.html#a5ade27aec44d33dc3e84a894672680c0">get_gid</a> ()</td></tr>
+<tr class="memdesc:a5ade27aec44d33dc3e84a894672680c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retreive the gid of the current entity.  <br /></td></tr>
+<tr class="separator:a5ade27aec44d33dc3e84a894672680c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16e7e170cc69eeafa1ca3f7bfafc0034" id="r_a16e7e170cc69eeafa1ca3f7bfafc0034"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDesertSubscriber.html#a16e7e170cc69eeafa1ca3f7bfafc0034">get_topic_name</a> ()</td></tr>
+<tr class="memdesc:a16e7e170cc69eeafa1ca3f7bfafc0034"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retreive the topic name of the current entity.  <br /></td></tr>
+<tr class="separator:a16e7e170cc69eeafa1ca3f7bfafc0034"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa0db373538c7cfece51424990c1363e" id="r_afa0db373538c7cfece51424990c1363e"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDesertSubscriber.html#afa0db373538c7cfece51424990c1363e">get_type_name</a> ()</td></tr>
+<tr class="memdesc:afa0db373538c7cfece51424990c1363e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retreive the message type of the current entity.  <br /></td></tr>
+<tr class="separator:afa0db373538c7cfece51424990c1363e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a8f83b811e02c28534cc5b7d3f10c99ff" name="a8f83b811e02c28534cc5b7d3f10c99ff"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8f83b811e02c28534cc5b7d3f10c99ff">&#9670;&#160;</a></span>DesertSubscriber()</h2>
+<a id="a0ee763a602d22542f54fbdc3257eacf4" name="a0ee763a602d22542f54fbdc3257eacf4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ee763a602d22542f54fbdc3257eacf4">&#9670;&#160;</a></span>DesertSubscriber()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -105,7 +114,13 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const rosidl_message_type_support_t *&#160;</td>
-          <td class="paramname"><em>type_supports</em>&#160;</td>
+          <td class="paramname"><em>type_supports</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">rmw_gid_t&#160;</td>
+          <td class="paramname"><em>gid</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -120,6 +135,7 @@ Public Member Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">topic_name</td><td>Name of the topic used for the registration </td></tr>
     <tr><td class="paramname">type_supports</td><td>Pointer to the message data structure coming from the ROS upper layers </td></tr>
+    <tr><td class="paramname">gid</td><td>Global identifier of the entity </td></tr>
   </table>
   </dd>
 </dl>
@@ -127,6 +143,69 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a5ade27aec44d33dc3e84a894672680c0" name="a5ade27aec44d33dc3e84a894672680c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ade27aec44d33dc3e84a894672680c0">&#9670;&#160;</a></span>get_gid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">rmw_gid_t DesertSubscriber::get_gid </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retreive the gid of the current entity. </p>
+<p>This function returns the global identifier of the current entity in the rmw format.</p>
+<dl class="section return"><dt>Returns</dt><dd>Global identifier of the entity </dd></dl>
+
+</div>
+</div>
+<a id="a16e7e170cc69eeafa1ca3f7bfafc0034" name="a16e7e170cc69eeafa1ca3f7bfafc0034"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16e7e170cc69eeafa1ca3f7bfafc0034">&#9670;&#160;</a></span>get_topic_name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string DesertSubscriber::get_topic_name </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retreive the topic name of the current entity. </p>
+<p>This function returns a string containing the topic name of the current entity.</p>
+<dl class="section return"><dt>Returns</dt><dd>Name of the topic </dd></dl>
+
+</div>
+</div>
+<a id="afa0db373538c7cfece51424990c1363e" name="afa0db373538c7cfece51424990c1363e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa0db373538c7cfece51424990c1363e">&#9670;&#160;</a></span>get_type_name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string DesertSubscriber::get_type_name </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retreive the message type of the current entity. </p>
+<p>This function returns a string containing the message type name of the current entity.</p>
+<dl class="section return"><dt>Returns</dt><dd>Type of the message </dd></dl>
+
+</div>
+</div>
 <a id="ae8a99cb6180868be903a06e4e3a8a81d" name="ae8a99cb6180868be903a06e4e3a8a81d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae8a99cb6180868be903a06e4e3a8a81d">&#9670;&#160;</a></span>has_data()</h2>
 

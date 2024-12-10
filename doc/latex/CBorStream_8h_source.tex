@@ -36,181 +36,184 @@
 \DoxyCodeLine{00048\ \textcolor{preprocessor}{\#include\ <codecvt>}}
 \DoxyCodeLine{00049\ \textcolor{preprocessor}{\#include\ <cstdint>}}
 \DoxyCodeLine{00050\ \textcolor{preprocessor}{\#include\ <cstdio>}}
-\DoxyCodeLine{00051\ }
-\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#include\ "{}cbor/encoder.h"{}}}
-\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#include\ "{}cbor/ieee754.h"{}}}
-\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#include\ "{}cbor/decoder.h"{}}}
-\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#include\ "{}cbor/parser.h"{}}}
-\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#include\ "{}cbor/helper.h"{}}}
-\DoxyCodeLine{00059\ }
-\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#include\ "{}half.hpp"{}}}
-\DoxyCodeLine{00061\ }
-\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ PUBLISHER\_TYPE\ \ 0}}
-\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ SUBSCRIBER\_TYPE\ 1}}
-\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#define\ CLIENT\_TYPE\ \ \ \ \ 2}}
-\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#define\ SERVICE\_TYPE\ \ \ \ 3}}
-\DoxyCodeLine{00066\ }
-\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ MAX\_BUFFER\_CAPACITY\ 100}}
-\DoxyCodeLine{00068\ }
-\DoxyCodeLine{00069\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ \textcolor{keywordtype}{int}\ MaxLen,\ \textcolor{keyword}{typename}\ Container=std::deque<T>>}
-\DoxyCodeLine{00070\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classCircularQueue}{CircularQueue}}\ :\ \textcolor{keyword}{public}\ std::queue<T,\ Container>\ \{}
-\DoxyCodeLine{00071\ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{void}\ push(\textcolor{keyword}{const}\ T\&\ value)}
-\DoxyCodeLine{00073\ \ \ \ \ \{}
-\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>size()\ ==\ MaxLen)}
-\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ this-\/>c.pop\_front();}
-\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ std::queue<T,\ Container>::push(value);}
-\DoxyCodeLine{00079\ \ \ \ \ \}}
-\DoxyCodeLine{00080\ \};}
-\DoxyCodeLine{00081\ }
-\DoxyCodeLine{00082\ \textcolor{keyword}{namespace\ }cbor}
-\DoxyCodeLine{00083\ \{}
-\DoxyCodeLine{00084\ }
-\DoxyCodeLine{00085\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcbor_1_1TxStream}{TxStream}}}
-\DoxyCodeLine{00086\ \{}
-\DoxyCodeLine{00087\ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00095\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1TxStream}{TxStream}}(uint8\_t\ stream\_type,\ std::string\ stream\_name,\ uint8\_t\ stream\_identifier);}
-\DoxyCodeLine{00096\ \ \ \ \ }
-\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcbor_1_1TxStream_acd05bc87a3a3b29b584e4bb3e507b694}{start\_transmission}}(uint64\_t\ sequence\_id);}
-\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcbor_1_1TxStream_acd05bc87a3a3b29b584e4bb3e507b694}{start\_transmission}}();}
-\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcbor_1_1TxStream_a7c08187453b92347ee439af8648a1379}{end\_transmission}}();}
-\DoxyCodeLine{00122\ }
-\DoxyCodeLine{00127\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1TxStream}{TxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1TxStream_a340159644e1ba667e95c256cbd5f210f}{operator<<}}(\textcolor{keyword}{const}\ uint64\_t\ n);}
-\DoxyCodeLine{00132\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1TxStream}{TxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1TxStream_a340159644e1ba667e95c256cbd5f210f}{operator<<}}(\textcolor{keyword}{const}\ uint32\_t\ n);}
-\DoxyCodeLine{00137\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1TxStream}{TxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1TxStream_a340159644e1ba667e95c256cbd5f210f}{operator<<}}(\textcolor{keyword}{const}\ uint16\_t\ n);}
-\DoxyCodeLine{00142\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1TxStream}{TxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1TxStream_a340159644e1ba667e95c256cbd5f210f}{operator<<}}(\textcolor{keyword}{const}\ uint8\_t\ n);}
-\DoxyCodeLine{00147\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1TxStream}{TxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1TxStream_a340159644e1ba667e95c256cbd5f210f}{operator<<}}(\textcolor{keyword}{const}\ int64\_t\ n);}
-\DoxyCodeLine{00152\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1TxStream}{TxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1TxStream_a340159644e1ba667e95c256cbd5f210f}{operator<<}}(\textcolor{keyword}{const}\ int32\_t\ n);}
-\DoxyCodeLine{00157\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1TxStream}{TxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1TxStream_a340159644e1ba667e95c256cbd5f210f}{operator<<}}(\textcolor{keyword}{const}\ int16\_t\ n);}
-\DoxyCodeLine{00162\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1TxStream}{TxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1TxStream_a340159644e1ba667e95c256cbd5f210f}{operator<<}}(\textcolor{keyword}{const}\ int8\_t\ n);}
-\DoxyCodeLine{00167\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1TxStream}{TxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1TxStream_a340159644e1ba667e95c256cbd5f210f}{operator<<}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ n);}
-\DoxyCodeLine{00172\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1TxStream}{TxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1TxStream_a340159644e1ba667e95c256cbd5f210f}{operator<<}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ f);}
-\DoxyCodeLine{00177\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1TxStream}{TxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1TxStream_a340159644e1ba667e95c256cbd5f210f}{operator<<}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ d);}
-\DoxyCodeLine{00182\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1TxStream}{TxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1TxStream_a340159644e1ba667e95c256cbd5f210f}{operator<<}}(\textcolor{keyword}{const}\ std::string\ s);}
-\DoxyCodeLine{00187\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1TxStream}{TxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1TxStream_a340159644e1ba667e95c256cbd5f210f}{operator<<}}(\textcolor{keyword}{const}\ std::u16string\ s);}
-\DoxyCodeLine{00192\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1TxStream}{TxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1TxStream_a340159644e1ba667e95c256cbd5f210f}{operator<<}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ b);}
-\DoxyCodeLine{00193\ \ \ \ \ }
-\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00199\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classcbor_1_1TxStream}{TxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1TxStream_a73ff9d3efdfc2cde9b6ae1b287dd4b71}{operator<<}}(\textcolor{keyword}{const}\ std::vector<T>\ v)}
-\DoxyCodeLine{00200\ \ \ \ \ \{}
-\DoxyCodeLine{00201\ \ \ \ \ \ \ *this\ <<\ static\_cast<const\ uint32\_t>(v.size());}
-\DoxyCodeLine{00202\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcbor_1_1TxStream_a3431c0b1f28dbf862f9b337ffd0c9272}{serialize\_sequence}}(v.data(),\ v.size());}
-\DoxyCodeLine{00203\ \ \ \ \ \}}
-\DoxyCodeLine{00204\ \ \ \ \ }
-\DoxyCodeLine{00209\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1TxStream}{TxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1TxStream_a340159644e1ba667e95c256cbd5f210f}{operator<<}}(\textcolor{keyword}{const}\ std::vector<bool>\ v);}
-\DoxyCodeLine{00210\ \ \ \ \ }
-\DoxyCodeLine{00216\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classcbor_1_1TxStream}{TxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1TxStream_a3431c0b1f28dbf862f9b337ffd0c9272}{serialize\_sequence}}(\textcolor{keyword}{const}\ T\ *\ items,\ \textcolor{keywordtype}{size\_t}\ size)}
-\DoxyCodeLine{00218\ \ \ \ \ \{}
-\DoxyCodeLine{00219\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ size;\ ++i)}
-\DoxyCodeLine{00220\ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ *\textcolor{keyword}{this}\ <<\ items[i];}
-\DoxyCodeLine{00222\ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00223\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
-\DoxyCodeLine{00224\ \ \ \ \ \}}
-\DoxyCodeLine{00225\ }
-\DoxyCodeLine{00226\ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00227\ \ \ \ \ uint8\_t\ \_stream\_type;}
-\DoxyCodeLine{00228\ \ \ \ \ std::string\ \_stream\_name;}
-\DoxyCodeLine{00229\ \ \ \ \ uint8\_t\ \_stream\_identifier;}
-\DoxyCodeLine{00230\ \ \ \ \ }
-\DoxyCodeLine{00231\ \ \ \ \ \textcolor{keywordtype}{bool}\ \_overflow;}
-\DoxyCodeLine{00232\ \ \ \ \ uint8\_t\ *\ \ \_packet;}
-\DoxyCodeLine{00233\ \ \ \ \ cbor\_writer\_t\ *\ \ \_writer;}
-\DoxyCodeLine{00234\ \ \ \ \ }
-\DoxyCodeLine{00235\ \ \ \ \ \textcolor{keywordtype}{void}\ new\_packet();}
-\DoxyCodeLine{00236\ \ \ \ \ \textcolor{keywordtype}{void}\ handle\_overrun(cbor\_error\_t\ result);}
-\DoxyCodeLine{00237\ \ \ \ \ }
-\DoxyCodeLine{00238\ \ \ \ \ std::string\ toUTF8(\textcolor{keyword}{const}\ std::u16string\ source);}
-\DoxyCodeLine{00239\ \ \ }
-\DoxyCodeLine{00240\ \};}
-\DoxyCodeLine{00241\ }
-\DoxyCodeLine{00242\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcbor_1_1RxStream}{RxStream}}}
-\DoxyCodeLine{00243\ \{}
-\DoxyCodeLine{00244\ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00252\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1RxStream}{RxStream}}(uint8\_t\ stream\_type,\ std::string\ stream\_name,\ uint8\_t\ stream\_identifier);}
-\DoxyCodeLine{00253\ \ \ \ \ }
-\DoxyCodeLine{00263\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classcbor_1_1RxStream_a7dde7a85f3cc8d9ad63aa78a13e767cb}{data\_available}}(int64\_t\ sequence\_id\ =\ 0);}
-\DoxyCodeLine{00264\ \ \ \ \ }
-\DoxyCodeLine{00269\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1RxStream}{RxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1RxStream_acce23643eacbf9b17c6bbababded9d96}{operator>>}}(uint64\_t\ \&\ n);}
-\DoxyCodeLine{00274\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1RxStream}{RxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1RxStream_acce23643eacbf9b17c6bbababded9d96}{operator>>}}(uint32\_t\ \&\ n);}
-\DoxyCodeLine{00279\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1RxStream}{RxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1RxStream_acce23643eacbf9b17c6bbababded9d96}{operator>>}}(uint16\_t\ \&\ n);}
-\DoxyCodeLine{00284\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1RxStream}{RxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1RxStream_acce23643eacbf9b17c6bbababded9d96}{operator>>}}(uint8\_t\ \&\ n);}
-\DoxyCodeLine{00289\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1RxStream}{RxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1RxStream_acce23643eacbf9b17c6bbababded9d96}{operator>>}}(int64\_t\ \&\ n);}
-\DoxyCodeLine{00294\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1RxStream}{RxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1RxStream_acce23643eacbf9b17c6bbababded9d96}{operator>>}}(int32\_t\ \&\ n);}
-\DoxyCodeLine{00299\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1RxStream}{RxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1RxStream_acce23643eacbf9b17c6bbababded9d96}{operator>>}}(int16\_t\ \&\ n);}
-\DoxyCodeLine{00304\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1RxStream}{RxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1RxStream_acce23643eacbf9b17c6bbababded9d96}{operator>>}}(int8\_t\ \&\ n);}
-\DoxyCodeLine{00305\ \ \ \ \ }
-\DoxyCodeLine{00310\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00311\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1RxStream}{RxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1RxStream_a3d5f4974cf14be5f522926718c504056}{deserialize\_integer}}(T\ \&\ n);}
-\DoxyCodeLine{00312\ \ \ \ \ }
-\DoxyCodeLine{00317\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1RxStream}{RxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1RxStream_acce23643eacbf9b17c6bbababded9d96}{operator>>}}(\textcolor{keywordtype}{char}\ \&\ n);}
-\DoxyCodeLine{00322\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1RxStream}{RxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1RxStream_acce23643eacbf9b17c6bbababded9d96}{operator>>}}(\textcolor{keywordtype}{float}\ \&\ f);}
-\DoxyCodeLine{00327\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1RxStream}{RxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1RxStream_acce23643eacbf9b17c6bbababded9d96}{operator>>}}(\textcolor{keywordtype}{double}\ \&\ d);}
-\DoxyCodeLine{00332\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1RxStream}{RxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1RxStream_acce23643eacbf9b17c6bbababded9d96}{operator>>}}(std::string\ \&\ s);}
-\DoxyCodeLine{00337\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1RxStream}{RxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1RxStream_acce23643eacbf9b17c6bbababded9d96}{operator>>}}(std::u16string\ \&\ s);}
-\DoxyCodeLine{00342\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1RxStream}{RxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1RxStream_acce23643eacbf9b17c6bbababded9d96}{operator>>}}(\textcolor{keywordtype}{bool}\ \&\ b);}
-\DoxyCodeLine{00343\ \ \ \ \ }
-\DoxyCodeLine{00348\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00349\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classcbor_1_1RxStream}{RxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1RxStream_a4ea278d88074eb1e81bcb60b15776b35}{operator>>}}(std::vector<T>\ \&\ v)}
-\DoxyCodeLine{00350\ \ \ \ \ \{}
-\DoxyCodeLine{00351\ \ \ \ \ \ \ uint32\_t\ size;}
-\DoxyCodeLine{00352\ \ \ \ \ \ \ *\textcolor{keyword}{this}\ >>\ size;}
-\DoxyCodeLine{00353\ \ \ \ \ \ \ v.resize(size);}
-\DoxyCodeLine{00354\ \ \ \ \ \ \ }
-\DoxyCodeLine{00355\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcbor_1_1RxStream_acc473d3c4bccaf501d307a7756cc3740}{deserialize\_sequence}}(v.data(),\ size);}
-\DoxyCodeLine{00356\ \ \ \ \ \}}
-\DoxyCodeLine{00357\ \ \ \ \ }
-\DoxyCodeLine{00362\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1RxStream}{RxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1RxStream_acce23643eacbf9b17c6bbababded9d96}{operator>>}}(std::vector<bool>\ \&\ v);}
-\DoxyCodeLine{00363\ \ \ \ \ }
-\DoxyCodeLine{00369\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
-\DoxyCodeLine{00370\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classcbor_1_1RxStream}{RxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1RxStream_acc473d3c4bccaf501d307a7756cc3740}{deserialize\_sequence}}(T\ *\ items,\ \textcolor{keywordtype}{size\_t}\ size)}
-\DoxyCodeLine{00371\ \ \ \ \ \{}
-\DoxyCodeLine{00372\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ size;\ ++i)}
-\DoxyCodeLine{00373\ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ *\textcolor{keyword}{this}\ >>\ items[i];}
-\DoxyCodeLine{00375\ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00376\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
-\DoxyCodeLine{00377\ \ \ \ \ \}}
-\DoxyCodeLine{00378\ \ \ \ \ }
-\DoxyCodeLine{00386\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcbor_1_1RxStream_a51fd2cb5fd15348118c4107beb3d7ad8}{interpret\_packets}}();}
-\DoxyCodeLine{00387\ \ \ }
-\DoxyCodeLine{00388\ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00389\ \ \ \ \ uint8\_t\ \_stream\_type;}
-\DoxyCodeLine{00390\ \ \ \ \ std::string\ \_stream\_name;}
-\DoxyCodeLine{00391\ \ \ \ \ uint8\_t\ \_stream\_identifier;}
-\DoxyCodeLine{00392\ \ \ \ \ }
-\DoxyCodeLine{00393\ \ \ \ \ \textcolor{keywordtype}{int}\ \_buffered\_iterator;}
-\DoxyCodeLine{00394\ \ \ \ \ std::vector<std::pair<void\ *,\ int>>\ \_buffered\_packet;}
-\DoxyCodeLine{00395\ \ \ \ \ }
-\DoxyCodeLine{00396\ \ \ \ \ \textcolor{comment}{//\ <topic,\ packets\ <packet\ <field,\ field\_type>>>}}
-\DoxyCodeLine{00397\ \ \ \ \ \textcolor{keyword}{static}\ std::map<uint32\_t,\ CircularQueue<std::vector<std::pair<void\ *,\ int>>,\ MAX\_BUFFER\_CAPACITY>>\ \_interpreted\_publications;}
-\DoxyCodeLine{00398\ \ \ \ \ \textcolor{comment}{//\ <service,\ packets\ <packet\ <field,\ field\_type>>>}}
-\DoxyCodeLine{00399\ \ \ \ \ \textcolor{keyword}{static}\ std::map<uint32\_t,\ CircularQueue<std::vector<std::pair<void\ *,\ int>>,\ MAX\_BUFFER\_CAPACITY>>\ \_interpreted\_requests;}
-\DoxyCodeLine{00400\ \ \ \ \ \textcolor{comment}{//\ <service\ +\ id,\ packets\ <packet\ <field,\ field\_type>>>}}
-\DoxyCodeLine{00401\ \ \ \ \ \textcolor{keyword}{static}\ std::map<uint32\_t,\ CircularQueue<std::vector<std::pair<void\ *,\ int>>,\ MAX\_BUFFER\_CAPACITY>>\ \_interpreted\_responses;}
-\DoxyCodeLine{00402\ \ \ \ \ }
-\DoxyCodeLine{00403\ \ \ \ \ \textcolor{keyword}{union\ }\_cbor\_value\ \{}
-\DoxyCodeLine{00404\ \ \ \ \ int8\_t\ i8;}
-\DoxyCodeLine{00405\ \ \ \ \ int16\_t\ i16;}
-\DoxyCodeLine{00406\ \ \ \ \ int32\_t\ i32;}
-\DoxyCodeLine{00407\ \ \ \ \ int64\_t\ i64;}
-\DoxyCodeLine{00408\ \ \ \ \ \textcolor{keywordtype}{float}\ f32;}
-\DoxyCodeLine{00409\ \ \ \ \ \textcolor{keywordtype}{double}\ f64;}
-\DoxyCodeLine{00410\ \ \ \ \ uint8\_t\ *bin;}
-\DoxyCodeLine{00411\ \ \ \ \ \textcolor{keywordtype}{char}\ *str;}
-\DoxyCodeLine{00412\ \ \ \ \ uint8\_t\ str\_copy[128];}
-\DoxyCodeLine{00413\ \ \ \ \ \};}
-\DoxyCodeLine{00414\ \ \ \ \ }
-\DoxyCodeLine{00415\ \ \ \ \ \textcolor{keyword}{static}\ std::pair<void\ *,\ int>\ interpret\_field(cbor\_item\_t\ *\ items,\ \textcolor{keywordtype}{size\_t}\ i,\ \textcolor{keyword}{union}\ \_cbor\_value\ \&\ val);}
-\DoxyCodeLine{00416\ \ \ \ \ std::u16string\ toUTF16(\textcolor{keyword}{const}\ std::string\ source);}
-\DoxyCodeLine{00417\ \};}
-\DoxyCodeLine{00418\ }
-\DoxyCodeLine{00419\ \}\ \ \textcolor{comment}{//\ namespace\ cbor}}
-\DoxyCodeLine{00420\ }
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#include\ <mutex>}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#include\ "{}cbor/encoder.h"{}}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#include\ "{}cbor/ieee754.h"{}}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#include\ "{}cbor/decoder.h"{}}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#include\ "{}cbor/parser.h"{}}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#include\ "{}cbor/helper.h"{}}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#include\ "{}half.hpp"{}}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ PUBLISHER\_TYPE\ \ 0}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#define\ SUBSCRIBER\_TYPE\ 1}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#define\ CLIENT\_TYPE\ \ \ \ \ 2}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#define\ SERVICE\_TYPE\ \ \ \ 3}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#define\ MAX\_BUFFER\_CAPACITY\ 100}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ \textcolor{keywordtype}{int}\ MaxLen,\ \textcolor{keyword}{typename}\ Container=std::deque<T>>}
+\DoxyCodeLine{00071\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classCircularQueue}{CircularQueue}}\ :\ \textcolor{keyword}{public}\ std::queue<T,\ Container>\ \{}
+\DoxyCodeLine{00072\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{void}\ push(\textcolor{keyword}{const}\ T\&\ value)}
+\DoxyCodeLine{00074\ \ \ \ \ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>size()\ ==\ MaxLen)}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ this-\/>c.pop\_front();}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ std::queue<T,\ Container>::push(value);}
+\DoxyCodeLine{00080\ \ \ \ \ \}}
+\DoxyCodeLine{00081\ \};}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{keyword}{namespace\ }cbor}
+\DoxyCodeLine{00084\ \{}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcbor_1_1TxStream}{TxStream}}}
+\DoxyCodeLine{00087\ \{}
+\DoxyCodeLine{00088\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00096\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1TxStream}{TxStream}}(uint8\_t\ stream\_type,\ std::string\ stream\_name,\ uint8\_t\ stream\_identifier);}
+\DoxyCodeLine{00097\ \ \ \ \ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcbor_1_1TxStream_acd05bc87a3a3b29b584e4bb3e507b694}{start\_transmission}}(uint64\_t\ sequence\_id);}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcbor_1_1TxStream_acd05bc87a3a3b29b584e4bb3e507b694}{start\_transmission}}();}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcbor_1_1TxStream_a7c08187453b92347ee439af8648a1379}{end\_transmission}}();}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00128\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1TxStream}{TxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1TxStream_a340159644e1ba667e95c256cbd5f210f}{operator<<}}(\textcolor{keyword}{const}\ uint64\_t\ n);}
+\DoxyCodeLine{00133\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1TxStream}{TxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1TxStream_a340159644e1ba667e95c256cbd5f210f}{operator<<}}(\textcolor{keyword}{const}\ uint32\_t\ n);}
+\DoxyCodeLine{00138\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1TxStream}{TxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1TxStream_a340159644e1ba667e95c256cbd5f210f}{operator<<}}(\textcolor{keyword}{const}\ uint16\_t\ n);}
+\DoxyCodeLine{00143\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1TxStream}{TxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1TxStream_a340159644e1ba667e95c256cbd5f210f}{operator<<}}(\textcolor{keyword}{const}\ uint8\_t\ n);}
+\DoxyCodeLine{00148\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1TxStream}{TxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1TxStream_a340159644e1ba667e95c256cbd5f210f}{operator<<}}(\textcolor{keyword}{const}\ int64\_t\ n);}
+\DoxyCodeLine{00153\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1TxStream}{TxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1TxStream_a340159644e1ba667e95c256cbd5f210f}{operator<<}}(\textcolor{keyword}{const}\ int32\_t\ n);}
+\DoxyCodeLine{00158\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1TxStream}{TxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1TxStream_a340159644e1ba667e95c256cbd5f210f}{operator<<}}(\textcolor{keyword}{const}\ int16\_t\ n);}
+\DoxyCodeLine{00163\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1TxStream}{TxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1TxStream_a340159644e1ba667e95c256cbd5f210f}{operator<<}}(\textcolor{keyword}{const}\ int8\_t\ n);}
+\DoxyCodeLine{00168\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1TxStream}{TxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1TxStream_a340159644e1ba667e95c256cbd5f210f}{operator<<}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ n);}
+\DoxyCodeLine{00173\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1TxStream}{TxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1TxStream_a340159644e1ba667e95c256cbd5f210f}{operator<<}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ f);}
+\DoxyCodeLine{00178\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1TxStream}{TxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1TxStream_a340159644e1ba667e95c256cbd5f210f}{operator<<}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ d);}
+\DoxyCodeLine{00183\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1TxStream}{TxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1TxStream_a340159644e1ba667e95c256cbd5f210f}{operator<<}}(\textcolor{keyword}{const}\ std::string\ s);}
+\DoxyCodeLine{00188\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1TxStream}{TxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1TxStream_a340159644e1ba667e95c256cbd5f210f}{operator<<}}(\textcolor{keyword}{const}\ std::u16string\ s);}
+\DoxyCodeLine{00193\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1TxStream}{TxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1TxStream_a340159644e1ba667e95c256cbd5f210f}{operator<<}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ b);}
+\DoxyCodeLine{00194\ \ \ \ \ }
+\DoxyCodeLine{00199\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classcbor_1_1TxStream}{TxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1TxStream_a73ff9d3efdfc2cde9b6ae1b287dd4b71}{operator<<}}(\textcolor{keyword}{const}\ std::vector<T>\ v)}
+\DoxyCodeLine{00201\ \ \ \ \ \{}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ *this\ <<\ static\_cast<const\ uint32\_t>(v.size());}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcbor_1_1TxStream_a3431c0b1f28dbf862f9b337ffd0c9272}{serialize\_sequence}}(v.data(),\ v.size());}
+\DoxyCodeLine{00204\ \ \ \ \ \}}
+\DoxyCodeLine{00205\ \ \ \ \ }
+\DoxyCodeLine{00210\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1TxStream}{TxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1TxStream_a340159644e1ba667e95c256cbd5f210f}{operator<<}}(\textcolor{keyword}{const}\ std::vector<bool>\ v);}
+\DoxyCodeLine{00211\ \ \ \ \ }
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classcbor_1_1TxStream}{TxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1TxStream_a3431c0b1f28dbf862f9b337ffd0c9272}{serialize\_sequence}}(\textcolor{keyword}{const}\ T\ *\ items,\ \textcolor{keywordtype}{size\_t}\ size)}
+\DoxyCodeLine{00219\ \ \ \ \ \{}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ size;\ ++i)}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ *\textcolor{keyword}{this}\ <<\ items[i];}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00225\ \ \ \ \ \}}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00228\ \ \ \ \ uint8\_t\ \_stream\_type;}
+\DoxyCodeLine{00229\ \ \ \ \ std::string\ \_stream\_name;}
+\DoxyCodeLine{00230\ \ \ \ \ uint8\_t\ \_stream\_identifier;}
+\DoxyCodeLine{00231\ \ \ \ \ }
+\DoxyCodeLine{00232\ \ \ \ \ \textcolor{keywordtype}{bool}\ \_overflow;}
+\DoxyCodeLine{00233\ \ \ \ \ uint8\_t\ *\ \ \_packet;}
+\DoxyCodeLine{00234\ \ \ \ \ cbor\_writer\_t\ *\ \ \_writer;}
+\DoxyCodeLine{00235\ \ \ \ \ }
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{keywordtype}{void}\ new\_packet();}
+\DoxyCodeLine{00237\ \ \ \ \ \textcolor{keywordtype}{void}\ handle\_overrun(cbor\_error\_t\ result);}
+\DoxyCodeLine{00238\ \ \ \ \ }
+\DoxyCodeLine{00239\ \ \ \ \ std::string\ toUTF8(\textcolor{keyword}{const}\ std::u16string\ source);}
+\DoxyCodeLine{00240\ \ \ }
+\DoxyCodeLine{00241\ \};}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00243\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcbor_1_1RxStream}{RxStream}}}
+\DoxyCodeLine{00244\ \{}
+\DoxyCodeLine{00245\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00253\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1RxStream}{RxStream}}(uint8\_t\ stream\_type,\ std::string\ stream\_name,\ uint8\_t\ stream\_identifier);}
+\DoxyCodeLine{00254\ \ \ \ \ }
+\DoxyCodeLine{00264\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classcbor_1_1RxStream_a7dde7a85f3cc8d9ad63aa78a13e767cb}{data\_available}}(int64\_t\ sequence\_id\ =\ 0);}
+\DoxyCodeLine{00265\ \ \ \ \ }
+\DoxyCodeLine{00270\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1RxStream}{RxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1RxStream_acce23643eacbf9b17c6bbababded9d96}{operator>>}}(uint64\_t\ \&\ n);}
+\DoxyCodeLine{00275\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1RxStream}{RxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1RxStream_acce23643eacbf9b17c6bbababded9d96}{operator>>}}(uint32\_t\ \&\ n);}
+\DoxyCodeLine{00280\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1RxStream}{RxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1RxStream_acce23643eacbf9b17c6bbababded9d96}{operator>>}}(uint16\_t\ \&\ n);}
+\DoxyCodeLine{00285\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1RxStream}{RxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1RxStream_acce23643eacbf9b17c6bbababded9d96}{operator>>}}(uint8\_t\ \&\ n);}
+\DoxyCodeLine{00290\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1RxStream}{RxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1RxStream_acce23643eacbf9b17c6bbababded9d96}{operator>>}}(int64\_t\ \&\ n);}
+\DoxyCodeLine{00295\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1RxStream}{RxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1RxStream_acce23643eacbf9b17c6bbababded9d96}{operator>>}}(int32\_t\ \&\ n);}
+\DoxyCodeLine{00300\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1RxStream}{RxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1RxStream_acce23643eacbf9b17c6bbababded9d96}{operator>>}}(int16\_t\ \&\ n);}
+\DoxyCodeLine{00305\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1RxStream}{RxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1RxStream_acce23643eacbf9b17c6bbababded9d96}{operator>>}}(int8\_t\ \&\ n);}
+\DoxyCodeLine{00306\ \ \ \ \ }
+\DoxyCodeLine{00311\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00312\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1RxStream}{RxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1RxStream_a3d5f4974cf14be5f522926718c504056}{deserialize\_integer}}(T\ \&\ n);}
+\DoxyCodeLine{00313\ \ \ \ \ }
+\DoxyCodeLine{00318\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1RxStream}{RxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1RxStream_acce23643eacbf9b17c6bbababded9d96}{operator>>}}(\textcolor{keywordtype}{char}\ \&\ n);}
+\DoxyCodeLine{00323\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1RxStream}{RxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1RxStream_acce23643eacbf9b17c6bbababded9d96}{operator>>}}(\textcolor{keywordtype}{float}\ \&\ f);}
+\DoxyCodeLine{00328\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1RxStream}{RxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1RxStream_acce23643eacbf9b17c6bbababded9d96}{operator>>}}(\textcolor{keywordtype}{double}\ \&\ d);}
+\DoxyCodeLine{00333\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1RxStream}{RxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1RxStream_acce23643eacbf9b17c6bbababded9d96}{operator>>}}(std::string\ \&\ s);}
+\DoxyCodeLine{00338\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1RxStream}{RxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1RxStream_acce23643eacbf9b17c6bbababded9d96}{operator>>}}(std::u16string\ \&\ s);}
+\DoxyCodeLine{00343\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1RxStream}{RxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1RxStream_acce23643eacbf9b17c6bbababded9d96}{operator>>}}(\textcolor{keywordtype}{bool}\ \&\ b);}
+\DoxyCodeLine{00344\ \ \ \ \ }
+\DoxyCodeLine{00349\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00350\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classcbor_1_1RxStream}{RxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1RxStream_a4ea278d88074eb1e81bcb60b15776b35}{operator>>}}(std::vector<T>\ \&\ v)}
+\DoxyCodeLine{00351\ \ \ \ \ \{}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ uint32\_t\ size;}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ *\textcolor{keyword}{this}\ >>\ size;}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ v.resize(size);}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ }
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcbor_1_1RxStream_acc473d3c4bccaf501d307a7756cc3740}{deserialize\_sequence}}(v.data(),\ size);}
+\DoxyCodeLine{00357\ \ \ \ \ \}}
+\DoxyCodeLine{00358\ \ \ \ \ }
+\DoxyCodeLine{00363\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1RxStream}{RxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1RxStream_acce23643eacbf9b17c6bbababded9d96}{operator>>}}(std::vector<bool>\ \&\ v);}
+\DoxyCodeLine{00364\ \ \ \ \ }
+\DoxyCodeLine{00370\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00371\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classcbor_1_1RxStream}{RxStream}}\ \&\ \mbox{\hyperlink{classcbor_1_1RxStream_acc473d3c4bccaf501d307a7756cc3740}{deserialize\_sequence}}(T\ *\ items,\ \textcolor{keywordtype}{size\_t}\ size)}
+\DoxyCodeLine{00372\ \ \ \ \ \{}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ size;\ ++i)}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ *\textcolor{keyword}{this}\ >>\ items[i];}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00378\ \ \ \ \ \}}
+\DoxyCodeLine{00379\ \ \ \ \ }
+\DoxyCodeLine{00387\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcbor_1_1RxStream_a51fd2cb5fd15348118c4107beb3d7ad8}{interpret\_packets}}();}
+\DoxyCodeLine{00388\ \ \ }
+\DoxyCodeLine{00389\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00390\ \ \ \ \ uint8\_t\ \_stream\_type;}
+\DoxyCodeLine{00391\ \ \ \ \ std::string\ \_stream\_name;}
+\DoxyCodeLine{00392\ \ \ \ \ uint8\_t\ \_stream\_identifier;}
+\DoxyCodeLine{00393\ \ \ \ \ }
+\DoxyCodeLine{00394\ \ \ \ \ \textcolor{keywordtype}{int}\ \_buffered\_iterator;}
+\DoxyCodeLine{00395\ \ \ \ \ std::vector<std::pair<void\ *,\ int>>\ \_buffered\_packet;}
+\DoxyCodeLine{00396\ \ \ \ \ }
+\DoxyCodeLine{00397\ \ \ \ \ \textcolor{comment}{//\ <topic,\ packets\ <packet\ <field,\ field\_type>>>}}
+\DoxyCodeLine{00398\ \ \ \ \ \textcolor{keyword}{static}\ std::map<uint32\_t,\ CircularQueue<std::vector<std::pair<void\ *,\ int>>,\ MAX\_BUFFER\_CAPACITY>>\ \_interpreted\_publications;}
+\DoxyCodeLine{00399\ \ \ \ \ \textcolor{comment}{//\ <service,\ packets\ <packet\ <field,\ field\_type>>>}}
+\DoxyCodeLine{00400\ \ \ \ \ \textcolor{keyword}{static}\ std::map<uint32\_t,\ CircularQueue<std::vector<std::pair<void\ *,\ int>>,\ MAX\_BUFFER\_CAPACITY>>\ \_interpreted\_requests;}
+\DoxyCodeLine{00401\ \ \ \ \ \textcolor{comment}{//\ <service\ +\ id,\ packets\ <packet\ <field,\ field\_type>>>}}
+\DoxyCodeLine{00402\ \ \ \ \ \textcolor{keyword}{static}\ std::map<uint32\_t,\ CircularQueue<std::vector<std::pair<void\ *,\ int>>,\ MAX\_BUFFER\_CAPACITY>>\ \_interpreted\_responses;}
+\DoxyCodeLine{00403\ \ \ \ \ }
+\DoxyCodeLine{00404\ \ \ \ \ \textcolor{keyword}{union\ }\_cbor\_value\ \{}
+\DoxyCodeLine{00405\ \ \ \ \ int8\_t\ i8;}
+\DoxyCodeLine{00406\ \ \ \ \ int16\_t\ i16;}
+\DoxyCodeLine{00407\ \ \ \ \ int32\_t\ i32;}
+\DoxyCodeLine{00408\ \ \ \ \ int64\_t\ i64;}
+\DoxyCodeLine{00409\ \ \ \ \ \textcolor{keywordtype}{float}\ f32;}
+\DoxyCodeLine{00410\ \ \ \ \ \textcolor{keywordtype}{double}\ f64;}
+\DoxyCodeLine{00411\ \ \ \ \ uint8\_t\ *bin;}
+\DoxyCodeLine{00412\ \ \ \ \ \textcolor{keywordtype}{char}\ *str;}
+\DoxyCodeLine{00413\ \ \ \ \ uint8\_t\ str\_copy[128];}
+\DoxyCodeLine{00414\ \ \ \ \ \};}
+\DoxyCodeLine{00415\ \ \ \ \ }
+\DoxyCodeLine{00416\ \ \ \ \ \textcolor{keyword}{static}\ std::mutex\ \_rx\_mutex;}
+\DoxyCodeLine{00417\ \ \ \ \ }
+\DoxyCodeLine{00418\ \ \ \ \ \textcolor{keyword}{static}\ std::pair<void\ *,\ int>\ interpret\_field(cbor\_item\_t\ *\ items,\ \textcolor{keywordtype}{size\_t}\ i,\ \textcolor{keyword}{union}\ \_cbor\_value\ \&\ val);}
+\DoxyCodeLine{00419\ \ \ \ \ std::u16string\ toUTF16(\textcolor{keyword}{const}\ std::string\ source);}
+\DoxyCodeLine{00420\ \};}
 \DoxyCodeLine{00421\ }
-\DoxyCodeLine{00422\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00422\ \}\ \ \textcolor{comment}{//\ namespace\ cbor}}
+\DoxyCodeLine{00423\ }
+\DoxyCodeLine{00424\ }
+\DoxyCodeLine{00425\ \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

@@ -1,20 +1,40 @@
-// Copyright 2019 Open Source Robotics Foundation, Inc.
-// Copyright 2016-2018 Proyectos y Sistemas de Mantenimiento SL (eProsima).
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+/****************************************************************************
+ * Copyright (C) 2024 Davide Costa                                          *
+ *                                                                          *
+ * This file is part of RMW desert.                                         *
+ *                                                                          *
+ *   RMW desert is free software: you can redistribute it and/or modify it  *
+ *   under the terms of the GNU General Public License as published by the  *
+ *   Free Software Foundation, either version 3 of the License, or any      *
+ *   later version.                                                         *
+ *                                                                          *
+ *   RMW desert is distributed in the hope that it will be useful,          *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of         *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          *
+ *   GNU General Public License for more details.                           *
+ *                                                                          *
+ *   You should have received a copy of the GNU General Public License      *
+ *   along with RMW desert.  If not, see <http://www.gnu.org/licenses/>.    *
+ ****************************************************************************/
+
+/**
+ * @file demangle.h
+ * @brief Functions used to demangle topic names during discovery operations
+ * 
+ * Demangle functions allows to extract topic names and type names of 
+ * each entity stored in the common context implementation. Since in 
+ * this object the informations are divided in writers and readers, 
+ * they must be converted in publishers, subscribers, clients and
+ * services.
+ *
+ * @author Prof. Davide Costa
+ *
+ */
 
 #ifndef DEMANGLE_H_
 #define DEMANGLE_H_
+
+/** @cond */
 
 #include <algorithm>
 #include <string>
@@ -24,8 +44,20 @@
 #include "rcutils/logging_macros.h"
 #include "rcutils/types.h"
 
+/** @endcond */
+
 #include "CBorStream.h"
 
+/**
+ * @namespace Discovery
+ * @brief Namespace containing discovery functions
+ * 
+ * The middleware layer of a ROS stack must implement functionalities 
+ * used to inform each node of the network structure of the other nodes 
+ * connected, with their names and topics. Since this operation is 
+ * quite resource-consuming and the underwater channel has a limited 
+ * bandwidth, it is possible to disable it.
+ */
 namespace Discovery
 {
   
@@ -35,29 +67,86 @@ namespace Discovery
   const char * const ros_topic_subscriber_prefix = integer_to_string(SUBSCRIBER_TYPE);
   const char * const ros_service_requester_prefix = integer_to_string(CLIENT_TYPE);
   const char * const ros_service_response_prefix = integer_to_string(SERVICE_TYPE);
-
-  /// Returns `name` stripped of `prefix`.
+  
+ /**
+  * @brief Resolve a prefix
+  *
+  * Returns `name` stripped of `prefix`.
+  *
+  * @param name   Mangled topic name
+  * @param prefix Prefix of the entity type
+  * @return       Demangled topic name
+  */
   std::string resolve_prefix(const std::string & name, const std::string & prefix);
 
-  /// Return the topic name for a given topic if it is part of one, else "".
+ /**
+  * @brief Demangle a publisher
+  *
+  * Return the topic name for a given topic if it is part of a publisher, else "".
+  *
+  * @param topic_name Mangled topic name
+  * @return           Demangled topic name
+  */
   std::string demangle_publisher_from_topic(const std::string & topic_name);
 
-  /// Return the topic name for a given topic if it is part of one, else "".
+ /**
+  * @brief Demangle a subscriber
+  *
+  * Return the topic name for a given topic if it is part of a subscriber, else "".
+  *
+  * @param topic_name Mangled topic name
+  * @return           Demangled topic name
+  */
   std::string demangle_subscriber_from_topic(const std::string & topic_name);
 
-  /// Return the topic name for a given topic if it is part of one, else "".
+ /**
+  * @brief Demangle a topic
+  *
+  * Return the topic name for a given topic if it is part of one, else "".
+  *
+  * @param topic_name Mangled topic name
+  * @return           Demangled topic name
+  */
   std::string demangle_topic(const std::string & topic_name);
 
-  /// Return the service name for a given topic if it is part of a service request, else "".
+ /**
+  * @brief Demangle a service request
+  *
+  * Return the service name for a given topic if it is part of a service request, else "".
+  *
+  * @param topic_name Mangled topic name
+  * @return           Demangled topic name
+  */
   std::string demangle_service_request_from_topic(const std::string & topic_name);
 
-  /// Return the service name for a given topic if it is part of a service reply, else "".
+ /**
+  * @brief Demangle a service reply
+  *
+  * Return the service name for a given topic if it is part of a service reply, else "".
+  *
+  * @param topic_name Mangled topic name
+  * @return           Demangled topic name
+  */
   std::string demangle_service_reply_from_topic(const std::string & topic_name);
 
-  /// Return the service name for a given topic if it is part of a service, else "".
+ /**
+  * @brief Demangle a service
+  *
+  * Return the service name for a given topic if it is part of a service, else "".
+  *
+  * @param topic_name Mangled topic name
+  * @return           Demangled topic name
+  */
   std::string demangle_service_from_topic(const std::string & topic_name);
 
-  /// Used when ros names are not mangled.
+ /**
+  * @brief No demangle
+  *
+  * Used when ros names are not mangled.
+  *
+  * @param name Topic name
+  * @return     Same topic name
+  */
   std::string identity_demangle(const std::string & name);
 
   using DemangleFunction = std::string (*)(const std::string &);

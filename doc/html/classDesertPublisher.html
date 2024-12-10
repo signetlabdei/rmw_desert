@@ -78,16 +78,25 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa99959c9cd94f9f51e97d3d9e7c3239e" id="r_aa99959c9cd94f9f51e97d3d9e7c3239e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDesertPublisher.html#aa99959c9cd94f9f51e97d3d9e7c3239e">DesertPublisher</a> (std::string topic_name, const rosidl_message_type_support_t *type_supports)</td></tr>
-<tr class="memdesc:aa99959c9cd94f9f51e97d3d9e7c3239e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a publisher.  <br /></td></tr>
-<tr class="separator:aa99959c9cd94f9f51e97d3d9e7c3239e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2ee1a7652770c2d33a2cb915b8dbbab" id="r_ac2ee1a7652770c2d33a2cb915b8dbbab"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDesertPublisher.html#ac2ee1a7652770c2d33a2cb915b8dbbab">DesertPublisher</a> (std::string topic_name, const rosidl_message_type_support_t *type_supports, rmw_gid_t gid)</td></tr>
+<tr class="memdesc:ac2ee1a7652770c2d33a2cb915b8dbbab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a publisher.  <br /></td></tr>
+<tr class="separator:ac2ee1a7652770c2d33a2cb915b8dbbab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0a8d1a319c9ff5d7ae488f573464801d" id="r_a0a8d1a319c9ff5d7ae488f573464801d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDesertPublisher.html#a0a8d1a319c9ff5d7ae488f573464801d">push</a> (const void *msg)</td></tr>
 <tr class="memdesc:a0a8d1a319c9ff5d7ae488f573464801d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send a publication on the topic.  <br /></td></tr>
 <tr class="separator:a0a8d1a319c9ff5d7ae488f573464801d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad51237fa31d20966d255d66d04c15358" id="r_ad51237fa31d20966d255d66d04c15358"><td class="memItemLeft" align="right" valign="top">rmw_gid_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDesertPublisher.html#ad51237fa31d20966d255d66d04c15358">get_gid</a> ()</td></tr>
+<tr class="memdesc:ad51237fa31d20966d255d66d04c15358"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retreive the gid of the current entity.  <br /></td></tr>
+<tr class="separator:ad51237fa31d20966d255d66d04c15358"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac76f133d62f9af35cb1d344a23396f25" id="r_ac76f133d62f9af35cb1d344a23396f25"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDesertPublisher.html#ac76f133d62f9af35cb1d344a23396f25">get_topic_name</a> ()</td></tr>
+<tr class="memdesc:ac76f133d62f9af35cb1d344a23396f25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retreive the topic name of the current entity.  <br /></td></tr>
+<tr class="separator:ac76f133d62f9af35cb1d344a23396f25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6938f53f289167c99d1506499f6d56e" id="r_ab6938f53f289167c99d1506499f6d56e"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDesertPublisher.html#ab6938f53f289167c99d1506499f6d56e">get_type_name</a> ()</td></tr>
+<tr class="memdesc:ab6938f53f289167c99d1506499f6d56e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retreive the message type of the current entity.  <br /></td></tr>
+<tr class="separator:ab6938f53f289167c99d1506499f6d56e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="aa99959c9cd94f9f51e97d3d9e7c3239e" name="aa99959c9cd94f9f51e97d3d9e7c3239e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa99959c9cd94f9f51e97d3d9e7c3239e">&#9670;&#160;</a></span>DesertPublisher()</h2>
+<a id="ac2ee1a7652770c2d33a2cb915b8dbbab" name="ac2ee1a7652770c2d33a2cb915b8dbbab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2ee1a7652770c2d33a2cb915b8dbbab">&#9670;&#160;</a></span>DesertPublisher()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -102,7 +111,13 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const rosidl_message_type_support_t *&#160;</td>
-          <td class="paramname"><em>type_supports</em>&#160;</td>
+          <td class="paramname"><em>type_supports</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">rmw_gid_t&#160;</td>
+          <td class="paramname"><em>gid</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -117,6 +132,7 @@ Public Member Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">topic_name</td><td>Name of the topic used to push the messages </td></tr>
     <tr><td class="paramname">type_supports</td><td>Pointer to the message data structure coming from the ROS upper layers </td></tr>
+    <tr><td class="paramname">gid</td><td>Global identifier of the entity </td></tr>
   </table>
   </dd>
 </dl>
@@ -124,6 +140,69 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="ad51237fa31d20966d255d66d04c15358" name="ad51237fa31d20966d255d66d04c15358"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad51237fa31d20966d255d66d04c15358">&#9670;&#160;</a></span>get_gid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">rmw_gid_t DesertPublisher::get_gid </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retreive the gid of the current entity. </p>
+<p>This function returns the global identifier of the current entity in the rmw format.</p>
+<dl class="section return"><dt>Returns</dt><dd>Global identifier of the entity </dd></dl>
+
+</div>
+</div>
+<a id="ac76f133d62f9af35cb1d344a23396f25" name="ac76f133d62f9af35cb1d344a23396f25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac76f133d62f9af35cb1d344a23396f25">&#9670;&#160;</a></span>get_topic_name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string DesertPublisher::get_topic_name </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retreive the topic name of the current entity. </p>
+<p>This function returns a string containing the topic name of the current entity.</p>
+<dl class="section return"><dt>Returns</dt><dd>Name of the topic </dd></dl>
+
+</div>
+</div>
+<a id="ab6938f53f289167c99d1506499f6d56e" name="ab6938f53f289167c99d1506499f6d56e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6938f53f289167c99d1506499f6d56e">&#9670;&#160;</a></span>get_type_name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string DesertPublisher::get_type_name </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retreive the message type of the current entity. </p>
+<p>This function returns a string containing the message type name of the current entity.</p>
+<dl class="section return"><dt>Returns</dt><dd>Type of the message </dd></dl>
+
+</div>
+</div>
 <a id="a0a8d1a319c9ff5d7ae488f573464801d" name="a0a8d1a319c9ff5d7ae488f573464801d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0a8d1a319c9ff5d7ae488f573464801d">&#9670;&#160;</a></span>push()</h2>
 

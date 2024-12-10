@@ -81,8 +81,8 @@ namespace CStringHelper
   * This function converts a rosidl_runtime_c__String__Sequence variable size sequence 
   * into a C++ vector of strings.
   *
-  * @param str_array Pointer to the first original C-style string
-  * @return          A C++ vector of strings
+  * @param str_seq Pointer to the first original C-style string
+  * @return        A C++ vector of strings
   */
   std::vector<std::string> convert_sequence_to_std_vector_string(void * str_seq);
   
@@ -112,8 +112,8 @@ namespace CStringHelper
   * This function converts a rosidl_runtime_c__U16String__Sequence variable size sequence 
   * into a C++ vector of u16string.
   *
-  * @param str_array Pointer to the first original C-style u16string
-  * @return          A C++ vector of u16string
+  * @param str_seq Pointer to the first original C-style u16string
+  * @return        A C++ vector of u16string
   */
   std::vector<std::u16string> convert_sequence_to_std_vector_u16string(void * str_seq);
   
@@ -145,7 +145,7 @@ namespace CStringHelper
   * variable size sequence pointed by the str_array parameter.
   *
   * @param cpp_string_vector C++ style vector of string containing data
-  * @param str_array         Pointer containing the destination of the string sequence
+  * @param str_seq           Pointer containing the destination of the string sequence
   */
   void assign_vector_string_to_sequence(std::vector<std::string> cpp_string_vector, void * str_seq);
   
@@ -177,7 +177,7 @@ namespace CStringHelper
   * variable size sequence pointed by the str_array parameter.
   *
   * @param cpp_string_vector C++ style vector of u16strings containing data
-  * @param str_array         Pointer containing the destination of the u16string sequence
+  * @param str_seq           Pointer containing the destination of the u16string sequence
   */
   void assign_vector_u16string_to_sequence(std::vector<std::u16string> cpp_string_vector, void * str_seq);
 }

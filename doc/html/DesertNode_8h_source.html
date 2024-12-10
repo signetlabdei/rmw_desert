@@ -100,28 +100,94 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment"> *   along with RMW desert.  If not, see &lt;http://www.gnu.org/licenses/&gt;.    *</span></div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment"> ****************************************************************************/</span></div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#ifndef DESERT_NODE_H_</span></div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#define DESERT_NODE_H_</span></div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="foldopen" id="foldopen00033" data-start="{" data-end="};">
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classDesertNode.html">   33</a></span><span class="keyword">class </span><a class="code hl_class" href="classDesertNode.html">DesertNode</a></div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>{</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <a class="code hl_class" href="classDesertNode.html">DesertNode</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* name)</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    : _name(name)</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    {}</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keyword">const</span> <span class="keywordtype">char</span> * getName()</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    {</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>      <span class="keywordflow">return</span> _name;</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    }</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keyword">const</span> <span class="keywordtype">char</span> * _name;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>};</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#ifndef DESERT_NODE_H_</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#define DESERT_NODE_H_</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#include &quot;rmw/rmw.h&quot;</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#include &quot;rmw/types.h&quot;</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="preprocessor">#include &quot;<a class="code" href="CBorStream_8h.html">CBorStream.h</a>&quot;</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#include &quot;<a class="code" href="DesertPublisher_8h.html">DesertPublisher.h</a>&quot;</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="preprocessor">#include &quot;<a class="code" href="DesertSubscriber_8h.html">DesertSubscriber.h</a>&quot;</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">#include &quot;<a class="code" href="DesertClient_8h.html">DesertClient.h</a>&quot;</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="preprocessor">#include &quot;<a class="code" href="DesertService_8h.html">DesertService.h</a>&quot;</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="preprocessor">#include &quot;<a class="code" href="Discovery_8h.html">Discovery.h</a>&quot;</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="preprocessor">#include &quot;<a class="code" href="TopicsConfig_8h.html">TopicsConfig.h</a>&quot;</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="foldopen" id="foldopen00053" data-start="{" data-end="};">
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="classDesertNode.html">   53</a></span><span class="keyword">class </span><a class="code hl_class" href="classDesertNode.html">DesertNode</a></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>{</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <a class="code hl_class" href="classDesertNode.html">DesertNode</a>(std::string name, std::string namespace_, rmw_gid_t gid);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <a class="code hl_class" href="classDesertNode.html">~DesertNode</a>();</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classDesertNode.html#a68330bfc791469e56904c857207ec9c6">add_publisher</a>(<a class="code hl_class" href="classDesertPublisher.html">DesertPublisher</a> * pub);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classDesertNode.html#a65b9f4049d5b747166e62a394fdab0bb">add_subscriber</a>(<a class="code hl_class" href="classDesertSubscriber.html">DesertSubscriber</a> * sub);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classDesertNode.html#af62ad306607e8a7df2363a19a54577b4">add_client</a>(<a class="code hl_class" href="classDesertClient.html">DesertClient</a> * cli);</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classDesertNode.html#a0e76cec19b63bf3c4038e5a1913f4e00">add_service</a>(<a class="code hl_class" href="classDesertService.html">DesertService</a> * ser);</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classDesertNode.html#aa89ff17eb045e7a3953d8a6be03d98e6">remove_publisher</a>(<a class="code hl_class" href="classDesertPublisher.html">DesertPublisher</a> * pub);</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classDesertNode.html#a9b3baab0cbd521a1f57f9d61627275af">remove_subscriber</a>(<a class="code hl_class" href="classDesertSubscriber.html">DesertSubscriber</a> * sub);</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    </div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classDesertNode.html#aed8407f598fecadfb3e713f403b90e37">remove_client</a>(<a class="code hl_class" href="classDesertClient.html">DesertClient</a> * cli);</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classDesertNode.html#ad36251b2a6cf439f030236d78c3841ef">remove_service</a>(<a class="code hl_class" href="classDesertService.html">DesertService</a> * ser);</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    </div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    rmw_gid_t <a class="code hl_function" href="classDesertNode.html#a943dd1a2c9ef84a39874ea4579011fe9">get_gid</a>();</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    </div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    rmw_gid_t _gid;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    std::string _name;</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    std::string _namespace;</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <a class="code hl_class" href="classcbor_1_1TxStream.html">cbor::TxStream</a> _discovery_beacon_data_stream;</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <a class="code hl_class" href="classcbor_1_1RxStream.html">cbor::RxStream</a> _discovery_request_data_stream;</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    </div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    std::vector&lt;DesertPublisher *&gt; _publishers;</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    std::vector&lt;DesertSubscriber *&gt; _subscribers;</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    std::vector&lt;DesertClient *&gt; _clients;</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    std::vector&lt;DesertService *&gt; _services;</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    </div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    <span class="keywordtype">void</span> publish_all_beacons();</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    </div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    <span class="keywordtype">bool</span> _discovery_done;</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    std::thread _discovery_request_thread;</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    </div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    <span class="keywordtype">void</span> _discovery_request();</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    </div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>};</div>
 </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="aclassDesertNode_html"><div class="ttname"><a href="classDesertNode.html">DesertNode</a></div><div class="ttdef"><b>Definition</b> DesertNode.h:34</div></div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span> </div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aCBorStream_8h_html"><div class="ttname"><a href="CBorStream_8h.html">CBorStream.h</a></div><div class="ttdoc">Classes used to convert data types into a CBOR encoded stream.</div></div>
+<div class="ttc" id="aDesertClient_8h_html"><div class="ttname"><a href="DesertClient_8h.html">DesertClient.h</a></div><div class="ttdoc">Implementation of the Client structure for DESERT.</div></div>
+<div class="ttc" id="aDesertPublisher_8h_html"><div class="ttname"><a href="DesertPublisher_8h.html">DesertPublisher.h</a></div><div class="ttdoc">Implementation of the Publisher structure for DESERT.</div></div>
+<div class="ttc" id="aDesertService_8h_html"><div class="ttname"><a href="DesertService_8h.html">DesertService.h</a></div><div class="ttdoc">Implementation of the Service structure for DESERT.</div></div>
+<div class="ttc" id="aDesertSubscriber_8h_html"><div class="ttname"><a href="DesertSubscriber_8h.html">DesertSubscriber.h</a></div><div class="ttdoc">Implementation of the Subscriber structure for DESERT.</div></div>
+<div class="ttc" id="aDiscovery_8h_html"><div class="ttname"><a href="Discovery_8h.html">Discovery.h</a></div><div class="ttdoc">Namespace used to provide discovery functionalities.</div></div>
+<div class="ttc" id="aTopicsConfig_8h_html"><div class="ttname"><a href="TopicsConfig_8h.html">TopicsConfig.h</a></div><div class="ttdoc">Class used to store configurations.</div></div>
+<div class="ttc" id="aclassDesertClient_html"><div class="ttname"><a href="classDesertClient.html">DesertClient</a></div><div class="ttdef"><b>Definition</b> DesertClient.h:65</div></div>
+<div class="ttc" id="aclassDesertNode_html"><div class="ttname"><a href="classDesertNode.html">DesertNode</a></div><div class="ttdef"><b>Definition</b> DesertNode.h:54</div></div>
+<div class="ttc" id="aclassDesertNode_html_a0e76cec19b63bf3c4038e5a1913f4e00"><div class="ttname"><a href="classDesertNode.html#a0e76cec19b63bf3c4038e5a1913f4e00">DesertNode::add_service</a></div><div class="ttdeci">void add_service(DesertService *ser)</div><div class="ttdoc">Add a service to the current node.</div><div class="ttdef"><b>Definition</b> DesertNode.cpp:59</div></div>
+<div class="ttc" id="aclassDesertNode_html_a65b9f4049d5b747166e62a394fdab0bb"><div class="ttname"><a href="classDesertNode.html#a65b9f4049d5b747166e62a394fdab0bb">DesertNode::add_subscriber</a></div><div class="ttdeci">void add_subscriber(DesertSubscriber *sub)</div><div class="ttdoc">Add a subscriber to the current node.</div><div class="ttdef"><b>Definition</b> DesertNode.cpp:33</div></div>
+<div class="ttc" id="aclassDesertNode_html_a68330bfc791469e56904c857207ec9c6"><div class="ttname"><a href="classDesertNode.html#a68330bfc791469e56904c857207ec9c6">DesertNode::add_publisher</a></div><div class="ttdeci">void add_publisher(DesertPublisher *pub)</div><div class="ttdoc">Add a publisher to the current node.</div><div class="ttdef"><b>Definition</b> DesertNode.cpp:20</div></div>
+<div class="ttc" id="aclassDesertNode_html_a943dd1a2c9ef84a39874ea4579011fe9"><div class="ttname"><a href="classDesertNode.html#a943dd1a2c9ef84a39874ea4579011fe9">DesertNode::get_gid</a></div><div class="ttdeci">rmw_gid_t get_gid()</div><div class="ttdoc">Retreive the gid of the current entity.</div><div class="ttdef"><b>Definition</b> DesertNode.cpp:136</div></div>
+<div class="ttc" id="aclassDesertNode_html_a9b3baab0cbd521a1f57f9d61627275af"><div class="ttname"><a href="classDesertNode.html#a9b3baab0cbd521a1f57f9d61627275af">DesertNode::remove_subscriber</a></div><div class="ttdeci">void remove_subscriber(DesertSubscriber *sub)</div><div class="ttdoc">Remove a subscriber from the current node.</div><div class="ttdef"><b>Definition</b> DesertNode.cpp:88</div></div>
+<div class="ttc" id="aclassDesertNode_html_aa89ff17eb045e7a3953d8a6be03d98e6"><div class="ttname"><a href="classDesertNode.html#aa89ff17eb045e7a3953d8a6be03d98e6">DesertNode::remove_publisher</a></div><div class="ttdeci">void remove_publisher(DesertPublisher *pub)</div><div class="ttdoc">Remove a publisher from the current node.</div><div class="ttdef"><b>Definition</b> DesertNode.cpp:72</div></div>
+<div class="ttc" id="aclassDesertNode_html_ad36251b2a6cf439f030236d78c3841ef"><div class="ttname"><a href="classDesertNode.html#ad36251b2a6cf439f030236d78c3841ef">DesertNode::remove_service</a></div><div class="ttdeci">void remove_service(DesertService *ser)</div><div class="ttdoc">Remove a service from the current node.</div><div class="ttdef"><b>Definition</b> DesertNode.cpp:120</div></div>
+<div class="ttc" id="aclassDesertNode_html_aed8407f598fecadfb3e713f403b90e37"><div class="ttname"><a href="classDesertNode.html#aed8407f598fecadfb3e713f403b90e37">DesertNode::remove_client</a></div><div class="ttdeci">void remove_client(DesertClient *cli)</div><div class="ttdoc">Remove a client from the current node.</div><div class="ttdef"><b>Definition</b> DesertNode.cpp:104</div></div>
+<div class="ttc" id="aclassDesertNode_html_af62ad306607e8a7df2363a19a54577b4"><div class="ttname"><a href="classDesertNode.html#af62ad306607e8a7df2363a19a54577b4">DesertNode::add_client</a></div><div class="ttdeci">void add_client(DesertClient *cli)</div><div class="ttdoc">Add a client to the current node.</div><div class="ttdef"><b>Definition</b> DesertNode.cpp:46</div></div>
+<div class="ttc" id="aclassDesertPublisher_html"><div class="ttname"><a href="classDesertPublisher.html">DesertPublisher</a></div><div class="ttdef"><b>Definition</b> DesertPublisher.h:65</div></div>
+<div class="ttc" id="aclassDesertService_html"><div class="ttname"><a href="classDesertService.html">DesertService</a></div><div class="ttdef"><b>Definition</b> DesertService.h:65</div></div>
+<div class="ttc" id="aclassDesertSubscriber_html"><div class="ttname"><a href="classDesertSubscriber.html">DesertSubscriber</a></div><div class="ttdef"><b>Definition</b> DesertSubscriber.h:64</div></div>
+<div class="ttc" id="aclasscbor_1_1RxStream_html"><div class="ttname"><a href="classcbor_1_1RxStream.html">cbor::RxStream</a></div><div class="ttdef"><b>Definition</b> CBorStream.h:244</div></div>
+<div class="ttc" id="aclasscbor_1_1TxStream_html"><div class="ttname"><a href="classcbor_1_1TxStream.html">cbor::TxStream</a></div><div class="ttdef"><b>Definition</b> CBorStream.h:87</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

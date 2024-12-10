@@ -1,0 +1,80 @@
+\doxysection{src/desert\+\_\+classes/demangle.h File Reference}
+\hypertarget{demangle_8h}{}\label{demangle_8h}\index{src/desert\_classes/demangle.h@{src/desert\_classes/demangle.h}}
+
+
+Functions used to demangle topic names during discovery operations.  
+
+
+{\ttfamily \#include "{}CBor\+Stream.\+h"{}}\newline
+Include dependency graph for demangle.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{demangle_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=186pt]{demangle_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespaceDiscovery}{Discovery}}
+\begin{DoxyCompactList}\small\item\em Namespace containing discovery functions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespaceDiscovery_afcd9f3f89bf54bf9ece85c7b0ca50565}\label{namespaceDiscovery_afcd9f3f89bf54bf9ece85c7b0ca50565} 
+using {\bfseries Discovery\+::\+Demangle\+Function} = std\+::string(\texorpdfstring{$\ast$}{*})(const std\+::string \&)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespaceDiscovery_a8e8508712d24c5486cfcb1bb3e259cda}\label{namespaceDiscovery_a8e8508712d24c5486cfcb1bb3e259cda} 
+char \texorpdfstring{$\ast$}{*} {\bfseries Discovery\+::integer\+\_\+to\+\_\+string} (int x)
+\item 
+std\+::string \mbox{\hyperlink{namespaceDiscovery_afb3cd88fa21922977a1cbcadd109388e}{Discovery\+::resolve\+\_\+prefix}} (const std\+::string \&name, const std\+::string \&prefix)
+\begin{DoxyCompactList}\small\item\em Resolve a prefix. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{namespaceDiscovery_abcb975203ff1385fac73e67c3d24359d}{Discovery\+::demangle\+\_\+publisher\+\_\+from\+\_\+topic}} (const std\+::string \&topic\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Demangle a publisher. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{namespaceDiscovery_a2faa4dcc655e7a26478325e6d0c6569d}{Discovery\+::demangle\+\_\+subscriber\+\_\+from\+\_\+topic}} (const std\+::string \&topic\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Demangle a subscriber. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{namespaceDiscovery_a8bb6999dac2a7d02fdc90b200b239e72}{Discovery\+::demangle\+\_\+topic}} (const std\+::string \&topic\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Demangle a topic. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{namespaceDiscovery_a3c957231110c86458257b65473cedb46}{Discovery\+::demangle\+\_\+service\+\_\+request\+\_\+from\+\_\+topic}} (const std\+::string \&topic\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Demangle a service request. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{namespaceDiscovery_ae8f89ce6c4f6ee93ac36aa9f43194456}{Discovery\+::demangle\+\_\+service\+\_\+reply\+\_\+from\+\_\+topic}} (const std\+::string \&topic\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Demangle a service reply. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{namespaceDiscovery_a8bc93d05e9496be514abb057f2d0f419}{Discovery\+::demangle\+\_\+service\+\_\+from\+\_\+topic}} (const std\+::string \&topic\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Demangle a service. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{namespaceDiscovery_ab6b197ee34095c994e4e3038067b2de4}{Discovery\+::identity\+\_\+demangle}} (const std\+::string \&name)
+\begin{DoxyCompactList}\small\item\em No demangle. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespaceDiscovery_a458c52fe0a64af98309f6983f84f8612}\label{namespaceDiscovery_a458c52fe0a64af98309f6983f84f8612} 
+const char \texorpdfstring{$\ast$}{*}const {\bfseries Discovery\+::ros\+\_\+topic\+\_\+publisher\+\_\+prefix} = integer\+\_\+to\+\_\+string(PUBLISHER\+\_\+\+TYPE)
+\item 
+\Hypertarget{namespaceDiscovery_aa2faeb203425957638731befe3194df7}\label{namespaceDiscovery_aa2faeb203425957638731befe3194df7} 
+const char \texorpdfstring{$\ast$}{*}const {\bfseries Discovery\+::ros\+\_\+topic\+\_\+subscriber\+\_\+prefix} = integer\+\_\+to\+\_\+string(SUBSCRIBER\+\_\+\+TYPE)
+\item 
+\Hypertarget{namespaceDiscovery_a51504b45d78f00a2fc9a08193ba14fdc}\label{namespaceDiscovery_a51504b45d78f00a2fc9a08193ba14fdc} 
+const char \texorpdfstring{$\ast$}{*}const {\bfseries Discovery\+::ros\+\_\+service\+\_\+requester\+\_\+prefix} = integer\+\_\+to\+\_\+string(CLIENT\+\_\+\+TYPE)
+\item 
+\Hypertarget{namespaceDiscovery_a32efd2770870ecc472c721ef7d9311ae}\label{namespaceDiscovery_a32efd2770870ecc472c721ef7d9311ae} 
+const char \texorpdfstring{$\ast$}{*}const {\bfseries Discovery\+::ros\+\_\+service\+\_\+response\+\_\+prefix} = integer\+\_\+to\+\_\+string(SERVICE\+\_\+\+TYPE)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Functions used to demangle topic names during discovery operations. 
+
+Demangle functions allows to extract topic names and type names of each entity stored in the common context implementation. Since in this object the informations are divided in writers and readers, they must be converted in publishers, subscribers, clients and services.
+
+\begin{DoxyAuthor}{Author}
+Prof. Davide Costa 
+\end{DoxyAuthor}

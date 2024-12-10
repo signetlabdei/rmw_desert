@@ -78,15 +78,323 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a3dd0aafe553526000a026bc061abb6a2" id="r_a3dd0aafe553526000a026bc061abb6a2"><td class="memItemLeft" align="right" valign="top"><a id="a3dd0aafe553526000a026bc061abb6a2" name="a3dd0aafe553526000a026bc061abb6a2"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>DesertNode</b> (const char *name)</td></tr>
-<tr class="separator:a3dd0aafe553526000a026bc061abb6a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6eb3a7f549a0182e7c6aa41b4c232148" id="r_a6eb3a7f549a0182e7c6aa41b4c232148"><td class="memItemLeft" align="right" valign="top"><a id="a6eb3a7f549a0182e7c6aa41b4c232148" name="a6eb3a7f549a0182e7c6aa41b4c232148"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>getName</b> ()</td></tr>
-<tr class="separator:a6eb3a7f549a0182e7c6aa41b4c232148"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2faea70e1e4433ca7ad90888697096ad" id="r_a2faea70e1e4433ca7ad90888697096ad"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDesertNode.html#a2faea70e1e4433ca7ad90888697096ad">DesertNode</a> (std::string name, std::string namespace_, rmw_gid_t gid)</td></tr>
+<tr class="memdesc:a2faea70e1e4433ca7ad90888697096ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a node.  <br /></td></tr>
+<tr class="separator:a2faea70e1e4433ca7ad90888697096ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68330bfc791469e56904c857207ec9c6" id="r_a68330bfc791469e56904c857207ec9c6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDesertNode.html#a68330bfc791469e56904c857207ec9c6">add_publisher</a> (<a class="el" href="classDesertPublisher.html">DesertPublisher</a> *pub)</td></tr>
+<tr class="memdesc:a68330bfc791469e56904c857207ec9c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a publisher to the current node.  <br /></td></tr>
+<tr class="separator:a68330bfc791469e56904c857207ec9c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65b9f4049d5b747166e62a394fdab0bb" id="r_a65b9f4049d5b747166e62a394fdab0bb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDesertNode.html#a65b9f4049d5b747166e62a394fdab0bb">add_subscriber</a> (<a class="el" href="classDesertSubscriber.html">DesertSubscriber</a> *sub)</td></tr>
+<tr class="memdesc:a65b9f4049d5b747166e62a394fdab0bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a subscriber to the current node.  <br /></td></tr>
+<tr class="separator:a65b9f4049d5b747166e62a394fdab0bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af62ad306607e8a7df2363a19a54577b4" id="r_af62ad306607e8a7df2363a19a54577b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDesertNode.html#af62ad306607e8a7df2363a19a54577b4">add_client</a> (<a class="el" href="classDesertClient.html">DesertClient</a> *cli)</td></tr>
+<tr class="memdesc:af62ad306607e8a7df2363a19a54577b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a client to the current node.  <br /></td></tr>
+<tr class="separator:af62ad306607e8a7df2363a19a54577b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e76cec19b63bf3c4038e5a1913f4e00" id="r_a0e76cec19b63bf3c4038e5a1913f4e00"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDesertNode.html#a0e76cec19b63bf3c4038e5a1913f4e00">add_service</a> (<a class="el" href="classDesertService.html">DesertService</a> *ser)</td></tr>
+<tr class="memdesc:a0e76cec19b63bf3c4038e5a1913f4e00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a service to the current node.  <br /></td></tr>
+<tr class="separator:a0e76cec19b63bf3c4038e5a1913f4e00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa89ff17eb045e7a3953d8a6be03d98e6" id="r_aa89ff17eb045e7a3953d8a6be03d98e6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDesertNode.html#aa89ff17eb045e7a3953d8a6be03d98e6">remove_publisher</a> (<a class="el" href="classDesertPublisher.html">DesertPublisher</a> *pub)</td></tr>
+<tr class="memdesc:aa89ff17eb045e7a3953d8a6be03d98e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove a publisher from the current node.  <br /></td></tr>
+<tr class="separator:aa89ff17eb045e7a3953d8a6be03d98e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b3baab0cbd521a1f57f9d61627275af" id="r_a9b3baab0cbd521a1f57f9d61627275af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDesertNode.html#a9b3baab0cbd521a1f57f9d61627275af">remove_subscriber</a> (<a class="el" href="classDesertSubscriber.html">DesertSubscriber</a> *sub)</td></tr>
+<tr class="memdesc:a9b3baab0cbd521a1f57f9d61627275af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove a subscriber from the current node.  <br /></td></tr>
+<tr class="separator:a9b3baab0cbd521a1f57f9d61627275af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed8407f598fecadfb3e713f403b90e37" id="r_aed8407f598fecadfb3e713f403b90e37"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDesertNode.html#aed8407f598fecadfb3e713f403b90e37">remove_client</a> (<a class="el" href="classDesertClient.html">DesertClient</a> *cli)</td></tr>
+<tr class="memdesc:aed8407f598fecadfb3e713f403b90e37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove a client from the current node.  <br /></td></tr>
+<tr class="separator:aed8407f598fecadfb3e713f403b90e37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad36251b2a6cf439f030236d78c3841ef" id="r_ad36251b2a6cf439f030236d78c3841ef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDesertNode.html#ad36251b2a6cf439f030236d78c3841ef">remove_service</a> (<a class="el" href="classDesertService.html">DesertService</a> *ser)</td></tr>
+<tr class="memdesc:ad36251b2a6cf439f030236d78c3841ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove a service from the current node.  <br /></td></tr>
+<tr class="separator:ad36251b2a6cf439f030236d78c3841ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a943dd1a2c9ef84a39874ea4579011fe9" id="r_a943dd1a2c9ef84a39874ea4579011fe9"><td class="memItemLeft" align="right" valign="top">rmw_gid_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDesertNode.html#a943dd1a2c9ef84a39874ea4579011fe9">get_gid</a> ()</td></tr>
+<tr class="memdesc:a943dd1a2c9ef84a39874ea4579011fe9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retreive the gid of the current entity.  <br /></td></tr>
+<tr class="separator:a943dd1a2c9ef84a39874ea4579011fe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a2faea70e1e4433ca7ad90888697096ad" name="a2faea70e1e4433ca7ad90888697096ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2faea70e1e4433ca7ad90888697096ad">&#9670;&#160;</a></span>DesertNode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DesertNode::DesertNode </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>namespace_</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">rmw_gid_t&#160;</td>
+          <td class="paramname"><em>gid</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create a node. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>Name of the node </td></tr>
+    <tr><td class="paramname">namespace_</td><td>Namespace of the node </td></tr>
+    <tr><td class="paramname">gid</td><td>Global identifier of the node </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="af62ad306607e8a7df2363a19a54577b4" name="af62ad306607e8a7df2363a19a54577b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af62ad306607e8a7df2363a19a54577b4">&#9670;&#160;</a></span>add_client()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DesertNode::add_client </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classDesertClient.html">DesertClient</a> *&#160;</td>
+          <td class="paramname"><em>cli</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add a client to the current node. </p>
+<p>This function pushes the pointer to a client in a vector of all the registered clients related to the current node.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cli</td><td>Pointer to a <a class="el" href="classDesertClient.html">DesertClient</a> instance </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a68330bfc791469e56904c857207ec9c6" name="a68330bfc791469e56904c857207ec9c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68330bfc791469e56904c857207ec9c6">&#9670;&#160;</a></span>add_publisher()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DesertNode::add_publisher </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classDesertPublisher.html">DesertPublisher</a> *&#160;</td>
+          <td class="paramname"><em>pub</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add a publisher to the current node. </p>
+<p>This function pushes the pointer to a publisher in a vector of all the registered publishers related to the current node.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pub</td><td>Pointer to a <a class="el" href="classDesertPublisher.html">DesertPublisher</a> instance </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0e76cec19b63bf3c4038e5a1913f4e00" name="a0e76cec19b63bf3c4038e5a1913f4e00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e76cec19b63bf3c4038e5a1913f4e00">&#9670;&#160;</a></span>add_service()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DesertNode::add_service </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classDesertService.html">DesertService</a> *&#160;</td>
+          <td class="paramname"><em>ser</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add a service to the current node. </p>
+<p>This function pushes the pointer to a service in a vector of all the registered services related to the current node.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ser</td><td>Pointer to a <a class="el" href="classDesertService.html">DesertService</a> instance </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a65b9f4049d5b747166e62a394fdab0bb" name="a65b9f4049d5b747166e62a394fdab0bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65b9f4049d5b747166e62a394fdab0bb">&#9670;&#160;</a></span>add_subscriber()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DesertNode::add_subscriber </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classDesertSubscriber.html">DesertSubscriber</a> *&#160;</td>
+          <td class="paramname"><em>sub</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add a subscriber to the current node. </p>
+<p>This function pushes the pointer to a subscriber in a vector of all the registered subscribers related to the current node.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sub</td><td>Pointer to a <a class="el" href="classDesertSubscriber.html">DesertSubscriber</a> instance </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a943dd1a2c9ef84a39874ea4579011fe9" name="a943dd1a2c9ef84a39874ea4579011fe9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a943dd1a2c9ef84a39874ea4579011fe9">&#9670;&#160;</a></span>get_gid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">rmw_gid_t DesertNode::get_gid </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retreive the gid of the current entity. </p>
+<p>This function returns the global identifier of the current entity in the rmw format.</p>
+<dl class="section return"><dt>Returns</dt><dd>Global identifier of the entity </dd></dl>
+
+</div>
+</div>
+<a id="aed8407f598fecadfb3e713f403b90e37" name="aed8407f598fecadfb3e713f403b90e37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed8407f598fecadfb3e713f403b90e37">&#9670;&#160;</a></span>remove_client()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DesertNode::remove_client </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classDesertClient.html">DesertClient</a> *&#160;</td>
+          <td class="paramname"><em>cli</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Remove a client from the current node. </p>
+<p>This function removes the pointer to a client from the vector of all the registered clients related to the current node.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cli</td><td>Pointer to a <a class="el" href="classDesertClient.html">DesertClient</a> instance </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa89ff17eb045e7a3953d8a6be03d98e6" name="aa89ff17eb045e7a3953d8a6be03d98e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa89ff17eb045e7a3953d8a6be03d98e6">&#9670;&#160;</a></span>remove_publisher()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DesertNode::remove_publisher </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classDesertPublisher.html">DesertPublisher</a> *&#160;</td>
+          <td class="paramname"><em>pub</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Remove a publisher from the current node. </p>
+<p>This function removes the pointer to a publisher from the vector of all the registered publishers related to the current node.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pub</td><td>Pointer to a <a class="el" href="classDesertPublisher.html">DesertPublisher</a> instance </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad36251b2a6cf439f030236d78c3841ef" name="ad36251b2a6cf439f030236d78c3841ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad36251b2a6cf439f030236d78c3841ef">&#9670;&#160;</a></span>remove_service()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DesertNode::remove_service </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classDesertService.html">DesertService</a> *&#160;</td>
+          <td class="paramname"><em>ser</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Remove a service from the current node. </p>
+<p>This function removes the pointer to a service from the vector of all the registered services related to the current node.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ser</td><td>Pointer to a <a class="el" href="classDesertService.html">DesertService</a> instance </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9b3baab0cbd521a1f57f9d61627275af" name="a9b3baab0cbd521a1f57f9d61627275af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b3baab0cbd521a1f57f9d61627275af">&#9670;&#160;</a></span>remove_subscriber()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DesertNode::remove_subscriber </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classDesertSubscriber.html">DesertSubscriber</a> *&#160;</td>
+          <td class="paramname"><em>sub</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Remove a subscriber from the current node. </p>
+<p>This function removes the pointer to a subscriber from the vector of all the registered subscribers related to the current node.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sub</td><td>Pointer to a <a class="el" href="classDesertSubscriber.html">DesertSubscriber</a> instance </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/desert_classes/<a class="el" href="DesertNode_8h_source.html">DesertNode.h</a></li>
+<li>src/desert_classes/<b>DesertNode.cpp</b></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

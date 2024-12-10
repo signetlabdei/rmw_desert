@@ -69,6 +69,7 @@ class DesertPublisher
     *
     * @param topic_name    Name of the topic used to push the messages
     * @param type_supports Pointer to the message data structure coming from the ROS upper layers
+    * @param gid           Global identifier of the entity
     */
     DesertPublisher(std::string topic_name, const rosidl_message_type_support_t * type_supports, rmw_gid_t gid);
     
@@ -83,8 +84,29 @@ class DesertPublisher
     */
     void push(const void * msg);
     
+   /**
+    * @brief Retreive the gid of the current entity
+    *
+    * This function returns the global identifier of the current entity in the rmw format.
+    *
+    * @return Global identifier of the entity
+    */
     rmw_gid_t get_gid();
+   /**
+    * @brief Retreive the topic name of the current entity
+    *
+    * This function returns a string containing the topic name of the current entity.
+    *
+    * @return Name of the topic
+    */
     std::string get_topic_name();
+   /**
+    * @brief Retreive the message type of the current entity
+    *
+    * This function returns a string containing the message type name of the current entity.
+    *
+    * @return Type of the message
+    */
     std::string get_type_name();
     
     

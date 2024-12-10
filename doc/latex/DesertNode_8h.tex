@@ -5,6 +5,20 @@
 Implementation of the Node structure for DESERT.  
 
 
+{\ttfamily \#include "{}CBor\+Stream.\+h"{}}\newline
+{\ttfamily \#include "{}Desert\+Publisher.\+h"{}}\newline
+{\ttfamily \#include "{}Desert\+Subscriber.\+h"{}}\newline
+{\ttfamily \#include "{}Desert\+Client.\+h"{}}\newline
+{\ttfamily \#include "{}Desert\+Service.\+h"{}}\newline
+{\ttfamily \#include "{}Discovery.\+h"{}}\newline
+{\ttfamily \#include "{}Topics\+Config.\+h"{}}\newline
+Include dependency graph for Desert\+Node.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{DesertNode_8h__incl}
+\end{center}
+\end{figure}
 \doxysubsubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
@@ -15,7 +29,7 @@ class \mbox{\hyperlink{classDesertNode}{Desert\+Node}}
 \doxysubsection{Detailed Description}
 Implementation of the Node structure for DESERT. 
 
-Unimplemented class included for future expansions
+The \doxylink{classDesertNode}{Desert\+Node} class is used to keep track af all the entities created by a specific node. Each of them is stored in a vector of pointers to the original memory locations mainly used to provide discovery functionalities.
 
 \begin{DoxyAuthor}{Author}
 Prof. Davide Costa 

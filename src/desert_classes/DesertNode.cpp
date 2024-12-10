@@ -7,12 +7,18 @@ DesertNode::DesertNode(std::string name, std::string namespace_, rmw_gid_t gid)
       , _discovery_request_data_stream(cbor::RxStream(SUBSCRIBER_TYPE, "discovery_request", TopicsConfig::get_topic_identifier("/discovery_request")))
       , _gid(gid)
 {
+  if (!TopicsConfig::get_topic_identifier("/discovery_request"))
+    return;
+  
   _discovery_done = false;
   _discovery_request_thread = std::thread(&DesertNode::_discovery_request, this);
 }
 
 DesertNode::~DesertNode()
 {
+  if (!TopicsConfig::get_topic_identifier("/discovery_request"))
+    return;
+  
   _discovery_done = true;
   _discovery_request_thread.join();
 }

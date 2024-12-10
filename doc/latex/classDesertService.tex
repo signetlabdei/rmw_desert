@@ -3,22 +3,30 @@
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classDesertService_af0a367a13f4bf180d930087a76b66489}{Desert\+Service}} (std\+::string service\+\_\+name, const rosidl\+\_\+service\+\_\+type\+\_\+support\+\_\+t \texorpdfstring{$\ast$}{*}type\+\_\+supports)
+\mbox{\hyperlink{classDesertService_a82fd83779cf7741cf1784d488b69a0fc}{Desert\+Service}} (std\+::string service\+\_\+name, const rosidl\+\_\+service\+\_\+type\+\_\+support\+\_\+t \texorpdfstring{$\ast$}{*}type\+\_\+supports, rmw\+\_\+gid\+\_\+t gid)
 \begin{DoxyCompactList}\small\item\em Create a service. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classDesertService_a9f9cc643d67425dcd6f1dc1df5029643}{has\+\_\+data}} ()
 \begin{DoxyCompactList}\small\item\em Check if there is available data for the current service instance. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classDesertService_abf15af03595c4766af4b0ca8272349c3}{read\+\_\+request}} (void \texorpdfstring{$\ast$}{*}req, rmw\+\_\+service\+\_\+info\+\_\+t \texorpdfstring{$\ast$}{*}req\+\_\+header)
 \begin{DoxyCompactList}\small\item\em Read a request from a client. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classDesertService_a15f4dfeedb27ccd96f535a5c9a859029}{send\+\_\+response}} (void \texorpdfstring{$\ast$}{*}res, rmw\+\_\+request\+\_\+id\+\_\+t \texorpdfstring{$\ast$}{*}req\+\_\+header)
-\begin{DoxyCompactList}\small\item\em Send the response to a client. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Send the response to a client. \end{DoxyCompactList}\item 
+rmw\+\_\+gid\+\_\+t \mbox{\hyperlink{classDesertService_a469bfcfd12740c3668e88f19cfa133c7}{get\+\_\+gid}} ()
+\begin{DoxyCompactList}\small\item\em Retreive the gid of the current entity. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classDesertService_ab012a1f844be50787f0abd8fce5a7644}{get\+\_\+service\+\_\+name}} ()
+\begin{DoxyCompactList}\small\item\em Retreive the service name of the current entity. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classDesertService_a61fea7c6dfbc46ab8ecaa936a7ec3b1a}{get\+\_\+request\+\_\+type\+\_\+name}} ()
+\begin{DoxyCompactList}\small\item\em Retreive the request type of the current entity. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classDesertService_a1b8979f686c920688291f0ca85009380}{get\+\_\+response\+\_\+type\+\_\+name}} ()
+\begin{DoxyCompactList}\small\item\em Retreive the response type of the current entity. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\Hypertarget{classDesertService_af0a367a13f4bf180d930087a76b66489}\label{classDesertService_af0a367a13f4bf180d930087a76b66489} 
+\Hypertarget{classDesertService_a82fd83779cf7741cf1784d488b69a0fc}\label{classDesertService_a82fd83779cf7741cf1784d488b69a0fc} 
 \index{DesertService@{DesertService}!DesertService@{DesertService}}
 \index{DesertService@{DesertService}!DesertService@{DesertService}}
 \doxysubsubsection{\texorpdfstring{DesertService()}{DesertService()}}
-{\footnotesize\ttfamily Desert\+Service\+::\+Desert\+Service (\begin{DoxyParamCaption}\item[{std\+::string}]{service\+\_\+name,  }\item[{const rosidl\+\_\+service\+\_\+type\+\_\+support\+\_\+t \texorpdfstring{$\ast$}{*}}]{type\+\_\+supports }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Desert\+Service\+::\+Desert\+Service (\begin{DoxyParamCaption}\item[{std\+::string}]{service\+\_\+name,  }\item[{const rosidl\+\_\+service\+\_\+type\+\_\+support\+\_\+t \texorpdfstring{$\ast$}{*}}]{type\+\_\+supports,  }\item[{rmw\+\_\+gid\+\_\+t}]{gid }\end{DoxyParamCaption})}
 
 
 
@@ -30,10 +38,72 @@ Create a service.
 \hline
 {\em type\+\_\+supports} & Pointer to the message data structure coming from the ROS upper layers \\
 \hline
+{\em gid} & Global identifier of the entity \\
+\hline
 \end{DoxyParams}
 
 
 \doxysubsection{Member Function Documentation}
+\Hypertarget{classDesertService_a469bfcfd12740c3668e88f19cfa133c7}\label{classDesertService_a469bfcfd12740c3668e88f19cfa133c7} 
+\index{DesertService@{DesertService}!get\_gid@{get\_gid}}
+\index{get\_gid@{get\_gid}!DesertService@{DesertService}}
+\doxysubsubsection{\texorpdfstring{get\_gid()}{get\_gid()}}
+{\footnotesize\ttfamily rmw\+\_\+gid\+\_\+t Desert\+Service\+::get\+\_\+gid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retreive the gid of the current entity. 
+
+This function returns the global identifier of the current entity in the rmw format.
+
+\begin{DoxyReturn}{Returns}
+Global identifier of the entity 
+\end{DoxyReturn}
+\Hypertarget{classDesertService_a61fea7c6dfbc46ab8ecaa936a7ec3b1a}\label{classDesertService_a61fea7c6dfbc46ab8ecaa936a7ec3b1a} 
+\index{DesertService@{DesertService}!get\_request\_type\_name@{get\_request\_type\_name}}
+\index{get\_request\_type\_name@{get\_request\_type\_name}!DesertService@{DesertService}}
+\doxysubsubsection{\texorpdfstring{get\_request\_type\_name()}{get\_request\_type\_name()}}
+{\footnotesize\ttfamily std\+::string Desert\+Service\+::get\+\_\+request\+\_\+type\+\_\+name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retreive the request type of the current entity. 
+
+This function returns a string containing the service request type name of the current entity.
+
+\begin{DoxyReturn}{Returns}
+Type of the service request 
+\end{DoxyReturn}
+\Hypertarget{classDesertService_a1b8979f686c920688291f0ca85009380}\label{classDesertService_a1b8979f686c920688291f0ca85009380} 
+\index{DesertService@{DesertService}!get\_response\_type\_name@{get\_response\_type\_name}}
+\index{get\_response\_type\_name@{get\_response\_type\_name}!DesertService@{DesertService}}
+\doxysubsubsection{\texorpdfstring{get\_response\_type\_name()}{get\_response\_type\_name()}}
+{\footnotesize\ttfamily std\+::string Desert\+Service\+::get\+\_\+response\+\_\+type\+\_\+name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retreive the response type of the current entity. 
+
+This function returns a string containing the service response type name of the current entity.
+
+\begin{DoxyReturn}{Returns}
+Type of the service response 
+\end{DoxyReturn}
+\Hypertarget{classDesertService_ab012a1f844be50787f0abd8fce5a7644}\label{classDesertService_ab012a1f844be50787f0abd8fce5a7644} 
+\index{DesertService@{DesertService}!get\_service\_name@{get\_service\_name}}
+\index{get\_service\_name@{get\_service\_name}!DesertService@{DesertService}}
+\doxysubsubsection{\texorpdfstring{get\_service\_name()}{get\_service\_name()}}
+{\footnotesize\ttfamily std\+::string Desert\+Service\+::get\+\_\+service\+\_\+name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retreive the service name of the current entity. 
+
+This function returns a string containing the service name of the current entity.
+
+\begin{DoxyReturn}{Returns}
+Name of the service 
+\end{DoxyReturn}
 \Hypertarget{classDesertService_a9f9cc643d67425dcd6f1dc1df5029643}\label{classDesertService_a9f9cc643d67425dcd6f1dc1df5029643} 
 \index{DesertService@{DesertService}!has\_data@{has\_data}}
 \index{has\_data@{has\_data}!DesertService@{DesertService}}
@@ -84,7 +154,7 @@ The send\+\_\+response function starts a transmission with the sequence identifi
 \begin{DoxyParams}{Parameters}
 {\em res} & Pointer to the response to send \\
 \hline
-{\em sequence\+\_\+id} & Pointer to the service sequence identifier \\
+{\em req\+\_\+header} & Pointer to the request header used to store the service sequence identifier \\
 \hline
 \end{DoxyParams}
 

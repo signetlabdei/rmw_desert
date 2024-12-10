@@ -115,210 +115,213 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">#include &lt;codecvt&gt;</span></div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="preprocessor">#include &lt;cstdint&gt;</span></div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="preprocessor">#include &lt;cstdio&gt;</span></div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="preprocessor">#include &quot;cbor/encoder.h&quot;</span></div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="preprocessor">#include &quot;cbor/ieee754.h&quot;</span></div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="preprocessor">#include &quot;cbor/decoder.h&quot;</span></div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="preprocessor">#include &quot;cbor/parser.h&quot;</span></div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="preprocessor">#include &quot;cbor/helper.h&quot;</span></div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="preprocessor">#include &quot;half.hpp&quot;</span></div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="preprocessor">#define PUBLISHER_TYPE  0</span></div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="preprocessor">#define SUBSCRIBER_TYPE 1</span></div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="preprocessor">#define CLIENT_TYPE     2</span></div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="preprocessor">#define SERVICE_TYPE    3</span></div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="preprocessor">#define MAX_BUFFER_CAPACITY 100</span></div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keywordtype">int</span> MaxLen, <span class="keyword">typename</span> Container=std::deque&lt;T&gt;&gt;</div>
-<div class="foldopen" id="foldopen00070" data-start="{" data-end="};">
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="classCircularQueue.html">   70</a></span><span class="keyword">class </span><a class="code hl_class" href="classCircularQueue.html">CircularQueue</a> : <span class="keyword">public</span> std::queue&lt;T, Container&gt; {</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordtype">void</span> push(<span class="keyword">const</span> T&amp; value)</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    {</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        <span class="keywordflow">if</span> (this-&gt;size() == MaxLen)</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        {</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>           this-&gt;c.pop_front();</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        }</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        std::queue&lt;T, Container&gt;::push(value);</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    }</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>};</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="preprocessor">#include &lt;mutex&gt;</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="preprocessor">#include &quot;cbor/encoder.h&quot;</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="preprocessor">#include &quot;cbor/ieee754.h&quot;</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="preprocessor">#include &quot;cbor/decoder.h&quot;</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="preprocessor">#include &quot;cbor/parser.h&quot;</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="preprocessor">#include &quot;cbor/helper.h&quot;</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="preprocessor">#include &quot;half.hpp&quot;</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="preprocessor">#define PUBLISHER_TYPE  0</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="preprocessor">#define SUBSCRIBER_TYPE 1</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="preprocessor">#define CLIENT_TYPE     2</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="preprocessor">#define SERVICE_TYPE    3</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="preprocessor">#define MAX_BUFFER_CAPACITY 100</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keywordtype">int</span> MaxLen, <span class="keyword">typename</span> Container=std::deque&lt;T&gt;&gt;</div>
+<div class="foldopen" id="foldopen00071" data-start="{" data-end="};">
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="classCircularQueue.html">   71</a></span><span class="keyword">class </span><a class="code hl_class" href="classCircularQueue.html">CircularQueue</a> : <span class="keyword">public</span> std::queue&lt;T, Container&gt; {</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keywordtype">void</span> push(<span class="keyword">const</span> T&amp; value)</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    {</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        <span class="keywordflow">if</span> (this-&gt;size() == MaxLen)</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        {</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>           this-&gt;c.pop_front();</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        }</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        std::queue&lt;T, Container&gt;::push(value);</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    }</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>};</div>
 </div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="keyword">namespace </span>cbor</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>{</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
-<div class="foldopen" id="foldopen00085" data-start="{" data-end="};">
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="classcbor_1_1TxStream.html">   85</a></span><span class="keyword">class </span><a class="code hl_class" href="classcbor_1_1TxStream.html">TxStream</a></div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>{</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <a class="code hl_class" href="classcbor_1_1TxStream.html">TxStream</a>(uint8_t stream_type, std::string stream_name, uint8_t stream_identifier);</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    </div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classcbor_1_1TxStream.html#acd05bc87a3a3b29b584e4bb3e507b694">start_transmission</a>(uint64_t sequence_id);</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classcbor_1_1TxStream.html#acd05bc87a3a3b29b584e4bb3e507b694">start_transmission</a>();</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classcbor_1_1TxStream.html#a7c08187453b92347ee439af8648a1379">end_transmission</a>();</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <a class="code hl_class" href="classcbor_1_1TxStream.html">TxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1TxStream.html#a340159644e1ba667e95c256cbd5f210f">operator&lt;&lt;</a>(<span class="keyword">const</span> uint64_t n);</div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <a class="code hl_class" href="classcbor_1_1TxStream.html">TxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1TxStream.html#a340159644e1ba667e95c256cbd5f210f">operator&lt;&lt;</a>(<span class="keyword">const</span> uint32_t n);</div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <a class="code hl_class" href="classcbor_1_1TxStream.html">TxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1TxStream.html#a340159644e1ba667e95c256cbd5f210f">operator&lt;&lt;</a>(<span class="keyword">const</span> uint16_t n);</div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    <a class="code hl_class" href="classcbor_1_1TxStream.html">TxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1TxStream.html#a340159644e1ba667e95c256cbd5f210f">operator&lt;&lt;</a>(<span class="keyword">const</span> uint8_t n);</div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <a class="code hl_class" href="classcbor_1_1TxStream.html">TxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1TxStream.html#a340159644e1ba667e95c256cbd5f210f">operator&lt;&lt;</a>(<span class="keyword">const</span> int64_t n);</div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <a class="code hl_class" href="classcbor_1_1TxStream.html">TxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1TxStream.html#a340159644e1ba667e95c256cbd5f210f">operator&lt;&lt;</a>(<span class="keyword">const</span> int32_t n);</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <a class="code hl_class" href="classcbor_1_1TxStream.html">TxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1TxStream.html#a340159644e1ba667e95c256cbd5f210f">operator&lt;&lt;</a>(<span class="keyword">const</span> int16_t n);</div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    <a class="code hl_class" href="classcbor_1_1TxStream.html">TxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1TxStream.html#a340159644e1ba667e95c256cbd5f210f">operator&lt;&lt;</a>(<span class="keyword">const</span> int8_t n);</div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    <a class="code hl_class" href="classcbor_1_1TxStream.html">TxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1TxStream.html#a340159644e1ba667e95c256cbd5f210f">operator&lt;&lt;</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> n);</div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    <a class="code hl_class" href="classcbor_1_1TxStream.html">TxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1TxStream.html#a340159644e1ba667e95c256cbd5f210f">operator&lt;&lt;</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> f);</div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    <a class="code hl_class" href="classcbor_1_1TxStream.html">TxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1TxStream.html#a340159644e1ba667e95c256cbd5f210f">operator&lt;&lt;</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> d);</div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    <a class="code hl_class" href="classcbor_1_1TxStream.html">TxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1TxStream.html#a340159644e1ba667e95c256cbd5f210f">operator&lt;&lt;</a>(<span class="keyword">const</span> std::string s);</div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    <a class="code hl_class" href="classcbor_1_1TxStream.html">TxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1TxStream.html#a340159644e1ba667e95c256cbd5f210f">operator&lt;&lt;</a>(<span class="keyword">const</span> std::u16string s);</div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    <a class="code hl_class" href="classcbor_1_1TxStream.html">TxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1TxStream.html#a340159644e1ba667e95c256cbd5f210f">operator&lt;&lt;</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> b);</div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    </div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00199" data-start="{" data-end="}">
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno"><a class="line" href="classcbor_1_1TxStream.html#a73ff9d3efdfc2cde9b6ae1b287dd4b71">  199</a></span>    <span class="keyword">inline</span> <a class="code hl_class" href="classcbor_1_1TxStream.html">TxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1TxStream.html#a73ff9d3efdfc2cde9b6ae1b287dd4b71">operator&lt;&lt;</a>(<span class="keyword">const</span> std::vector&lt;T&gt; v)</div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    {</div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>      *this &lt;&lt; static_cast&lt;const uint32_t&gt;(v.size());</div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="classcbor_1_1TxStream.html#a3431c0b1f28dbf862f9b337ffd0c9272">serialize_sequence</a>(v.data(), v.size());</div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    }</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="keyword">namespace </span>cbor</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>{</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="foldopen" id="foldopen00086" data-start="{" data-end="};">
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="classcbor_1_1TxStream.html">   86</a></span><span class="keyword">class </span><a class="code hl_class" href="classcbor_1_1TxStream.html">TxStream</a></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>{</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <a class="code hl_class" href="classcbor_1_1TxStream.html">TxStream</a>(uint8_t stream_type, std::string stream_name, uint8_t stream_identifier);</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classcbor_1_1TxStream.html#acd05bc87a3a3b29b584e4bb3e507b694">start_transmission</a>(uint64_t sequence_id);</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classcbor_1_1TxStream.html#acd05bc87a3a3b29b584e4bb3e507b694">start_transmission</a>();</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classcbor_1_1TxStream.html#a7c08187453b92347ee439af8648a1379">end_transmission</a>();</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <a class="code hl_class" href="classcbor_1_1TxStream.html">TxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1TxStream.html#a340159644e1ba667e95c256cbd5f210f">operator&lt;&lt;</a>(<span class="keyword">const</span> uint64_t n);</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <a class="code hl_class" href="classcbor_1_1TxStream.html">TxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1TxStream.html#a340159644e1ba667e95c256cbd5f210f">operator&lt;&lt;</a>(<span class="keyword">const</span> uint32_t n);</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <a class="code hl_class" href="classcbor_1_1TxStream.html">TxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1TxStream.html#a340159644e1ba667e95c256cbd5f210f">operator&lt;&lt;</a>(<span class="keyword">const</span> uint16_t n);</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <a class="code hl_class" href="classcbor_1_1TxStream.html">TxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1TxStream.html#a340159644e1ba667e95c256cbd5f210f">operator&lt;&lt;</a>(<span class="keyword">const</span> uint8_t n);</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <a class="code hl_class" href="classcbor_1_1TxStream.html">TxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1TxStream.html#a340159644e1ba667e95c256cbd5f210f">operator&lt;&lt;</a>(<span class="keyword">const</span> int64_t n);</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <a class="code hl_class" href="classcbor_1_1TxStream.html">TxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1TxStream.html#a340159644e1ba667e95c256cbd5f210f">operator&lt;&lt;</a>(<span class="keyword">const</span> int32_t n);</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <a class="code hl_class" href="classcbor_1_1TxStream.html">TxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1TxStream.html#a340159644e1ba667e95c256cbd5f210f">operator&lt;&lt;</a>(<span class="keyword">const</span> int16_t n);</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    <a class="code hl_class" href="classcbor_1_1TxStream.html">TxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1TxStream.html#a340159644e1ba667e95c256cbd5f210f">operator&lt;&lt;</a>(<span class="keyword">const</span> int8_t n);</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    <a class="code hl_class" href="classcbor_1_1TxStream.html">TxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1TxStream.html#a340159644e1ba667e95c256cbd5f210f">operator&lt;&lt;</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> n);</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <a class="code hl_class" href="classcbor_1_1TxStream.html">TxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1TxStream.html#a340159644e1ba667e95c256cbd5f210f">operator&lt;&lt;</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> f);</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    <a class="code hl_class" href="classcbor_1_1TxStream.html">TxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1TxStream.html#a340159644e1ba667e95c256cbd5f210f">operator&lt;&lt;</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> d);</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    <a class="code hl_class" href="classcbor_1_1TxStream.html">TxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1TxStream.html#a340159644e1ba667e95c256cbd5f210f">operator&lt;&lt;</a>(<span class="keyword">const</span> std::string s);</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    <a class="code hl_class" href="classcbor_1_1TxStream.html">TxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1TxStream.html#a340159644e1ba667e95c256cbd5f210f">operator&lt;&lt;</a>(<span class="keyword">const</span> std::u16string s);</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    <a class="code hl_class" href="classcbor_1_1TxStream.html">TxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1TxStream.html#a340159644e1ba667e95c256cbd5f210f">operator&lt;&lt;</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> b);</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    </div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00200" data-start="{" data-end="}">
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno"><a class="line" href="classcbor_1_1TxStream.html#a73ff9d3efdfc2cde9b6ae1b287dd4b71">  200</a></span>    <span class="keyword">inline</span> <a class="code hl_class" href="classcbor_1_1TxStream.html">TxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1TxStream.html#a73ff9d3efdfc2cde9b6ae1b287dd4b71">operator&lt;&lt;</a>(<span class="keyword">const</span> std::vector&lt;T&gt; v)</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    {</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>      *this &lt;&lt; static_cast&lt;const uint32_t&gt;(v.size());</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="classcbor_1_1TxStream.html#a3431c0b1f28dbf862f9b337ffd0c9272">serialize_sequence</a>(v.data(), v.size());</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    }</div>
 </div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    </div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    <a class="code hl_class" href="classcbor_1_1TxStream.html">TxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1TxStream.html#a340159644e1ba667e95c256cbd5f210f">operator&lt;&lt;</a>(<span class="keyword">const</span> std::vector&lt;bool&gt; v);</div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    </div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00217" data-start="{" data-end="}">
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno"><a class="line" href="classcbor_1_1TxStream.html#a3431c0b1f28dbf862f9b337ffd0c9272">  217</a></span>    <span class="keyword">inline</span> <a class="code hl_class" href="classcbor_1_1TxStream.html">TxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1TxStream.html#a3431c0b1f28dbf862f9b337ffd0c9272">serialize_sequence</a>(<span class="keyword">const</span> T * items, <span class="keywordtype">size_t</span> size)</div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    {</div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>      <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; size; ++i)</div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>      {</div>
-<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>        *<span class="keyword">this</span> &lt;&lt; items[i];</div>
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>      }</div>
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>      <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    }</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    </div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    <a class="code hl_class" href="classcbor_1_1TxStream.html">TxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1TxStream.html#a340159644e1ba667e95c256cbd5f210f">operator&lt;&lt;</a>(<span class="keyword">const</span> std::vector&lt;bool&gt; v);</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    </div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00218" data-start="{" data-end="}">
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno"><a class="line" href="classcbor_1_1TxStream.html#a3431c0b1f28dbf862f9b337ffd0c9272">  218</a></span>    <span class="keyword">inline</span> <a class="code hl_class" href="classcbor_1_1TxStream.html">TxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1TxStream.html#a3431c0b1f28dbf862f9b337ffd0c9272">serialize_sequence</a>(<span class="keyword">const</span> T * items, <span class="keywordtype">size_t</span> size)</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    {</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>      <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; size; ++i)</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>      {</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>        *<span class="keyword">this</span> &lt;&lt; items[i];</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>      }</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>      <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    }</div>
 </div>
-<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span> </div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>  <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    uint8_t _stream_type;</div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    std::string _stream_name;</div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    uint8_t _stream_identifier;</div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    </div>
-<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    <span class="keywordtype">bool</span> _overflow;</div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    uint8_t *  _packet;</div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    cbor_writer_t *  _writer;</div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    </div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    <span class="keywordtype">void</span> new_packet();</div>
-<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    <span class="keywordtype">void</span> handle_overrun(cbor_error_t result);</div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    </div>
-<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    std::string toUTF8(<span class="keyword">const</span> std::u16string source);</div>
-<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>  </div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>};</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span> </div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    uint8_t _stream_type;</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    std::string _stream_name;</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    uint8_t _stream_identifier;</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    </div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    <span class="keywordtype">bool</span> _overflow;</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    uint8_t *  _packet;</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    cbor_writer_t *  _writer;</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    </div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    <span class="keywordtype">void</span> new_packet();</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    <span class="keywordtype">void</span> handle_overrun(cbor_error_t result);</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    </div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    std::string toUTF8(<span class="keyword">const</span> std::u16string source);</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>  </div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>};</div>
 </div>
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span> </div>
-<div class="foldopen" id="foldopen00242" data-start="{" data-end="};">
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno"><a class="line" href="classcbor_1_1RxStream.html">  242</a></span><span class="keyword">class </span><a class="code hl_class" href="classcbor_1_1RxStream.html">RxStream</a></div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>{</div>
-<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>  <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    <a class="code hl_class" href="classcbor_1_1RxStream.html">RxStream</a>(uint8_t stream_type, std::string stream_name, uint8_t stream_identifier);</div>
-<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    </div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classcbor_1_1RxStream.html#a7dde7a85f3cc8d9ad63aa78a13e767cb">data_available</a>(int64_t sequence_id = 0);</div>
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    </div>
-<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>    <a class="code hl_class" href="classcbor_1_1RxStream.html">RxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1RxStream.html#acce23643eacbf9b17c6bbababded9d96">operator&gt;&gt;</a>(uint64_t &amp; n);</div>
-<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    <a class="code hl_class" href="classcbor_1_1RxStream.html">RxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1RxStream.html#acce23643eacbf9b17c6bbababded9d96">operator&gt;&gt;</a>(uint32_t &amp; n);</div>
-<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>    <a class="code hl_class" href="classcbor_1_1RxStream.html">RxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1RxStream.html#acce23643eacbf9b17c6bbababded9d96">operator&gt;&gt;</a>(uint16_t &amp; n);</div>
-<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>    <a class="code hl_class" href="classcbor_1_1RxStream.html">RxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1RxStream.html#acce23643eacbf9b17c6bbababded9d96">operator&gt;&gt;</a>(uint8_t &amp; n);</div>
-<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>    <a class="code hl_class" href="classcbor_1_1RxStream.html">RxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1RxStream.html#acce23643eacbf9b17c6bbababded9d96">operator&gt;&gt;</a>(int64_t &amp; n);</div>
-<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>    <a class="code hl_class" href="classcbor_1_1RxStream.html">RxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1RxStream.html#acce23643eacbf9b17c6bbababded9d96">operator&gt;&gt;</a>(int32_t &amp; n);</div>
-<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>    <a class="code hl_class" href="classcbor_1_1RxStream.html">RxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1RxStream.html#acce23643eacbf9b17c6bbababded9d96">operator&gt;&gt;</a>(int16_t &amp; n);</div>
-<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>    <a class="code hl_class" href="classcbor_1_1RxStream.html">RxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1RxStream.html#acce23643eacbf9b17c6bbababded9d96">operator&gt;&gt;</a>(int8_t &amp; n);</div>
-<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>    </div>
-<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>    <a class="code hl_class" href="classcbor_1_1RxStream.html">RxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1RxStream.html#a3d5f4974cf14be5f522926718c504056">deserialize_integer</a>(T &amp; n);</div>
-<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>    </div>
-<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>    <a class="code hl_class" href="classcbor_1_1RxStream.html">RxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1RxStream.html#acce23643eacbf9b17c6bbababded9d96">operator&gt;&gt;</a>(<span class="keywordtype">char</span> &amp; n);</div>
-<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>    <a class="code hl_class" href="classcbor_1_1RxStream.html">RxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1RxStream.html#acce23643eacbf9b17c6bbababded9d96">operator&gt;&gt;</a>(<span class="keywordtype">float</span> &amp; f);</div>
-<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>    <a class="code hl_class" href="classcbor_1_1RxStream.html">RxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1RxStream.html#acce23643eacbf9b17c6bbababded9d96">operator&gt;&gt;</a>(<span class="keywordtype">double</span> &amp; d);</div>
-<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>    <a class="code hl_class" href="classcbor_1_1RxStream.html">RxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1RxStream.html#acce23643eacbf9b17c6bbababded9d96">operator&gt;&gt;</a>(std::string &amp; s);</div>
-<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>    <a class="code hl_class" href="classcbor_1_1RxStream.html">RxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1RxStream.html#acce23643eacbf9b17c6bbababded9d96">operator&gt;&gt;</a>(std::u16string &amp; s);</div>
-<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>    <a class="code hl_class" href="classcbor_1_1RxStream.html">RxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1RxStream.html#acce23643eacbf9b17c6bbababded9d96">operator&gt;&gt;</a>(<span class="keywordtype">bool</span> &amp; b);</div>
-<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>    </div>
-<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00349" data-start="{" data-end="}">
-<div class="line"><a id="l00349" name="l00349"></a><span class="lineno"><a class="line" href="classcbor_1_1RxStream.html#a4ea278d88074eb1e81bcb60b15776b35">  349</a></span>    <span class="keyword">inline</span> <a class="code hl_class" href="classcbor_1_1RxStream.html">RxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1RxStream.html#a4ea278d88074eb1e81bcb60b15776b35">operator&gt;&gt;</a>(std::vector&lt;T&gt; &amp; v)</div>
-<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>    {</div>
-<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>      uint32_t size;</div>
-<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>      *<span class="keyword">this</span> &gt;&gt; size;</div>
-<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>      v.resize(size);</div>
-<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>      </div>
-<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="classcbor_1_1RxStream.html#acc473d3c4bccaf501d307a7756cc3740">deserialize_sequence</a>(v.data(), size);</div>
-<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>    }</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span> </div>
+<div class="foldopen" id="foldopen00243" data-start="{" data-end="};">
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno"><a class="line" href="classcbor_1_1RxStream.html">  243</a></span><span class="keyword">class </span><a class="code hl_class" href="classcbor_1_1RxStream.html">RxStream</a></div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>{</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    <a class="code hl_class" href="classcbor_1_1RxStream.html">RxStream</a>(uint8_t stream_type, std::string stream_name, uint8_t stream_identifier);</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>    </div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classcbor_1_1RxStream.html#a7dde7a85f3cc8d9ad63aa78a13e767cb">data_available</a>(int64_t sequence_id = 0);</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    </div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>    <a class="code hl_class" href="classcbor_1_1RxStream.html">RxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1RxStream.html#acce23643eacbf9b17c6bbababded9d96">operator&gt;&gt;</a>(uint64_t &amp; n);</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>    <a class="code hl_class" href="classcbor_1_1RxStream.html">RxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1RxStream.html#acce23643eacbf9b17c6bbababded9d96">operator&gt;&gt;</a>(uint32_t &amp; n);</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>    <a class="code hl_class" href="classcbor_1_1RxStream.html">RxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1RxStream.html#acce23643eacbf9b17c6bbababded9d96">operator&gt;&gt;</a>(uint16_t &amp; n);</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>    <a class="code hl_class" href="classcbor_1_1RxStream.html">RxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1RxStream.html#acce23643eacbf9b17c6bbababded9d96">operator&gt;&gt;</a>(uint8_t &amp; n);</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>    <a class="code hl_class" href="classcbor_1_1RxStream.html">RxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1RxStream.html#acce23643eacbf9b17c6bbababded9d96">operator&gt;&gt;</a>(int64_t &amp; n);</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>    <a class="code hl_class" href="classcbor_1_1RxStream.html">RxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1RxStream.html#acce23643eacbf9b17c6bbababded9d96">operator&gt;&gt;</a>(int32_t &amp; n);</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>    <a class="code hl_class" href="classcbor_1_1RxStream.html">RxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1RxStream.html#acce23643eacbf9b17c6bbababded9d96">operator&gt;&gt;</a>(int16_t &amp; n);</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>    <a class="code hl_class" href="classcbor_1_1RxStream.html">RxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1RxStream.html#acce23643eacbf9b17c6bbababded9d96">operator&gt;&gt;</a>(int8_t &amp; n);</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>    </div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>    <a class="code hl_class" href="classcbor_1_1RxStream.html">RxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1RxStream.html#a3d5f4974cf14be5f522926718c504056">deserialize_integer</a>(T &amp; n);</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>    </div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>    <a class="code hl_class" href="classcbor_1_1RxStream.html">RxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1RxStream.html#acce23643eacbf9b17c6bbababded9d96">operator&gt;&gt;</a>(<span class="keywordtype">char</span> &amp; n);</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>    <a class="code hl_class" href="classcbor_1_1RxStream.html">RxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1RxStream.html#acce23643eacbf9b17c6bbababded9d96">operator&gt;&gt;</a>(<span class="keywordtype">float</span> &amp; f);</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>    <a class="code hl_class" href="classcbor_1_1RxStream.html">RxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1RxStream.html#acce23643eacbf9b17c6bbababded9d96">operator&gt;&gt;</a>(<span class="keywordtype">double</span> &amp; d);</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>    <a class="code hl_class" href="classcbor_1_1RxStream.html">RxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1RxStream.html#acce23643eacbf9b17c6bbababded9d96">operator&gt;&gt;</a>(std::string &amp; s);</div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>    <a class="code hl_class" href="classcbor_1_1RxStream.html">RxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1RxStream.html#acce23643eacbf9b17c6bbababded9d96">operator&gt;&gt;</a>(std::u16string &amp; s);</div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>    <a class="code hl_class" href="classcbor_1_1RxStream.html">RxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1RxStream.html#acce23643eacbf9b17c6bbababded9d96">operator&gt;&gt;</a>(<span class="keywordtype">bool</span> &amp; b);</div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>    </div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00350" data-start="{" data-end="}">
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno"><a class="line" href="classcbor_1_1RxStream.html#a4ea278d88074eb1e81bcb60b15776b35">  350</a></span>    <span class="keyword">inline</span> <a class="code hl_class" href="classcbor_1_1RxStream.html">RxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1RxStream.html#a4ea278d88074eb1e81bcb60b15776b35">operator&gt;&gt;</a>(std::vector&lt;T&gt; &amp; v)</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>    {</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>      uint32_t size;</div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>      *<span class="keyword">this</span> &gt;&gt; size;</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>      v.resize(size);</div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>      </div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="classcbor_1_1RxStream.html#acc473d3c4bccaf501d307a7756cc3740">deserialize_sequence</a>(v.data(), size);</div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>    }</div>
 </div>
-<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>    </div>
-<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>    <a class="code hl_class" href="classcbor_1_1RxStream.html">RxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1RxStream.html#acce23643eacbf9b17c6bbababded9d96">operator&gt;&gt;</a>(std::vector&lt;bool&gt; &amp; v);</div>
-<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>    </div>
-<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00370" data-start="{" data-end="}">
-<div class="line"><a id="l00370" name="l00370"></a><span class="lineno"><a class="line" href="classcbor_1_1RxStream.html#acc473d3c4bccaf501d307a7756cc3740">  370</a></span>    <span class="keyword">inline</span> <a class="code hl_class" href="classcbor_1_1RxStream.html">RxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1RxStream.html#acc473d3c4bccaf501d307a7756cc3740">deserialize_sequence</a>(T * items, <span class="keywordtype">size_t</span> size)</div>
-<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>    {</div>
-<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>      <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; size; ++i)</div>
-<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>      {</div>
-<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>        *<span class="keyword">this</span> &gt;&gt; items[i];</div>
-<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>      }</div>
-<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>      <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>    }</div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>    </div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>    <a class="code hl_class" href="classcbor_1_1RxStream.html">RxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1RxStream.html#acce23643eacbf9b17c6bbababded9d96">operator&gt;&gt;</a>(std::vector&lt;bool&gt; &amp; v);</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>    </div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00371" data-start="{" data-end="}">
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno"><a class="line" href="classcbor_1_1RxStream.html#acc473d3c4bccaf501d307a7756cc3740">  371</a></span>    <span class="keyword">inline</span> <a class="code hl_class" href="classcbor_1_1RxStream.html">RxStream</a> &amp; <a class="code hl_function" href="classcbor_1_1RxStream.html#acc473d3c4bccaf501d307a7756cc3740">deserialize_sequence</a>(T * items, <span class="keywordtype">size_t</span> size)</div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>    {</div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>      <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; size; ++i)</div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>      {</div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>        *<span class="keyword">this</span> &gt;&gt; items[i];</div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>      }</div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>      <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>    }</div>
 </div>
-<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>    </div>
-<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classcbor_1_1RxStream.html#a51fd2cb5fd15348118c4107beb3d7ad8">interpret_packets</a>();</div>
-<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>  </div>
-<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span>  <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span>    uint8_t _stream_type;</div>
-<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span>    std::string _stream_name;</div>
-<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span>    uint8_t _stream_identifier;</div>
-<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span>    </div>
-<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span>    <span class="keywordtype">int</span> _buffered_iterator;</div>
-<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span>    std::vector&lt;std::pair&lt;void *, int&gt;&gt; _buffered_packet;</div>
-<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span>    </div>
-<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span>    <span class="comment">// &lt;topic, packets &lt;packet &lt;field, field_type&gt;&gt;&gt;</span></div>
-<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span>    <span class="keyword">static</span> std::map&lt;uint32_t, CircularQueue&lt;std::vector&lt;std::pair&lt;void *, int&gt;&gt;, MAX_BUFFER_CAPACITY&gt;&gt; _interpreted_publications;</div>
-<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span>    <span class="comment">// &lt;service, packets &lt;packet &lt;field, field_type&gt;&gt;&gt;</span></div>
-<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span>    <span class="keyword">static</span> std::map&lt;uint32_t, CircularQueue&lt;std::vector&lt;std::pair&lt;void *, int&gt;&gt;, MAX_BUFFER_CAPACITY&gt;&gt; _interpreted_requests;</div>
-<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span>    <span class="comment">// &lt;service + id, packets &lt;packet &lt;field, field_type&gt;&gt;&gt;</span></div>
-<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span>    <span class="keyword">static</span> std::map&lt;uint32_t, CircularQueue&lt;std::vector&lt;std::pair&lt;void *, int&gt;&gt;, MAX_BUFFER_CAPACITY&gt;&gt; _interpreted_responses;</div>
-<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>    </div>
-<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span>    <span class="keyword">union </span>_cbor_value {</div>
-<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span>    int8_t i8;</div>
-<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span>    int16_t i16;</div>
-<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span>    int32_t i32;</div>
-<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span>    int64_t i64;</div>
-<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span>    <span class="keywordtype">float</span> f32;</div>
-<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>    <span class="keywordtype">double</span> f64;</div>
-<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span>    uint8_t *bin;</div>
-<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span>    <span class="keywordtype">char</span> *str;</div>
-<div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span>    uint8_t str_copy[128];</div>
-<div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span>    };</div>
-<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span>    </div>
-<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span>    <span class="keyword">static</span> std::pair&lt;void *, int&gt; interpret_field(cbor_item_t * items, <span class="keywordtype">size_t</span> i, <span class="keyword">union</span> _cbor_value &amp; val);</div>
-<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span>    std::u16string toUTF16(<span class="keyword">const</span> std::string source);</div>
-<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span>};</div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span>    </div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classcbor_1_1RxStream.html#a51fd2cb5fd15348118c4107beb3d7ad8">interpret_packets</a>();</div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span>  </div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span>    uint8_t _stream_type;</div>
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span>    std::string _stream_name;</div>
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span>    uint8_t _stream_identifier;</div>
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span>    </div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span>    <span class="keywordtype">int</span> _buffered_iterator;</div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span>    std::vector&lt;std::pair&lt;void *, int&gt;&gt; _buffered_packet;</div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span>    </div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span>    <span class="comment">// &lt;topic, packets &lt;packet &lt;field, field_type&gt;&gt;&gt;</span></div>
+<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span>    <span class="keyword">static</span> std::map&lt;uint32_t, CircularQueue&lt;std::vector&lt;std::pair&lt;void *, int&gt;&gt;, MAX_BUFFER_CAPACITY&gt;&gt; _interpreted_publications;</div>
+<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span>    <span class="comment">// &lt;service, packets &lt;packet &lt;field, field_type&gt;&gt;&gt;</span></div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span>    <span class="keyword">static</span> std::map&lt;uint32_t, CircularQueue&lt;std::vector&lt;std::pair&lt;void *, int&gt;&gt;, MAX_BUFFER_CAPACITY&gt;&gt; _interpreted_requests;</div>
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span>    <span class="comment">// &lt;service + id, packets &lt;packet &lt;field, field_type&gt;&gt;&gt;</span></div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>    <span class="keyword">static</span> std::map&lt;uint32_t, CircularQueue&lt;std::vector&lt;std::pair&lt;void *, int&gt;&gt;, MAX_BUFFER_CAPACITY&gt;&gt; _interpreted_responses;</div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span>    </div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span>    <span class="keyword">union </span>_cbor_value {</div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span>    int8_t i8;</div>
+<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span>    int16_t i16;</div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span>    int32_t i32;</div>
+<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span>    int64_t i64;</div>
+<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>    <span class="keywordtype">float</span> f32;</div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span>    <span class="keywordtype">double</span> f64;</div>
+<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span>    uint8_t *bin;</div>
+<div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span>    <span class="keywordtype">char</span> *str;</div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span>    uint8_t str_copy[128];</div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span>    };</div>
+<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span>    </div>
+<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span>    <span class="keyword">static</span> std::mutex _rx_mutex;</div>
+<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span>    </div>
+<div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span>    <span class="keyword">static</span> std::pair&lt;void *, int&gt; interpret_field(cbor_item_t * items, <span class="keywordtype">size_t</span> i, <span class="keyword">union</span> _cbor_value &amp; val);</div>
+<div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span>    std::u16string toUTF16(<span class="keyword">const</span> std::string source);</div>
+<div class="line"><a id="l00420" name="l00420"></a><span class="lineno">  420</span>};</div>
 </div>
-<div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span> </div>
-<div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span>}  <span class="comment">// namespace cbor</span></div>
-<div class="line"><a id="l00420" name="l00420"></a><span class="lineno">  420</span> </div>
 <div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span> </div>
-<div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span>}  <span class="comment">// namespace cbor</span></div>
+<div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span> </div>
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span> </div>
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aTcpDaemon_8h_html"><div class="ttname"><a href="TcpDaemon_8h.html">TcpDaemon.h</a></div><div class="ttdoc">Class used to send and receive data from the DESERT socket.</div></div>
 <div class="ttc" id="aTopicsConfig_8h_html"><div class="ttname"><a href="TopicsConfig_8h.html">TopicsConfig.h</a></div><div class="ttdoc">Class used to store configurations.</div></div>
-<div class="ttc" id="aclassCircularQueue_html"><div class="ttname"><a href="classCircularQueue.html">CircularQueue</a></div><div class="ttdef"><b>Definition</b> CBorStream.h:70</div></div>
-<div class="ttc" id="aclasscbor_1_1RxStream_html"><div class="ttname"><a href="classcbor_1_1RxStream.html">cbor::RxStream</a></div><div class="ttdef"><b>Definition</b> CBorStream.h:243</div></div>
-<div class="ttc" id="aclasscbor_1_1RxStream_html_a3d5f4974cf14be5f522926718c504056"><div class="ttname"><a href="classcbor_1_1RxStream.html#a3d5f4974cf14be5f522926718c504056">cbor::RxStream::deserialize_integer</a></div><div class="ttdeci">RxStream &amp; deserialize_integer(T &amp;n)</div><div class="ttdoc">Decode a generic integer.</div><div class="ttdef"><b>Definition</b> CBorStream.cpp:290</div></div>
-<div class="ttc" id="aclasscbor_1_1RxStream_html_a4ea278d88074eb1e81bcb60b15776b35"><div class="ttname"><a href="classcbor_1_1RxStream.html#a4ea278d88074eb1e81bcb60b15776b35">cbor::RxStream::operator&gt;&gt;</a></div><div class="ttdeci">RxStream &amp; operator&gt;&gt;(std::vector&lt; T &gt; &amp;v)</div><div class="ttdoc">Decode vector.</div><div class="ttdef"><b>Definition</b> CBorStream.h:349</div></div>
-<div class="ttc" id="aclasscbor_1_1RxStream_html_a51fd2cb5fd15348118c4107beb3d7ad8"><div class="ttname"><a href="classcbor_1_1RxStream.html#a51fd2cb5fd15348118c4107beb3d7ad8">cbor::RxStream::interpret_packets</a></div><div class="ttdeci">static void interpret_packets()</div><div class="ttdoc">Interpret raw packets and splits them into different communication types.</div><div class="ttdef"><b>Definition</b> CBorStream.cpp:374</div></div>
-<div class="ttc" id="aclasscbor_1_1RxStream_html_a7dde7a85f3cc8d9ad63aa78a13e767cb"><div class="ttname"><a href="classcbor_1_1RxStream.html#a7dde7a85f3cc8d9ad63aa78a13e767cb">cbor::RxStream::data_available</a></div><div class="ttdeci">bool data_available(int64_t sequence_id=0)</div><div class="ttdoc">Check if there are data.</div><div class="ttdef"><b>Definition</b> CBorStream.cpp:202</div></div>
-<div class="ttc" id="aclasscbor_1_1RxStream_html_acc473d3c4bccaf501d307a7756cc3740"><div class="ttname"><a href="classcbor_1_1RxStream.html#acc473d3c4bccaf501d307a7756cc3740">cbor::RxStream::deserialize_sequence</a></div><div class="ttdeci">RxStream &amp; deserialize_sequence(T *items, size_t size)</div><div class="ttdoc">Deserialize a sequence of uniform elements.</div><div class="ttdef"><b>Definition</b> CBorStream.h:370</div></div>
-<div class="ttc" id="aclasscbor_1_1RxStream_html_acce23643eacbf9b17c6bbababded9d96"><div class="ttname"><a href="classcbor_1_1RxStream.html#acce23643eacbf9b17c6bbababded9d96">cbor::RxStream::operator&gt;&gt;</a></div><div class="ttdeci">RxStream &amp; operator&gt;&gt;(uint64_t &amp;n)</div><div class="ttdoc">Decode uint64.</div><div class="ttdef"><b>Definition</b> CBorStream.cpp:249</div></div>
-<div class="ttc" id="aclasscbor_1_1TxStream_html"><div class="ttname"><a href="classcbor_1_1TxStream.html">cbor::TxStream</a></div><div class="ttdef"><b>Definition</b> CBorStream.h:86</div></div>
+<div class="ttc" id="aclassCircularQueue_html"><div class="ttname"><a href="classCircularQueue.html">CircularQueue</a></div><div class="ttdef"><b>Definition</b> CBorStream.h:71</div></div>
+<div class="ttc" id="aclasscbor_1_1RxStream_html"><div class="ttname"><a href="classcbor_1_1RxStream.html">cbor::RxStream</a></div><div class="ttdef"><b>Definition</b> CBorStream.h:244</div></div>
+<div class="ttc" id="aclasscbor_1_1RxStream_html_a3d5f4974cf14be5f522926718c504056"><div class="ttname"><a href="classcbor_1_1RxStream.html#a3d5f4974cf14be5f522926718c504056">cbor::RxStream::deserialize_integer</a></div><div class="ttdeci">RxStream &amp; deserialize_integer(T &amp;n)</div><div class="ttdoc">Decode a generic integer.</div><div class="ttdef"><b>Definition</b> CBorStream.cpp:292</div></div>
+<div class="ttc" id="aclasscbor_1_1RxStream_html_a4ea278d88074eb1e81bcb60b15776b35"><div class="ttname"><a href="classcbor_1_1RxStream.html#a4ea278d88074eb1e81bcb60b15776b35">cbor::RxStream::operator&gt;&gt;</a></div><div class="ttdeci">RxStream &amp; operator&gt;&gt;(std::vector&lt; T &gt; &amp;v)</div><div class="ttdoc">Decode vector.</div><div class="ttdef"><b>Definition</b> CBorStream.h:350</div></div>
+<div class="ttc" id="aclasscbor_1_1RxStream_html_a51fd2cb5fd15348118c4107beb3d7ad8"><div class="ttname"><a href="classcbor_1_1RxStream.html#a51fd2cb5fd15348118c4107beb3d7ad8">cbor::RxStream::interpret_packets</a></div><div class="ttdeci">static void interpret_packets()</div><div class="ttdoc">Interpret raw packets and splits them into different communication types.</div><div class="ttdef"><b>Definition</b> CBorStream.cpp:376</div></div>
+<div class="ttc" id="aclasscbor_1_1RxStream_html_a7dde7a85f3cc8d9ad63aa78a13e767cb"><div class="ttname"><a href="classcbor_1_1RxStream.html#a7dde7a85f3cc8d9ad63aa78a13e767cb">cbor::RxStream::data_available</a></div><div class="ttdeci">bool data_available(int64_t sequence_id=0)</div><div class="ttdoc">Check if there are data.</div><div class="ttdef"><b>Definition</b> CBorStream.cpp:204</div></div>
+<div class="ttc" id="aclasscbor_1_1RxStream_html_acc473d3c4bccaf501d307a7756cc3740"><div class="ttname"><a href="classcbor_1_1RxStream.html#acc473d3c4bccaf501d307a7756cc3740">cbor::RxStream::deserialize_sequence</a></div><div class="ttdeci">RxStream &amp; deserialize_sequence(T *items, size_t size)</div><div class="ttdoc">Deserialize a sequence of uniform elements.</div><div class="ttdef"><b>Definition</b> CBorStream.h:371</div></div>
+<div class="ttc" id="aclasscbor_1_1RxStream_html_acce23643eacbf9b17c6bbababded9d96"><div class="ttname"><a href="classcbor_1_1RxStream.html#acce23643eacbf9b17c6bbababded9d96">cbor::RxStream::operator&gt;&gt;</a></div><div class="ttdeci">RxStream &amp; operator&gt;&gt;(uint64_t &amp;n)</div><div class="ttdoc">Decode uint64.</div><div class="ttdef"><b>Definition</b> CBorStream.cpp:251</div></div>
+<div class="ttc" id="aclasscbor_1_1TxStream_html"><div class="ttname"><a href="classcbor_1_1TxStream.html">cbor::TxStream</a></div><div class="ttdef"><b>Definition</b> CBorStream.h:87</div></div>
 <div class="ttc" id="aclasscbor_1_1TxStream_html_a340159644e1ba667e95c256cbd5f210f"><div class="ttname"><a href="classcbor_1_1TxStream.html#a340159644e1ba667e95c256cbd5f210f">cbor::TxStream::operator&lt;&lt;</a></div><div class="ttdeci">TxStream &amp; operator&lt;&lt;(const uint64_t n)</div><div class="ttdoc">Encode uint64.</div><div class="ttdef"><b>Definition</b> CBorStream.cpp:63</div></div>
-<div class="ttc" id="aclasscbor_1_1TxStream_html_a3431c0b1f28dbf862f9b337ffd0c9272"><div class="ttname"><a href="classcbor_1_1TxStream.html#a3431c0b1f28dbf862f9b337ffd0c9272">cbor::TxStream::serialize_sequence</a></div><div class="ttdeci">TxStream &amp; serialize_sequence(const T *items, size_t size)</div><div class="ttdoc">Serialize a sequence of uniform elements.</div><div class="ttdef"><b>Definition</b> CBorStream.h:217</div></div>
-<div class="ttc" id="aclasscbor_1_1TxStream_html_a73ff9d3efdfc2cde9b6ae1b287dd4b71"><div class="ttname"><a href="classcbor_1_1TxStream.html#a73ff9d3efdfc2cde9b6ae1b287dd4b71">cbor::TxStream::operator&lt;&lt;</a></div><div class="ttdeci">TxStream &amp; operator&lt;&lt;(const std::vector&lt; T &gt; v)</div><div class="ttdoc">Encode vector.</div><div class="ttdef"><b>Definition</b> CBorStream.h:199</div></div>
+<div class="ttc" id="aclasscbor_1_1TxStream_html_a3431c0b1f28dbf862f9b337ffd0c9272"><div class="ttname"><a href="classcbor_1_1TxStream.html#a3431c0b1f28dbf862f9b337ffd0c9272">cbor::TxStream::serialize_sequence</a></div><div class="ttdeci">TxStream &amp; serialize_sequence(const T *items, size_t size)</div><div class="ttdoc">Serialize a sequence of uniform elements.</div><div class="ttdef"><b>Definition</b> CBorStream.h:218</div></div>
+<div class="ttc" id="aclasscbor_1_1TxStream_html_a73ff9d3efdfc2cde9b6ae1b287dd4b71"><div class="ttname"><a href="classcbor_1_1TxStream.html#a73ff9d3efdfc2cde9b6ae1b287dd4b71">cbor::TxStream::operator&lt;&lt;</a></div><div class="ttdeci">TxStream &amp; operator&lt;&lt;(const std::vector&lt; T &gt; v)</div><div class="ttdoc">Encode vector.</div><div class="ttdef"><b>Definition</b> CBorStream.h:200</div></div>
 <div class="ttc" id="aclasscbor_1_1TxStream_html_a7c08187453b92347ee439af8648a1379"><div class="ttname"><a href="classcbor_1_1TxStream.html#a7c08187453b92347ee439af8648a1379">cbor::TxStream::end_transmission</a></div><div class="ttdeci">void end_transmission()</div><div class="ttdoc">Tell the stream to send down the packet.</div><div class="ttdef"><b>Definition</b> CBorStream.cpp:45</div></div>
 <div class="ttc" id="aclasscbor_1_1TxStream_html_acd05bc87a3a3b29b584e4bb3e507b694"><div class="ttname"><a href="classcbor_1_1TxStream.html#acd05bc87a3a3b29b584e4bb3e507b694">cbor::TxStream::start_transmission</a></div><div class="ttdeci">void start_transmission()</div><div class="ttdoc">Tell the stream to create a new packet.</div><div class="ttdef"><b>Definition</b> CBorStream.cpp:35</div></div>
 </div><!-- fragment --></div><!-- contents -->

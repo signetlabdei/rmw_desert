@@ -1,0 +1,54 @@
+\doxysection{src/desert\+\_\+classes/\+Discovery.h File Reference}
+\hypertarget{Discovery_8h}{}\label{Discovery_8h}\index{src/desert\_classes/Discovery.h@{src/desert\_classes/Discovery.h}}
+
+
+Namespace used to provide discovery functionalities.  
+
+
+{\ttfamily \#include $<$thread$>$}\newline
+{\ttfamily \#include $<$chrono$>$}\newline
+{\ttfamily \#include "{}CBor\+Stream.\+h"{}}\newline
+{\ttfamily \#include "{}rmw/types.\+h"{}}\newline
+{\ttfamily \#include "{}rmw/error\+\_\+handling.\+h"{}}\newline
+{\ttfamily \#include "{}rmw\+\_\+context\+\_\+impl\+\_\+s.\+h"{}}\newline
+{\ttfamily \#include "{}demangle.\+h"{}}\newline
+Include dependency graph for Discovery.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{Discovery_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=186pt]{Discovery_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespaceDiscovery}{Discovery}}
+\begin{DoxyCompactList}\small\item\em Namespace containing discovery functions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespaceDiscovery_afc230e589bc25b82ddb9c6ce6fc997ee}{Discovery\+::discovery\+\_\+thread}} (rmw\+\_\+context\+\_\+impl\+\_\+t \texorpdfstring{$\ast$}{*}impl)
+\begin{DoxyCompactList}\small\item\em Thread handling discovery beacons. \end{DoxyCompactList}\item 
+rmw\+\_\+ret\+\_\+t \mbox{\hyperlink{namespaceDiscovery_a5dc93da666c8a2aec838bf863b293f93}{Discovery\+::discovery\+\_\+thread\+\_\+start}} (rmw\+\_\+context\+\_\+impl\+\_\+t \texorpdfstring{$\ast$}{*}impl)
+\begin{DoxyCompactList}\small\item\em Initialize the discovery thread. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespaceDiscovery_ab435705870ebef2f12289243d9c9fad6}{Discovery\+::send\+\_\+discovery\+\_\+beacon}} (\mbox{\hyperlink{classcbor_1_1TxStream}{cbor\+::\+Tx\+Stream}} stream, std\+::string node\+\_\+name, std\+::string node\+\_\+namespace, int entity\+\_\+type, rmw\+\_\+gid\+\_\+t entity\+\_\+gid, std\+::string topic\+\_\+name, std\+::string type\+\_\+name, bool disconnect)
+\begin{DoxyCompactList}\small\item\em Send a discovery beacon. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespaceDiscovery_ae055d476e3f382c263fa2c0aca00e017}{Discovery\+::send\+\_\+discovery\+\_\+request}} (\mbox{\hyperlink{classcbor_1_1TxStream}{cbor\+::\+Tx\+Stream}} stream)
+\begin{DoxyCompactList}\small\item\em Send a discovery request. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Namespace used to provide discovery functionalities. 
+
+The middleware layer of a ROS stack must implement functionalities used to inform each node of the network structure of the other nodes connected, with their names and topics. Since this operation is quite resource-\/consuming and the underwater channel has a limited bandwidth, it is possible to disable it.
+
+\begin{DoxyAuthor}{Author}
+Prof. Davide Costa 
+\end{DoxyAuthor}

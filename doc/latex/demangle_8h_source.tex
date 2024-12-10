@@ -1,0 +1,69 @@
+\doxysection{demangle.\+h}
+\hypertarget{demangle_8h_source}{}\label{demangle_8h_source}\index{src/desert\_classes/demangle.h@{src/desert\_classes/demangle.h}}
+\mbox{\hyperlink{demangle_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ Copyright\ (C)\ 2024\ Davide\ Costa\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ This\ file\ is\ part\ of\ RMW\ desert.\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ \ \ RMW\ desert\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify\ it\ \ *}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ \ \ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by\ the\ \ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ \ \ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or\ any\ \ \ \ \ \ *}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ \ \ later\ version.\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ \ \ RMW\ desert\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,\ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ \ \ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of\ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ \ \ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the\ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ \ GNU\ General\ Public\ License\ for\ more\ details.\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ \ \ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License\ \ \ \ \ \ *}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ \ \ along\ with\ RMW\ desert.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.\ \ \ \ *}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ ****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#ifndef\ DEMANGLE\_H\_}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ DEMANGLE\_H\_}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#include\ "{}rcpputils/find\_and\_replace.hpp"{}}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#include\ "{}rcutils/logging\_macros.h"{}}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#include\ "{}rcutils/types.h"{}}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{CBorStream_8h}{CBorStream.h}}"{}}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00061\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceDiscovery}{Discovery}}}
+\DoxyCodeLine{00062\ \{}
+\DoxyCodeLine{00063\ \ \ }
+\DoxyCodeLine{00064\ \ \ \textcolor{keywordtype}{char}\ *\ integer\_to\_string(\textcolor{keywordtype}{int}\ x);}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ \textcolor{keyword}{const}\ ros\_topic\_publisher\_prefix\ =\ integer\_to\_string(PUBLISHER\_TYPE);}
+\DoxyCodeLine{00067\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ \textcolor{keyword}{const}\ ros\_topic\_subscriber\_prefix\ =\ integer\_to\_string(SUBSCRIBER\_TYPE);}
+\DoxyCodeLine{00068\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ \textcolor{keyword}{const}\ ros\_service\_requester\_prefix\ =\ integer\_to\_string(CLIENT\_TYPE);}
+\DoxyCodeLine{00069\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ \textcolor{keyword}{const}\ ros\_service\_response\_prefix\ =\ integer\_to\_string(SERVICE\_TYPE);}
+\DoxyCodeLine{00070\ \ \ }
+\DoxyCodeLine{00080\ \ \ std::string\ \mbox{\hyperlink{namespaceDiscovery_afb3cd88fa21922977a1cbcadd109388e}{resolve\_prefix}}(\textcolor{keyword}{const}\ std::string\ \&\ name,\ \textcolor{keyword}{const}\ std::string\ \&\ prefix);}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00090\ \ \ std::string\ \mbox{\hyperlink{namespaceDiscovery_abcb975203ff1385fac73e67c3d24359d}{demangle\_publisher\_from\_topic}}(\textcolor{keyword}{const}\ std::string\ \&\ topic\_name);}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00100\ \ \ std::string\ \mbox{\hyperlink{namespaceDiscovery_a2faa4dcc655e7a26478325e6d0c6569d}{demangle\_subscriber\_from\_topic}}(\textcolor{keyword}{const}\ std::string\ \&\ topic\_name);}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00110\ \ \ std::string\ \mbox{\hyperlink{namespaceDiscovery_a8bb6999dac2a7d02fdc90b200b239e72}{demangle\_topic}}(\textcolor{keyword}{const}\ std::string\ \&\ topic\_name);}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00120\ \ \ std::string\ \mbox{\hyperlink{namespaceDiscovery_a3c957231110c86458257b65473cedb46}{demangle\_service\_request\_from\_topic}}(\textcolor{keyword}{const}\ std::string\ \&\ topic\_name);}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00130\ \ \ std::string\ \mbox{\hyperlink{namespaceDiscovery_ae8f89ce6c4f6ee93ac36aa9f43194456}{demangle\_service\_reply\_from\_topic}}(\textcolor{keyword}{const}\ std::string\ \&\ topic\_name);}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00140\ \ \ std::string\ \mbox{\hyperlink{namespaceDiscovery_a8bc93d05e9496be514abb057f2d0f419}{demangle\_service\_from\_topic}}(\textcolor{keyword}{const}\ std::string\ \&\ topic\_name);}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00150\ \ \ std::string\ \mbox{\hyperlink{namespaceDiscovery_ab6b197ee34095c994e4e3038067b2de4}{identity\_demangle}}(\textcolor{keyword}{const}\ std::string\ \&\ name);}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \textcolor{keyword}{using\ }DemangleFunction\ =\ std::string\ (*)(\textcolor{keyword}{const}\ std::string\ \&);}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ DEMANGLE\_H\_}}
+
+\end{DoxyCode}

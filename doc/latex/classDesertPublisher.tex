@@ -3,18 +3,24 @@
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classDesertPublisher_aa99959c9cd94f9f51e97d3d9e7c3239e}{Desert\+Publisher}} (std\+::string topic\+\_\+name, const rosidl\+\_\+message\+\_\+type\+\_\+support\+\_\+t \texorpdfstring{$\ast$}{*}type\+\_\+supports)
+\mbox{\hyperlink{classDesertPublisher_ac2ee1a7652770c2d33a2cb915b8dbbab}{Desert\+Publisher}} (std\+::string topic\+\_\+name, const rosidl\+\_\+message\+\_\+type\+\_\+support\+\_\+t \texorpdfstring{$\ast$}{*}type\+\_\+supports, rmw\+\_\+gid\+\_\+t gid)
 \begin{DoxyCompactList}\small\item\em Create a publisher. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classDesertPublisher_a0a8d1a319c9ff5d7ae488f573464801d}{push}} (const void \texorpdfstring{$\ast$}{*}msg)
-\begin{DoxyCompactList}\small\item\em Send a publication on the topic. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Send a publication on the topic. \end{DoxyCompactList}\item 
+rmw\+\_\+gid\+\_\+t \mbox{\hyperlink{classDesertPublisher_ad51237fa31d20966d255d66d04c15358}{get\+\_\+gid}} ()
+\begin{DoxyCompactList}\small\item\em Retreive the gid of the current entity. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classDesertPublisher_ac76f133d62f9af35cb1d344a23396f25}{get\+\_\+topic\+\_\+name}} ()
+\begin{DoxyCompactList}\small\item\em Retreive the topic name of the current entity. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classDesertPublisher_ab6938f53f289167c99d1506499f6d56e}{get\+\_\+type\+\_\+name}} ()
+\begin{DoxyCompactList}\small\item\em Retreive the message type of the current entity. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\Hypertarget{classDesertPublisher_aa99959c9cd94f9f51e97d3d9e7c3239e}\label{classDesertPublisher_aa99959c9cd94f9f51e97d3d9e7c3239e} 
+\Hypertarget{classDesertPublisher_ac2ee1a7652770c2d33a2cb915b8dbbab}\label{classDesertPublisher_ac2ee1a7652770c2d33a2cb915b8dbbab} 
 \index{DesertPublisher@{DesertPublisher}!DesertPublisher@{DesertPublisher}}
 \index{DesertPublisher@{DesertPublisher}!DesertPublisher@{DesertPublisher}}
 \doxysubsubsection{\texorpdfstring{DesertPublisher()}{DesertPublisher()}}
-{\footnotesize\ttfamily Desert\+Publisher\+::\+Desert\+Publisher (\begin{DoxyParamCaption}\item[{std\+::string}]{topic\+\_\+name,  }\item[{const rosidl\+\_\+message\+\_\+type\+\_\+support\+\_\+t \texorpdfstring{$\ast$}{*}}]{type\+\_\+supports }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Desert\+Publisher\+::\+Desert\+Publisher (\begin{DoxyParamCaption}\item[{std\+::string}]{topic\+\_\+name,  }\item[{const rosidl\+\_\+message\+\_\+type\+\_\+support\+\_\+t \texorpdfstring{$\ast$}{*}}]{type\+\_\+supports,  }\item[{rmw\+\_\+gid\+\_\+t}]{gid }\end{DoxyParamCaption})}
 
 
 
@@ -26,10 +32,57 @@ Create a publisher.
 \hline
 {\em type\+\_\+supports} & Pointer to the message data structure coming from the ROS upper layers \\
 \hline
+{\em gid} & Global identifier of the entity \\
+\hline
 \end{DoxyParams}
 
 
 \doxysubsection{Member Function Documentation}
+\Hypertarget{classDesertPublisher_ad51237fa31d20966d255d66d04c15358}\label{classDesertPublisher_ad51237fa31d20966d255d66d04c15358} 
+\index{DesertPublisher@{DesertPublisher}!get\_gid@{get\_gid}}
+\index{get\_gid@{get\_gid}!DesertPublisher@{DesertPublisher}}
+\doxysubsubsection{\texorpdfstring{get\_gid()}{get\_gid()}}
+{\footnotesize\ttfamily rmw\+\_\+gid\+\_\+t Desert\+Publisher\+::get\+\_\+gid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retreive the gid of the current entity. 
+
+This function returns the global identifier of the current entity in the rmw format.
+
+\begin{DoxyReturn}{Returns}
+Global identifier of the entity 
+\end{DoxyReturn}
+\Hypertarget{classDesertPublisher_ac76f133d62f9af35cb1d344a23396f25}\label{classDesertPublisher_ac76f133d62f9af35cb1d344a23396f25} 
+\index{DesertPublisher@{DesertPublisher}!get\_topic\_name@{get\_topic\_name}}
+\index{get\_topic\_name@{get\_topic\_name}!DesertPublisher@{DesertPublisher}}
+\doxysubsubsection{\texorpdfstring{get\_topic\_name()}{get\_topic\_name()}}
+{\footnotesize\ttfamily std\+::string Desert\+Publisher\+::get\+\_\+topic\+\_\+name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retreive the topic name of the current entity. 
+
+This function returns a string containing the topic name of the current entity.
+
+\begin{DoxyReturn}{Returns}
+Name of the topic 
+\end{DoxyReturn}
+\Hypertarget{classDesertPublisher_ab6938f53f289167c99d1506499f6d56e}\label{classDesertPublisher_ab6938f53f289167c99d1506499f6d56e} 
+\index{DesertPublisher@{DesertPublisher}!get\_type\_name@{get\_type\_name}}
+\index{get\_type\_name@{get\_type\_name}!DesertPublisher@{DesertPublisher}}
+\doxysubsubsection{\texorpdfstring{get\_type\_name()}{get\_type\_name()}}
+{\footnotesize\ttfamily std\+::string Desert\+Publisher\+::get\+\_\+type\+\_\+name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retreive the message type of the current entity. 
+
+This function returns a string containing the message type name of the current entity.
+
+\begin{DoxyReturn}{Returns}
+Type of the message 
+\end{DoxyReturn}
 \Hypertarget{classDesertPublisher_a0a8d1a319c9ff5d7ae488f573464801d}\label{classDesertPublisher_a0a8d1a319c9ff5d7ae488f573464801d} 
 \index{DesertPublisher@{DesertPublisher}!push@{push}}
 \index{push@{push}!DesertPublisher@{DesertPublisher}}

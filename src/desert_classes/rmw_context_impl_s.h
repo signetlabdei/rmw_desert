@@ -19,17 +19,17 @@
 
 /**
  * @file rmw_context_impl_s.h
- * @brief -
+ * @brief Implementation for the context variable
  * 
- * -
- * -
- * -
- * -
- * -
+ * Context is used to store informations about the current network structure using 
+ * variables included from rmw_dds_common. This struct provides an implementation 
+ * for rmw_context_impl_t and it must be present to avoid compile errors.
  *
  * @author Prof. Davide Costa
  *
  */
+
+/** @cond */
  
 #include "rcpputils/scope_exit.hpp"
 #include "rmw_dds_common/context.hpp"
@@ -37,6 +37,8 @@
 #include "rmw_dds_common/msg/participant_entities_info.hpp"
 #include "rmw_dds_common/qos.hpp"
 #include "rmw_dds_common/security.hpp"
+
+/** @endcond */
 
 #ifndef RMW_CONTEXT_IMPL_H_
 #define RMW_CONTEXT_IMPL_H_
@@ -55,20 +57,7 @@ struct rmw_context_impl_s
     common.sub = nullptr;
   }
 
-  // Initializes the participant, if it wasn't done already.
-  rmw_ret_t init(rmw_init_options_t * options, size_t domain_id);
-
-  // Destroys the participant, when node_count reaches 0.
-  rmw_ret_t fini()
-  {
-  }
-
   ~rmw_context_impl_s()
-  {
-  }
-
-private:
-  inline void clean_up()
   {
   }
 };

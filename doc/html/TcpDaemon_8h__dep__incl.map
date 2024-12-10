@@ -1,19 +1,31 @@
 <map id="src/desert_classes/TcpDaemon.h" name="src/desert_classes/TcpDaemon.h">
-<area shape="rect" id="Node000001" title="Class used to send and receive data from the DESERT socket." alt="" coords="239,5,380,45"/>
-<area shape="rect" id="Node000002" href="$CBorStream_8h.html" title="Classes used to convert data types into a CBOR encoded stream." alt="" coords="239,93,380,133"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="312,59,312,93,307,93,307,59"/>
-<area shape="rect" id="Node000003" href="$DesertClient_8h.html" title="Implementation of the Client structure for DESERT." alt="" coords="5,269,147,309"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="264,142,199,183,142,229,97,271,93,267,139,225,196,179,261,138"/>
-<area shape="rect" id="Node000004" href="$DesertPublisher_8h.html" title="Implementation of the Publisher structure for DESERT." alt="" coords="171,269,312,309"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="251,142,228,160,210,183,205,204,209,227,218,249,229,268,224,270,213,251,203,228,200,204,206,180,224,156,248,138"/>
-<area shape="rect" id="Node000005" href="$DesertService_8h.html" title="Implementation of the Service structure for DESERT." alt="" coords="336,269,477,309"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="370,138,393,156,412,180,419,203,421,227,415,269,410,269,416,227,414,204,407,183,389,160,366,143"/>
-<area shape="rect" id="Node000006" href="$DesertSubscriber_8h.html" title="Implementation of the Subscriber structure for DESERT." alt="" coords="502,269,650,309"/>
-<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="361,137,435,179,501,225,555,267,551,271,498,230,432,184,359,142"/>
-<area shape="rect" id="Node000007" href="$MessageSerialization_8h.html" title="Namespace containing serialization functions." alt="" coords="221,181,398,221"/>
-<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="312,147,312,181,307,181,307,147"/>
-<area shape="poly" id="edge7_Node000007_Node000003" title=" " alt="" coords="246,229,128,272,126,267,244,224"/>
-<area shape="poly" id="edge8_Node000007_Node000004" title=" " alt="" coords="288,234,258,271,254,267,284,231"/>
-<area shape="poly" id="edge9_Node000007_Node000005" title=" " alt="" coords="343,228,387,267,383,271,339,232"/>
-<area shape="poly" id="edge10_Node000007_Node000006" title=" " alt="" coords="382,223,518,267,517,272,380,228"/>
+<area shape="rect" id="Node000001" title="Class used to send and receive data from the DESERT socket." alt="" coords="380,5,521,45"/>
+<area shape="rect" id="Node000002" href="$CBorStream_8h.html" title="Classes used to convert data types into a CBOR encoded stream." alt="" coords="380,93,521,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="453,59,453,93,448,93,448,59"/>
+<area shape="rect" id="Node000003" href="$DesertClient_8h.html" title="Implementation of the Client structure for DESERT." alt="" coords="25,269,167,309"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="374,140,319,160,264,184,185,229,123,271,120,267,183,224,261,179,317,155,373,135"/>
+<area shape="rect" id="Node000004" href="$DesertNode_8h.html" title="Implementation of the Node structure for DESERT." alt="" coords="273,357,415,397"/>
+<area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="366,118,277,128,228,138,179,153,131,173,86,198,47,231,16,271,8,290,10,298,15,308,31,321,56,332,123,350,200,362,273,369,273,375,200,368,122,355,54,337,29,325,11,311,5,300,3,290,11,268,43,227,83,194,128,168,177,148,227,133,277,123,366,113"/>
+<area shape="rect" id="Node000005" href="$DesertPublisher_8h.html" title="Implementation of the Publisher structure for DESERT." alt="" coords="191,269,332,309"/>
+<area shape="poly" id="edge5_Node000002_Node000005" title=" " alt="" coords="368,134,325,154,305,167,289,183,276,203,268,226,263,269,258,269,263,225,271,201,284,180,302,163,322,149,366,130"/>
+<area shape="rect" id="Node000006" href="$DesertService_8h.html" title="Implementation of the Service structure for DESERT." alt="" coords="356,269,497,309"/>
+<area shape="poly" id="edge7_Node000002_Node000006" title=" " alt="" coords="476,144,492,181,494,202,490,222,474,250,453,271,449,267,470,246,485,220,489,202,486,183,471,146"/>
+<area shape="rect" id="Node000007" href="$DesertSubscriber_8h.html" title="Implementation of the Subscriber structure for DESERT." alt="" coords="522,269,670,309"/>
+<area shape="poly" id="edge9_Node000002_Node000007" title=" " alt="" coords="479,142,511,180,583,268,579,271,507,183,475,146"/>
+<area shape="rect" id="Node000008" href="$Discovery_8h.html" title="Namespace used to provide discovery functionalities." alt="" coords="695,269,836,309"/>
+<area shape="poly" id="edge11_Node000002_Node000008" title=" " alt="" coords="498,138,732,267,730,271,496,143"/>
+<area shape="rect" id="Node000009" href="$MessageSerialization_8h.html" title="Namespace containing serialization functions." alt="" coords="299,181,477,221"/>
+<area shape="poly" id="edge13_Node000002_Node000009" title=" " alt="" coords="431,146,404,183,400,180,426,143"/>
+<area shape="rect" id="Node000010" href="$demangle_8h.html" title="Functions used to demangle topic names during discovery operations." alt="" coords="688,181,829,221"/>
+<area shape="poly" id="edge18_Node000002_Node000010" title=" " alt="" coords="532,134,692,179,690,184,530,140"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="164,311,290,355,289,360,162,316"/>
+<area shape="poly" id="edge6_Node000005_Node000004" title=" " alt="" coords="291,318,327,355,324,359,287,321"/>
+<area shape="poly" id="edge8_Node000006_Node000004" title=" " alt="" coords="401,321,364,359,360,355,397,318"/>
+<area shape="poly" id="edge10_Node000007_Node000004" title=" " alt="" coords="529,316,400,360,398,355,527,311"/>
+<area shape="poly" id="edge12_Node000008_Node000004" title=" " alt="" coords="681,312,416,365,415,360,680,307"/>
+<area shape="poly" id="edge14_Node000009_Node000003" title=" " alt="" coords="312,228,161,272,159,267,310,223"/>
+<area shape="poly" id="edge15_Node000009_Node000005" title=" " alt="" coords="350,232,291,271,288,267,347,227"/>
+<area shape="poly" id="edge16_Node000009_Node000006" title=" " alt="" coords="404,233,420,268,416,270,400,235"/>
+<area shape="poly" id="edge17_Node000009_Node000007" title=" " alt="" coords="447,224,551,267,549,272,445,229"/>
+<area shape="poly" id="edge19_Node000010_Node000008" title=" " alt="" coords="764,235,766,269,761,269,758,235"/>
 </map>
