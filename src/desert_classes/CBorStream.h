@@ -264,11 +264,10 @@ class RxStream
     bool data_available(int64_t sequence_id = 0);
     
    /**
-    * @brief -
+    * @brief Clear the currently buffered packet
     *
-    * -
-    * -
-    * -
+    * When the packet is read by the entity, this function must be called to clear the buffer 
+    * and allow RxStream to add the next one in the queue.
     */
     void clear_buffer();
     

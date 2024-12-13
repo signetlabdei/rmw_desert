@@ -91,10 +91,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a7dde7a85f3cc8d9ad63aa78a13e767cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if there are data.  <br /></td></tr>
 <tr class="separator:a7dde7a85f3cc8d9ad63aa78a13e767cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c303c0a1ff0b32b62146416274e6964" id="r_a5c303c0a1ff0b32b62146416274e6964"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcbor_1_1RxStream.html#a5c303c0a1ff0b32b62146416274e6964">clear_buffer</a> ()</td></tr>
-<tr class="memdesc:a5c303c0a1ff0b32b62146416274e6964"><td class="mdescLeft">&#160;</td><td class="mdescRight"><ul>
-<li></li>
-</ul>
- <br /></td></tr>
+<tr class="memdesc:a5c303c0a1ff0b32b62146416274e6964"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear the currently buffered packet.  <br /></td></tr>
 <tr class="separator:a5c303c0a1ff0b32b62146416274e6964"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acce23643eacbf9b17c6bbababded9d96" id="r_acce23643eacbf9b17c6bbababded9d96"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcbor_1_1RxStream.html">RxStream</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcbor_1_1RxStream.html#acce23643eacbf9b17c6bbababded9d96">operator&gt;&gt;</a> (uint64_t &amp;n)</td></tr>
 <tr class="memdesc:acce23643eacbf9b17c6bbababded9d96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decode uint64.  <br /></td></tr>
@@ -221,15 +218,8 @@ Static Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p><ul>
-<li></li>
-</ul>
-</p>
-<ul>
-<li></li>
-<li></li>
-<li></li>
-</ul>
+<p>Clear the currently buffered packet. </p>
+<p>When the packet is read by the entity, this function must be called to clear the buffer and allow <a class="el" href="classcbor_1_1RxStream.html">RxStream</a> to add the next one in the queue. </p>
 
 </div>
 </div>
