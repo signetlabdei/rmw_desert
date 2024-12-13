@@ -203,6 +203,11 @@ std::mutex RxStream::_rx_mutex;
 
 bool RxStream::data_available(int64_t sequence_id)
 {
+  // If a packet is already buffered, so do not overwrite it and wait for a clear
+  if (_buffered_packet.size() > 0)
+    return true;
+  
+  // No buffered packets, go on checking for other ones
   bool available = false;
   std::map<uint32_t, CircularQueue<std::vector<std::pair<void *, int>>, MAX_BUFFER_CAPACITY>>::iterator packets_iterator;
   
@@ -235,17 +240,22 @@ bool RxStream::data_available(int64_t sequence_id)
     }
     else
     {
-      _buffered_packet.clear();
+      clear_buffer();
       available = false;
     }
   }
   else
   {
-    _buffered_packet.clear();
+    clear_buffer();
     available = false;
   }
   
   return available;
+}
+
+void RxStream::clear_buffer()
+{
+  _buffered_packet.clear();
 }
 
 RxStream & RxStream::operator>>(uint64_t & n)

@@ -264,6 +264,15 @@ class RxStream
     bool data_available(int64_t sequence_id = 0);
     
    /**
+    * @brief -
+    *
+    * -
+    * -
+    * -
+    */
+    void clear_buffer();
+    
+   /**
     * @brief Decode uint64
     * @param n Field to decode
     */

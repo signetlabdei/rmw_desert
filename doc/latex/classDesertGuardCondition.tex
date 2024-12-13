@@ -1,0 +1,63 @@
+\doxysection{Desert\+Guard\+Condition Class Reference}
+\hypertarget{classDesertGuardCondition}{}\label{classDesertGuardCondition}\index{DesertGuardCondition@{DesertGuardCondition}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classDesertGuardCondition_ada199427f10aba2011f0a05829f50d1a}\label{classDesertGuardCondition_ada199427f10aba2011f0a05829f50d1a} 
+{\bfseries Desert\+Guard\+Condition} ()
+\begin{DoxyCompactList}\small\item\em Create a guard condition. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDesertGuardCondition_ab071917b0604f303f83a1f888a6b23c7}{trigger}} ()
+\begin{DoxyCompactList}\small\item\em Trigger the guard condition. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classDesertGuardCondition_a833da8a2f31526a725b0cc92d3e15eb9}{has\+\_\+triggered}} ()
+\begin{DoxyCompactList}\small\item\em Check if the guard condition has triggered. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classDesertGuardCondition_a476a6052190c858abdf8624d7e32cc15}{get\+\_\+has\+\_\+triggered}} ()
+\begin{DoxyCompactList}\small\item\em Check if the guard condition has triggered. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classDesertGuardCondition_a476a6052190c858abdf8624d7e32cc15}\label{classDesertGuardCondition_a476a6052190c858abdf8624d7e32cc15} 
+\index{DesertGuardCondition@{DesertGuardCondition}!get\_has\_triggered@{get\_has\_triggered}}
+\index{get\_has\_triggered@{get\_has\_triggered}!DesertGuardCondition@{DesertGuardCondition}}
+\doxysubsubsection{\texorpdfstring{get\_has\_triggered()}{get\_has\_triggered()}}
+{\footnotesize\ttfamily bool Desert\+Guard\+Condition\+::get\+\_\+has\+\_\+triggered (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Check if the guard condition has triggered. 
+
+The get\+\_\+has\+\_\+triggered function returns a bool value with the status of the guard condition and resets the internal state to false.
+
+\begin{DoxyReturn}{Returns}
+True if the guard condition has triggered otherwise false 
+\end{DoxyReturn}
+\Hypertarget{classDesertGuardCondition_a833da8a2f31526a725b0cc92d3e15eb9}\label{classDesertGuardCondition_a833da8a2f31526a725b0cc92d3e15eb9} 
+\index{DesertGuardCondition@{DesertGuardCondition}!has\_triggered@{has\_triggered}}
+\index{has\_triggered@{has\_triggered}!DesertGuardCondition@{DesertGuardCondition}}
+\doxysubsubsection{\texorpdfstring{has\_triggered()}{has\_triggered()}}
+{\footnotesize\ttfamily bool Desert\+Guard\+Condition\+::has\+\_\+triggered (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Check if the guard condition has triggered. 
+
+The has\+\_\+triggered function returns a bool value with the status of the guard condition. Its internal state is not modified.
+
+\begin{DoxyReturn}{Returns}
+True if the guard condition has triggered otherwise false 
+\end{DoxyReturn}
+\Hypertarget{classDesertGuardCondition_ab071917b0604f303f83a1f888a6b23c7}\label{classDesertGuardCondition_ab071917b0604f303f83a1f888a6b23c7} 
+\index{DesertGuardCondition@{DesertGuardCondition}!trigger@{trigger}}
+\index{trigger@{trigger}!DesertGuardCondition@{DesertGuardCondition}}
+\doxysubsubsection{\texorpdfstring{trigger()}{trigger()}}
+{\footnotesize\ttfamily void Desert\+Guard\+Condition\+::trigger (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Trigger the guard condition. 
+
+The trigger function sets the status of the atomic bool variable \+\_\+has\+\_\+triggered to save the new status of the guard condition. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/desert\+\_\+classes/\mbox{\hyperlink{DesertGuardCondition_8h}{Desert\+Guard\+Condition.\+h}}\item 
+src/desert\+\_\+classes/Desert\+Guard\+Condition.\+cpp\end{DoxyCompactItemize}

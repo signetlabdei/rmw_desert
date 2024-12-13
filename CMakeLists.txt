@@ -48,6 +48,7 @@ add_library(rmw_desert
   src/desert_classes/DesertSubscriber.cpp
   src/desert_classes/DesertClient.cpp
   src/desert_classes/DesertService.cpp
+  src/desert_classes/DesertGuardCondition.cpp
   src/desert_classes/CBorStream.cpp
   src/desert_classes/CStringHelper.cpp
   src/desert_classes/TcpDaemon.cpp

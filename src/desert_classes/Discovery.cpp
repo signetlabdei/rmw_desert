@@ -29,6 +29,8 @@ void Discovery::discovery_thread(rmw_context_impl_t * impl)
       discovery_beacon_stream >> type_name;
       discovery_beacon_stream >> disconnect;
       
+      discovery_beacon_stream.clear_buffer();
+      
       
       std::copy_n(entity_gid.begin(), RMW_GID_STORAGE_SIZE, gid.data.begin());
       

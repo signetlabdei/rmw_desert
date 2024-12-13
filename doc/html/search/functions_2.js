@@ -12,10 +12,11 @@ var searchData=
   ['deserialize_5finteger_9',['deserialize_integer',['../classcbor_1_1RxStream.html#a3d5f4974cf14be5f522926718c504056',1,'cbor::RxStream']]],
   ['deserialize_5fsequence_10',['deserialize_sequence',['../classcbor_1_1RxStream.html#acc473d3c4bccaf501d307a7756cc3740',1,'cbor::RxStream']]],
   ['desertclient_11',['DesertClient',['../classDesertClient.html#a1dc573307fe86906c4904847c88d8e12',1,'DesertClient']]],
-  ['desertnode_12',['DesertNode',['../classDesertNode.html#a2faea70e1e4433ca7ad90888697096ad',1,'DesertNode']]],
-  ['desertpublisher_13',['DesertPublisher',['../classDesertPublisher.html#ac2ee1a7652770c2d33a2cb915b8dbbab',1,'DesertPublisher']]],
-  ['desertservice_14',['DesertService',['../classDesertService.html#a82fd83779cf7741cf1784d488b69a0fc',1,'DesertService']]],
-  ['desertsubscriber_15',['DesertSubscriber',['../classDesertSubscriber.html#a0ee763a602d22542f54fbdc3257eacf4',1,'DesertSubscriber']]],
-  ['discovery_5fthread_16',['discovery_thread',['../namespaceDiscovery.html#afc230e589bc25b82ddb9c6ce6fc997ee',1,'Discovery']]],
-  ['discovery_5fthread_5fstart_17',['discovery_thread_start',['../namespaceDiscovery.html#a5dc93da666c8a2aec838bf863b293f93',1,'Discovery']]]
+  ['desertguardcondition_12',['DesertGuardCondition',['../classDesertGuardCondition.html#ada199427f10aba2011f0a05829f50d1a',1,'DesertGuardCondition']]],
+  ['desertnode_13',['DesertNode',['../classDesertNode.html#a2faea70e1e4433ca7ad90888697096ad',1,'DesertNode']]],
+  ['desertpublisher_14',['DesertPublisher',['../classDesertPublisher.html#ac2ee1a7652770c2d33a2cb915b8dbbab',1,'DesertPublisher']]],
+  ['desertservice_15',['DesertService',['../classDesertService.html#a82fd83779cf7741cf1784d488b69a0fc',1,'DesertService']]],
+  ['desertsubscriber_16',['DesertSubscriber',['../classDesertSubscriber.html#a0ee763a602d22542f54fbdc3257eacf4',1,'DesertSubscriber']]],
+  ['discovery_5fthread_17',['discovery_thread',['../namespaceDiscovery.html#afc230e589bc25b82ddb9c6ce6fc997ee',1,'Discovery']]],
+  ['discovery_5fthread_5fstart_18',['discovery_thread_start',['../namespaceDiscovery.html#a5dc93da666c8a2aec838bf863b293f93',1,'Discovery']]]
 ];

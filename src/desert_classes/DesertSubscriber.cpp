@@ -28,6 +28,8 @@ void DesertSubscriber::read_data(void * msg)
     auto casted_members = static_cast<const INTROSPECTION_CPP_MEMBERS *>(_members);
     MessageSerialization::deserialize(msg, casted_members, _data_stream);
   }
+  
+  _data_stream.clear_buffer();
 }
 
 rmw_gid_t DesertSubscriber::get_gid()

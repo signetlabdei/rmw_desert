@@ -32,6 +32,8 @@ void DesertService::read_request(void * req, rmw_service_info_t * req_header)
     auto casted_service = static_cast<const INTROSPECTION_CPP_SERVICE_MEMBERS *>(_service);
     MessageSerialization::deserialize(req, casted_service->request_members_, _request_data_stream);
   }
+  
+  _request_data_stream.clear_buffer();
 }
 
 void DesertService::send_response(void * res, rmw_request_id_t * req_header)

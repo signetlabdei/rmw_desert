@@ -14,6 +14,7 @@
 #include "desert_classes/DesertWaitSet.h"
 #include "desert_classes/DesertClient.h"
 #include "desert_classes/DesertService.h"
+#include "desert_classes/DesertGuardCondition.h"
 #include "desert_classes/TcpDaemon.h"
 #include "desert_classes/Discovery.h"
 
