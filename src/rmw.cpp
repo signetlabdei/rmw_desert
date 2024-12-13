@@ -752,6 +752,14 @@ rmw_ret_t rmw_wait(rmw_subscriptions_t * subscriptions, rmw_guard_conditions_t *
     }
   }
   
+  if (events)
+  {
+    for (size_t i = 0; i < events->event_count; i++)
+    {
+      events->events[i] = nullptr;
+    }
+  }
+  
   return RMW_RET_OK;
 }
 
