@@ -17,8 +17,6 @@
 #include "rosidl_typesupport_c/type_support_map.h"
 #include "rosidl_typesupport_c/identifier.h"
 
-#include "std_msgs/msg/string.hpp"
-
 #include "classes.h"
 #include "debug.h"
 

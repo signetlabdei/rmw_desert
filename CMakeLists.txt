@@ -13,17 +13,15 @@ endif()
 
 find_package(ament_cmake_ros REQUIRED)
 
-find_package(rclcpp REQUIRED)
-find_package(rcutils REQUIRED)
-find_package(rcpputils REQUIRED)
-
 find_package(rmw REQUIRED)
 find_package(rmw_dds_common REQUIRED)
 find_package(rosidl_runtime_c REQUIRED)
 find_package(rosidl_typesupport_introspection_c REQUIRED)
 find_package(rosidl_typesupport_introspection_cpp REQUIRED)
 
-find_package(std_msgs REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(rcutils REQUIRED)
+find_package(rcpputils REQUIRED)
 
 include_directories(include)
 
@@ -66,19 +64,6 @@ add_library(rmw_desert
 
 INCLUDE (FindPkgConfig)
 
-#target_link_libraries(rmw_desert PUBLIC
-#  rmw::rmw)
-
-#target_link_libraries(rmw_desert PRIVATE
-#  rclcpp::rclcpp
-#  rcutils::rcutils
-#  rcpputils::rcpputils
-#  rmw_dds_common::rmw_dds_common_library
-#  rosidl_typesupport_introspection_c::rosidl_typesupport_introspection_c
-#  rosidl_typesupport_introspection_cpp::rosidl_typesupport_introspection_cpp
-#  rosidl_runtime_c::rosidl_runtime_c
-#)
-
 # specific order: dependents before dependencies
 ament_target_dependencies(rmw_desert
   rmw
@@ -89,9 +74,7 @@ ament_target_dependencies(rmw_desert
   rosidl_typesupport_introspection_c
   rosidl_typesupport_introspection_cpp
   rosidl_runtime_c
-  std_msgs
 )
-#ament_target_dependencies(rmw_desert std_msgs)
 
 configure_rmw_library(rmw_desert)
 
@@ -112,7 +95,6 @@ ament_export_dependencies(rosidl_runtime_c)
 ament_export_dependencies(rmw_dds_common)
 ament_export_dependencies(rosidl_typesupport_introspection_c)
 ament_export_dependencies(rosidl_typesupport_introspection_cpp)
-ament_export_dependencies(std_msgs)
 
 register_rmw_implementation(
   "c:rosidl_typesupport_c:rosidl_typesupport_introspection_c"
