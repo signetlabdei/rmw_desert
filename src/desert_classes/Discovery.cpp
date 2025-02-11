@@ -159,23 +159,29 @@ void Discovery::discovery_thread(rmw_context_impl_t * impl)
 rmw_ret_t Discovery::discovery_thread_start(rmw_context_impl_t * impl)
 {
   auto common_context = &impl->common;
-  common_context->thread_is_running.store(true);
   
-  try
+  if (!common_context->thread_is_running)
   {
-    common_context->listener_thread = std::thread(discovery_thread, impl);
-    return RMW_RET_OK;
-  }
-  catch (const std::exception & exc)
-  {
-    RMW_SET_ERROR_MSG_WITH_FORMAT_STRING("Failed to create std::thread: %s", exc.what());
-  }
-  catch (...)
-  {
-    RMW_SET_ERROR_MSG("Failed to create std::thread");
+    common_context->thread_is_running.store(true);
+    
+    try
+    {
+      common_context->listener_thread = std::thread(discovery_thread, impl);
+      return RMW_RET_OK;
+    }
+    catch (const std::exception & exc)
+    {
+      RMW_SET_ERROR_MSG_WITH_FORMAT_STRING("Failed to create std::thread: %s", exc.what());
+    }
+    catch (...)
+    {
+      RMW_SET_ERROR_MSG("Failed to create std::thread");
+    }
+    
+    return RMW_RET_ERROR;
   }
   
-  return RMW_RET_ERROR;
+  return RMW_RET_OK;
 }
 
 void Discovery::send_discovery_beacon(cbor::TxStream stream, std::string node_name, std::string node_namespace, int entity_type, rmw_gid_t entity_gid, std::string topic_name, std::string type_name, bool disconnect)

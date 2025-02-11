@@ -58,6 +58,8 @@ std::vector<uint8_t> TcpDaemon::read_packet()
 void TcpDaemon::enqueue_packet(std::vector<uint8_t> packet)
 {
   _tx_packets.push(packet);
+  // Push also to _rx_packets to allow different nodes in the same applications to exchange data
+  _rx_packets.push(packet);
 }
 
 void TcpDaemon::socket_rx_communication()
