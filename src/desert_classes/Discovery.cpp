@@ -146,7 +146,7 @@ void Discovery::discovery_thread(rmw_context_impl_t * impl)
               std::to_string(entity_type) + topic_name,
               type_name,
               impl->common.gid,
-              rmw_qos_profile_default,
+              rmw_qos_profile_unknown,
               entity_type == SUBSCRIBER_TYPE);
       }
     

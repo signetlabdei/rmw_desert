@@ -37,6 +37,7 @@
 #include "CBorStream.h"
 
 #include "rmw/types.h"
+#include "rmw/qos_profiles.h"
 #include "rmw/error_handling.h"
 
 #include "rmw_context_impl_s.h"

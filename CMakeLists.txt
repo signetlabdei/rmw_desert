@@ -2,9 +2,9 @@ cmake_minimum_required(VERSION 3.5)
 
 project(rmw_desert)
 
-# Default to C++14
+# Default to C++17
 if(NOT CMAKE_CXX_STANDARD)
-  set(CMAKE_CXX_STANDARD 14)
+  set(CMAKE_CXX_STANDARD 17)
 endif()
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
@@ -31,14 +31,10 @@ include_directories(${CBOR_ROOT}/include)
 add_library(rmw_desert
   src/get_node_info_and_types.cpp
   src/init.cpp
-  src/qos_profiles.cpp
   src/rmw.cpp
   src/get_topic_names_and_types.cpp
-  src/dynamic_message_type_support.cpp
   src/init_options.cpp
-  src/features.cpp
   src/get_topic_endpoint_info.cpp
-  src/get_network_flow_endpoints.cpp
   src/event.cpp
   src/get_service_names_and_types.cpp
   src/desert_classes/DesertNode.cpp

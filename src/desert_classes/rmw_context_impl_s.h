@@ -35,19 +35,17 @@
 #include "rmw_dds_common/context.hpp"
 #include "rmw_dds_common/graph_cache.hpp"
 #include "rmw_dds_common/msg/participant_entities_info.hpp"
-#include "rmw_dds_common/qos.hpp"
-#include "rmw_dds_common/security.hpp"
 
 /** @endcond */
 
 #ifndef RMW_CONTEXT_IMPL_H_
 #define RMW_CONTEXT_IMPL_H_
 
-struct rmw_context_impl_s
+struct rmw_context_impl_t
 {
   rmw_dds_common::Context common;
   
-  rmw_context_impl_s()
+  rmw_context_impl_t()
   : common()
   {
     /* destructor relies on these being initialized properly */
@@ -57,7 +55,7 @@ struct rmw_context_impl_s
     common.sub = nullptr;
   }
 
-  ~rmw_context_impl_s()
+  ~rmw_context_impl_t()
   {
   }
 };
