@@ -4,8 +4,6 @@
 #include "rmw/rmw.h"
 #include "rmw/allocators.h"
 
-#include "rclcpp/typesupport_helpers.hpp"
-
 #include "rosidl_typesupport_introspection_cpp/identifier.hpp"
 #include "rosidl_typesupport_introspection_c/identifier.h"
 #include "rosidl_typesupport_introspection_cpp/message_introspection.hpp"
@@ -38,24 +36,6 @@ rmw_gid_t generate_gid()
 rmw_ret_t rmw_borrow_loaned_message(const rmw_publisher_t * publisher, const rosidl_message_type_support_t * type_support, void ** ros_message)
 {
   DEBUG("rmw_borrow_loaned_message" "\n");
-  return RMW_RET_OK;
-}
-
-rmw_ret_t rmw_client_request_publisher_get_actual_qos(const rmw_client_t * client, rmw_qos_profile_t * qos)
-{
-  DEBUG("rmw_client_request_publisher_get_actual_qos" "\n");
-  return RMW_RET_OK;
-}
-
-rmw_ret_t rmw_client_response_subscription_get_actual_qos(const rmw_client_t * client, rmw_qos_profile_t * qos)
-{
-  DEBUG("rmw_client_response_subscription_get_actual_qos" "\n");
-  return RMW_RET_OK;
-}
-
-rmw_ret_t rmw_client_set_on_new_response_callback(rmw_client_t * client, rmw_event_callback_t callback, const void * user_data)
-{
-  DEBUG("rmw_client_set_on_new_response_callback" "\n");
   return RMW_RET_OK;
 }
 
@@ -140,7 +120,7 @@ rmw_guard_condition_t * rmw_create_guard_condition(rmw_context_t * context)
   return ret;
 }
 
-rmw_node_t * rmw_create_node(rmw_context_t * context, const char * name, const char * namespace_)
+rmw_node_t * rmw_create_node(rmw_context_t * context, const char * name, const char * namespace_, size_t domain_id, bool localhost_only)
 {
   DEBUG("rmw_create_node" "\n");
   rmw_node_t * node = rmw_node_allocate();
@@ -158,6 +138,7 @@ rmw_node_t * rmw_create_node(rmw_context_t * context, const char * name, const c
   memcpy((char*)node->namespace_, namespace_, nslen);
   
   context->impl->common.graph_cache.add_participant(context->impl->common.gid, "");
+  context->impl->common.graph_cache.add_node(context->impl->common.gid, name, namespace_);
   rmw_ret_t ret = Discovery::discovery_thread_start(context->impl);
 
   return node;
@@ -340,12 +321,6 @@ rmw_ret_t rmw_destroy_wait_set(rmw_wait_set_t * wait_set)
   delete ws;
   delete wait_set;
   
-  return RMW_RET_OK;
-}
-
-rmw_ret_t rmw_event_set_callback(rmw_event_t * event, rmw_event_callback_t callback, const void * user_data)
-{
-  DEBUG("rmw_event_set_callback" "\n");
   return RMW_RET_OK;
 }
 
@@ -550,12 +525,6 @@ rmw_ret_t rmw_service_server_is_available(const rmw_node_t * node, const rmw_cli
   return RMW_RET_OK;
 }
 
-rmw_ret_t rmw_service_set_on_new_request_callback(rmw_service_t * service, rmw_event_callback_t callback, const void * user_data)
-{
-  DEBUG("rmw_service_set_on_new_request_callback" "\n");
-  return RMW_RET_OK;
-}
-
 rmw_ret_t rmw_set_log_severity(rmw_log_severity_t severity)
 {
   DEBUG("rmw_set_log_severity" "\n");
@@ -571,24 +540,6 @@ rmw_ret_t rmw_subscription_count_matched_publishers(const rmw_subscription_t * s
 rmw_ret_t rmw_subscription_get_actual_qos(const rmw_subscription_t * subscription, rmw_qos_profile_t * qos)
 {
   DEBUG("rmw_subscription_get_actual_qos" "\n");
-  return RMW_RET_OK;
-}
-
-rmw_ret_t rmw_subscription_get_content_filter(const rmw_subscription_t * subscription, rcutils_allocator_t * allocator, rmw_subscription_content_filter_options_t * options)
-{
-  DEBUG("rmw_subscription_get_content_filter" "\n");
-  return RMW_RET_OK;
-}
-
-rmw_ret_t rmw_subscription_set_content_filter(rmw_subscription_t * subscription, const rmw_subscription_content_filter_options_t * options)
-{
-  DEBUG("rmw_subscription_set_content_filter" "\n");
-  return RMW_RET_OK;
-}
-
-rmw_ret_t rmw_subscription_set_on_new_message_callback(rmw_subscription_t * subscription, rmw_event_callback_t callback, const void * user_data)
-{
-  DEBUG("rmw_subscription_set_on_new_message_callback" "\n");
   return RMW_RET_OK;
 }
 

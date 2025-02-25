@@ -40,7 +40,6 @@ rmw_ret_t rmw_init(const rmw_init_options_t * options,  rmw_context_t * context)
   
   context->instance_id = options->instance_id;
   context->implementation_identifier = rmw_get_implementation_identifier();
-  context->actual_domain_id = 0u;
   context->impl = new rmw_context_impl_t();
   
   if (tcp.init(port) == 0)
