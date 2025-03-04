@@ -112,53 +112,49 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="preprocessor">#include &quot;rosidl_typesupport_introspection_cpp/field_types.hpp&quot;</span></div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">#include &quot;rosidl_typesupport_introspection_c/field_types.h&quot;</span></div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#include &quot;rosidl_typesupport_cpp/identifier.hpp&quot;</span></div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="preprocessor">#include &quot;rosidl_typesupport_c/type_support_map.h&quot;</span></div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">#include &quot;rosidl_typesupport_c/identifier.h&quot;</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#include &quot;rosidl_runtime_c/message_type_support_struct.h&quot;</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">#include &quot;rmw/types.h&quot;</span></div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="preprocessor">#include &quot;rosidl_runtime_c/message_type_support_struct.h&quot;</span></div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="preprocessor">#include &quot;rmw/types.h&quot;</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="preprocessor">#include &lt;regex&gt;</span></div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="preprocessor">#include &lt;regex&gt;</span></div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="preprocessor">#include &quot;<a class="code" href="CBorStream_8h.html">CBorStream.h</a>&quot;</span></div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="preprocessor">#include &quot;<a class="code" href="MessageSerialization_8h.html">MessageSerialization.h</a>&quot;</span></div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
-<div class="foldopen" id="foldopen00063" data-start="{" data-end="};">
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="classDesertSubscriber.html">   63</a></span><span class="keyword">class </span><a class="code hl_class" href="classDesertSubscriber.html">DesertSubscriber</a></div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>{</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <a class="code hl_class" href="classDesertSubscriber.html">DesertSubscriber</a>(std::string topic_name, <span class="keyword">const</span> rosidl_message_type_support_t * type_supports, rmw_gid_t gid);</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    </div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classDesertSubscriber.html#ae8a99cb6180868be903a06e4e3a8a81d">has_data</a>();</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classDesertSubscriber.html#a147c99efc5d5784ee75b54914f59cd5c">read_data</a>(<span class="keywordtype">void</span> * msg);</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    </div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    rmw_gid_t <a class="code hl_function" href="classDesertSubscriber.html#a5ade27aec44d33dc3e84a894672680c0">get_gid</a>();</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    std::string <a class="code hl_function" href="classDesertSubscriber.html#a16e7e170cc69eeafa1ca3f7bfafc0034">get_topic_name</a>();</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    std::string <a class="code hl_function" href="classDesertSubscriber.html#afa0db373538c7cfece51424990c1363e">get_type_name</a>();</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>  </div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>  <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    uint8_t _id;</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    rmw_gid_t _gid;</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    std::string _name;</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    <a class="code hl_class" href="classcbor_1_1RxStream.html">cbor::RxStream</a> _data_stream;</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    </div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <span class="keywordtype">int</span> _c_cpp_identifier;</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="keyword">const</span> <span class="keywordtype">void</span> * _members;</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    </div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="keyword">const</span> <span class="keywordtype">void</span> * get_members(<span class="keyword">const</span> rosidl_message_type_support_t * type_support);</div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="keyword">const</span> rosidl_message_type_support_t * get_type_support(<span class="keyword">const</span> rosidl_message_type_support_t * type_supports);</div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>};</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="preprocessor">#include &quot;<a class="code" href="CBorStream_8h.html">CBorStream.h</a>&quot;</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="preprocessor">#include &quot;<a class="code" href="MessageSerialization_8h.html">MessageSerialization.h</a>&quot;</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="foldopen" id="foldopen00059" data-start="{" data-end="};">
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="classDesertSubscriber.html">   59</a></span><span class="keyword">class </span><a class="code hl_class" href="classDesertSubscriber.html">DesertSubscriber</a></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>{</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <a class="code hl_class" href="classDesertSubscriber.html">DesertSubscriber</a>(std::string topic_name, <span class="keyword">const</span> rosidl_message_type_support_t * type_supports, rmw_gid_t gid);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classDesertSubscriber.html#ae8a99cb6180868be903a06e4e3a8a81d">has_data</a>();</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classDesertSubscriber.html#a147c99efc5d5784ee75b54914f59cd5c">read_data</a>(<span class="keywordtype">void</span> * msg);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    rmw_gid_t <a class="code hl_function" href="classDesertSubscriber.html#a5ade27aec44d33dc3e84a894672680c0">get_gid</a>();</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    std::string <a class="code hl_function" href="classDesertSubscriber.html#a16e7e170cc69eeafa1ca3f7bfafc0034">get_topic_name</a>();</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    std::string <a class="code hl_function" href="classDesertSubscriber.html#afa0db373538c7cfece51424990c1363e">get_type_name</a>();</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>  </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    uint8_t _id;</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    rmw_gid_t _gid;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    std::string _name;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <a class="code hl_class" href="classcbor_1_1RxStream.html">cbor::RxStream</a> _data_stream;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    </div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <span class="keywordtype">int</span> _c_cpp_identifier;</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="keyword">const</span> <span class="keywordtype">void</span> * _members;</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <span class="keyword">const</span> <span class="keywordtype">void</span> * get_members(<span class="keyword">const</span> rosidl_message_type_support_t * type_support);</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <span class="keyword">const</span> rosidl_message_type_support_t * get_type_support(<span class="keyword">const</span> rosidl_message_type_support_t * type_supports);</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>};</div>
 </div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aCBorStream_8h_html"><div class="ttname"><a href="CBorStream_8h.html">CBorStream.h</a></div><div class="ttdoc">Classes used to convert data types into a CBOR encoded stream.</div></div>
 <div class="ttc" id="aMessageSerialization_8h_html"><div class="ttname"><a href="MessageSerialization_8h.html">MessageSerialization.h</a></div><div class="ttdoc">Namespace containing serialization functions.</div></div>
-<div class="ttc" id="aclassDesertSubscriber_html"><div class="ttname"><a href="classDesertSubscriber.html">DesertSubscriber</a></div><div class="ttdef"><b>Definition</b> DesertSubscriber.h:64</div></div>
+<div class="ttc" id="aclassDesertSubscriber_html"><div class="ttname"><a href="classDesertSubscriber.html">DesertSubscriber</a></div><div class="ttdef"><b>Definition</b> DesertSubscriber.h:60</div></div>
 <div class="ttc" id="aclassDesertSubscriber_html_a147c99efc5d5784ee75b54914f59cd5c"><div class="ttname"><a href="classDesertSubscriber.html#a147c99efc5d5784ee75b54914f59cd5c">DesertSubscriber::read_data</a></div><div class="ttdeci">void read_data(void *msg)</div><div class="ttdoc">Read a publication from the publisher.</div><div class="ttdef"><b>Definition</b> DesertSubscriber.cpp:19</div></div>
 <div class="ttc" id="aclassDesertSubscriber_html_a16e7e170cc69eeafa1ca3f7bfafc0034"><div class="ttname"><a href="classDesertSubscriber.html#a16e7e170cc69eeafa1ca3f7bfafc0034">DesertSubscriber::get_topic_name</a></div><div class="ttdeci">std::string get_topic_name()</div><div class="ttdoc">Retreive the topic name of the current entity.</div><div class="ttdef"><b>Definition</b> DesertSubscriber.cpp:40</div></div>
 <div class="ttc" id="aclassDesertSubscriber_html_a5ade27aec44d33dc3e84a894672680c0"><div class="ttname"><a href="classDesertSubscriber.html#a5ade27aec44d33dc3e84a894672680c0">DesertSubscriber::get_gid</a></div><div class="ttdeci">rmw_gid_t get_gid()</div><div class="ttdoc">Retreive the gid of the current entity.</div><div class="ttdef"><b>Definition</b> DesertSubscriber.cpp:35</div></div>

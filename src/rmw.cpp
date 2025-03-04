@@ -4,18 +4,12 @@
 #include "rmw/rmw.h"
 #include "rmw/allocators.h"
 
-#include "rclcpp/typesupport_helpers.hpp"
-
 #include "rosidl_typesupport_introspection_cpp/identifier.hpp"
 #include "rosidl_typesupport_introspection_c/identifier.h"
 #include "rosidl_typesupport_introspection_cpp/message_introspection.hpp"
 #include "rosidl_typesupport_introspection_c/message_introspection.h"
 #include "rosidl_typesupport_introspection_cpp/field_types.hpp"
 #include "rosidl_typesupport_introspection_c/field_types.h"
-
-#include "rosidl_typesupport_cpp/identifier.hpp"
-#include "rosidl_typesupport_c/type_support_map.h"
-#include "rosidl_typesupport_c/identifier.h"
 
 #include "classes.h"
 #include "debug.h"

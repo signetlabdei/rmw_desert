@@ -18,7 +18,6 @@
   <build_depend>rosidl_runtime_c</build_depend>
   <build_depend>rosidl_typesupport_introspection_c</build_depend>
   <build_depend>rosidl_typesupport_introspection_cpp</build_depend>
-  <build_depend>rclcpp</build_depend>
   <build_depend>rcutils</build_depend>
   <build_depend>rcpputils</build_depend>
 
@@ -27,7 +26,6 @@
   <build_export_depend>rosidl_runtime_c</build_export_depend>
   <build_export_depend>rosidl_typesupport_introspection_c</build_export_depend>
   <build_export_depend>rosidl_typesupport_introspection_cpp</build_export_depend>
-  <build_export_depend>rclcpp</build_export_depend>
   <build_export_depend>rcutils</build_export_depend>
   <build_export_depend>rcpputils</build_export_depend>
 
