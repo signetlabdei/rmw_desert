@@ -2,8 +2,8 @@
 Changelog for package rmw_desert
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.2 (2025-03-04)
+------------------
 * Removed circular dependancies
 * Contributors: matlin
 
