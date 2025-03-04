@@ -19,11 +19,8 @@ find_package(rosidl_runtime_c REQUIRED)
 find_package(rosidl_typesupport_introspection_c REQUIRED)
 find_package(rosidl_typesupport_introspection_cpp REQUIRED)
 
-find_package(rclcpp REQUIRED)
 find_package(rcutils REQUIRED)
 find_package(rcpputils REQUIRED)
-
-include_directories(include)
 
 set(CBOR_ROOT cbor)
 include_directories(${CBOR_ROOT}/include)
@@ -67,7 +64,6 @@ INCLUDE (FindPkgConfig)
 # specific order: dependents before dependencies
 ament_target_dependencies(rmw_desert
   rmw
-  rclcpp
   rcutils
   rcpputils
   rmw_dds_common
@@ -84,10 +80,8 @@ target_compile_definitions(${PROJECT_NAME}
 PRIVATE "rmw_desert_BUILDING_LIBRARY")
 
 # specific order: dependents before dependencies
-ament_export_include_directories(include)
 ament_export_libraries(rmw_desert)
 
-ament_export_dependencies(rclcpp)
 ament_export_dependencies(rcutils)
 ament_export_dependencies(rcpputils)
 ament_export_dependencies(rmw)

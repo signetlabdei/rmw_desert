@@ -44,10 +44,6 @@
 #include "rosidl_typesupport_introspection_cpp/field_types.hpp"
 #include "rosidl_typesupport_introspection_c/field_types.h"
 
-#include "rosidl_typesupport_cpp/identifier.hpp"
-#include "rosidl_typesupport_c/type_support_map.h"
-#include "rosidl_typesupport_c/identifier.h"
-
 #include "rosidl_runtime_c/message_type_support_struct.h"
 
 #include "rmw/types.h"

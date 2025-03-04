@@ -33,47 +33,43 @@
 \DoxyCodeLine{00044\ \textcolor{preprocessor}{\#include\ "{}rosidl\_typesupport\_introspection\_cpp/field\_types.hpp"{}}}
 \DoxyCodeLine{00045\ \textcolor{preprocessor}{\#include\ "{}rosidl\_typesupport\_introspection\_c/field\_types.h"{}}}
 \DoxyCodeLine{00046\ }
-\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#include\ "{}rosidl\_typesupport\_cpp/identifier.hpp"{}}}
-\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#include\ "{}rosidl\_typesupport\_c/type\_support\_map.h"{}}}
-\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#include\ "{}rosidl\_typesupport\_c/identifier.h"{}}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#include\ "{}rosidl\_runtime\_c/message\_type\_support\_struct.h"{}}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#include\ "{}rmw/types.h"{}}}
 \DoxyCodeLine{00050\ }
-\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#include\ "{}rosidl\_runtime\_c/message\_type\_support\_struct.h"{}}}
-\DoxyCodeLine{00052\ }
-\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#include\ "{}rmw/types.h"{}}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#include\ <regex>}}
 \DoxyCodeLine{00054\ }
-\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#include\ <vector>}}
-\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#include\ <string>}}
-\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#include\ <regex>}}
-\DoxyCodeLine{00058\ }
-\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{CBorStream_8h}{CBorStream.h}}"{}}}
-\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{MessageSerialization_8h}{MessageSerialization.h}}"{}}}
-\DoxyCodeLine{00063\ }
-\DoxyCodeLine{00064\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classDesertPublisher}{DesertPublisher}}}
-\DoxyCodeLine{00065\ \{}
-\DoxyCodeLine{00066\ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00074\ \ \ \ \ \mbox{\hyperlink{classDesertPublisher}{DesertPublisher}}(std::string\ topic\_name,\ \textcolor{keyword}{const}\ rosidl\_message\_type\_support\_t\ *\ type\_supports,\ rmw\_gid\_t\ gid);}
-\DoxyCodeLine{00075\ \ \ \ \ }
-\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDesertPublisher_a0a8d1a319c9ff5d7ae488f573464801d}{push}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *\ msg);}
-\DoxyCodeLine{00086\ \ \ \ \ }
-\DoxyCodeLine{00094\ \ \ \ \ rmw\_gid\_t\ \mbox{\hyperlink{classDesertPublisher_ad51237fa31d20966d255d66d04c15358}{get\_gid}}();}
-\DoxyCodeLine{00102\ \ \ \ \ std::string\ \mbox{\hyperlink{classDesertPublisher_ac76f133d62f9af35cb1d344a23396f25}{get\_topic\_name}}();}
-\DoxyCodeLine{00110\ \ \ \ \ std::string\ \mbox{\hyperlink{classDesertPublisher_ab6938f53f289167c99d1506499f6d56e}{get\_type\_name}}();}
-\DoxyCodeLine{00111\ \ \ \ \ }
-\DoxyCodeLine{00112\ \ \ \ \ }
-\DoxyCodeLine{00113\ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00114\ \ \ \ \ uint8\_t\ \_id;}
-\DoxyCodeLine{00115\ \ \ \ \ rmw\_gid\_t\ \_gid;}
-\DoxyCodeLine{00116\ \ \ \ \ std::string\ \_name;}
-\DoxyCodeLine{00117\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1TxStream}{cbor::TxStream}}\ \_data\_stream;}
-\DoxyCodeLine{00118\ \ \ \ \ }
-\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordtype}{int}\ \_c\_cpp\_identifier;}
-\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *\ \_members;}
-\DoxyCodeLine{00121\ \ \ \ \ }
-\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *\ get\_members(\textcolor{keyword}{const}\ rosidl\_message\_type\_support\_t\ *\ type\_support);}
-\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keyword}{const}\ rosidl\_message\_type\_support\_t\ *\ get\_type\_support(\textcolor{keyword}{const}\ rosidl\_message\_type\_support\_t\ *\ type\_supports);}
-\DoxyCodeLine{00124\ }
-\DoxyCodeLine{00125\ \};}
-\DoxyCodeLine{00126\ }
-\DoxyCodeLine{00127\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{CBorStream_8h}{CBorStream.h}}"{}}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{MessageSerialization_8h}{MessageSerialization.h}}"{}}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classDesertPublisher}{DesertPublisher}}}
+\DoxyCodeLine{00061\ \{}
+\DoxyCodeLine{00062\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00070\ \ \ \ \ \mbox{\hyperlink{classDesertPublisher}{DesertPublisher}}(std::string\ topic\_name,\ \textcolor{keyword}{const}\ rosidl\_message\_type\_support\_t\ *\ type\_supports,\ rmw\_gid\_t\ gid);}
+\DoxyCodeLine{00071\ \ \ \ \ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDesertPublisher_a0a8d1a319c9ff5d7ae488f573464801d}{push}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *\ msg);}
+\DoxyCodeLine{00082\ \ \ \ \ }
+\DoxyCodeLine{00090\ \ \ \ \ rmw\_gid\_t\ \mbox{\hyperlink{classDesertPublisher_ad51237fa31d20966d255d66d04c15358}{get\_gid}}();}
+\DoxyCodeLine{00098\ \ \ \ \ std::string\ \mbox{\hyperlink{classDesertPublisher_ac76f133d62f9af35cb1d344a23396f25}{get\_topic\_name}}();}
+\DoxyCodeLine{00106\ \ \ \ \ std::string\ \mbox{\hyperlink{classDesertPublisher_ab6938f53f289167c99d1506499f6d56e}{get\_type\_name}}();}
+\DoxyCodeLine{00107\ \ \ \ \ }
+\DoxyCodeLine{00108\ \ \ \ \ }
+\DoxyCodeLine{00109\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00110\ \ \ \ \ uint8\_t\ \_id;}
+\DoxyCodeLine{00111\ \ \ \ \ rmw\_gid\_t\ \_gid;}
+\DoxyCodeLine{00112\ \ \ \ \ std::string\ \_name;}
+\DoxyCodeLine{00113\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1TxStream}{cbor::TxStream}}\ \_data\_stream;}
+\DoxyCodeLine{00114\ \ \ \ \ }
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordtype}{int}\ \_c\_cpp\_identifier;}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *\ \_members;}
+\DoxyCodeLine{00117\ \ \ \ \ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *\ get\_members(\textcolor{keyword}{const}\ rosidl\_message\_type\_support\_t\ *\ type\_support);}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keyword}{const}\ rosidl\_message\_type\_support\_t\ *\ get\_type\_support(\textcolor{keyword}{const}\ rosidl\_message\_type\_support\_t\ *\ type\_supports);}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \};}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

@@ -33,53 +33,49 @@
 \DoxyCodeLine{00044\ \textcolor{preprocessor}{\#include\ "{}rosidl\_typesupport\_introspection\_cpp/field\_types.hpp"{}}}
 \DoxyCodeLine{00045\ \textcolor{preprocessor}{\#include\ "{}rosidl\_typesupport\_introspection\_c/field\_types.h"{}}}
 \DoxyCodeLine{00046\ }
-\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#include\ "{}rosidl\_typesupport\_cpp/identifier.hpp"{}}}
-\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#include\ "{}rosidl\_typesupport\_c/type\_support\_map.h"{}}}
-\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#include\ "{}rosidl\_typesupport\_c/identifier.h"{}}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#include\ "{}rosidl\_runtime\_c/service\_type\_support\_struct.h"{}}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#include\ "{}rmw/types.h"{}}}
 \DoxyCodeLine{00050\ }
-\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#include\ "{}rosidl\_runtime\_c/service\_type\_support\_struct.h"{}}}
-\DoxyCodeLine{00052\ }
-\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#include\ "{}rmw/types.h"{}}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#include\ <regex>}}
 \DoxyCodeLine{00054\ }
-\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#include\ <vector>}}
-\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#include\ <string>}}
-\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#include\ <regex>}}
-\DoxyCodeLine{00058\ }
-\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{CBorStream_8h}{CBorStream.h}}"{}}}
-\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{MessageSerialization_8h}{MessageSerialization.h}}"{}}}
-\DoxyCodeLine{00063\ }
-\DoxyCodeLine{00064\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classDesertService}{DesertService}}}
-\DoxyCodeLine{00065\ \{}
-\DoxyCodeLine{00066\ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00074\ \ \ \ \ \mbox{\hyperlink{classDesertService}{DesertService}}(std::string\ service\_name,\ \textcolor{keyword}{const}\ rosidl\_service\_type\_support\_t\ *\ type\_supports,\ rmw\_gid\_t\ gid);}
-\DoxyCodeLine{00075\ \ \ \ \ }
-\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classDesertService_a9f9cc643d67425dcd6f1dc1df5029643}{has\_data}}();}
-\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDesertService_abf15af03595c4766af4b0ca8272349c3}{read\_request}}(\textcolor{keywordtype}{void}\ *\ req,\ rmw\_service\_info\_t\ *\ req\_header);}
-\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDesertService_a15f4dfeedb27ccd96f535a5c9a859029}{send\_response}}(\textcolor{keywordtype}{void}\ *\ res,\ rmw\_request\_id\_t\ *\ req\_header);}
-\DoxyCodeLine{00108\ \ \ \ \ }
-\DoxyCodeLine{00116\ \ \ \ \ rmw\_gid\_t\ \mbox{\hyperlink{classDesertService_a469bfcfd12740c3668e88f19cfa133c7}{get\_gid}}();}
-\DoxyCodeLine{00124\ \ \ \ \ std::string\ \mbox{\hyperlink{classDesertService_ab012a1f844be50787f0abd8fce5a7644}{get\_service\_name}}();}
-\DoxyCodeLine{00132\ \ \ \ \ std::string\ \mbox{\hyperlink{classDesertService_a61fea7c6dfbc46ab8ecaa936a7ec3b1a}{get\_request\_type\_name}}();}
-\DoxyCodeLine{00140\ \ \ \ \ std::string\ \mbox{\hyperlink{classDesertService_a1b8979f686c920688291f0ca85009380}{get\_response\_type\_name}}();}
-\DoxyCodeLine{00141\ \ \ \ \ }
-\DoxyCodeLine{00142\ \ \ \ \ }
-\DoxyCodeLine{00143\ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00144\ \ \ \ \ uint8\_t\ \_id;}
-\DoxyCodeLine{00145\ \ \ \ \ rmw\_gid\_t\ \_gid;}
-\DoxyCodeLine{00146\ \ \ \ \ std::string\ \_name;}
-\DoxyCodeLine{00147\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1RxStream}{cbor::RxStream}}\ \_request\_data\_stream;}
-\DoxyCodeLine{00148\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1TxStream}{cbor::TxStream}}\ \_response\_data\_stream;}
-\DoxyCodeLine{00149\ \ \ \ \ }
-\DoxyCodeLine{00150\ \ \ \ \ int64\_t\ \_sequence\_id;}
-\DoxyCodeLine{00151\ \ \ \ \ }
-\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keywordtype}{int}\ \_c\_cpp\_identifier;}
-\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *\ \_service;}
-\DoxyCodeLine{00154\ \ \ \ \ }
-\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *\ get\_service(\textcolor{keyword}{const}\ rosidl\_service\_type\_support\_t\ *\ service\_type\_support);}
-\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keyword}{const}\ rosidl\_service\_type\_support\_t\ *\ get\_service\_type\_support(\textcolor{keyword}{const}\ rosidl\_service\_type\_support\_t\ *\ type\_supports);}
-\DoxyCodeLine{00157\ }
-\DoxyCodeLine{00158\ \};}
-\DoxyCodeLine{00159\ }
-\DoxyCodeLine{00160\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{CBorStream_8h}{CBorStream.h}}"{}}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{MessageSerialization_8h}{MessageSerialization.h}}"{}}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classDesertService}{DesertService}}}
+\DoxyCodeLine{00061\ \{}
+\DoxyCodeLine{00062\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00070\ \ \ \ \ \mbox{\hyperlink{classDesertService}{DesertService}}(std::string\ service\_name,\ \textcolor{keyword}{const}\ rosidl\_service\_type\_support\_t\ *\ type\_supports,\ rmw\_gid\_t\ gid);}
+\DoxyCodeLine{00071\ \ \ \ \ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classDesertService_a9f9cc643d67425dcd6f1dc1df5029643}{has\_data}}();}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDesertService_abf15af03595c4766af4b0ca8272349c3}{read\_request}}(\textcolor{keywordtype}{void}\ *\ req,\ rmw\_service\_info\_t\ *\ req\_header);}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDesertService_a15f4dfeedb27ccd96f535a5c9a859029}{send\_response}}(\textcolor{keywordtype}{void}\ *\ res,\ rmw\_request\_id\_t\ *\ req\_header);}
+\DoxyCodeLine{00104\ \ \ \ \ }
+\DoxyCodeLine{00112\ \ \ \ \ rmw\_gid\_t\ \mbox{\hyperlink{classDesertService_a469bfcfd12740c3668e88f19cfa133c7}{get\_gid}}();}
+\DoxyCodeLine{00120\ \ \ \ \ std::string\ \mbox{\hyperlink{classDesertService_ab012a1f844be50787f0abd8fce5a7644}{get\_service\_name}}();}
+\DoxyCodeLine{00128\ \ \ \ \ std::string\ \mbox{\hyperlink{classDesertService_a61fea7c6dfbc46ab8ecaa936a7ec3b1a}{get\_request\_type\_name}}();}
+\DoxyCodeLine{00136\ \ \ \ \ std::string\ \mbox{\hyperlink{classDesertService_a1b8979f686c920688291f0ca85009380}{get\_response\_type\_name}}();}
+\DoxyCodeLine{00137\ \ \ \ \ }
+\DoxyCodeLine{00138\ \ \ \ \ }
+\DoxyCodeLine{00139\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00140\ \ \ \ \ uint8\_t\ \_id;}
+\DoxyCodeLine{00141\ \ \ \ \ rmw\_gid\_t\ \_gid;}
+\DoxyCodeLine{00142\ \ \ \ \ std::string\ \_name;}
+\DoxyCodeLine{00143\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1RxStream}{cbor::RxStream}}\ \_request\_data\_stream;}
+\DoxyCodeLine{00144\ \ \ \ \ \mbox{\hyperlink{classcbor_1_1TxStream}{cbor::TxStream}}\ \_response\_data\_stream;}
+\DoxyCodeLine{00145\ \ \ \ \ }
+\DoxyCodeLine{00146\ \ \ \ \ int64\_t\ \_sequence\_id;}
+\DoxyCodeLine{00147\ \ \ \ \ }
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keywordtype}{int}\ \_c\_cpp\_identifier;}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *\ \_service;}
+\DoxyCodeLine{00150\ \ \ \ \ }
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *\ get\_service(\textcolor{keyword}{const}\ rosidl\_service\_type\_support\_t\ *\ service\_type\_support);}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keyword}{const}\ rosidl\_service\_type\_support\_t\ *\ get\_service\_type\_support(\textcolor{keyword}{const}\ rosidl\_service\_type\_support\_t\ *\ type\_supports);}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \};}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}
