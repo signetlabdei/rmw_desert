@@ -31,7 +31,6 @@ add_library(rmw_desert
   src/qos_profiles.cpp
   src/rmw.cpp
   src/get_topic_names_and_types.cpp
-  src/dynamic_message_type_support.cpp
   src/init_options.cpp
   src/features.cpp
   src/get_topic_endpoint_info.cpp
