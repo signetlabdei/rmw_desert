@@ -49,6 +49,7 @@ void Discovery::discovery_thread(rmw_context_impl_t * impl)
       rcutils_allocator_t allocator = rcutils_get_default_allocator();
       rmw_names_and_types_t * topic_names_and_types = new rmw_names_and_types_t();
       rmw_ret_t ret;
+      (void) ret;
       
       // START Retreive cached writers
       ret = impl->common.graph_cache.get_writer_names_and_types_by_node(
@@ -59,17 +60,17 @@ void Discovery::discovery_thread(rmw_context_impl_t * impl)
         &allocator,
         topic_names_and_types);
       
-      for (int i = 0; i < topic_names_and_types->names.size; i++)
+      for (size_t i = 0; i < topic_names_and_types->names.size; i++)
       {
         rmw_topic_endpoint_info_array_t * endpoint_info_array = new rmw_topic_endpoint_info_array_t();
         const std::string mangled_topic_name = std::string(topic_names_and_types->names.data[i]);
-        rmw_ret_t ret = impl->common.graph_cache.get_writers_info_by_topic(
+        ret = impl->common.graph_cache.get_writers_info_by_topic(
           mangled_topic_name,
           Discovery::identity_demangle,
           &allocator,
           endpoint_info_array);
 
-        for (int c = 0; c < endpoint_info_array->size; c++)
+        for (size_t c = 0; c < endpoint_info_array->size; c++)
         {
           rmw_topic_endpoint_info_t endpoint_info = endpoint_info_array->info_array[c];
             
@@ -98,17 +99,17 @@ void Discovery::discovery_thread(rmw_context_impl_t * impl)
         &allocator,
         topic_names_and_types);
       
-      for (int i = 0; i < topic_names_and_types->names.size; i++)
+      for (size_t i = 0; i < topic_names_and_types->names.size; i++)
       {
         rmw_topic_endpoint_info_array_t * endpoint_info_array = new rmw_topic_endpoint_info_array_t();
         const std::string mangled_topic_name = std::string(topic_names_and_types->names.data[i]);
-        rmw_ret_t ret = impl->common.graph_cache.get_readers_info_by_topic(
+        ret = impl->common.graph_cache.get_readers_info_by_topic(
           mangled_topic_name,
           Discovery::identity_demangle,
           &allocator,
           endpoint_info_array);
 
-        for (int c = 0; c < endpoint_info_array->size; c++)
+        for (size_t c = 0; c < endpoint_info_array->size; c++)
         {
           rmw_topic_endpoint_info_t endpoint_info = endpoint_info_array->info_array[c];
             
@@ -145,6 +146,7 @@ void Discovery::discovery_thread(rmw_context_impl_t * impl)
               topic_gid,
               std::to_string(entity_type) + topic_name,
               type_name,
+              rosidl_get_zero_initialized_type_hash(),
               impl->common.gid,
               rmw_qos_profile_default,
               entity_type == SUBSCRIBER_TYPE);

@@ -5,6 +5,7 @@
 bool rmw_feature_supported(rmw_feature_t feature)
 {
   DEBUG("rmw_feature_supported" "\n");
+  (void) feature;
   return true;
 }
 

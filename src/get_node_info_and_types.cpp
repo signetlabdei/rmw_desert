@@ -21,6 +21,7 @@ rmw_ret_t rmw_get_client_names_and_types_by_node(const rmw_node_t * node, rcutil
 rmw_ret_t rmw_get_publisher_names_and_types_by_node(const rmw_node_t * node, rcutils_allocator_t * allocator, const char * node_name, const char * node_namespace, bool no_demangle, rmw_names_and_types_t * topic_names_and_types)
 {
   DEBUG("rmw_get_publisher_names_and_types_by_node" "\n");
+  (void) no_demangle;
   
   auto common_context = &node->context->impl->common;
   
@@ -51,6 +52,7 @@ rmw_ret_t rmw_get_service_names_and_types_by_node(const rmw_node_t * node, rcuti
 rmw_ret_t rmw_get_subscriber_names_and_types_by_node(const rmw_node_t * node, rcutils_allocator_t * allocator, const char * node_name, const char * node_namespace, bool no_demangle, rmw_names_and_types_t * topic_names_and_types)
 {
   DEBUG("rmw_get_subscriber_names_and_types_by_node" "\n");
+  (void) no_demangle;
   
   auto common_context = &node->context->impl->common;
   

@@ -399,7 +399,7 @@ class RxStream
     std::string _stream_name;
     uint8_t _stream_identifier;
     
-    int _buffered_iterator;
+    size_t _buffered_iterator;
     std::vector<std::pair<void *, int>> _buffered_packet;
     
     // <topic, packets <packet <field, field_type>>>

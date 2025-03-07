@@ -1,11 +1,11 @@
 #include "DesertService.h"
 
 DesertService::DesertService(std::string service_name, const rosidl_service_type_support_t * type_supports, rmw_gid_t gid)
-      : _name(service_name)
-      , _id(TopicsConfig::get_topic_identifier(service_name))
+      : _id(TopicsConfig::get_topic_identifier(service_name))
+      , _gid(gid)
+      , _name(service_name)
       , _request_data_stream(cbor::RxStream(SERVICE_TYPE, service_name, _id))
       , _response_data_stream(cbor::TxStream(SERVICE_TYPE, service_name, _id))
-      , _gid(gid)
 {
   const rosidl_service_type_support_t * service_type_support = get_service_type_support(type_supports);
   _service = get_service(service_type_support);

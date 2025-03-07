@@ -10,7 +10,7 @@ std::queue<std::vector<uint8_t>> TcpDaemon::_tx_packets;
 
 bool TcpDaemon::init(int port)
 {
-  int status, valread;
+  int status;
   struct sockaddr_in serv_addr;
 
   if ((_client_fd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
@@ -78,7 +78,8 @@ void TcpDaemon::socket_rx_communication()
 
     struct pollfd fd = {
       .fd = _client_fd,
-      .events = POLLIN
+      .events = POLLIN,
+      .revents = 0
     };
 
     poll(&fd, 1, 0); // Doesn't wait for data to arrive.

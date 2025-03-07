@@ -1,11 +1,11 @@
 #include "DesertNode.h"
 
 DesertNode::DesertNode(std::string name, std::string namespace_, rmw_gid_t gid)
-      : _name(name)
+      : _gid(gid)
+      , _name(name)
       , _namespace(namespace_)
       , _discovery_beacon_data_stream(cbor::TxStream(PUBLISHER_TYPE, "discovery", TopicsConfig::get_topic_identifier("/discovery")))
       , _discovery_request_data_stream(cbor::RxStream(SUBSCRIBER_TYPE, "discovery_request", TopicsConfig::get_topic_identifier("/discovery_request")))
-      , _gid(gid)
 {
   if (!TopicsConfig::get_topic_identifier("/discovery_request"))
     return;

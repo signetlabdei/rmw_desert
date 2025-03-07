@@ -3,6 +3,8 @@
 
 static bool is_event_supported(const rmw_event_type_t event_t)
 {
+  (void) event_t;
+  
   // We are saying that all events are supported to prevent rclcpp showing a lot of warnings for this functionality, but they are not really implemented
   return true;
 }
@@ -41,7 +43,10 @@ rmw_ret_t rmw_subscription_event_init(rmw_event_t * rmw_event, const rmw_subscri
 
 rmw_ret_t rmw_take_event(const rmw_event_t * event_handle, void * event_info, bool * taken)
 {
-  RMW_SET_ERROR_MSG("unimplemented");
-  return RMW_RET_ERROR;
+  (void) event_handle;
+  (void) event_info;
+  (void) taken;
+  RMW_SET_ERROR_MSG("rmw_take_event not implemented");
+  return RMW_RET_UNSUPPORTED;
 }
 

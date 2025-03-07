@@ -46,6 +46,7 @@
 struct rmw_context_impl_s
 {
   rmw_dds_common::Context common;
+  bool is_shutdown{false};
   
   rmw_context_impl_s()
   : common()

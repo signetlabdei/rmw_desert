@@ -4,8 +4,8 @@
 
 int get_desert_port()
 {
-  char* env_variable = "DESERT_PORT";
-  char* value;
+  const char * env_variable = "DESERT_PORT";
+  char * value;
 
   value = getenv(env_variable);
 
@@ -25,6 +25,15 @@ rmw_ret_t rmw_context_fini(rmw_context_t * context)
   DEBUG("rmw_context_fini" "\n");
   // Sleep needed to allow TcpDaemon sending disconnection beacons
   usleep(100000);
+  
+  if (!context->impl->is_shutdown) {
+    RMW_SET_ERROR_MSG("context has not been shutdown");
+    return RMW_RET_INVALID_ARGUMENT;
+  }
+
+  delete context->impl;
+  *context = rmw_get_zero_initialized_context();
+  
   return RMW_RET_OK;
 }
 
@@ -52,6 +61,7 @@ rmw_ret_t rmw_init(const rmw_init_options_t * options,  rmw_context_t * context)
 rmw_ret_t rmw_shutdown(rmw_context_t * context)
 {
   DEBUG("rmw_shutdown" "\n");
+  context->impl->is_shutdown = true;
   return RMW_RET_OK;
 }
 

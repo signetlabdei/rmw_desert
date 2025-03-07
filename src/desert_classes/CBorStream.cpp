@@ -159,7 +159,7 @@ TxStream & TxStream::operator<<(const bool b)
 
 TxStream & TxStream::operator<<(const std::vector<bool> v)
 {
-  *this << static_cast<const uint32_t>(v.size());
+  *this << static_cast<uint32_t>(v.size());
   for (size_t i = 0; i < v.size(); ++i)
   {
     *this << v[i];
@@ -478,7 +478,7 @@ std::pair<void *, int> RxStream::interpret_field(cbor_item_t * items, size_t i, 
       
       if (abs(val.i32) < 65536)
       {
-        uint16_t * bin = new uint16_t{val.i16};
+        int16_t * bin = new int16_t{val.i16};
         
         half_float::half * f16 = reinterpret_cast<half_float::half *>(bin);
         number = new float{*f16};
@@ -499,7 +499,7 @@ std::pair<void *, int> RxStream::interpret_field(cbor_item_t * items, size_t i, 
     }
     case CBOR_ITEM_SIMPLE_VALUE:
     {
-      uint8_t * value = new uint8_t{val.i8};
+      int8_t * value = new int8_t{val.i8};
       
       return std::make_pair(static_cast<void *>(value), CBOR_ITEM_SIMPLE_VALUE);
     }
