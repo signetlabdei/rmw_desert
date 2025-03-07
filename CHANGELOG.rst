@@ -2,6 +2,13 @@
 Changelog for package rmw_desert
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Backported to Humble
+* Solved all compilation warnings
+* Upgraded CXX standard to 17
+* Contributors: dcostan, matlin
+
 1.0.2 (2025-03-04)
 ------------------
 * Removed circular dependancies
