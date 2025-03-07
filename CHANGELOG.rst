@@ -2,8 +2,8 @@
 Changelog for package rmw_desert
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.3 (2025-03-07)
+------------------
 * Backported to Humble
 * Solved all compilation warnings
 * Upgraded CXX standard to 17
