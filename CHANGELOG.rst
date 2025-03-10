@@ -2,6 +2,10 @@
 Changelog for package rmw_desert
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Bump to second major release for Jazzy and Rolling
+
 1.0.3 (2025-03-07)
 ------------------
 * Solved all compilation warnings
