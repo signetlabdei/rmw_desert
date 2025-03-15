@@ -29,5 +29,6 @@ var searchData=
   ['discovery_26',['Discovery',['../namespaceDiscovery.html',1,'']]],
   ['discovery_2eh_27',['Discovery.h',['../Discovery_8h.html',1,'']]],
   ['discovery_5fthread_28',['discovery_thread',['../namespaceDiscovery.html#afc230e589bc25b82ddb9c6ce6fc997ee',1,'Discovery']]],
-  ['discovery_5fthread_5fstart_29',['discovery_thread_start',['../namespaceDiscovery.html#a5dc93da666c8a2aec838bf863b293f93',1,'Discovery']]]
+  ['discovery_5fthread_5fstart_29',['discovery_thread_start',['../namespaceDiscovery.html#a5dc93da666c8a2aec838bf863b293f93',1,'Discovery']]],
+  ['discovery_5fthread_5fstop_30',['discovery_thread_stop',['../namespaceDiscovery.html#ac609e77d08b32d2cec10b82094ff8425',1,'Discovery']]]
 ];
