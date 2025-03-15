@@ -18,5 +18,6 @@ var searchData=
   ['desertservice_15',['DesertService',['../classDesertService.html#a82fd83779cf7741cf1784d488b69a0fc',1,'DesertService']]],
   ['desertsubscriber_16',['DesertSubscriber',['../classDesertSubscriber.html#a0ee763a602d22542f54fbdc3257eacf4',1,'DesertSubscriber']]],
   ['discovery_5fthread_17',['discovery_thread',['../namespaceDiscovery.html#afc230e589bc25b82ddb9c6ce6fc997ee',1,'Discovery']]],
-  ['discovery_5fthread_5fstart_18',['discovery_thread_start',['../namespaceDiscovery.html#a5dc93da666c8a2aec838bf863b293f93',1,'Discovery']]]
+  ['discovery_5fthread_5fstart_18',['discovery_thread_start',['../namespaceDiscovery.html#a5dc93da666c8a2aec838bf863b293f93',1,'Discovery']]],
+  ['discovery_5fthread_5fstop_19',['discovery_thread_stop',['../namespaceDiscovery.html#ac609e77d08b32d2cec10b82094ff8425',1,'Discovery']]]
 ];

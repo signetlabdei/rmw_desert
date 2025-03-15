@@ -121,6 +121,9 @@ char *&#160;</td><td class="memItemRight" valign="bottom"><b>integer_to_string</
 <tr class="memitem:a5dc93da666c8a2aec838bf863b293f93" id="r_a5dc93da666c8a2aec838bf863b293f93"><td class="memItemLeft" align="right" valign="top">rmw_ret_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceDiscovery.html#a5dc93da666c8a2aec838bf863b293f93">discovery_thread_start</a> (rmw_context_impl_t *impl)</td></tr>
 <tr class="memdesc:a5dc93da666c8a2aec838bf863b293f93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the discovery thread.  <br /></td></tr>
 <tr class="separator:a5dc93da666c8a2aec838bf863b293f93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac609e77d08b32d2cec10b82094ff8425" id="r_ac609e77d08b32d2cec10b82094ff8425"><td class="memItemLeft" align="right" valign="top">rmw_ret_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceDiscovery.html#ac609e77d08b32d2cec10b82094ff8425">discovery_thread_stop</a> (rmw_context_impl_t *impl)</td></tr>
+<tr class="memdesc:ac609e77d08b32d2cec10b82094ff8425"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop the discovery thread.  <br /></td></tr>
+<tr class="separator:ac609e77d08b32d2cec10b82094ff8425"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab435705870ebef2f12289243d9c9fad6" id="r_ab435705870ebef2f12289243d9c9fad6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceDiscovery.html#ab435705870ebef2f12289243d9c9fad6">send_discovery_beacon</a> (<a class="el" href="classcbor_1_1TxStream.html">cbor::TxStream</a> stream, std::string node_name, std::string node_namespace, int entity_type, rmw_gid_t entity_gid, std::string topic_name, std::string type_name, bool disconnect)</td></tr>
 <tr class="memdesc:ab435705870ebef2f12289243d9c9fad6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send a discovery beacon.  <br /></td></tr>
 <tr class="separator:ab435705870ebef2f12289243d9c9fad6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -359,10 +362,38 @@ const char *const&#160;</td><td class="memItemRight" valign="bottom"><b>ros_serv
 </div><div class="memdoc">
 
 <p>Initialize the discovery thread. </p>
-<p>This function is called during the creation of a node and starts a discovery thread.</p>
+<p>This function is called during the initialization of the middleware and starts the discovery thread.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">impl</td><td>The middleware comtext implementation </td></tr>
+    <tr><td class="paramname">impl</td><td>The middleware context implementation </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Outcome of the operation </dd></dl>
+
+</div>
+</div>
+<a id="ac609e77d08b32d2cec10b82094ff8425" name="ac609e77d08b32d2cec10b82094ff8425"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac609e77d08b32d2cec10b82094ff8425">&#9670;&#160;</a></span>discovery_thread_stop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">rmw_ret_t Discovery::discovery_thread_stop </td>
+          <td>(</td>
+          <td class="paramtype">rmw_context_impl_t *&#160;</td>
+          <td class="paramname"><em>impl</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Stop the discovery thread. </p>
+<p>This function is called during the termination of the middleware and stops the discovery thread.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">impl</td><td>The middleware context implementation </td></tr>
   </table>
   </dd>
 </dl>

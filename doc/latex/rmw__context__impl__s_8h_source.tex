@@ -34,22 +34,23 @@
 \DoxyCodeLine{00046\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structrmw__context__impl__s}{rmw\_context\_impl\_s}}}
 \DoxyCodeLine{00047\ \{}
 \DoxyCodeLine{00048\ \ \ rmw\_dds\_common::Context\ common;}
-\DoxyCodeLine{00049\ \ \ }
-\DoxyCodeLine{00050\ \ \ \mbox{\hyperlink{structrmw__context__impl__s}{rmw\_context\_impl\_s}}()}
-\DoxyCodeLine{00051\ \ \ :\ common()}
-\DoxyCodeLine{00052\ \ \ \{}
-\DoxyCodeLine{00053\ \ \ \ \ \textcolor{comment}{/*\ destructor\ relies\ on\ these\ being\ initialized\ properly\ */}}
-\DoxyCodeLine{00054\ \ \ \ \ common.thread\_is\_running.store(\textcolor{keyword}{false});}
-\DoxyCodeLine{00055\ \ \ \ \ common.graph\_guard\_condition\ =\ \textcolor{keyword}{nullptr};}
-\DoxyCodeLine{00056\ \ \ \ \ common.pub\ =\ \textcolor{keyword}{nullptr};}
-\DoxyCodeLine{00057\ \ \ \ \ common.sub\ =\ \textcolor{keyword}{nullptr};}
-\DoxyCodeLine{00058\ \ \ \}}
-\DoxyCodeLine{00059\ }
-\DoxyCodeLine{00060\ \ \ \mbox{\hyperlink{structrmw__context__impl__s}{\string~rmw\_context\_impl\_s}}()}
-\DoxyCodeLine{00061\ \ \ \{}
-\DoxyCodeLine{00062\ \ \ \}}
-\DoxyCodeLine{00063\ \};}
-\DoxyCodeLine{00064\ }
-\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00049\ \ \ \textcolor{keywordtype}{bool}\ is\_shutdown\{\textcolor{keyword}{false}\};}
+\DoxyCodeLine{00050\ \ \ }
+\DoxyCodeLine{00051\ \ \ \mbox{\hyperlink{structrmw__context__impl__s}{rmw\_context\_impl\_s}}()}
+\DoxyCodeLine{00052\ \ \ :\ common()}
+\DoxyCodeLine{00053\ \ \ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{comment}{/*\ destructor\ relies\ on\ these\ being\ initialized\ properly\ */}}
+\DoxyCodeLine{00055\ \ \ \ \ common.thread\_is\_running.store(\textcolor{keyword}{false});}
+\DoxyCodeLine{00056\ \ \ \ \ common.graph\_guard\_condition\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00057\ \ \ \ \ common.pub\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00058\ \ \ \ \ common.sub\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00059\ \ \ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \mbox{\hyperlink{structrmw__context__impl__s}{\string~rmw\_context\_impl\_s}}()}
+\DoxyCodeLine{00062\ \ \ \{}
+\DoxyCodeLine{00063\ \ \ \}}
+\DoxyCodeLine{00064\ \};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

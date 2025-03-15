@@ -72,13 +72,24 @@ namespace Discovery
  /**
   * @brief Initialize the discovery thread
   *
-  * This function is called during the creation of a node and starts 
-  * a discovery thread.
+  * This function is called during the initialization of the middleware and starts 
+  * the discovery thread.
   *
-  * @param impl The middleware comtext implementation
+  * @param impl The middleware context implementation
   * @return     Outcome of the operation
   */
   rmw_ret_t discovery_thread_start(rmw_context_impl_t * impl);
+    
+ /**
+  * @brief Stop the discovery thread
+  *
+  * This function is called during the termination of the middleware and stops
+  * the discovery thread.
+  *
+  * @param impl The middleware context implementation
+  * @return     Outcome of the operation
+  */
+  rmw_ret_t discovery_thread_stop(rmw_context_impl_t * impl);
   
  /**
   * @brief Send a discovery beacon

@@ -167,10 +167,6 @@ rmw_node_t * rmw_create_node(rmw_context_t * context, const char * name, const c
   const size_t nslen = strlen(namespace_) + 1;
   node->namespace_ = (const char*)malloc(nslen);
   memcpy((char*)node->namespace_, namespace_, nslen);
-  
-  context->impl->common.graph_cache.add_participant(context->impl->common.gid, "");
-  rmw_ret_t ret = Discovery::discovery_thread_start(context->impl);
-  (void) ret;
 
   return node;
 }
