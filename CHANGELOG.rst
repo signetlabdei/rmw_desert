@@ -2,6 +2,11 @@
 Changelog for package rmw_desert
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Fixed missing discovery thread join
+* Contributors: Davide Costa
+
 2.0.0 (2025-03-10)
 ------------------
 * Bump to second major release for Jazzy and Rolling
