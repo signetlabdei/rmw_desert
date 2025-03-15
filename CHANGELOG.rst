@@ -2,8 +2,8 @@
 Changelog for package rmw_desert
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.4 (2025-03-15)
+------------------
 * Fixed missing discovery thread join
 * Contributors: Davide Costa
 
