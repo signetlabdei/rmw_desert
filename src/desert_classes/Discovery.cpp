@@ -7,7 +7,7 @@ void Discovery::discovery_thread(rmw_context_impl_t * impl)
   
   send_discovery_request(discovery_request_stream);
   
-  while (true)
+  while (!impl->is_shutdown)
   {
     cbor::RxStream::interpret_packets();
     if (discovery_beacon_stream.data_available())
@@ -181,6 +181,31 @@ rmw_ret_t Discovery::discovery_thread_start(rmw_context_impl_t * impl)
     }
     
     return RMW_RET_ERROR;
+  }
+  
+  return RMW_RET_OK;
+}
+
+rmw_ret_t Discovery::discovery_thread_stop(rmw_context_impl_t * impl)
+{
+  auto common_context = &impl->common;
+  
+  if (common_context->thread_is_running.exchange(false))
+  {
+    try
+    {
+      common_context->listener_thread.join();
+    }
+    catch (const std::exception & exc)
+    {
+      RMW_SET_ERROR_MSG_WITH_FORMAT_STRING("Failed to join std::thread: %s", exc.what());
+      return RMW_RET_ERROR;
+    }
+    catch (...)
+    {
+      RMW_SET_ERROR_MSG("Failed to join std::thread");
+      return RMW_RET_ERROR;
+    }
   }
   
   return RMW_RET_OK;
