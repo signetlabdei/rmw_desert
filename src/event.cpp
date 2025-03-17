@@ -50,3 +50,8 @@ rmw_ret_t rmw_take_event(const rmw_event_t * event_handle, void * event_info, bo
   return RMW_RET_UNSUPPORTED;
 }
 
+bool rmw_event_type_is_supported(rmw_event_type_t rmw_event_type)
+{
+  return is_event_supported(rmw_event_type);
+}
+
