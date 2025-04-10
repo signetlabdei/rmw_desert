@@ -876,11 +876,11 @@ void RxStream::interpret_packets(int64_t wanted_sequence_id)
       
       _field_iterators.top()++;
 
-      if (*_field_iterators.top() && stream_type == SERVICE_TYPE)
+      if (*_field_iterators.top() && (stream_type == SERVICE_TYPE || stream_type == CLIENT_TYPE))
       {
-        sequence_id = _reflections.top()->GetInt64(*_mutable_msgs.top(), *_field_iterators.top());
+        sequence_id = _reflections.top()->GetUInt64(*_mutable_msgs.top(), *_field_iterators.top());
         
-        if (sequence_id != wanted_sequence_id)
+        if (sequence_id != wanted_sequence_id && stream_type == SERVICE_TYPE)
         {
           TcpDaemon::rebuffer_packet(packet);
           continue;

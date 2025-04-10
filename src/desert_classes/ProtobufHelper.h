@@ -70,7 +70,7 @@ namespace ProtobufHelper
   * @param stream         The stream used to send data
   */
   template<typename MembersType>
-  std::string rosidl_to_proto(const MembersType * casted_members, bool first_run = true)
+  std::string rosidl_to_proto(const MembersType * casted_members, bool is_service, bool first_run)
   {
     std::string proto("");
     if (first_run)
@@ -84,15 +84,21 @@ namespace ProtobufHelper
         "                        id: " + std::to_string(submessage_counter) + "\n"
         "                        max_bytes: 512000 };\n\n"
         "  required uint32 stream_type = 1 [(dccl.field) = { min: 1 max: 100 }];\n";
+      if (is_service)
+      {
+        proto.append("  required uint64 sequence_id = 2 [(dccl.field) = { min: 1 max: 1000 }];\n");
+      }
     }
     
     for (uint32_t i = 0; i < casted_members->member_count_; ++i) {
       const auto member = casted_members->members_ + i;
+      int proto_variable_number = i + 1 + 1 * first_run + 1 * is_service;
+      
       switch (member->type_id_) {
         case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_MESSAGE:
           {
             auto sub_members = static_cast<const MembersType *>(member->members_->data);
-            std::string custom_type = rosidl_to_proto(sub_members, false);
+            std::string custom_type = rosidl_to_proto(sub_members, false, false);
             std::string type_name = static_cast<const MembersType *>(member->members_->data)->message_name_;
             
             if (!member->is_array_)
@@ -107,7 +113,7 @@ namespace ProtobufHelper
                                            custom_type +
                                            "}\n");
               }
-              proto.append("  optional " + type_name + " " + member->name_ + " = " + std::to_string(i + 1 + 1 * first_run) + ";\n");
+              proto.append("  optional " + type_name + " " + member->name_ + " = " + std::to_string(proto_variable_number) + ";\n");
             }
             else if (member->array_size_ && !member->is_upper_bound_)
             {
@@ -121,7 +127,7 @@ namespace ProtobufHelper
                                            custom_type +
                                            "}\n");
               }
-              proto.append("  repeated " + type_name + " " + member->name_ + " = " + std::to_string(i + 1 + 1 * first_run) + " [(dccl.field) = { max_repeat: 32 }];\n");
+              proto.append("  repeated " + type_name + " " + member->name_ + " = " + std::to_string(proto_variable_number) + " [(dccl.field) = { max_repeat: 32 }];\n");
             }
             else
             {
@@ -137,18 +143,18 @@ namespace ProtobufHelper
                                            custom_type +
                                            "}\n");
               }
-              proto.append("  repeated " + type_name + " " + member->name_ + " = " + std::to_string(i + 1 + 1 * first_run) + " [(dccl.field) = { max_repeat: 32 }];\n");
+              proto.append("  repeated " + type_name + " " + member->name_ + " = " + std::to_string(proto_variable_number) + " [(dccl.field) = { max_repeat: 32 }];\n");
             }
           }
           break;
         case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN:
           if (!member->is_array_)
           {
-            proto.append("  optional bool " + std::string(member->name_) + " = " + std::to_string(i + 1 + 1 * first_run) + ";\n");
+            proto.append("  optional bool " + std::string(member->name_) + " = " + std::to_string(proto_variable_number) + ";\n");
           }
           else
           {
-            proto.append("  repeated bool " + std::string(member->name_) + " = " + std::to_string(i + 1 + 1 * first_run) + " [(dccl.field) = { max_repeat: 32 }];\n");
+            proto.append("  repeated bool " + std::string(member->name_) + " = " + std::to_string(proto_variable_number) + " [(dccl.field) = { max_repeat: 32 }];\n");
           }
           break;
         case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_OCTET:
@@ -157,131 +163,131 @@ namespace ProtobufHelper
         case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT8:
           if (!member->is_array_)
           {
-            proto.append("  optional uint32 " + std::string(member->name_) + " = " + std::to_string(i + 1 + 1 * first_run) + " [(dccl.field) = { min: 0 max: 255 }];\n");
+            proto.append("  optional uint32 " + std::string(member->name_) + " = " + std::to_string(proto_variable_number) + " [(dccl.field) = { min: 0 max: 255 }];\n");
           }
           else
           {
-            proto.append("  repeated uint32 " + std::string(member->name_) + " = " + std::to_string(i + 1 + 1 * first_run) + " [(dccl.field) = { min: 0 max: 255 max_repeat: 32 }];\n");
+            proto.append("  repeated uint32 " + std::string(member->name_) + " = " + std::to_string(proto_variable_number) + " [(dccl.field) = { min: 0 max: 255 max_repeat: 32 }];\n");
           }
           break;
         case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_CHAR:
           if (!member->is_array_)
           {
-            proto.append("  optional uint32 " + std::string(member->name_) + " = " + std::to_string(i + 1 + 1 * first_run) + " [(dccl.field) = { min: 0 max: 255 }];\n");
+            proto.append("  optional uint32 " + std::string(member->name_) + " = " + std::to_string(proto_variable_number) + " [(dccl.field) = { min: 0 max: 255 }];\n");
           }
           else
           {
-            proto.append("  repeated uint32 " + std::string(member->name_) + " = " + std::to_string(i + 1 + 1 * first_run) + " [(dccl.field) = { min: 0 max: 255 max_repeat: 32 }];\n");
+            proto.append("  repeated uint32 " + std::string(member->name_) + " = " + std::to_string(proto_variable_number) + " [(dccl.field) = { min: 0 max: 255 max_repeat: 32 }];\n");
           }
           break;
         case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_INT8:
           if (!member->is_array_)
           {
-            proto.append("  optional int32 " + std::string(member->name_) + " = " + std::to_string(i + 1 + 1 * first_run) + " [(dccl.field) = { min: -128 max: 127 }];\n");
+            proto.append("  optional int32 " + std::string(member->name_) + " = " + std::to_string(proto_variable_number) + " [(dccl.field) = { min: -128 max: 127 }];\n");
           }
           else
           {
-            proto.append("  repeated int32 " + std::string(member->name_) + " = " + std::to_string(i + 1 + 1 * first_run) + " [(dccl.field) = { min: -128 max: 127 max_repeat: 32 }];\n");
+            proto.append("  repeated int32 " + std::string(member->name_) + " = " + std::to_string(proto_variable_number) + " [(dccl.field) = { min: -128 max: 127 max_repeat: 32 }];\n");
           }
           break;
         case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_FLOAT:
           if (!member->is_array_)
           {
-            proto.append("  optional float " + std::string(member->name_) + " = " + std::to_string(i + 1 + 1 * first_run) + " [(dccl.field) = { min: -10000000 max: 10000000 precision: 2 }];\n");
+            proto.append("  optional float " + std::string(member->name_) + " = " + std::to_string(proto_variable_number) + " [(dccl.field) = { min: -10000000 max: 10000000 precision: 2 }];\n");
           }
           else
           {
-            proto.append("  repeated float " + std::string(member->name_) + " = " + std::to_string(i + 1 + 1 * first_run) + " [(dccl.field) = { min: -10000000 max: 10000000 precision: 2 max_repeat: 32 }];\n");
+            proto.append("  repeated float " + std::string(member->name_) + " = " + std::to_string(proto_variable_number) + " [(dccl.field) = { min: -10000000 max: 10000000 precision: 2 max_repeat: 32 }];\n");
           }
           break;
         case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_DOUBLE:
           if (!member->is_array_)
           {
-            proto.append("  optional double " + std::string(member->name_) + " = " + std::to_string(i + 1 + 1 * first_run) + " [(dccl.field) = { min: -10000000 max: 10000000 precision: 4 }];\n");
+            proto.append("  optional double " + std::string(member->name_) + " = " + std::to_string(proto_variable_number) + " [(dccl.field) = { min: -10000000 max: 10000000 precision: 4 }];\n");
           }
           else
           {
-            proto.append("  repeated double " + std::string(member->name_) + " = " + std::to_string(i + 1 + 1 * first_run) + " [(dccl.field) = { min: -10000000 max: 10000000 precision: 4 max_repeat: 32 }];\n");
+            proto.append("  repeated double " + std::string(member->name_) + " = " + std::to_string(proto_variable_number) + " [(dccl.field) = { min: -10000000 max: 10000000 precision: 4 max_repeat: 32 }];\n");
           }
           break;
         case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_INT16:
           if (!member->is_array_)
           {
-            proto.append("  optional int32 " + std::string(member->name_) + " = " + std::to_string(i + 1 + 1 * first_run) + " [(dccl.field) = { min: -32768 max: 32767 }];\n");
+            proto.append("  optional int32 " + std::string(member->name_) + " = " + std::to_string(proto_variable_number) + " [(dccl.field) = { min: -32768 max: 32767 }];\n");
           }
           else
           {
-            proto.append("  repeated int32 " + std::string(member->name_) + " = " + std::to_string(i + 1 + 1 * first_run) + " [(dccl.field) = { min: -32768 max: 32767 max_repeat: 32 }];\n");
+            proto.append("  repeated int32 " + std::string(member->name_) + " = " + std::to_string(proto_variable_number) + " [(dccl.field) = { min: -32768 max: 32767 max_repeat: 32 }];\n");
           }
           break;
         case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT16:
           if (!member->is_array_)
           {
-            proto.append("  optional uint32 " + std::string(member->name_) + " = " + std::to_string(i + 1 + 1 * first_run) + " [(dccl.field) = { min: 0 max: 65535 }];\n");
+            proto.append("  optional uint32 " + std::string(member->name_) + " = " + std::to_string(proto_variable_number) + " [(dccl.field) = { min: 0 max: 65535 }];\n");
           }
           else
           {
-            proto.append("  repeated uint32 " + std::string(member->name_) + " = " + std::to_string(i + 1 + 1 * first_run) + " [(dccl.field) = { min: 0 max: 65535 max_repeat: 32 }];\n");
+            proto.append("  repeated uint32 " + std::string(member->name_) + " = " + std::to_string(proto_variable_number) + " [(dccl.field) = { min: 0 max: 65535 max_repeat: 32 }];\n");
           }
           break;
         case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_INT32:
           if (!member->is_array_)
           {
-            proto.append("  optional int32 " + std::string(member->name_) + " = " + std::to_string(i + 1 + 1 * first_run) + " [(dccl.field) = { min: -2147483648 max: 2147483647 }];\n");
+            proto.append("  optional int32 " + std::string(member->name_) + " = " + std::to_string(proto_variable_number) + " [(dccl.field) = { min: -2147483648 max: 2147483647 }];\n");
           }
           else
           {
-            proto.append("  repeated int32 " + std::string(member->name_) + " = " + std::to_string(i + 1 + 1 * first_run) + " [(dccl.field) = { min: -2147483648 max: 2147483647 max_repeat: 32 }];\n");
+            proto.append("  repeated int32 " + std::string(member->name_) + " = " + std::to_string(proto_variable_number) + " [(dccl.field) = { min: -2147483648 max: 2147483647 max_repeat: 32 }];\n");
           }
           break;
         case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT32:
           if (!member->is_array_)
           {
-            proto.append("  optional uint32 " + std::string(member->name_) + " = " + std::to_string(i + 1 + 1 * first_run) + " [(dccl.field) = { min: 0 max: 4294967295 }];\n");
+            proto.append("  optional uint32 " + std::string(member->name_) + " = " + std::to_string(proto_variable_number) + " [(dccl.field) = { min: 0 max: 4294967295 }];\n");
           }
           else
           {
-            proto.append("  repeated uint32 " + std::string(member->name_) + " = " + std::to_string(i + 1 + 1 * first_run) + " [(dccl.field) = { min: 0 max: 4294967295 max_repeat: 32 }];\n");
+            proto.append("  repeated uint32 " + std::string(member->name_) + " = " + std::to_string(proto_variable_number) + " [(dccl.field) = { min: 0 max: 4294967295 max_repeat: 32 }];\n");
           }
           break;
         case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_INT64:
           if (!member->is_array_)
           {
-            proto.append("  optional int64 " + std::string(member->name_) + " = " + std::to_string(i + 1 + 1 * first_run) + " [(dccl.field) = { min: -2147483648 max: 2147483647 }];\n");
+            proto.append("  optional int64 " + std::string(member->name_) + " = " + std::to_string(proto_variable_number) + " [(dccl.field) = { min: -2147483648 max: 2147483647 }];\n");
           }
           else
           {
-            proto.append("  repeated int64 " + std::string(member->name_) + " = " + std::to_string(i + 1 + 1 * first_run) + " [(dccl.field) = { min: -2147483648 max: 2147483647 max_repeat: 32 }];\n");
+            proto.append("  repeated int64 " + std::string(member->name_) + " = " + std::to_string(proto_variable_number) + " [(dccl.field) = { min: -2147483648 max: 2147483647 max_repeat: 32 }];\n");
           }
           break;
         case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_UINT64:
           if (!member->is_array_)
           {
-            proto.append("  optional uint64 " + std::string(member->name_) + " = " + std::to_string(i + 1 + 1 * first_run) + " [(dccl.field) = { min: 0 max: 18446744073709551615 }];\n");
+            proto.append("  optional uint64 " + std::string(member->name_) + " = " + std::to_string(proto_variable_number) + " [(dccl.field) = { min: 0 max: 18446744073709551615 }];\n");
           }
           else
           {
-            proto.append("  repeated uint64 " + std::string(member->name_) + " = " + std::to_string(i + 1 + 1 * first_run) + " [(dccl.field) = { min: 0 max: 18446744073709551615 max_repeat: 32 }];\n");
+            proto.append("  repeated uint64 " + std::string(member->name_) + " = " + std::to_string(proto_variable_number) + " [(dccl.field) = { min: 0 max: 18446744073709551615 max_repeat: 32 }];\n");
           }
           break;
         case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_STRING:
           if (!member->is_array_)
           {
-            proto.append("  optional string " + std::string(member->name_) + " = " + std::to_string(i + 1 + 1 * first_run) + " [(dccl.field) = { max_length: 64 }];\n");
+            proto.append("  optional string " + std::string(member->name_) + " = " + std::to_string(proto_variable_number) + " [(dccl.field) = { max_length: 64 }];\n");
           }
           else
           {
-            proto.append("  repeated string " + std::string(member->name_) + " = " + std::to_string(i + 1 + 1 * first_run) + " [(dccl.field) = { max_length: 64 max_repeat: 32 }];\n");
+            proto.append("  repeated string " + std::string(member->name_) + " = " + std::to_string(proto_variable_number) + " [(dccl.field) = { max_length: 64 max_repeat: 32 }];\n");
           }
           break;
         case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_WSTRING:
           if (!member->is_array_)
           {
-            proto.append("  optional string " + std::string(member->name_) + " = " + std::to_string(i + 1 + 1 * first_run) + " [(dccl.field) = { max_length: 64 }];\n");
+            proto.append("  optional string " + std::string(member->name_) + " = " + std::to_string(proto_variable_number) + " [(dccl.field) = { max_length: 64 }];\n");
           }
           else
           {
-            proto.append("  repeated string " + std::string(member->name_) + " = " + std::to_string(i + 1 + 1 * first_run) + " [(dccl.field) = { max_length: 64 max_repeat: 32 }];\n");
+            proto.append("  repeated string " + std::string(member->name_) + " = " + std::to_string(proto_variable_number) + " [(dccl.field) = { max_length: 64 max_repeat: 32 }];\n");
           }
           break;
         //default:
@@ -309,12 +315,12 @@ namespace ProtobufHelper
       if (c_cpp_identifier == 0)
       {
         auto casted_members = static_cast<const INTROSPECTION_C_MEMBERS *>(members);
-        return rosidl_to_proto(casted_members);
+        return rosidl_to_proto(casted_members, false, true);
       }
       else if (c_cpp_identifier == 1)
       {
         auto casted_members = static_cast<const INTROSPECTION_CPP_MEMBERS *>(members);
-        return rosidl_to_proto(casted_members);
+        return rosidl_to_proto(casted_members, false, true);
       }
     }
     if (sender_type == CLIENT_TYPE)
@@ -322,12 +328,12 @@ namespace ProtobufHelper
       if (c_cpp_identifier == 0)
       {
         auto casted_service = static_cast<const INTROSPECTION_C_SERVICE_MEMBERS *>(members);
-        return rosidl_to_proto(casted_service->request_members_);
+        return rosidl_to_proto(casted_service->request_members_, true, true);
       }
       else if (c_cpp_identifier == 1)
       {
         auto casted_service = static_cast<const INTROSPECTION_CPP_SERVICE_MEMBERS *>(members);
-        return rosidl_to_proto(casted_service->request_members_);
+        return rosidl_to_proto(casted_service->request_members_, true, true);
       }
     }
     if (sender_type == SERVICE_TYPE)
@@ -335,12 +341,12 @@ namespace ProtobufHelper
       if (c_cpp_identifier == 0)
       {
         auto casted_service = static_cast<const INTROSPECTION_C_SERVICE_MEMBERS *>(members);
-        return rosidl_to_proto(casted_service->response_members_);
+        return rosidl_to_proto(casted_service->response_members_, true, true);
       }
       else if (c_cpp_identifier == 1)
       {
         auto casted_service = static_cast<const INTROSPECTION_CPP_SERVICE_MEMBERS *>(members);
-        return rosidl_to_proto(casted_service->response_members_);
+        return rosidl_to_proto(casted_service->response_members_, true, true);
       }
     }
     return "";
