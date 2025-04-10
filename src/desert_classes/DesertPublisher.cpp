@@ -4,10 +4,9 @@ DesertPublisher::DesertPublisher(std::string topic_name, const rosidl_message_ty
       : _id(TopicsConfig::get_topic_identifier(topic_name))
       , _gid(gid)
       , _name(topic_name)
-      , _data_stream(cbor::TxStream(PUBLISHER_TYPE, topic_name, _id))
+      , _members(get_members(get_type_support(type_supports)))
+      , _data_stream(dccl::TxStream(PUBLISHER_TYPE, topic_name, _id, ProtobufHelper::rosidl_to_proto(_members, PUBLISHER_TYPE, _c_cpp_identifier, _id)))
 {
-  const rosidl_message_type_support_t * type_support = get_type_support(type_supports);
-  _members = get_members(type_support);
 }
 
 void DesertPublisher::push(const void * msg)

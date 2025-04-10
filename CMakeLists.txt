@@ -2,9 +2,9 @@ cmake_minimum_required(VERSION 3.5)
 
 project(rmw_desert)
 
-# Default to C++20
+# Default to C++23
 if(NOT CMAKE_CXX_STANDARD)
-  set(CMAKE_CXX_STANDARD 20)
+  set(CMAKE_CXX_STANDARD 23)
 endif()
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
@@ -21,6 +21,9 @@ find_package(rosidl_typesupport_introspection_cpp REQUIRED)
 
 find_package(rcutils REQUIRED)
 find_package(rcpputils REQUIRED)
+
+find_package(Protobuf REQUIRED)
+find_package(dccl REQUIRED)
 
 set(CBOR_ROOT cbor)
 include_directories(${CBOR_ROOT}/include)
@@ -44,7 +47,8 @@ add_library(rmw_desert
   src/desert_classes/DesertClient.cpp
   src/desert_classes/DesertService.cpp
   src/desert_classes/DesertGuardCondition.cpp
-  src/desert_classes/CBorStream.cpp
+  src/desert_classes/dccl_import.pb.cc
+  src/desert_classes/DcclStream.cpp
   src/desert_classes/CStringHelper.cpp
   src/desert_classes/TcpDaemon.cpp
   src/desert_classes/Discovery.cpp
@@ -70,7 +74,11 @@ ament_target_dependencies(rmw_desert
   rosidl_typesupport_introspection_c
   rosidl_typesupport_introspection_cpp
   rosidl_runtime_c
+  
+  Protobuf
 )
+
+target_link_libraries(rmw_desert dccl)
 
 configure_rmw_library(rmw_desert)
 
@@ -89,6 +97,9 @@ ament_export_dependencies(rosidl_runtime_c)
 ament_export_dependencies(rmw_dds_common)
 ament_export_dependencies(rosidl_typesupport_introspection_c)
 ament_export_dependencies(rosidl_typesupport_introspection_cpp)
+
+ament_export_dependencies(Protobuf)
+ament_export_dependencies(dccl)
 
 register_rmw_implementation(
   "c:rosidl_typesupport_c:rosidl_typesupport_introspection_c"

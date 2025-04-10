@@ -54,8 +54,8 @@
 
 /** @endcond */
 
-#include "CBorStream.h"
 #include "MessageSerialization.h"
+#include "ProtobufHelper.h"
 
 class DesertPublisher
 {
@@ -110,10 +110,11 @@ class DesertPublisher
     uint8_t _id;
     rmw_gid_t _gid;
     std::string _name;
-    cbor::TxStream _data_stream;
     
     int _c_cpp_identifier;
     const void * _members;
+    
+    dccl::TxStream _data_stream;
     
     const void * get_members(const rosidl_message_type_support_t * type_support);
     const rosidl_message_type_support_t * get_type_support(const rosidl_message_type_support_t * type_supports);

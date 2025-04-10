@@ -42,7 +42,7 @@
 
 /** @endcond */
 
-#include "CBorStream.h"
+#include "DcclStream.h"
 #include "DesertPublisher.h"
 #include "DesertSubscriber.h"
 #include "DesertClient.h"
@@ -156,8 +156,8 @@ class DesertNode
     rmw_gid_t _gid;
     std::string _name;
     std::string _namespace;
-    cbor::TxStream _discovery_beacon_data_stream;
-    cbor::RxStream _discovery_request_data_stream;
+    dccl::TxStream _discovery_beacon_data_stream;
+    dccl::RxStream _discovery_request_data_stream;
     
     std::vector<DesertPublisher *> _publishers;
     std::vector<DesertSubscriber *> _subscribers;

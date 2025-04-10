@@ -54,8 +54,8 @@
 
 /** @endcond */
 
-#include "CBorStream.h"
 #include "MessageSerialization.h"
+#include "ProtobufHelper.h"
 
 class DesertClient
 {
@@ -140,13 +140,14 @@ class DesertClient
     uint8_t _id;
     rmw_gid_t _gid;
     std::string _name;
-    cbor::TxStream _request_data_stream;
-    cbor::RxStream _response_data_stream;
     
     int64_t _sequence_id;
     
     int _c_cpp_identifier;
     const void * _service;
+    
+    dccl::TxStream _request_data_stream;
+    dccl::RxStream _response_data_stream;
     
     const void * get_service(const rosidl_service_type_support_t * service_type_support);
     const rosidl_service_type_support_t * get_service_type_support(const rosidl_service_type_support_t * type_supports);

@@ -1,15 +1,15 @@
 #include "Discovery.h"
 
 void Discovery::discovery_thread(rmw_context_impl_t * impl)
-{
-  cbor::RxStream discovery_beacon_stream = cbor::RxStream(SUBSCRIBER_TYPE, "/discovery", TopicsConfig::get_topic_identifier("/discovery"));
-  cbor::TxStream discovery_request_stream = cbor::TxStream(PUBLISHER_TYPE, "/discovery_request", TopicsConfig::get_topic_identifier("/discovery_request"));
+{/*
+  dccl::RxStream discovery_beacon_stream = dccl::RxStream(SUBSCRIBER_TYPE, "/discovery", TopicsConfig::get_topic_identifier("/discovery"), "");
+  dccl::TxStream discovery_request_stream = dccl::TxStream(PUBLISHER_TYPE, "/discovery_request", TopicsConfig::get_topic_identifier("/discovery_request"), "");
   
   send_discovery_request(discovery_request_stream);
   
   while (!impl->is_shutdown)
   {
-    cbor::RxStream::interpret_packets();
+    //dccl::RxStream::interpret_packets();
     if (discovery_beacon_stream.data_available())
     {
       rmw_dds_common::msg::ParticipantEntitiesInfo msg;
@@ -155,7 +155,7 @@ void Discovery::discovery_thread(rmw_context_impl_t * impl)
     }
     
     std::this_thread::sleep_for(std::chrono::milliseconds(200));
-  }
+  }*/
 }
 
 rmw_ret_t Discovery::discovery_thread_start(rmw_context_impl_t * impl)
@@ -211,8 +211,8 @@ rmw_ret_t Discovery::discovery_thread_stop(rmw_context_impl_t * impl)
   return RMW_RET_OK;
 }
 
-void Discovery::send_discovery_beacon(cbor::TxStream stream, std::string node_name, std::string node_namespace, int entity_type, rmw_gid_t entity_gid, std::string topic_name, std::string type_name, bool disconnect)
-{
+void Discovery::send_discovery_beacon(dccl::TxStream &stream, std::string node_name, std::string node_namespace, int entity_type, rmw_gid_t entity_gid, std::string topic_name, std::string type_name, bool disconnect)
+{/*
   std::vector<uint8_t> gid_data(std::begin(entity_gid.data), std::end(entity_gid.data));
   
   stream.start_transmission();
@@ -225,12 +225,12 @@ void Discovery::send_discovery_beacon(cbor::TxStream stream, std::string node_na
   stream << type_name;
   stream << disconnect;
   
-  stream.end_transmission();
+  stream.end_transmission();*/
 }
 
-void Discovery::send_discovery_request(cbor::TxStream stream)
-{
+void Discovery::send_discovery_request(dccl::TxStream &stream)
+{/*
   stream.start_transmission();
   
-  stream.end_transmission();
+  stream.end_transmission();*/
 }

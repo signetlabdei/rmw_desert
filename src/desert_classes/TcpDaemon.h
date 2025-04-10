@@ -56,9 +56,9 @@
 
 #define ADDRESS "127.0.0.1"
 
-#define START_MARKER 0b10011001
-#define END_MARKER   0b01010101
-#define BYTE_MASK    0b11111111
+#define START_MARKER  0b10011001
+#define END_MARKER    0b01010101
+#define PKT_BYTE_MASK 0b11111111
 
 class TcpDaemon
 {
@@ -83,6 +83,7 @@ class TcpDaemon
     * @return The packet that was read from the DESERT stack
     */
     static std::vector<uint8_t> read_packet();
+    static void rebuffer_packet(std::vector<uint8_t> packet);
    /**
     * @brief Enqueue a packet in the _tx_packets member as vector of bytes
     *

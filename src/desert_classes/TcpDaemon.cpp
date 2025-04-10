@@ -55,6 +55,11 @@ std::vector<uint8_t> TcpDaemon::read_packet()
   return packet;
 }
 
+void TcpDaemon::rebuffer_packet(std::vector<uint8_t> packet)
+{
+  _rx_packets.push(packet);
+}
+
 void TcpDaemon::enqueue_packet(std::vector<uint8_t> packet)
 {
   _tx_packets.push(packet);
@@ -106,7 +111,7 @@ void TcpDaemon::socket_rx_communication()
         // Found tail
         if (found_header && packet.end()[-1] == END_MARKER)
         {
-          uint8_t real_size = (packet.size() - 1) & BYTE_MASK;
+          uint8_t real_size = (packet.size() - 1) & PKT_BYTE_MASK;
           if (dimension_in_header == real_size)
           {
             packet.pop_back();
@@ -147,7 +152,7 @@ void TcpDaemon::socket_tx_communication()
       std::vector<uint8_t> packet = _tx_packets.front();
       
       // Header
-      uint8_t payload_size = packet.size() & BYTE_MASK;
+      uint8_t payload_size = packet.size() & PKT_BYTE_MASK;
       
       packet.insert(packet.begin(), payload_size);
       packet.insert(packet.begin(), START_MARKER);

@@ -4,16 +4,18 @@ DesertService::DesertService(std::string service_name, const rosidl_service_type
       : _id(TopicsConfig::get_topic_identifier(service_name))
       , _gid(gid)
       , _name(service_name)
-      , _request_data_stream(cbor::RxStream(SERVICE_TYPE, service_name, _id))
-      , _response_data_stream(cbor::TxStream(SERVICE_TYPE, service_name, _id))
+      , _service(get_service(get_service_type_support(type_supports)))
+      , _request_data_stream(dccl::RxStream(SERVICE_TYPE, service_name, _id, ProtobufHelper::rosidl_to_proto(_service, CLIENT_TYPE, _c_cpp_identifier, _id)))
+      , _response_data_stream(dccl::TxStream(SERVICE_TYPE, service_name, _id, ProtobufHelper::rosidl_to_proto(_service, SERVICE_TYPE, _c_cpp_identifier, _id)))
 {
-  const rosidl_service_type_support_t * service_type_support = get_service_type_support(type_supports);
-  _service = get_service(service_type_support);
 }
 
 bool DesertService::has_data()
 {
-  cbor::RxStream::interpret_packets();
+  // Stream identifier equals to zero means that the corresponding topic is disabled
+  if (_id == 0) return false;
+  
+  _request_data_stream.interpret_packets();
   return _request_data_stream.data_available();
 }
 

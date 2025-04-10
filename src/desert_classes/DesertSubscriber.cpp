@@ -4,15 +4,17 @@ DesertSubscriber::DesertSubscriber(std::string topic_name, const rosidl_message_
       : _id(TopicsConfig::get_topic_identifier(topic_name))
       , _gid(gid)
       , _name(topic_name)
-      , _data_stream(cbor::RxStream(SUBSCRIBER_TYPE, topic_name, _id))
+      , _members(get_members(get_type_support(type_supports)))
+      , _data_stream(dccl::RxStream(SUBSCRIBER_TYPE, topic_name, _id, ProtobufHelper::rosidl_to_proto(_members, PUBLISHER_TYPE, _c_cpp_identifier, _id)))
 {
-  const rosidl_message_type_support_t * type_support = get_type_support(type_supports);
-  _members = get_members(type_support);
 }
 
 bool DesertSubscriber::has_data()
 {
-  cbor::RxStream::interpret_packets();
+  // Stream identifier equals to zero means that the corresponding topic is disabled
+  if (_id == 0) return false;
+  
+  _data_stream.interpret_packets();
   return _data_stream.data_available();
 }
 

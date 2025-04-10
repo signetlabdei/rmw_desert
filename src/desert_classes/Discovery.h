@@ -34,7 +34,7 @@
 #include <thread>
 #include <chrono>
 
-#include "CBorStream.h"
+#include "DcclStream.h"
 
 #include "rmw/types.h"
 #include "rmw/error_handling.h"
@@ -106,7 +106,7 @@ namespace Discovery
   * @param type_name      The topic type
   * @param disconnect     Flag used to determine if an entity is connecting or disconnecting
   */
-  void send_discovery_beacon(cbor::TxStream stream, std::string node_name, std::string node_namespace, int entity_type, rmw_gid_t entity_gid, std::string topic_name, std::string type_name, bool disconnect);
+  void send_discovery_beacon(dccl::TxStream &stream, std::string node_name, std::string node_namespace, int entity_type, rmw_gid_t entity_gid, std::string topic_name, std::string type_name, bool disconnect);
   
  /**
   * @brief Send a discovery request
@@ -116,7 +116,7 @@ namespace Discovery
   *
   * @param stream The stream used to send data
   */
-  void send_discovery_request(cbor::TxStream stream);
+  void send_discovery_request(dccl::TxStream &stream);
 
 }
 

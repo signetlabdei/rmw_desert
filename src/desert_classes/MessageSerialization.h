@@ -34,7 +34,7 @@
 #ifndef MESSAGE_SERIALIZATION_H_
 #define MESSAGE_SERIALIZATION_H_
 
-#include "CBorStream.h"
+#include "DcclStream.h"
 #include "CStringHelper.h"
 #include "macros.h"
 
@@ -79,7 +79,7 @@ namespace MessageSerialization
   * @param stream  The stream used to send data
   */
   template<typename T>
-  void serialize_field(const INTROSPECTION_CPP_MEMBER * member, void * field, cbor::TxStream & stream)
+  void serialize_field(const INTROSPECTION_CPP_MEMBER * member, void * field, dccl::TxStream & stream)
   {
     if (!member->is_array_)
     {
@@ -108,7 +108,7 @@ namespace MessageSerialization
   * @param stream  The stream used to send data
   */
   template<typename T>
-  void serialize_field(const INTROSPECTION_C_MEMBER * member, void * field, cbor::TxStream & stream)
+  void serialize_field(const INTROSPECTION_C_MEMBER * member, void * field, dccl::TxStream & stream)
   {
     // String specific implementation
     if constexpr(std::is_same_v<T, std::string>)
@@ -181,7 +181,7 @@ namespace MessageSerialization
   * @param stream         The stream used to send data
   */
   template<typename MembersType>
-  void serialize(const void * msg, const MembersType * casted_members, cbor::TxStream & stream)
+  void serialize(const void * msg, const MembersType * casted_members, dccl::TxStream & stream)
   {
     for (uint32_t i = 0; i < casted_members->member_count_; ++i) {
       const auto member = casted_members->members_ + i;
@@ -190,13 +190,21 @@ namespace MessageSerialization
         case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_MESSAGE:
           {
             auto sub_members = static_cast<const MembersType *>(member->members_->data);
-            if (!member->is_array_) {
+            std::string type_name = static_cast<const MembersType *>(member->members_->data)->message_name_;
+            
+            if (!member->is_array_)
+            {
+              stream.load_submessage(type_name);
               serialize(field, sub_members, stream);
+              stream.unload_submessage();
             }
             else if (member->array_size_ && !member->is_upper_bound_)
             {
-              for (size_t index = 0; index < member->array_size_; ++index) {
+              for (size_t index = 0; index < member->array_size_; ++index)
+              {
+                stream.load_submessage(type_name, index);
                 serialize(member->get_function(field, index), sub_members, stream);
+                stream.unload_submessage(index == member->array_size_);
               }
             }
             else
@@ -208,11 +216,11 @@ namespace MessageSerialization
                 throw std::runtime_error("Sequence overcomes the maximum length");
               }
               
-              // Serialize length
-              stream << (uint32_t)array_size;
-              
-              for (size_t index = 0; index < array_size; ++index) {
+              for (size_t index = 0; index < array_size; ++index)
+              {
+                stream.load_submessage(type_name, index);
                 serialize(member->get_function(field, index), sub_members, stream);
+                stream.unload_submessage(index == array_size);
               }
             }
           }
@@ -288,7 +296,7 @@ namespace MessageSerialization
   * @param stream  The stream used to receive data
   */
   template<typename T>
-  void deserialize_field(const INTROSPECTION_CPP_MEMBER * member, void * field, cbor::RxStream & stream)
+  void deserialize_field(const INTROSPECTION_CPP_MEMBER * member, void * field, dccl::RxStream & stream)
   {
     if (!member->is_array_) {
       stream >> *static_cast<T *>(field);
@@ -317,7 +325,7 @@ namespace MessageSerialization
   * @param stream  The stream used to receive data
   */
   template<typename T>
-  void deserialize_field(const INTROSPECTION_C_MEMBER * member, void * field, cbor::RxStream & stream)
+  void deserialize_field(const INTROSPECTION_C_MEMBER * member, void * field, dccl::RxStream & stream)
   {
     // String specific implementation
     if constexpr(std::is_same_v<T, std::string>)
@@ -412,7 +420,7 @@ namespace MessageSerialization
   * @param stream         The stream used to receive data
   */
   template<typename MembersType>
-  void deserialize(void * msg, const MembersType * casted_members, cbor::RxStream & stream)
+  void deserialize(void * msg, const MembersType * casted_members, dccl::RxStream & stream)
   {
     for (uint32_t i = 0; i < casted_members->member_count_; ++i) {
       const auto member = casted_members->members_ + i;
@@ -421,27 +429,37 @@ namespace MessageSerialization
         case ::rosidl_typesupport_introspection_cpp::ROS_TYPE_MESSAGE:
           {
             auto sub_members = static_cast<const MembersType *>(member->members_->data);
-            if (!member->is_array_) {
+            std::string type_name = static_cast<const MembersType *>(member->members_->data)->message_name_;
+            
+            if (!member->is_array_)
+            {
+              stream.load_submessage(type_name);
               deserialize(field, sub_members, stream);
+              stream.unload_submessage();
             }
             else if (member->array_size_ && !member->is_upper_bound_)
             {
-              for (size_t index = 0; index < member->array_size_; ++index) {
+              for (size_t index = 0; index < member->array_size_; ++index)
+              {
+                stream.load_submessage(type_name, index);
                 deserialize(member->get_function(field, index), sub_members, stream);
+                stream.unload_submessage(index == member->array_size_);
               }
             }
             else
             {
               // Deserialize length
-              uint32_t array_size = 0;
-              stream >> array_size;
+              uint32_t array_size = stream.get_field_size();
               
               auto vector = reinterpret_cast<std::vector<unsigned char> *>(field);
               new(vector) std::vector<unsigned char>;
               member->resize_function(field, array_size);
               
-              for (size_t index = 0; index < array_size; ++index) {
+              for (size_t index = 0; index < array_size; ++index)
+              {
+                stream.load_submessage(type_name, index);
                 deserialize(member->get_function(field, index), sub_members, stream);
+                stream.unload_submessage(index == array_size);
               }
             }
           }
