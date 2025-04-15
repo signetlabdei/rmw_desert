@@ -22,6 +22,9 @@ DynamicStream::DynamicStream(std::string protobuf)
   _internal_state = get_message_descriptor();
   _internal_state = get_mutable_message();
   _internal_state = get_reflection();
+  
+  DynamicMessage::_dynamic_descriptor = _message_descs.top();
+  _codec.load<DynamicMessage>();
 }
 
 rmw_ret_t DynamicStream::get_message_descriptor()
@@ -160,6 +163,7 @@ void TxStream::end_transmission()
   
   _encoded_bytes.clear();
   TcpDaemon::enqueue_packet(daemon_packet);
+  printf("Enqueue pkt\n");
 }
 
 TxStream & TxStream::operator<<(const uint64_t n)
@@ -829,6 +833,7 @@ void RxStream::interpret_packets(int64_t wanted_sequence_id)
 {
   if (data_available()) return;
 
+  // TODO Il mutex va messo su TCP daemon
   std::lock_guard<std::mutex> lock(_rx_mutex);
   
   std::vector<uint8_t> packet;
@@ -836,8 +841,8 @@ void RxStream::interpret_packets(int64_t wanted_sequence_id)
   {
     std::string encoded_bytes(packet.begin(), packet.end());
     
-    DynamicMessage::_dynamic_descriptor = _message_descs.top();
-    _codec.load<DynamicMessage>();
+    // TODO Il rebuffer packet è insensato in quanto se viene invocato genera un numero infinito di iterazioni sui pacchetti in rx
+    // TODO Inoltre il pacchetto viene sempre prelevato, anche se l'id non matcha, così le altre istanze non lo leggeranno mai
     
     // Check the topic name with its id
     if(_codec.id(encoded_bytes) == _codec.id<DynamicMessage>())

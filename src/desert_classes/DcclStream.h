@@ -137,6 +137,8 @@ class DynamicStream
     rmw_ret_t _internal_state;
     static const std::map<std::type_index, int> _types_map;
     
+    dccl::Codec _codec;
+    
 };
 
 class TxStream : public DynamicStream
@@ -445,7 +447,6 @@ class TxStream : public DynamicStream
     std::string _stream_name;
     uint8_t _stream_identifier;
     
-    dccl::Codec _codec;
     std::string _encoded_bytes;
     
     std::stack<int> _counters;
@@ -684,7 +685,6 @@ class RxStream : public DynamicStream
     std::string _stream_name;
     uint8_t _stream_identifier;
     
-    dccl::Codec _codec;
     std::string _encoded_bytes;
     
     std::stack<std::vector<const FieldDescriptor*>> _fields;
