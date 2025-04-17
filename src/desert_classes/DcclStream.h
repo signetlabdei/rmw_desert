@@ -71,7 +71,7 @@
 #define CLIENT_TYPE     2
 #define SERVICE_TYPE    3
 
-#define DCCL_DEBUG_ENABLED 1
+#define DCCL_DEBUG_ENABLED 0
 
 #if DCCL_DEBUG_ENABLED
 #define DCCL_DEBUG(...) printf(__VA_ARGS__)
@@ -572,7 +572,7 @@ class RxStream : public DynamicStream
       
       if (_fields.top().end() > _field_iterators.top() && (*_field_iterators.top())->cpp_type() ==  _types_map.at(typeid(T)))
         get_value(_reflections.top(), _mutable_msgs.top(), *_field_iterators.top(), t);
-      
+
       _field_iterators.top()++;
       return *this;
     }

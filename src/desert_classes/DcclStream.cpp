@@ -145,7 +145,6 @@ void TxStream::start_transmission()
   _counters.push(1);
   
   // Stream type
-  printf("Sending stream type %d\n", _stream_type);
   *this << _stream_type;
 }
 
@@ -167,7 +166,6 @@ void TxStream::end_transmission()
   
   _encoded_bytes.clear();
   TcpDaemon::enqueue_packet(daemon_packet);
-  printf("Enqueue pkt\n");
 }
 
 TxStream & TxStream::operator<<(const uint64_t n)
@@ -904,11 +902,11 @@ void RxStream::interpret_packets(int64_t wanted_sequence_id)
       
       _field_iterators.top()++;
       
-      if (*_field_iterators.top() && (stream_type == SERVICE_TYPE || stream_type == CLIENT_TYPE))
+      if (*_field_iterators.top() && _stream_type == CLIENT_TYPE)
       {
         sequence_id = _reflections.top()->GetUInt64(*_mutable_msgs.top(), *_field_iterators.top());
         
-        if (sequence_id != wanted_sequence_id && stream_type == SERVICE_TYPE)
+        if (sequence_id != wanted_sequence_id || stream_type != SERVICE_TYPE)
         {
           packets.push(packet);
           continue;
