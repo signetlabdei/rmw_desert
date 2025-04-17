@@ -22,9 +22,6 @@ DynamicStream::DynamicStream(std::string protobuf)
   _internal_state = get_message_descriptor();
   _internal_state = get_mutable_message();
   _internal_state = get_reflection();
-  
-  DynamicMessage::_dynamic_descriptor = _message_descs.top();
-  _codec.load<DynamicMessage>();
 }
 
 rmw_ret_t DynamicStream::get_message_descriptor()
@@ -118,6 +115,12 @@ const std::map<std::type_index, int> DynamicStream::_types_map = {
   { typeid(bool),        FieldDescriptor::CppType::CPPTYPE_BOOL   }
 };
 
+const std::map<int, int> DynamicStream::_stream_type_match_map = {
+  { PUBLISHER_TYPE, SUBSCRIBER_TYPE },
+  { CLIENT_TYPE,    SERVICE_TYPE    },
+  { SERVICE_TYPE,   CLIENT_TYPE     }
+};
+
 // TX stream
 
 TxStream::TxStream(uint8_t stream_type, std::string stream_name, uint8_t stream_identifier, std::string proto)
@@ -142,6 +145,7 @@ void TxStream::start_transmission()
   _counters.push(1);
   
   // Stream type
+  printf("Sending stream type %d\n", _stream_type);
   *this << _stream_type;
 }
 
@@ -788,9 +792,9 @@ void RxStream::load_submessage(std::string submessage_name, int index)
     _fields.push(empty_fields);
     
     _reflections.top()->ListFields(*msg, &_fields.top());
-  }
   
-  _field_iterators.push(_fields.top().begin());
+    _field_iterators.push(_fields.top().begin());
+  }
 }
 
 void RxStream::load_submessage(std::string submessage_name)
@@ -809,23 +813,27 @@ void RxStream::load_submessage(std::string submessage_name)
     _fields.push(empty_fields);
     
     _reflections.top()->ListFields(*msg, &_fields.top());
+    
+    _field_iterators.push(_fields.top().begin());
   }
   
-  _field_iterators.push(_fields.top().begin());
 }
 
 void RxStream::unload_submessage(bool array_finished)
 {
-  _mutable_msgs.pop();
-  _message_descs.pop();
-  _reflections.pop();
-  
-  _fields.pop();
-  _field_iterators.pop();
-  
-  if (array_finished)
+  if (_message_descs.size() > 1)
   {
-    _field_iterators.top()++;
+    _mutable_msgs.pop();
+    _message_descs.pop();
+    _reflections.pop();
+    
+    _fields.pop();
+    _field_iterators.pop();
+    
+    if (array_finished)
+    {
+      _field_iterators.top()++;
+    }
   }
 }
 
@@ -833,12 +841,27 @@ void RxStream::interpret_packets(int64_t wanted_sequence_id)
 {
   if (data_available()) return;
 
-  // TODO Il mutex va messo su TCP daemon
   std::lock_guard<std::mutex> lock(_rx_mutex);
   
-  std::vector<uint8_t> packet;
-  for (packet = TcpDaemon::read_packet(); packet.size() != 0; packet = TcpDaemon::read_packet())
+  DynamicMessage::_dynamic_descriptor = _message_descs.top(); // Segfault on services because _message_descs was getting empty
+  _codec.load<DynamicMessage>();
+  
+  std::queue<std::vector<uint8_t>> & packets = TcpDaemon::read_packets();
+  
+  for (int i = 0; i < packets.size(); i++)
   {
+    std::vector<uint8_t> packet;
+    
+    if (!packets.empty())
+    {
+      packet = packets.front();
+      packets.pop();
+    }
+    else
+    {
+      break;
+    }
+    
     std::string encoded_bytes(packet.begin(), packet.end());
     
     // TODO Il rebuffer packet è insensato in quanto se viene invocato genera un numero infinito di iterazioni sui pacchetti in rx
@@ -858,7 +881,7 @@ void RxStream::interpret_packets(int64_t wanted_sequence_id)
       }
       catch (...)
       {
-        TcpDaemon::rebuffer_packet(packet);
+        packets.push(packet);
         continue;
       }
       
@@ -872,22 +895,22 @@ void RxStream::interpret_packets(int64_t wanted_sequence_id)
       {
         stream_type = _reflections.top()->GetUInt32(*_mutable_msgs.top(), *_field_iterators.top());
         
-        if (stream_type != _stream_type)
+        if (_stream_type != _stream_type_match_map.at(stream_type))
         {
-          TcpDaemon::rebuffer_packet(packet);
+          packets.push(packet);
           continue;
         }
       }
       
       _field_iterators.top()++;
-
+      
       if (*_field_iterators.top() && (stream_type == SERVICE_TYPE || stream_type == CLIENT_TYPE))
       {
         sequence_id = _reflections.top()->GetUInt64(*_mutable_msgs.top(), *_field_iterators.top());
         
         if (sequence_id != wanted_sequence_id && stream_type == SERVICE_TYPE)
         {
-          TcpDaemon::rebuffer_packet(packet);
+          packets.push(packet);
           continue;
         }
       
@@ -900,6 +923,10 @@ void RxStream::interpret_packets(int64_t wanted_sequence_id)
       DCCL_DEBUG("RX incoming:\n%s\n", _mutable_msgs.top()->DebugString().c_str());
       
       break;
+    }
+    else
+    {
+      packets.push(packet);
     }
   }
 }

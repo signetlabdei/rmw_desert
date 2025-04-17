@@ -81,9 +81,9 @@ class TcpDaemon
     * subscribers, clients and services.
     *
     * @return The packet that was read from the DESERT stack
-    */
-    static std::vector<uint8_t> read_packet();
-    static void rebuffer_packet(std::vector<uint8_t> packet);
+    */ 
+    // TODO
+    static std::queue<std::vector<uint8_t>> & read_packets();
    /**
     * @brief Enqueue a packet in the _tx_packets member as vector of bytes
     *

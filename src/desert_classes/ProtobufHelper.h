@@ -83,7 +83,7 @@ namespace ProtobufHelper
         "  option (dccl.msg) = { codec_version: 4\n"
         "                        id: " + std::to_string(submessage_counter) + "\n"
         "                        max_bytes: 512000 };\n\n"
-        "  required uint32 stream_type = 1 [(dccl.field) = { min: 1 max: 100 }];\n";
+        "  required uint32 stream_type = 1 [(dccl.field) = { min: 0 max: 3 }];\n";
       if (is_service)
       {
         proto.append("  required uint64 sequence_id = 2 [(dccl.field) = { min: 1 max: 1000 }];\n");

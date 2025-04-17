@@ -136,6 +136,7 @@ class DynamicStream
     
     rmw_ret_t _internal_state;
     static const std::map<std::type_index, int> _types_map;
+    static const std::map<int, int> _stream_type_match_map;
     
     dccl::Codec _codec;
     

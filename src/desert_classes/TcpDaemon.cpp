@@ -44,20 +44,9 @@ bool TcpDaemon::init(int port)
   return 0;
 }
 
-std::vector<uint8_t> TcpDaemon::read_packet()
+std::queue<std::vector<uint8_t>> & TcpDaemon::read_packets()
 {
-  std::vector<uint8_t> packet;
-  if (!_rx_packets.empty())
-  {
-    packet = _rx_packets.front();
-    _rx_packets.pop();
-  }
-  return packet;
-}
-
-void TcpDaemon::rebuffer_packet(std::vector<uint8_t> packet)
-{
-  _rx_packets.push(packet);
+  return _rx_packets;
 }
 
 void TcpDaemon::enqueue_packet(std::vector<uint8_t> packet)
