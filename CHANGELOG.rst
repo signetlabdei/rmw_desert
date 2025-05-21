@@ -2,8 +2,8 @@
 Changelog for package rmw_desert
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.5 (2025-05-21)
+------------------
 * Updated documentation
 * Changed RxStream dispatchment paradigm
 * Solved segfault on rmw_wait
