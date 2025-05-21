@@ -36,7 +36,6 @@
 #include "rmw_dds_common/graph_cache.hpp"
 #include "rmw_dds_common/msg/participant_entities_info.hpp"
 #include "rmw_dds_common/qos.hpp"
-#include "rmw_dds_common/security.hpp"
 
 /** @endcond */
 
