@@ -655,7 +655,7 @@ rmw_ret_t rmw_wait(rmw_subscriptions_t * subscriptions, rmw_guard_conditions_t *
     {
       void * data = subscriptions->subscribers[i];
       DesertSubscriber * sub = static_cast<DesertSubscriber *>(data);
-      if (!sub->has_data())
+      if (sub && !sub->has_data())
       {
         subscriptions->subscribers[i] = nullptr;
       }
@@ -668,7 +668,7 @@ rmw_ret_t rmw_wait(rmw_subscriptions_t * subscriptions, rmw_guard_conditions_t *
     {
       void * data = clients->clients[i];
       DesertClient * cli = static_cast<DesertClient *>(data);
-      if (!cli->has_data()) 
+      if (cli && !cli->has_data()) 
       {
         clients->clients[i] = nullptr;
       }
@@ -681,7 +681,7 @@ rmw_ret_t rmw_wait(rmw_subscriptions_t * subscriptions, rmw_guard_conditions_t *
     {
       void * data = services->services[i];
       DesertService * ser = static_cast<DesertService *>(data);
-      if (!ser->has_data())
+      if (ser && !ser->has_data())
       {
         services->services[i] = nullptr;
       }
@@ -694,7 +694,7 @@ rmw_ret_t rmw_wait(rmw_subscriptions_t * subscriptions, rmw_guard_conditions_t *
     {
       void * data = guard_conditions->guard_conditions[i];
       DesertGuardCondition * con = static_cast<DesertGuardCondition *>(data);
-      if (!con->get_has_triggered())
+      if (con && !con->get_has_triggered())
       {
         guard_conditions->guard_conditions[i] = nullptr;
       }
