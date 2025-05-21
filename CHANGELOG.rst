@@ -2,8 +2,8 @@
 Changelog for package rmw_desert
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.0.3 (2025-05-21)
+------------------
 * Switch to target_link_libraries for linking
 * Updated documentation
 * Changed RxStream dispatchment paradigm
