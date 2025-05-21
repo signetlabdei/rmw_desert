@@ -2,6 +2,13 @@
 Changelog for package rmw_desert
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Updated documentation
+* Changed RxStream dispatchment paradigm
+* Solved segfault on rmw_wait
+* Contributors: dcostan
+
 1.0.4 (2025-03-15)
 ------------------
 * Fixed missing discovery thread join
