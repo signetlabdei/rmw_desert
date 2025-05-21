@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.8.1)  1 AUG 2024 21:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.5.21)  21 MAY 2025 10:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -727,7 +727,32 @@ File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count344
 \l__pdf_internal_box=\box123
 )
-(./refman.aux)
+(./refman.aux
+
+LaTeX Warning: Label `namespaceDiscovery_afcd9f3f89bf54bf9ece85c7b0ca50565' mul
+tiply defined.
+
+
+LaTeX Warning: Label `namespaceDiscovery_a8e8508712d24c5486cfcb1bb3e259cda' mul
+tiply defined.
+
+
+LaTeX Warning: Label `namespaceDiscovery_a458c52fe0a64af98309f6983f84f8612' mul
+tiply defined.
+
+
+LaTeX Warning: Label `namespaceDiscovery_aa2faeb203425957638731befe3194df7' mul
+tiply defined.
+
+
+LaTeX Warning: Label `namespaceDiscovery_a51504b45d78f00a2fc9a08193ba14fdc' mul
+tiply defined.
+
+
+LaTeX Warning: Label `namespaceDiscovery_a32efd2770870ecc472c721ef7d9311ae' mul
+tiply defined.
+
+)
 \openout1 = `refman.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 183.
@@ -748,8 +773,7 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 183.
 LaTeX Font Info:    ... okay on input line 183.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 183.
 LaTeX Font Info:    ... okay on input line 183.
-
-(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+ (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count345
 \scratchdimen=\dimen268
@@ -853,17 +877,16 @@ st/fonts/enc/dvips/base/8r.enc}] [2
 
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 8.99994pt on input line 205.
+LaTeX Font Info:    Font shape `T1/phv/b/n' will be
+(Font)              scaled to size 6.29996pt on input line 205.
+ [1]
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 (Font)              scaled to size 7.19995pt on input line 205.
 LaTeX Font Info:    Trying to load font information for T1+pcr on input line 20
 5.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
-)
-LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 6.29996pt on input line 205.
-
-[1] [2] [3] [4]
+) [2] [3] [4] [5] [6]
 Package hyperref Info: Option `pageanchor' set `true' on input line 208.
 
 Chapter 1.
@@ -883,14 +906,18 @@ LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 
 ]
 Chapter 2.
-(./annotated.tex) [3] [4
+(./hierarchy.tex) [3] [4
 
 ]
 Chapter 3.
-(./files.tex) [5] [6
+(./annotated.tex) [5] [6
 
 ]
 Chapter 4.
+(./files.tex) [7] [8
+
+]
+Chapter 5.
 (./namespaceCStringHelper.tex
 LaTeX Font Info:    Trying to load font information for TS1+phv on input line 1
 1.
@@ -914,10 +941,10 @@ LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 10.79993pt on input line 37.
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <8> not available
 (Font)              Font shape `T1/pcr/m/sl' tried instead on input line 47.
- [7]
+ [9]
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <7> not available
 (Font)              Font shape `T1/pcr/m/sl' tried instead on input line 85.
- [8] [9]
+ [10] [11]
 Underfull \hbox (badness 10000) detected at line 178
 [][][]
  []
@@ -927,7 +954,7 @@ Underfull \hbox (badness 10000) detected at line 198
 [][][]
  []
 
-[10]
+[12]
 Underfull \hbox (badness 10000) detected at line 218
 [][][]
  []
@@ -937,7 +964,7 @@ Underfull \hbox (badness 10000) detected at line 238
 [][][]
  []
 
-[11]
+[13]
 Underfull \hbox (badness 10000) detected at line 260
 [][][]
  []
@@ -947,7 +974,57 @@ Underfull \hbox (badness 10000) detected at line 282
 [][][]
  []
 
-) (./namespaceMessageSerialization.tex
+) (./namespaceDiscovery.tex [14]
+Underfull \hbox (badness 10000) detected at line 86
+[][][]
+ []
+
+[15]
+Underfull \hbox (badness 10000) detected at line 106
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 126
+[][][]
+ []
+
+[16]
+Underfull \hbox (badness 10000) detected at line 146
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 166
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 186
+[][][]
+ []
+
+[17]
+Underfull \hbox (badness 10000) detected at line 223
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 243
+[][][]
+ []
+
+[18]
+Underfull \hbox (badness 10000) detected at line 263
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 285
+[][][]
+ []
+
+[19]) (./namespaceMessageSerialization.tex
 Underfull \hbox (badness 2726) in paragraph at lines 11--12
 \T1/phv/m/n/10 void [] (const INTROSPECTION[]_[][]CPP[]_[][]MEMBER $\OMS/cmsy/m
 /n/10 ^^C$\T1/phv/m/n/10 member, void $\OMS/cmsy/m/n/10 ^^C$\T1/phv/m/n/10 fiel
@@ -966,162 +1043,423 @@ Underfull \hbox (badness 2856) in paragraph at lines 19--20
 ^C$[]\T1/phv/m/n/10 , [] $\OMS/cmsy/m/n/10 ^^C$[]\T1/phv/m/n/10 , []
  []
 
-[12]
+[20]
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 7.19995pt on input line 56.
- [13] [14]) [15] [16
+ [21] [22]) [23] [24
 
 ]
-Chapter 5.
-(./classDesertClient.tex [17]
-Underfull \hbox (badness 10000) detected at line 49
-[][][]
- []
-
-) (./classDesertNode.tex [18]) (./classDesertPublisher.tex [19])
-(./classDesertService.tex [20]
-Underfull \hbox (badness 10000) detected at line 49
-[][][]
- []
-
-) (./classDesertSubscriber.tex [21]
-Underfull \hbox (badness 10000) detected at line 47
-[][][]
- []
-
-[22]) (./classDesertWaitset.tex) (./structGenericCSequence.tex)
-(./classcbor_1_1RxStream.tex [23] [24] [25] [26] [27] [28] [29])
-(./classTcpDaemon.tex [30]
-Underfull \hbox (badness 10000) detected at line 57
-[][][]
- []
-
-) (./classcbor_1_1TxStream.tex [31] [32] [33] [34] [35] [36] [37]) [38]
 Chapter 6.
+(./classCircularQueue.tex <./classCircularQueue__inherit__graph.pdf>
+<classCircularQueue__inherit__graph.pdf, id=1574, 216.81pt x 176.66pt>
+File: classCircularQueue__inherit__graph.pdf Graphic file (type pdf)
+<use classCircularQueue__inherit__graph.pdf>
+Package pdftex.def Info: classCircularQueue__inherit__graph.pdf  used on input 
+line 9.
+(pdftex.def)             Requested size: 216.0pt x 176.00992pt.
+ <./classCircularQueue__coll__graph.pdf>
+<classCircularQueue__coll__graph.pdf, id=1582, 216.81pt x 176.66pt>
+File: classCircularQueue__coll__graph.pdf Graphic file (type pdf)
+<use classCircularQueue__coll__graph.pdf>
+Package pdftex.def Info: classCircularQueue__coll__graph.pdf  used on input lin
+e 18.
+(pdftex.def)             Requested size: 216.0pt x 176.00992pt.
+ [25]) (./classDesertClient.tex [26]
+Underfull \hbox (badness 10000) detected at line 59
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 74
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 89
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 104
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 119
+[][][]
+ []
+
+[27] [28]) (./classDesertGuardCondition.tex
+Underfull \hbox (badness 10000) detected at line 30
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 45
+[][][]
+ []
+
+) (./classDesertNode.tex [29]
+Overfull \hbox (3.9776pt too wide) in paragraph at lines 3--3
+[]\T1/phv/m/sl/10 namespace[] 
+ []
+
+[30] [31]
+Underfull \hbox (badness 10000) detected at line 131
+[][][]
+ []
+
+[32]) (./classDesertPublisher.tex [33]
+Underfull \hbox (badness 10000) detected at line 53
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 68
+[][][]
+ []
+
+[34]
+Underfull \hbox (badness 10000) detected at line 83
+[][][]
+ []
+
+) (./classDesertService.tex [35]
+Underfull \hbox (badness 10000) detected at line 59
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 74
+[][][]
+ []
+
+[36]
+Underfull \hbox (badness 10000) detected at line 89
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 104
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 119
+[][][]
+ []
+
+[37]) (./classDesertSubscriber.tex [38]
+Underfull \hbox (badness 10000) detected at line 55
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 70
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 85
+[][][]
+ []
+
+[39]
+Underfull \hbox (badness 10000) detected at line 100
+[][][]
+ []
+
+) (./classDesertWaitset.tex) (./structGenericCSequence.tex)
+(./structrmw__context__impl__s.tex [40]) (./classcbor_1_1RxStream.tex [41]
+[42] [43]
+Underfull \hbox (badness 10000) detected at line 160
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 173
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 186
+[][][]
+ []
+
+[44] [45] [46] [47] [48]) (./classTcpDaemon.tex [49]
+Underfull \hbox (badness 10000) detected at line 64
+[][][]
+ []
+
+) (./classTopicsConfig.tex
+LaTeX Font Info:    Font shape `TS1/phv/m/it' in size <9> not available
+(Font)              Font shape `TS1/phv/m/sl' tried instead on input line 9.
+LaTeX Font Info:    Font shape `TS1/phv/m/sl' will be
+(Font)              scaled to size 8.09995pt on input line 9.
+
+Underfull \hbox (badness 10000) detected at line 27
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 42
+[][][]
+ []
+
+[50]) (./classcbor_1_1TxStream.tex [51] [52]
+Overfull \vbox (7.87244pt too high) has occurred while \output is active []
+
+
+[53] [54] [55] [56] [57]) [58]
+Chapter 7.
 (./CBorStream_8h.tex <./CBorStream_8h__incl.pdf>
-<CBorStream_8h__incl.pdf, id=1422, 754.82pt x 165.61874pt>
+<CBorStream_8h__incl.pdf, id=2148, 859.21pt x 220.825pt>
 File: CBorStream_8h__incl.pdf Graphic file (type pdf)
 <use CBorStream_8h__incl.pdf>
-Package pdftex.def Info: CBorStream_8h__incl.pdf  used on input line 19.
-(pdftex.def)             Requested size: 350.0pt x 76.79457pt.
+Package pdftex.def Info: CBorStream_8h__incl.pdf  used on input line 20.
+(pdftex.def)             Requested size: 350.0pt x 89.95253pt.
  <./CBorStream_8h__dep__incl.pdf>
-<CBorStream_8h__dep__incl.pdf, id=1430, 566.115pt x 242.9075pt>
+<CBorStream_8h__dep__incl.pdf, id=2163, 705.63625pt x 309.155pt>
 File: CBorStream_8h__dep__incl.pdf Graphic file (type pdf)
 <use CBorStream_8h__dep__incl.pdf>
-Package pdftex.def Info: CBorStream_8h__dep__incl.pdf  used on input line 26.
-(pdftex.def)             Requested size: 350.0pt x 150.18225pt.
- [39
+Package pdftex.def Info: CBorStream_8h__dep__incl.pdf  used on input line 27.
+(pdftex.def)             Requested size: 350.0pt x 153.34117pt.
+ [59
 
 ]
-Underfull \hbox (badness 10000) detected at line 61
+Underfull \hbox (badness 10000) detected at line 64
 [][][]
  []
 
-) (./CBorStream_8h_source.tex [40] [41]) (./CStringHelper_8h.tex <./CStringHelp
-er_8h__dep__incl.pdf>
-<CStringHelper_8h__dep__incl.pdf, id=1547, 566.115pt x 242.9075pt>
+) (./CBorStream_8h_source.tex [60] [61] [62]) (./CStringHelper_8h.tex <./CStrin
+gHelper_8h__dep__incl.pdf>
+<CStringHelper_8h__dep__incl.pdf, id=2295, 566.115pt x 309.155pt>
 File: CStringHelper_8h__dep__incl.pdf Graphic file (type pdf)
 <use CStringHelper_8h__dep__incl.pdf>
 Package pdftex.def Info: CStringHelper_8h__dep__incl.pdf  used on input line 12
 .
-(pdftex.def)             Requested size: 350.0pt x 150.18225pt.
- [42]
+(pdftex.def)             Requested size: 350.0pt x 191.14105pt.
+ [63]
 Underfull \hbox (badness 879) in paragraph at lines 37--38
 []\T1/phv/m/n/10 void [] (std[]::vector$\OML/cmm/m/it/10 <$ \T1/phv/m/n/10 std[
 ]::string $\OML/cmm/m/it/10 >$ \T1/phv/m/n/10 cpp[]_[]string[]_[]vector, void $
 \OMS/cmsy/m/n/10 ^^C$\T1/phv/m/n/10 str[]_[]array,
  []
 
-[43]
+
 Underfull \hbox (badness 10000) detected at line 54
 [][][]
  []
 
-) (./CStringHelper_8h_source.tex) (./DesertClient_8h.tex <./DesertClient_8h__in
+) (./CStringHelper_8h_source.tex [64]) (./demangle_8h.tex <./demangle_8h__incl.
+pdf>
+<demangle_8h__incl.pdf, id=2343, 859.21pt x 276.03125pt>
+File: demangle_8h__incl.pdf Graphic file (type pdf)
+<use demangle_8h__incl.pdf>
+Package pdftex.def Info: demangle_8h__incl.pdf  used on input line 13.
+(pdftex.def)             Requested size: 350.0pt x 112.44066pt.
+ <./demangle_8h__dep__incl.pdf>
+<demangle_8h__dep__incl.pdf, id=2359, 186.6975pt x 242.9075pt>
+File: demangle_8h__dep__incl.pdf Graphic file (type pdf)
+<use demangle_8h__dep__incl.pdf>
+Package pdftex.def Info: demangle_8h__dep__incl.pdf  used on input line 20.
+(pdftex.def)             Requested size: 186.0pt x 242.00992pt.
+ [65]
+pdfTeX warning (ext4): destination with the same identifier (name{namespaceDisc
+overy_afcd9f3f89bf54bf9ece85c7b0ca50565}) has been already used, duplicate igno
+red
+<to be read again> 
+                   \relax 
+l.31 ...scovery_afcd9f3f89bf54bf9ece85c7b0ca50565}
+                                                  \label{namespaceDiscovery_...
+
+pdfTeX warning (ext4): destination with the same identifier (name{namespaceDisc
+overy_a8e8508712d24c5486cfcb1bb3e259cda}) has been already used, duplicate igno
+red
+<to be read again> 
+                   \relax 
+l.37 ...scovery_a8e8508712d24c5486cfcb1bb3e259cda}
+                                                  \label{namespaceDiscovery_...
+
+pdfTeX warning (ext4): destination with the same identifier (name{namespaceDisc
+overy_a458c52fe0a64af98309f6983f84f8612}) has been already used, duplicate igno
+red
+<to be read again> 
+                   \relax 
+l.59 ...scovery_a458c52fe0a64af98309f6983f84f8612}
+                                                  \label{namespaceDiscovery_...
+
+pdfTeX warning (ext4): destination with the same identifier (name{namespaceDisc
+overy_aa2faeb203425957638731befe3194df7}) has been already used, duplicate igno
+red
+<to be read again> 
+                   \relax 
+l.62 ...scovery_aa2faeb203425957638731befe3194df7}
+                                                  \label{namespaceDiscovery_...
+
+pdfTeX warning (ext4): destination with the same identifier (name{namespaceDisc
+overy_a51504b45d78f00a2fc9a08193ba14fdc}) has been already used, duplicate igno
+red
+<to be read again> 
+                   \relax 
+l.65 ...scovery_a51504b45d78f00a2fc9a08193ba14fdc}
+                                                  \label{namespaceDiscovery_...
+[66]
+pdfTeX warning (ext4): destination with the same identifier (name{namespaceDisc
+overy_a32efd2770870ecc472c721ef7d9311ae}) has been already used, duplicate igno
+red
+<to be read again> 
+                   \relax 
+l.68 ...scovery_a32efd2770870ecc472c721ef7d9311ae}
+                                                  \label{namespaceDiscovery_...
+
+Underfull \hbox (badness 10000) detected at line 78
+[][][]
+ []
+
+) (./demangle_8h_source.tex [67]) (./DesertClient_8h.tex <./DesertClient_8h__in
 cl.pdf>
-<DesertClient_8h__incl.pdf, id=1595, 754.82pt x 276.03125pt>
+<DesertClient_8h__incl.pdf, id=2409, 859.21pt x 331.2375pt>
 File: DesertClient_8h__incl.pdf Graphic file (type pdf)
 <use DesertClient_8h__incl.pdf>
 Package pdftex.def Info: DesertClient_8h__incl.pdf  used on input line 14.
-(pdftex.def)             Requested size: 350.0pt x 127.99097pt.
- [44]
-Underfull \hbox (badness 10000) detected at line 29
+(pdftex.def)             Requested size: 350.0pt x 134.9288pt.
+ <./DesertClient_8h__dep__incl.pdf>
+<DesertClient_8h__dep__incl.pdf, id=2424, 186.6975pt x 176.66pt>
+File: DesertClient_8h__dep__incl.pdf Graphic file (type pdf)
+<use DesertClient_8h__dep__incl.pdf>
+Package pdftex.def Info: DesertClient_8h__dep__incl.pdf  used on input line 21.
+
+(pdftex.def)             Requested size: 186.0pt x 176.00722pt.
+ [68]
+Underfull \hbox (badness 10000) detected at line 36
 [][][]
  []
 
-) (./DesertClient_8h_source.tex [45]) (./DesertNode_8h.tex
+) (./DesertClient_8h_source.tex [69]) (./DesertGuardCondition_8h.tex
 Underfull \hbox (badness 10000) detected at line 20
 [][][]
  []
 
-) (./DesertNode_8h_source.tex [46]) (./DesertPublisher_8h.tex <./DesertPublishe
-r_8h__incl.pdf>
-<DesertPublisher_8h__incl.pdf, id=1638, 754.82pt x 276.03125pt>
+) (./DesertGuardCondition_8h_source.tex [70]) (./DesertNode_8h.tex <./DesertNod
+e_8h__incl.pdf>
+<DesertNode_8h__incl.pdf, id=2476, 1262.7175pt x 386.44376pt>
+File: DesertNode_8h__incl.pdf Graphic file (type pdf)
+<use DesertNode_8h__incl.pdf>
+Package pdftex.def Info: DesertNode_8h__incl.pdf  used on input line 19.
+(pdftex.def)             Requested size: 350.0pt x 107.11263pt.
+
+Underfull \hbox (badness 10000) detected at line 34
+[][][]
+ []
+
+) (./DesertNode_8h_source.tex [71]) (./DesertPublisher_8h.tex [72] <./DesertPub
+lisher_8h__incl.pdf>
+<DesertPublisher_8h__incl.pdf, id=2536, 859.21pt x 331.2375pt>
 File: DesertPublisher_8h__incl.pdf Graphic file (type pdf)
 <use DesertPublisher_8h__incl.pdf>
 Package pdftex.def Info: DesertPublisher_8h__incl.pdf  used on input line 14.
-(pdftex.def)             Requested size: 350.0pt x 127.99097pt.
- [47]
-Underfull \hbox (badness 10000) detected at line 29
+(pdftex.def)             Requested size: 350.0pt x 134.9288pt.
+ <./DesertPublisher_8h__dep__incl.pdf>
+<DesertPublisher_8h__dep__incl.pdf, id=2551, 186.6975pt x 176.66pt>
+File: DesertPublisher_8h__dep__incl.pdf Graphic file (type pdf)
+<use DesertPublisher_8h__dep__incl.pdf>
+Package pdftex.def Info: DesertPublisher_8h__dep__incl.pdf  used on input line 
+21.
+(pdftex.def)             Requested size: 186.0pt x 176.00722pt.
+
+Underfull \hbox (badness 10000) detected at line 36
 [][][]
  []
 
-) (./DesertPublisher_8h_source.tex) (./DesertService_8h.tex [48] <./DesertServi
+) (./DesertPublisher_8h_source.tex [73]) (./DesertService_8h.tex <./DesertServi
 ce_8h__incl.pdf>
-<DesertService_8h__incl.pdf, id=1668, 754.82pt x 276.03125pt>
+<DesertService_8h__incl.pdf, id=2580, 859.21pt x 331.2375pt>
 File: DesertService_8h__incl.pdf Graphic file (type pdf)
 <use DesertService_8h__incl.pdf>
 Package pdftex.def Info: DesertService_8h__incl.pdf  used on input line 14.
-(pdftex.def)             Requested size: 350.0pt x 127.99097pt.
+(pdftex.def)             Requested size: 350.0pt x 134.9288pt.
+ [74] <./DesertService_8h__dep__incl.pdf>
+<DesertService_8h__dep__incl.pdf, id=2600, 186.6975pt x 176.66pt>
+File: DesertService_8h__dep__incl.pdf Graphic file (type pdf)
+<use DesertService_8h__dep__incl.pdf>
+Package pdftex.def Info: DesertService_8h__dep__incl.pdf  used on input line 21
+.
+(pdftex.def)             Requested size: 186.0pt x 176.00722pt.
 
-Underfull \hbox (badness 10000) detected at line 29
+Underfull \hbox (badness 10000) detected at line 36
 [][][]
  []
 
-) (./DesertService_8h_source.tex [49]) (./DesertSubscriber_8h.tex <./DesertSubs
-criber_8h__incl.pdf>
-<DesertSubscriber_8h__incl.pdf, id=1697, 754.82pt x 276.03125pt>
+) (./DesertService_8h_source.tex [75]) (./DesertSubscriber_8h.tex [76] <./Deser
+tSubscriber_8h__incl.pdf>
+<DesertSubscriber_8h__incl.pdf, id=2637, 859.21pt x 331.2375pt>
 File: DesertSubscriber_8h__incl.pdf Graphic file (type pdf)
 <use DesertSubscriber_8h__incl.pdf>
 Package pdftex.def Info: DesertSubscriber_8h__incl.pdf  used on input line 14.
-(pdftex.def)             Requested size: 350.0pt x 127.99097pt.
- [50]
-Underfull \hbox (badness 10000) detected at line 29
+(pdftex.def)             Requested size: 350.0pt x 134.9288pt.
+ <./DesertSubscriber_8h__dep__incl.pdf>
+<DesertSubscriber_8h__dep__incl.pdf, id=2652, 191.71625pt x 176.66pt>
+File: DesertSubscriber_8h__dep__incl.pdf Graphic file (type pdf)
+<use DesertSubscriber_8h__dep__incl.pdf>
+Package pdftex.def Info: DesertSubscriber_8h__dep__incl.pdf  used on input line
+ 21.
+(pdftex.def)             Requested size: 191.0pt x 176.00992pt.
+
+Underfull \hbox (badness 10000) detected at line 36
 [][][]
  []
 
-) (./DesertSubscriber_8h_source.tex [51]) (./DesertWaitSet_8h.tex
+) (./DesertSubscriber_8h_source.tex [77]) (./DesertWaitSet_8h.tex [78]
 Underfull \hbox (badness 10000) detected at line 20
 [][][]
  []
 
-) (./DesertWaitSet_8h_source.tex) (./macros_8h.tex [52] <./macros_8h__dep__incl
-.pdf>
-<macros_8h__dep__incl.pdf, id=1738, 566.115pt x 242.9075pt>
+) (./DesertWaitSet_8h_source.tex) (./Discovery_8h.tex <./Discovery_8h__incl.pdf
+>
+<Discovery_8h__incl.pdf, id=2692, 859.21pt x 331.2375pt>
+File: Discovery_8h__incl.pdf Graphic file (type pdf)
+<use Discovery_8h__incl.pdf>
+Package pdftex.def Info: Discovery_8h__incl.pdf  used on input line 19.
+(pdftex.def)             Requested size: 350.0pt x 134.9288pt.
+ [79] <./Discovery_8h__dep__incl.pdf>
+<Discovery_8h__dep__incl.pdf, id=2713, 186.6975pt x 176.66pt>
+File: Discovery_8h__dep__incl.pdf Graphic file (type pdf)
+<use Discovery_8h__dep__incl.pdf>
+Package pdftex.def Info: Discovery_8h__dep__incl.pdf  used on input line 26.
+(pdftex.def)             Requested size: 186.0pt x 176.00722pt.
+ [80]
+Underfull \hbox (badness 10000) detected at line 54
+[][][]
+ []
+
+) (./Discovery_8h_source.tex) (./macros_8h.tex <./macros_8h__dep__incl.pdf>
+<macros_8h__dep__incl.pdf, id=2750, 566.115pt x 309.155pt>
 File: macros_8h__dep__incl.pdf Graphic file (type pdf)
 <use macros_8h__dep__incl.pdf>
 Package pdftex.def Info: macros_8h__dep__incl.pdf  used on input line 12.
-(pdftex.def)             Requested size: 350.0pt x 150.18225pt.
+(pdftex.def)             Requested size: 350.0pt x 191.14105pt.
 
+[81]
 Underfull \hbox (badness 10000) detected at line 27
 [][][]
  []
 
-) (./macros_8h_source.tex [53]) (./MessageSerialization_8h.tex <./MessageSerial
+) (./macros_8h_source.tex [82]) (./MessageSerialization_8h.tex <./MessageSerial
 ization_8h__incl.pdf>
-<MessageSerialization_8h__incl.pdf, id=1758, 754.82pt x 220.825pt>
+<MessageSerialization_8h__incl.pdf, id=2775, 859.21pt x 276.03125pt>
 File: MessageSerialization_8h__incl.pdf Graphic file (type pdf)
 <use MessageSerialization_8h__incl.pdf>
 Package pdftex.def Info: MessageSerialization_8h__incl.pdf  used on input line 
 15.
-(pdftex.def)             Requested size: 350.0pt x 102.39278pt.
- [54] <./MessageSerialization_8h__dep__incl.pdf>
-<MessageSerialization_8h__dep__incl.pdf, id=1771, 566.115pt x 176.66pt>
+(pdftex.def)             Requested size: 350.0pt x 112.44066pt.
+ [83] <./MessageSerialization_8h__dep__incl.pdf>
+<MessageSerialization_8h__dep__incl.pdf, id=2797, 566.115pt x 242.9075pt>
 File: MessageSerialization_8h__dep__incl.pdf Graphic file (type pdf)
 <use MessageSerialization_8h__dep__incl.pdf>
 Package pdftex.def Info: MessageSerialization_8h__dep__incl.pdf  used on input 
 line 22.
-(pdftex.def)             Requested size: 350.0pt x 109.22345pt.
+(pdftex.def)             Requested size: 350.0pt x 150.18225pt.
 
 Underfull \hbox (badness 10000) in paragraph at lines 46--48
 []\T1/phv/m/n/10 #define \T1/phv/b/n/10 INTROSPECTION[]_[][]C[]_[][]SERVICE[]_[
@@ -1143,48 +1481,85 @@ Underfull \hbox (badness 853) in paragraph at lines 56--57
 
  []
 
-[55]
+[84]
 Underfull \hbox (badness 10000) detected at line 73
 [][][]
  []
 
-) (./MessageSerialization_8h_source.tex [56] [57] [58] [59] [60])
-(./TcpDaemon_8h.tex <./TcpDaemon_8h__dep__incl.pdf>
-<TcpDaemon_8h__dep__incl.pdf, id=2156, 566.115pt x 309.155pt>
-File: TcpDaemon_8h__dep__incl.pdf Graphic file (type pdf)
-<use TcpDaemon_8h__dep__incl.pdf>
-Package pdftex.def Info: TcpDaemon_8h__dep__incl.pdf  used on input line 12.
-(pdftex.def)             Requested size: 350.0pt x 191.14105pt.
- [61]
-Underfull \hbox (badness 10000) detected at line 42
+) (./MessageSerialization_8h_source.tex [85] [86] [87] [88] [89])
+(./rmw__context__impl__s_8h.tex <./rmw__context__impl__s_8h__dep__incl.pdf>
+<rmw__context__impl__s_8h__dep__incl.pdf, id=3181, 210.7875pt x 242.9075pt>
+File: rmw__context__impl__s_8h__dep__incl.pdf Graphic file (type pdf)
+<use rmw__context__impl__s_8h__dep__incl.pdf>
+Package pdftex.def Info: rmw__context__impl__s_8h__dep__incl.pdf  used on input
+ line 12.
+(pdftex.def)             Requested size: 210.0pt x 242.00621pt.
+
+[90]
+Underfull \hbox (badness 10000) detected at line 27
 [][][]
  []
 
-) (./TcpDaemon_8h_source.tex) [62] (./refman.ind
+) (./rmw__context__impl__s_8h_source.tex) (./TcpDaemon_8h.tex <./TcpDaemon_8h__
+dep__incl.pdf>
+<TcpDaemon_8h__dep__incl.pdf, id=3201, 705.63625pt x 375.4025pt>
+File: TcpDaemon_8h__dep__incl.pdf Graphic file (type pdf)
+<use TcpDaemon_8h__dep__incl.pdf>
+Package pdftex.def Info: TcpDaemon_8h__dep__incl.pdf  used on input line 12.
+(pdftex.def)             Requested size: 350.0pt x 186.2pt.
+ [91]
+Underfull \hbox (badness 10000) detected at line 45
+[][][]
+ []
+
+) (./TcpDaemon_8h_source.tex [92]) (./TopicsConfig_8h.tex <./TopicsConfig_8h__i
+ncl.pdf>
+<TopicsConfig_8h__incl.pdf, id=3235, 186.6975pt x 165.61874pt>
+File: TopicsConfig_8h__incl.pdf Graphic file (type pdf)
+<use TopicsConfig_8h__incl.pdf>
+Package pdftex.def Info: TopicsConfig_8h__incl.pdf  used on input line 13.
+(pdftex.def)             Requested size: 186.0pt x 165.00676pt.
+ [93] <./TopicsConfig_8h__dep__incl.pdf>
+<TopicsConfig_8h__dep__incl.pdf, id=3255, 734.745pt x 375.4025pt>
+File: TopicsConfig_8h__dep__incl.pdf Graphic file (type pdf)
+<use TopicsConfig_8h__dep__incl.pdf>
+Package pdftex.def Info: TopicsConfig_8h__dep__incl.pdf  used on input line 20.
+
+(pdftex.def)             Requested size: 350.0pt x 178.82784pt.
+
+Underfull \hbox (badness 10000) detected at line 35
+[][][]
+ []
+
+) (./TopicsConfig_8h_source.tex [94]) [95] [96
+
+] (./refman.ind
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 (Font)              scaled to size 22.39185pt on input line 1.
- [63
+ [97
 
 
-
-] [64
-
-]) (./refman.aux)
+] [98]
+[99]) (./refman.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
+
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package rerunfilecheck Info: File `refman.out' has not changed.
-(rerunfilecheck)             Checksum: AB8A4EB8BB897CE0561D6D81279B8ECA;33898.
+(rerunfilecheck)             Checksum: F5822421F18BFE1E866A8EF75507849D;51388.
  ) 
 Here is how much of TeX's memory you used:
- 18920 strings out of 476182
- 311772 string characters out of 5795596
- 1959975 words of memory out of 5000000
- 40057 multiletter control sequences out of 15000+600000
- 617585 words of font info for 114 fonts, out of 8000000 for 9000
+ 19589 strings out of 476182
+ 331217 string characters out of 5795595
+ 1956975 words of memory out of 5000000
+ 40449 multiletter control sequences out of 15000+600000
+ 617936 words of font info for 115 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 101i,16n,117p,1263b,744s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 101i,16n,117p,1263b,754s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texli
@@ -1198,10 +1573,10 @@ sr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/tex
 live/texmf-dist/fonts/type1/urw/helvetic/uhvb8ac.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/t
 ype1/urw/helvetic/uhvro8a.pfb>
-Output written on refman.pdf (70 pages, 385564 bytes).
+Output written on refman.pdf (107 pages, 614476 bytes).
 PDF statistics:
- 2482 PDF objects out of 2487 (max. 8388607)
- 2319 compressed objects within 24 object streams
- 454 named destinations out of 1000 (max. 500000)
- 1256 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 3754 PDF objects out of 4296 (max. 8388607)
+ 3458 compressed objects within 35 object streams
+ 692 named destinations out of 1000 (max. 500000)
+ 1934 words of extra memory for PDF output out of 10000 (max. 10000000)
 
