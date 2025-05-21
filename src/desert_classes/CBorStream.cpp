@@ -193,11 +193,23 @@ RxStream::RxStream(uint8_t stream_type, std::string stream_name, uint8_t stream_
       , _stream_name(stream_name)
       , _stream_identifier(stream_identifier)
 {
+  _listening_streams.push_back(this);
 }
 
-std::map<uint32_t, CircularQueue<std::vector<std::pair<void *, int>>, MAX_BUFFER_CAPACITY>> RxStream::_interpreted_publications;
-std::map<uint32_t, CircularQueue<std::vector<std::pair<void *, int>>, MAX_BUFFER_CAPACITY>> RxStream::_interpreted_requests;
-std::map<uint32_t, CircularQueue<std::vector<std::pair<void *, int>>, MAX_BUFFER_CAPACITY>> RxStream::_interpreted_responses;
+RxStream::~RxStream()
+{
+  std::vector<RxStream *>::iterator position = std::find(_listening_streams.begin(), _listening_streams.end(), this);
+  if (position != _listening_streams.end())
+    _listening_streams.erase(position);
+}
+
+const std::map<int, int> RxStream::_stream_type_match_map = {
+  { PUBLISHER_TYPE, SUBSCRIBER_TYPE },
+  { CLIENT_TYPE,    SERVICE_TYPE    },
+  { SERVICE_TYPE,   CLIENT_TYPE     }
+};
+
+std::vector<RxStream *> RxStream::_listening_streams;
 
 std::mutex RxStream::_rx_mutex;
 
@@ -208,49 +220,37 @@ bool RxStream::data_available(int64_t sequence_id)
     return true;
   
   // No buffered packets, go on checking for other ones
-  bool available = false;
-  std::map<uint32_t, CircularQueue<std::vector<std::pair<void *, int>>, MAX_BUFFER_CAPACITY>>::iterator packets_iterator;
+  if (_received_packets.size() == 0)
+    return false;
   
-  switch (_stream_type)
+  // The received packets queue is not empty, so examine it
+  if (sequence_id)
   {
-    case SUBSCRIBER_TYPE:
-      packets_iterator = _interpreted_publications.find(_stream_identifier);
-      available = (packets_iterator != _interpreted_publications.end());
-      break;
-    case SERVICE_TYPE:
-      packets_iterator = _interpreted_requests.find(_stream_identifier);
-      available = (packets_iterator != _interpreted_requests.end());
-      break;
-    case CLIENT_TYPE:
-      packets_iterator = _interpreted_responses.find(_stream_identifier + ((sequence_id & 0xFFF) << 8));
-      available = (packets_iterator != _interpreted_responses.end());
-      break;
-  }
-  
-  // NOTE For services the first reading is the sequence identifier while for clients its merged in the key
-  //      so subscribers and services receive all packets, while clients receive only the ones with their sequence id
-  
-  if (available)
-  {
-    if (packets_iterator->second.size() > 0)
+    for (size_t i = 0; i < _received_packets.size(); i++)
     {
-      _buffered_packet = packets_iterator->second.front();
-      packets_iterator->second.pop();
-      _buffered_iterator = 0;
+      // Check for the first element in the packet, which is the sequence id
+      if (*static_cast<int64_t *>(_received_packets.front().at(0).first) == sequence_id)
+      {
+        _buffered_packet = _received_packets.front();
+        _received_packets.pop();
+        _buffered_iterator = 1;
+        return true;
+      }
+      else
+      {
+        _received_packets.push(_received_packets.front());
+        _received_packets.pop();
+      }
     }
-    else
-    {
-      clear_buffer();
-      available = false;
-    }
+    return false;
   }
   else
   {
-    clear_buffer();
-    available = false;
+    _buffered_packet = _received_packets.front();
+    _received_packets.pop();
+    _buffered_iterator = 0;
+    return true;
   }
-  
-  return available;
 }
 
 void RxStream::clear_buffer()
@@ -383,6 +383,26 @@ RxStream & RxStream::operator>>(std::vector<bool> & v)
   return *this;
 }
 
+uint8_t RxStream::get_type() const
+{
+  return _stream_type;
+}
+
+std::string RxStream::get_name() const
+{
+  return _stream_name;
+}
+
+uint8_t RxStream::get_identifier() const
+{
+  return _stream_identifier;
+}
+
+void RxStream::push_packet(std::vector<std::pair<void *, int>> packet)
+{
+  _received_packets.push(packet);
+}
+
 void RxStream::interpret_packets()
 {
   std::lock_guard<std::mutex> lock(_rx_mutex);
@@ -400,7 +420,6 @@ void RxStream::interpret_packets()
     cbor_parse(&reader, buffer, packet.size(), &n);
     
     uint8_t stream_type;
-    int64_t sequence_id;
     uint8_t stream_identifier;
     std::string stream_name;
     
@@ -427,10 +446,6 @@ void RxStream::interpret_packets()
           break;
         }
       }
-      else if (i == 2 && stream_type == SERVICE_TYPE)
-      {
-        sequence_id = val.i64;
-      }
       else
       {
         std::pair<void *, int> field = interpret_field(items, i, val);
@@ -447,17 +462,12 @@ void RxStream::interpret_packets()
       continue;
     }
     
-    switch (stream_type)
+    for (RxStream * stream : _listening_streams)
     {
-      case PUBLISHER_TYPE:
-        _interpreted_publications[stream_identifier].push(interpreted_packet);
-        break;
-      case CLIENT_TYPE:
-        _interpreted_requests[stream_identifier].push(interpreted_packet);
-        break;
-      case SERVICE_TYPE:
-        _interpreted_responses[stream_identifier + ((sequence_id & 0xFFF) << 8)].push(interpreted_packet);
-        break;
+      if (stream->get_type() == _stream_type_match_map.at(stream_type) && stream->get_identifier() == stream_identifier)
+      {
+        stream->push_packet(interpreted_packet);
+      }
     }
   }
 }

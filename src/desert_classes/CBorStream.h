@@ -252,6 +252,8 @@ class RxStream
     */
     RxStream(uint8_t stream_type, std::string stream_name, uint8_t stream_identifier);
     
+    ~RxStream();
+    
    /**
     * @brief Check if there are data
     *
@@ -385,6 +387,11 @@ class RxStream
       return *this;
     }
     
+    uint8_t get_type() const;
+    std::string get_name() const;
+    uint8_t get_identifier() const;
+    void push_packet(std::vector<std::pair<void *, int>> packet);
+    
    /**
     * @brief Interpret raw packets and splits them into different communication types
     *
@@ -399,15 +406,14 @@ class RxStream
     std::string _stream_name;
     uint8_t _stream_identifier;
     
-    int _buffered_iterator;
-    std::vector<std::pair<void *, int>> _buffered_packet;
+    size_t _buffered_iterator;
     
-    // <topic, packets <packet <field, field_type>>>
-    static std::map<uint32_t, CircularQueue<std::vector<std::pair<void *, int>>, MAX_BUFFER_CAPACITY>> _interpreted_publications;
-    // <service, packets <packet <field, field_type>>>
-    static std::map<uint32_t, CircularQueue<std::vector<std::pair<void *, int>>, MAX_BUFFER_CAPACITY>> _interpreted_requests;
-    // <service + id, packets <packet <field, field_type>>>
-    static std::map<uint32_t, CircularQueue<std::vector<std::pair<void *, int>>, MAX_BUFFER_CAPACITY>> _interpreted_responses;
+    // packets: <packet <field, field_type>>
+    std::vector<std::pair<void *, int>> _buffered_packet;
+    CircularQueue<std::vector<std::pair<void *, int>>, MAX_BUFFER_CAPACITY> _received_packets;
+    
+    static const std::map<int, int> _stream_type_match_map;
+    static std::vector<RxStream *> _listening_streams;
     
     union _cbor_value {
 	int8_t i8;
