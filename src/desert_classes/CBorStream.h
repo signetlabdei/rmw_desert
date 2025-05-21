@@ -252,6 +252,9 @@ class RxStream
     */
     RxStream(uint8_t stream_type, std::string stream_name, uint8_t stream_identifier);
     
+   /**
+    * @brief Destroy the reception stream
+    */
     ~RxStream();
     
    /**
@@ -387,9 +390,32 @@ class RxStream
       return *this;
     }
     
+    
+   /**
+    * @brief Get the stream type of a specific instance
+    * @return Type of the stream
+    */
     uint8_t get_type() const;
+   /**
+    * @brief Get the topic name of a specific instance
+    * @return Topic name of the stream
+    */
     std::string get_name() const;
+   /**
+    * @brief Get the stream identifier of a specific instance
+    * @return Topic identifier of the stream
+    */
     uint8_t get_identifier() const;
+    
+   /**
+    * @brief Add a packet to _received_packets
+    *
+    * When interpret_packets() is called is read all the currently active RxStream
+    * instances, and uses this function to enqueue a packet if the stream matches the
+    * type and the topic.
+    *
+    * @param packet The packet to add
+    */
     void push_packet(std::vector<std::pair<void *, int>> packet);
     
    /**

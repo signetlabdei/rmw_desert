@@ -87,6 +87,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a69c580c78b5cf3cab873d750ba2afc50" id="r_a69c580c78b5cf3cab873d750ba2afc50"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcbor_1_1RxStream.html#a69c580c78b5cf3cab873d750ba2afc50">RxStream</a> (uint8_t stream_type, std::string stream_name, uint8_t stream_identifier)</td></tr>
 <tr class="memdesc:a69c580c78b5cf3cab873d750ba2afc50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a reception stream.  <br /></td></tr>
 <tr class="separator:a69c580c78b5cf3cab873d750ba2afc50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13ecba4aa494f6a5d04cb41d924c5f61" id="r_a13ecba4aa494f6a5d04cb41d924c5f61"><td class="memItemLeft" align="right" valign="top"><a id="a13ecba4aa494f6a5d04cb41d924c5f61" name="a13ecba4aa494f6a5d04cb41d924c5f61"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>~RxStream</b> ()</td></tr>
+<tr class="memdesc:a13ecba4aa494f6a5d04cb41d924c5f61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy the reception stream. <br /></td></tr>
+<tr class="separator:a13ecba4aa494f6a5d04cb41d924c5f61"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7dde7a85f3cc8d9ad63aa78a13e767cb" id="r_a7dde7a85f3cc8d9ad63aa78a13e767cb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcbor_1_1RxStream.html#a7dde7a85f3cc8d9ad63aa78a13e767cb">data_available</a> (int64_t sequence_id=0)</td></tr>
 <tr class="memdesc:a7dde7a85f3cc8d9ad63aa78a13e767cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if there are data.  <br /></td></tr>
 <tr class="separator:a7dde7a85f3cc8d9ad63aa78a13e767cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -150,6 +154,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:acc473d3c4bccaf501d307a7756cc3740"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classcbor_1_1RxStream.html">RxStream</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classcbor_1_1RxStream.html#acc473d3c4bccaf501d307a7756cc3740">deserialize_sequence</a> (T *items, size_t size)</td></tr>
 <tr class="memdesc:acc473d3c4bccaf501d307a7756cc3740"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deserialize a sequence of uniform elements.  <br /></td></tr>
 <tr class="separator:acc473d3c4bccaf501d307a7756cc3740"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd4d09d2b198fadf94126450a439603f" id="r_abd4d09d2b198fadf94126450a439603f"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcbor_1_1RxStream.html#abd4d09d2b198fadf94126450a439603f">get_type</a> () const</td></tr>
+<tr class="memdesc:abd4d09d2b198fadf94126450a439603f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the stream type of a specific instance.  <br /></td></tr>
+<tr class="separator:abd4d09d2b198fadf94126450a439603f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a2637c83004cc67dca29625262750bc" id="r_a4a2637c83004cc67dca29625262750bc"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcbor_1_1RxStream.html#a4a2637c83004cc67dca29625262750bc">get_name</a> () const</td></tr>
+<tr class="memdesc:a4a2637c83004cc67dca29625262750bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the topic name of a specific instance.  <br /></td></tr>
+<tr class="separator:a4a2637c83004cc67dca29625262750bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84a874b160cc90c5e32810e6fc4762a1" id="r_a84a874b160cc90c5e32810e6fc4762a1"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcbor_1_1RxStream.html#a84a874b160cc90c5e32810e6fc4762a1">get_identifier</a> () const</td></tr>
+<tr class="memdesc:a84a874b160cc90c5e32810e6fc4762a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the stream identifier of a specific instance.  <br /></td></tr>
+<tr class="separator:a84a874b160cc90c5e32810e6fc4762a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abebfd5661a7348fca029b1a21bfa03c4" id="r_abebfd5661a7348fca029b1a21bfa03c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcbor_1_1RxStream.html#abebfd5661a7348fca029b1a21bfa03c4">push_packet</a> (std::vector&lt; std::pair&lt; void *, int &gt; &gt; packet)</td></tr>
+<tr class="memdesc:abebfd5661a7348fca029b1a21bfa03c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a packet to _received_packets.  <br /></td></tr>
+<tr class="separator:abebfd5661a7348fca029b1a21bfa03c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -322,6 +338,66 @@ template&lt;typename T &gt; </div>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a84a874b160cc90c5e32810e6fc4762a1" name="a84a874b160cc90c5e32810e6fc4762a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84a874b160cc90c5e32810e6fc4762a1">&#9670;&#160;</a></span>get_identifier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t cbor::RxStream::get_identifier </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the stream identifier of a specific instance. </p>
+<dl class="section return"><dt>Returns</dt><dd>Topic identifier of the stream </dd></dl>
+
+</div>
+</div>
+<a id="a4a2637c83004cc67dca29625262750bc" name="a4a2637c83004cc67dca29625262750bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a2637c83004cc67dca29625262750bc">&#9670;&#160;</a></span>get_name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string cbor::RxStream::get_name </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the topic name of a specific instance. </p>
+<dl class="section return"><dt>Returns</dt><dd>Topic name of the stream </dd></dl>
+
+</div>
+</div>
+<a id="abd4d09d2b198fadf94126450a439603f" name="abd4d09d2b198fadf94126450a439603f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd4d09d2b198fadf94126450a439603f">&#9670;&#160;</a></span>get_type()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t cbor::RxStream::get_type </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the stream type of a specific instance. </p>
+<dl class="section return"><dt>Returns</dt><dd>Type of the stream </dd></dl>
 
 </div>
 </div>
@@ -773,6 +849,33 @@ template&lt;typename T &gt; </div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">n</td><td>Field to decode </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="abebfd5661a7348fca029b1a21bfa03c4" name="abebfd5661a7348fca029b1a21bfa03c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abebfd5661a7348fca029b1a21bfa03c4">&#9670;&#160;</a></span>push_packet()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cbor::RxStream::push_packet </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; std::pair&lt; void *, int &gt; &gt;&#160;</td>
+          <td class="paramname"><em>packet</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add a packet to _received_packets. </p>
+<p>When <a class="el" href="classcbor_1_1RxStream.html#a51fd2cb5fd15348118c4107beb3d7ad8" title="Interpret raw packets and splits them into different communication types.">interpret_packets()</a> is called is read all the currently active <a class="el" href="classcbor_1_1RxStream.html">RxStream</a> instances, and uses this function to enqueue a packet if the stream matches the type and the topic.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">packet</td><td>The packet to add </td></tr>
   </table>
   </dd>
 </dl>

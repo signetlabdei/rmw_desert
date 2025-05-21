@@ -5,6 +5,9 @@
 \item 
 \mbox{\hyperlink{classcbor_1_1RxStream_a69c580c78b5cf3cab873d750ba2afc50}{Rx\+Stream}} (uint8\+\_\+t stream\+\_\+type, std\+::string stream\+\_\+name, uint8\+\_\+t stream\+\_\+identifier)
 \begin{DoxyCompactList}\small\item\em Create a reception stream. \end{DoxyCompactList}\item 
+\Hypertarget{classcbor_1_1RxStream_a13ecba4aa494f6a5d04cb41d924c5f61}\label{classcbor_1_1RxStream_a13ecba4aa494f6a5d04cb41d924c5f61} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Rx\+Stream} ()
+\begin{DoxyCompactList}\small\item\em Destroy the reception stream. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classcbor_1_1RxStream_a7dde7a85f3cc8d9ad63aa78a13e767cb}{data\+\_\+available}} (int64\+\_\+t sequence\+\_\+id=0)
 \begin{DoxyCompactList}\small\item\em Check if there are data. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classcbor_1_1RxStream_a5c303c0a1ff0b32b62146416274e6964}{clear\+\_\+buffer}} ()
@@ -44,7 +47,15 @@ void \mbox{\hyperlink{classcbor_1_1RxStream_a5c303c0a1ff0b32b62146416274e6964}{c
 \mbox{\hyperlink{classcbor_1_1RxStream}{Rx\+Stream}} \& \mbox{\hyperlink{classcbor_1_1RxStream_afa0670c2fd6b2368e353eff0739de09a}{operator$>$$>$}} (std\+::vector$<$ bool $>$ \&v)
 \begin{DoxyCompactList}\small\item\em Decode bool vector. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T $>$ }\\\mbox{\hyperlink{classcbor_1_1RxStream}{Rx\+Stream}} \& \mbox{\hyperlink{classcbor_1_1RxStream_acc473d3c4bccaf501d307a7756cc3740}{deserialize\+\_\+sequence}} (T \texorpdfstring{$\ast$}{*}items, size\+\_\+t size)
-\begin{DoxyCompactList}\small\item\em Deserialize a sequence of uniform elements. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Deserialize a sequence of uniform elements. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{classcbor_1_1RxStream_abd4d09d2b198fadf94126450a439603f}{get\+\_\+type}} () const
+\begin{DoxyCompactList}\small\item\em Get the stream type of a specific instance. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classcbor_1_1RxStream_a4a2637c83004cc67dca29625262750bc}{get\+\_\+name}} () const
+\begin{DoxyCompactList}\small\item\em Get the topic name of a specific instance. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{classcbor_1_1RxStream_a84a874b160cc90c5e32810e6fc4762a1}{get\+\_\+identifier}} () const
+\begin{DoxyCompactList}\small\item\em Get the stream identifier of a specific instance. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcbor_1_1RxStream_abebfd5661a7348fca029b1a21bfa03c4}{push\+\_\+packet}} (std\+::vector$<$ std\+::pair$<$ void \texorpdfstring{$\ast$}{*}, int $>$ $>$ packet)
+\begin{DoxyCompactList}\small\item\em Add a packet to \+\_\+received\+\_\+packets. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -136,6 +147,45 @@ Deserialize a sequence of uniform elements.
 {\em size} & Size of the items array \\
 \hline
 \end{DoxyParams}
+\Hypertarget{classcbor_1_1RxStream_a84a874b160cc90c5e32810e6fc4762a1}\label{classcbor_1_1RxStream_a84a874b160cc90c5e32810e6fc4762a1} 
+\index{cbor::RxStream@{cbor::RxStream}!get\_identifier@{get\_identifier}}
+\index{get\_identifier@{get\_identifier}!cbor::RxStream@{cbor::RxStream}}
+\doxysubsubsection{\texorpdfstring{get\_identifier()}{get\_identifier()}}
+{\footnotesize\ttfamily uint8\+\_\+t cbor\+::\+Rx\+Stream\+::get\+\_\+identifier (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the stream identifier of a specific instance. 
+
+\begin{DoxyReturn}{Returns}
+Topic identifier of the stream 
+\end{DoxyReturn}
+\Hypertarget{classcbor_1_1RxStream_a4a2637c83004cc67dca29625262750bc}\label{classcbor_1_1RxStream_a4a2637c83004cc67dca29625262750bc} 
+\index{cbor::RxStream@{cbor::RxStream}!get\_name@{get\_name}}
+\index{get\_name@{get\_name}!cbor::RxStream@{cbor::RxStream}}
+\doxysubsubsection{\texorpdfstring{get\_name()}{get\_name()}}
+{\footnotesize\ttfamily std\+::string cbor\+::\+Rx\+Stream\+::get\+\_\+name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the topic name of a specific instance. 
+
+\begin{DoxyReturn}{Returns}
+Topic name of the stream 
+\end{DoxyReturn}
+\Hypertarget{classcbor_1_1RxStream_abd4d09d2b198fadf94126450a439603f}\label{classcbor_1_1RxStream_abd4d09d2b198fadf94126450a439603f} 
+\index{cbor::RxStream@{cbor::RxStream}!get\_type@{get\_type}}
+\index{get\_type@{get\_type}!cbor::RxStream@{cbor::RxStream}}
+\doxysubsubsection{\texorpdfstring{get\_type()}{get\_type()}}
+{\footnotesize\ttfamily uint8\+\_\+t cbor\+::\+Rx\+Stream\+::get\+\_\+type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the stream type of a specific instance. 
+
+\begin{DoxyReturn}{Returns}
+Type of the stream 
+\end{DoxyReturn}
 \Hypertarget{classcbor_1_1RxStream_a51fd2cb5fd15348118c4107beb3d7ad8}\label{classcbor_1_1RxStream_a51fd2cb5fd15348118c4107beb3d7ad8} 
 \index{cbor::RxStream@{cbor::RxStream}!interpret\_packets@{interpret\_packets}}
 \index{interpret\_packets@{interpret\_packets}!cbor::RxStream@{cbor::RxStream}}
@@ -385,6 +435,23 @@ Decode uint8.
 
 \begin{DoxyParams}{Parameters}
 {\em n} & Field to decode \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcbor_1_1RxStream_abebfd5661a7348fca029b1a21bfa03c4}\label{classcbor_1_1RxStream_abebfd5661a7348fca029b1a21bfa03c4} 
+\index{cbor::RxStream@{cbor::RxStream}!push\_packet@{push\_packet}}
+\index{push\_packet@{push\_packet}!cbor::RxStream@{cbor::RxStream}}
+\doxysubsubsection{\texorpdfstring{push\_packet()}{push\_packet()}}
+{\footnotesize\ttfamily void cbor\+::\+Rx\+Stream\+::push\+\_\+packet (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::pair$<$ void \texorpdfstring{$\ast$}{*}, int $>$ $>$}]{packet }\end{DoxyParamCaption})}
+
+
+
+Add a packet to \+\_\+received\+\_\+packets. 
+
+When \doxylink{classcbor_1_1RxStream_a51fd2cb5fd15348118c4107beb3d7ad8}{interpret\+\_\+packets()} is called is read all the currently active \doxylink{classcbor_1_1RxStream}{Rx\+Stream} instances, and uses this function to enqueue a packet if the stream matches the type and the topic.
+
+
+\begin{DoxyParams}{Parameters}
+{\em packet} & The packet to add \\
 \hline
 \end{DoxyParams}
 

@@ -1,151 +1,227 @@
 \@ifundefined {etoctocstyle}{\let \etoc@startlocaltoc \@gobble \let \etoc@settocdepth \@gobble \let \etoc@depthtag \@gobble \let \etoc@setlocaltop \@gobble }{}
 \contentsline {chapter}{\numberline {1}Namespace Index}{1}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Namespace List}{1}{section.1.1}%
-\contentsline {chapter}{\numberline {2}Class Index}{3}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Class List}{3}{section.2.1}%
-\contentsline {chapter}{\numberline {3}File Index}{5}{chapter.3}%
-\contentsline {section}{\numberline {3.1}File List}{5}{section.3.1}%
-\contentsline {chapter}{\numberline {4}Namespace Documentation}{7}{chapter.4}%
-\contentsline {section}{\numberline {4.1}CString\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Helper Namespace Reference}{7}{section.4.1}%
-\contentsline {subsection}{\numberline {4.1.1}Detailed Description}{8}{subsection.4.1.1}%
-\contentsline {subsection}{\numberline {4.1.2}Function Documentation}{8}{subsection.4.1.2}%
-\contentsline {subsubsection}{\numberline {4.1.2.1}assign\_string()}{8}{subsubsection.4.1.2.1}%
-\contentsline {subsubsection}{\numberline {4.1.2.2}assign\_u16string()}{8}{subsubsection.4.1.2.2}%
-\contentsline {subsubsection}{\numberline {4.1.2.3}assign\_vector\_string()}{8}{subsubsection.4.1.2.3}%
-\contentsline {subsubsection}{\numberline {4.1.2.4}assign\_vector\_string\_to\_sequence()}{9}{subsubsection.4.1.2.4}%
-\contentsline {subsubsection}{\numberline {4.1.2.5}assign\_vector\_u16string()}{9}{subsubsection.4.1.2.5}%
-\contentsline {subsubsection}{\numberline {4.1.2.6}assign\_vector\_u16string\_to\_sequence()}{9}{subsubsection.4.1.2.6}%
-\contentsline {subsubsection}{\numberline {4.1.2.7}convert\_sequence\_to\_std\_vector\_string()}{10}{subsubsection.4.1.2.7}%
-\contentsline {subsubsection}{\numberline {4.1.2.8}convert\_sequence\_to\_std\_vector\_u16string()}{10}{subsubsection.4.1.2.8}%
-\contentsline {subsubsection}{\numberline {4.1.2.9}convert\_to\_std\_string()}{11}{subsubsection.4.1.2.9}%
-\contentsline {subsubsection}{\numberline {4.1.2.10}convert\_to\_std\_u16string()}{11}{subsubsection.4.1.2.10}%
-\contentsline {subsubsection}{\numberline {4.1.2.11}convert\_to\_std\_vector\_string()}{11}{subsubsection.4.1.2.11}%
-\contentsline {subsubsection}{\numberline {4.1.2.12}convert\_to\_std\_vector\_u16string()}{12}{subsubsection.4.1.2.12}%
-\contentsline {section}{\numberline {4.2}Message\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Serialization Namespace Reference}{12}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Detailed Description}{13}{subsection.4.2.1}%
-\contentsline {subsection}{\numberline {4.2.2}Function Documentation}{13}{subsection.4.2.2}%
-\contentsline {subsubsection}{\numberline {4.2.2.1}deserialize()}{13}{subsubsection.4.2.2.1}%
-\contentsline {subsubsection}{\numberline {4.2.2.2}deserialize\_field()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{13}{subsubsection.4.2.2.2}%
-\contentsline {subsubsection}{\numberline {4.2.2.3}deserialize\_field()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{14}{subsubsection.4.2.2.3}%
-\contentsline {subsubsection}{\numberline {4.2.2.4}serialize()}{14}{subsubsection.4.2.2.4}%
-\contentsline {subsubsection}{\numberline {4.2.2.5}serialize\_field()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{14}{subsubsection.4.2.2.5}%
-\contentsline {subsubsection}{\numberline {4.2.2.6}serialize\_field()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{15}{subsubsection.4.2.2.6}%
-\contentsline {chapter}{\numberline {5}Class Documentation}{17}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Client Class Reference}{17}{section.5.1}%
-\contentsline {subsection}{\numberline {5.1.1}Constructor \& Destructor Documentation}{17}{subsection.5.1.1}%
-\contentsline {subsubsection}{\numberline {5.1.1.1}DesertClient()}{17}{subsubsection.5.1.1.1}%
-\contentsline {subsection}{\numberline {5.1.2}Member Function Documentation}{17}{subsection.5.1.2}%
-\contentsline {subsubsection}{\numberline {5.1.2.1}has\_data()}{17}{subsubsection.5.1.2.1}%
-\contentsline {subsubsection}{\numberline {5.1.2.2}read\_response()}{18}{subsubsection.5.1.2.2}%
-\contentsline {subsubsection}{\numberline {5.1.2.3}send\_request()}{18}{subsubsection.5.1.2.3}%
-\contentsline {section}{\numberline {5.2}Desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Node Class Reference}{19}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Publisher Class Reference}{19}{section.5.3}%
-\contentsline {subsection}{\numberline {5.3.1}Constructor \& Destructor Documentation}{19}{subsection.5.3.1}%
-\contentsline {subsubsection}{\numberline {5.3.1.1}DesertPublisher()}{19}{subsubsection.5.3.1.1}%
-\contentsline {subsection}{\numberline {5.3.2}Member Function Documentation}{19}{subsection.5.3.2}%
-\contentsline {subsubsection}{\numberline {5.3.2.1}push()}{19}{subsubsection.5.3.2.1}%
-\contentsline {section}{\numberline {5.4}Desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Service Class Reference}{20}{section.5.4}%
-\contentsline {subsection}{\numberline {5.4.1}Constructor \& Destructor Documentation}{20}{subsection.5.4.1}%
-\contentsline {subsubsection}{\numberline {5.4.1.1}DesertService()}{20}{subsubsection.5.4.1.1}%
-\contentsline {subsection}{\numberline {5.4.2}Member Function Documentation}{20}{subsection.5.4.2}%
-\contentsline {subsubsection}{\numberline {5.4.2.1}has\_data()}{20}{subsubsection.5.4.2.1}%
-\contentsline {subsubsection}{\numberline {5.4.2.2}read\_request()}{21}{subsubsection.5.4.2.2}%
-\contentsline {subsubsection}{\numberline {5.4.2.3}send\_response()}{21}{subsubsection.5.4.2.3}%
-\contentsline {section}{\numberline {5.5}Desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Subscriber Class Reference}{21}{section.5.5}%
-\contentsline {subsection}{\numberline {5.5.1}Constructor \& Destructor Documentation}{22}{subsection.5.5.1}%
-\contentsline {subsubsection}{\numberline {5.5.1.1}DesertSubscriber()}{22}{subsubsection.5.5.1.1}%
-\contentsline {subsection}{\numberline {5.5.2}Member Function Documentation}{22}{subsection.5.5.2}%
-\contentsline {subsubsection}{\numberline {5.5.2.1}has\_data()}{22}{subsubsection.5.5.2.1}%
-\contentsline {subsubsection}{\numberline {5.5.2.2}read\_data()}{22}{subsubsection.5.5.2.2}%
-\contentsline {section}{\numberline {5.6}Desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Waitset Class Reference}{23}{section.5.6}%
-\contentsline {section}{\numberline {5.7}Generic\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}CSequence$<$ T $>$ Struct Template Reference}{23}{section.5.7}%
-\contentsline {section}{\numberline {5.8}cbor\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Rx\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Stream Class Reference}{23}{section.5.8}%
-\contentsline {subsection}{\numberline {5.8.1}Constructor \& Destructor Documentation}{24}{subsection.5.8.1}%
-\contentsline {subsubsection}{\numberline {5.8.1.1}RxStream()}{24}{subsubsection.5.8.1.1}%
-\contentsline {subsection}{\numberline {5.8.2}Member Function Documentation}{25}{subsection.5.8.2}%
-\contentsline {subsubsection}{\numberline {5.8.2.1}data\_available()}{25}{subsubsection.5.8.2.1}%
-\contentsline {subsubsection}{\numberline {5.8.2.2}deserialize\_integer()}{25}{subsubsection.5.8.2.2}%
-\contentsline {subsubsection}{\numberline {5.8.2.3}deserialize\_sequence()}{25}{subsubsection.5.8.2.3}%
-\contentsline {subsubsection}{\numberline {5.8.2.4}interpret\_packets()}{25}{subsubsection.5.8.2.4}%
-\contentsline {subsubsection}{\numberline {5.8.2.5}operator$>$$>$()\hspace {0.1cm}{\footnotesize \ttfamily [1/16]}}{26}{subsubsection.5.8.2.5}%
-\contentsline {subsubsection}{\numberline {5.8.2.6}operator$>$$>$()\hspace {0.1cm}{\footnotesize \ttfamily [2/16]}}{26}{subsubsection.5.8.2.6}%
-\contentsline {subsubsection}{\numberline {5.8.2.7}operator$>$$>$()\hspace {0.1cm}{\footnotesize \ttfamily [3/16]}}{26}{subsubsection.5.8.2.7}%
-\contentsline {subsubsection}{\numberline {5.8.2.8}operator$>$$>$()\hspace {0.1cm}{\footnotesize \ttfamily [4/16]}}{26}{subsubsection.5.8.2.8}%
-\contentsline {subsubsection}{\numberline {5.8.2.9}operator$>$$>$()\hspace {0.1cm}{\footnotesize \ttfamily [5/16]}}{27}{subsubsection.5.8.2.9}%
-\contentsline {subsubsection}{\numberline {5.8.2.10}operator$>$$>$()\hspace {0.1cm}{\footnotesize \ttfamily [6/16]}}{27}{subsubsection.5.8.2.10}%
-\contentsline {subsubsection}{\numberline {5.8.2.11}operator$>$$>$()\hspace {0.1cm}{\footnotesize \ttfamily [7/16]}}{27}{subsubsection.5.8.2.11}%
-\contentsline {subsubsection}{\numberline {5.8.2.12}operator$>$$>$()\hspace {0.1cm}{\footnotesize \ttfamily [8/16]}}{27}{subsubsection.5.8.2.12}%
-\contentsline {subsubsection}{\numberline {5.8.2.13}operator$>$$>$()\hspace {0.1cm}{\footnotesize \ttfamily [9/16]}}{27}{subsubsection.5.8.2.13}%
-\contentsline {subsubsection}{\numberline {5.8.2.14}operator$>$$>$()\hspace {0.1cm}{\footnotesize \ttfamily [10/16]}}{28}{subsubsection.5.8.2.14}%
-\contentsline {subsubsection}{\numberline {5.8.2.15}operator$>$$>$()\hspace {0.1cm}{\footnotesize \ttfamily [11/16]}}{28}{subsubsection.5.8.2.15}%
-\contentsline {subsubsection}{\numberline {5.8.2.16}operator$>$$>$()\hspace {0.1cm}{\footnotesize \ttfamily [12/16]}}{28}{subsubsection.5.8.2.16}%
-\contentsline {subsubsection}{\numberline {5.8.2.17}operator$>$$>$()\hspace {0.1cm}{\footnotesize \ttfamily [13/16]}}{28}{subsubsection.5.8.2.17}%
-\contentsline {subsubsection}{\numberline {5.8.2.18}operator$>$$>$()\hspace {0.1cm}{\footnotesize \ttfamily [14/16]}}{30}{subsubsection.5.8.2.18}%
-\contentsline {subsubsection}{\numberline {5.8.2.19}operator$>$$>$()\hspace {0.1cm}{\footnotesize \ttfamily [15/16]}}{30}{subsubsection.5.8.2.19}%
-\contentsline {subsubsection}{\numberline {5.8.2.20}operator$>$$>$()\hspace {0.1cm}{\footnotesize \ttfamily [16/16]}}{30}{subsubsection.5.8.2.20}%
-\contentsline {section}{\numberline {5.9}Tcp\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Daemon Class Reference}{30}{section.5.9}%
-\contentsline {subsection}{\numberline {5.9.1}Member Function Documentation}{31}{subsection.5.9.1}%
-\contentsline {subsubsection}{\numberline {5.9.1.1}enqueue\_packet()}{31}{subsubsection.5.9.1.1}%
-\contentsline {subsubsection}{\numberline {5.9.1.2}init()}{31}{subsubsection.5.9.1.2}%
-\contentsline {subsubsection}{\numberline {5.9.1.3}read\_packet()}{31}{subsubsection.5.9.1.3}%
-\contentsline {section}{\numberline {5.10}cbor\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Tx\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Stream Class Reference}{32}{section.5.10}%
-\contentsline {subsection}{\numberline {5.10.1}Constructor \& Destructor Documentation}{33}{subsection.5.10.1}%
-\contentsline {subsubsection}{\numberline {5.10.1.1}TxStream()}{33}{subsubsection.5.10.1.1}%
-\contentsline {subsection}{\numberline {5.10.2}Member Function Documentation}{33}{subsection.5.10.2}%
-\contentsline {subsubsection}{\numberline {5.10.2.1}end\_transmission()}{33}{subsubsection.5.10.2.1}%
-\contentsline {subsubsection}{\numberline {5.10.2.2}operator$<$$<$()\hspace {0.1cm}{\footnotesize \ttfamily [1/16]}}{33}{subsubsection.5.10.2.2}%
-\contentsline {subsubsection}{\numberline {5.10.2.3}operator$<$$<$()\hspace {0.1cm}{\footnotesize \ttfamily [2/16]}}{33}{subsubsection.5.10.2.3}%
-\contentsline {subsubsection}{\numberline {5.10.2.4}operator$<$$<$()\hspace {0.1cm}{\footnotesize \ttfamily [3/16]}}{34}{subsubsection.5.10.2.4}%
-\contentsline {subsubsection}{\numberline {5.10.2.5}operator$<$$<$()\hspace {0.1cm}{\footnotesize \ttfamily [4/16]}}{34}{subsubsection.5.10.2.5}%
-\contentsline {subsubsection}{\numberline {5.10.2.6}operator$<$$<$()\hspace {0.1cm}{\footnotesize \ttfamily [5/16]}}{34}{subsubsection.5.10.2.6}%
-\contentsline {subsubsection}{\numberline {5.10.2.7}operator$<$$<$()\hspace {0.1cm}{\footnotesize \ttfamily [6/16]}}{34}{subsubsection.5.10.2.7}%
-\contentsline {subsubsection}{\numberline {5.10.2.8}operator$<$$<$()\hspace {0.1cm}{\footnotesize \ttfamily [7/16]}}{34}{subsubsection.5.10.2.8}%
-\contentsline {subsubsection}{\numberline {5.10.2.9}operator$<$$<$()\hspace {0.1cm}{\footnotesize \ttfamily [8/16]}}{35}{subsubsection.5.10.2.9}%
-\contentsline {subsubsection}{\numberline {5.10.2.10}operator$<$$<$()\hspace {0.1cm}{\footnotesize \ttfamily [9/16]}}{35}{subsubsection.5.10.2.10}%
-\contentsline {subsubsection}{\numberline {5.10.2.11}operator$<$$<$()\hspace {0.1cm}{\footnotesize \ttfamily [10/16]}}{35}{subsubsection.5.10.2.11}%
-\contentsline {subsubsection}{\numberline {5.10.2.12}operator$<$$<$()\hspace {0.1cm}{\footnotesize \ttfamily [11/16]}}{35}{subsubsection.5.10.2.12}%
-\contentsline {subsubsection}{\numberline {5.10.2.13}operator$<$$<$()\hspace {0.1cm}{\footnotesize \ttfamily [12/16]}}{36}{subsubsection.5.10.2.13}%
-\contentsline {subsubsection}{\numberline {5.10.2.14}operator$<$$<$()\hspace {0.1cm}{\footnotesize \ttfamily [13/16]}}{36}{subsubsection.5.10.2.14}%
-\contentsline {subsubsection}{\numberline {5.10.2.15}operator$<$$<$()\hspace {0.1cm}{\footnotesize \ttfamily [14/16]}}{36}{subsubsection.5.10.2.15}%
-\contentsline {subsubsection}{\numberline {5.10.2.16}operator$<$$<$()\hspace {0.1cm}{\footnotesize \ttfamily [15/16]}}{36}{subsubsection.5.10.2.16}%
-\contentsline {subsubsection}{\numberline {5.10.2.17}operator$<$$<$()\hspace {0.1cm}{\footnotesize \ttfamily [16/16]}}{37}{subsubsection.5.10.2.17}%
-\contentsline {subsubsection}{\numberline {5.10.2.18}serialize\_sequence()}{37}{subsubsection.5.10.2.18}%
-\contentsline {subsubsection}{\numberline {5.10.2.19}start\_transmission()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{37}{subsubsection.5.10.2.19}%
-\contentsline {subsubsection}{\numberline {5.10.2.20}start\_transmission()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{37}{subsubsection.5.10.2.20}%
-\contentsline {chapter}{\numberline {6}File Documentation}{39}{chapter.6}%
-\contentsline {section}{\numberline {6.1}src/desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}classes/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}CBor\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Stream.h File Reference}{39}{section.6.1}%
-\contentsline {subsection}{\numberline {6.1.1}Detailed Description}{40}{subsection.6.1.1}%
-\contentsline {section}{\numberline {6.2}CBor\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Stream.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{40}{section.6.2}%
-\contentsline {section}{\numberline {6.3}src/desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}classes/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}CString\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Helper.h File Reference}{42}{section.6.3}%
-\contentsline {subsection}{\numberline {6.3.1}Detailed Description}{44}{subsection.6.3.1}%
-\contentsline {section}{\numberline {6.4}CString\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Helper.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{44}{section.6.4}%
-\contentsline {section}{\numberline {6.5}src/desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}classes/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Client.h File Reference}{45}{section.6.5}%
-\contentsline {subsection}{\numberline {6.5.1}Detailed Description}{45}{subsection.6.5.1}%
-\contentsline {section}{\numberline {6.6}Desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Client.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{45}{section.6.6}%
-\contentsline {section}{\numberline {6.7}src/desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}classes/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Node.h File Reference}{46}{section.6.7}%
-\contentsline {subsection}{\numberline {6.7.1}Detailed Description}{46}{subsection.6.7.1}%
-\contentsline {section}{\numberline {6.8}Desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Node.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{47}{section.6.8}%
-\contentsline {section}{\numberline {6.9}src/desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}classes/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Publisher.h File Reference}{47}{section.6.9}%
-\contentsline {subsection}{\numberline {6.9.1}Detailed Description}{48}{subsection.6.9.1}%
-\contentsline {section}{\numberline {6.10}Desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Publisher.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{48}{section.6.10}%
-\contentsline {section}{\numberline {6.11}src/desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}classes/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Service.h File Reference}{49}{section.6.11}%
-\contentsline {subsection}{\numberline {6.11.1}Detailed Description}{49}{subsection.6.11.1}%
-\contentsline {section}{\numberline {6.12}Desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Service.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{49}{section.6.12}%
-\contentsline {section}{\numberline {6.13}src/desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}classes/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Subscriber.h File Reference}{50}{section.6.13}%
-\contentsline {subsection}{\numberline {6.13.1}Detailed Description}{51}{subsection.6.13.1}%
-\contentsline {section}{\numberline {6.14}Desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Subscriber.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{51}{section.6.14}%
-\contentsline {section}{\numberline {6.15}src/desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}classes/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Wait\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Set.h File Reference}{52}{section.6.15}%
-\contentsline {subsection}{\numberline {6.15.1}Detailed Description}{52}{subsection.6.15.1}%
-\contentsline {section}{\numberline {6.16}Desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Wait\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Set.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{52}{section.6.16}%
-\contentsline {section}{\numberline {6.17}src/desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}classes/macros.h File Reference}{53}{section.6.17}%
-\contentsline {subsection}{\numberline {6.17.1}Detailed Description}{53}{subsection.6.17.1}%
-\contentsline {subsection}{\numberline {6.17.2}Macro Definition Documentation}{53}{subsection.6.17.2}%
-\contentsline {subsubsection}{\numberline {6.17.2.1}SPECIALIZE\_GENERIC\_C\_SEQUENCE}{53}{subsubsection.6.17.2.1}%
-\contentsline {section}{\numberline {6.18}macros.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{54}{section.6.18}%
-\contentsline {section}{\numberline {6.19}src/desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}classes/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Message\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Serialization.h File Reference}{54}{section.6.19}%
-\contentsline {subsection}{\numberline {6.19.1}Detailed Description}{56}{subsection.6.19.1}%
-\contentsline {section}{\numberline {6.20}Message\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Serialization.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{56}{section.6.20}%
-\contentsline {section}{\numberline {6.21}src/desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}classes/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Tcp\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Daemon.h File Reference}{61}{section.6.21}%
-\contentsline {subsection}{\numberline {6.21.1}Detailed Description}{62}{subsection.6.21.1}%
-\contentsline {section}{\numberline {6.22}Tcp\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Daemon.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{62}{section.6.22}%
-\contentsline {chapter}{Index}{63}{section*.41}%
+\contentsline {chapter}{\numberline {2}Hierarchical Index}{3}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Class Hierarchy}{3}{section.2.1}%
+\contentsline {chapter}{\numberline {3}Class Index}{5}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Class List}{5}{section.3.1}%
+\contentsline {chapter}{\numberline {4}File Index}{7}{chapter.4}%
+\contentsline {section}{\numberline {4.1}File List}{7}{section.4.1}%
+\contentsline {chapter}{\numberline {5}Namespace Documentation}{9}{chapter.5}%
+\contentsline {section}{\numberline {5.1}CString\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Helper Namespace Reference}{9}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Detailed Description}{10}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}Function Documentation}{10}{subsection.5.1.2}%
+\contentsline {subsubsection}{\numberline {5.1.2.1}assign\_string()}{10}{subsubsection.5.1.2.1}%
+\contentsline {subsubsection}{\numberline {5.1.2.2}assign\_u16string()}{10}{subsubsection.5.1.2.2}%
+\contentsline {subsubsection}{\numberline {5.1.2.3}assign\_vector\_string()}{10}{subsubsection.5.1.2.3}%
+\contentsline {subsubsection}{\numberline {5.1.2.4}assign\_vector\_string\_to\_sequence()}{11}{subsubsection.5.1.2.4}%
+\contentsline {subsubsection}{\numberline {5.1.2.5}assign\_vector\_u16string()}{11}{subsubsection.5.1.2.5}%
+\contentsline {subsubsection}{\numberline {5.1.2.6}assign\_vector\_u16string\_to\_sequence()}{11}{subsubsection.5.1.2.6}%
+\contentsline {subsubsection}{\numberline {5.1.2.7}convert\_sequence\_to\_std\_vector\_string()}{12}{subsubsection.5.1.2.7}%
+\contentsline {subsubsection}{\numberline {5.1.2.8}convert\_sequence\_to\_std\_vector\_u16string()}{12}{subsubsection.5.1.2.8}%
+\contentsline {subsubsection}{\numberline {5.1.2.9}convert\_to\_std\_string()}{13}{subsubsection.5.1.2.9}%
+\contentsline {subsubsection}{\numberline {5.1.2.10}convert\_to\_std\_u16string()}{13}{subsubsection.5.1.2.10}%
+\contentsline {subsubsection}{\numberline {5.1.2.11}convert\_to\_std\_vector\_string()}{13}{subsubsection.5.1.2.11}%
+\contentsline {subsubsection}{\numberline {5.1.2.12}convert\_to\_std\_vector\_u16string()}{14}{subsubsection.5.1.2.12}%
+\contentsline {section}{\numberline {5.2}Discovery Namespace Reference}{14}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Detailed Description}{15}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Function Documentation}{15}{subsection.5.2.2}%
+\contentsline {subsubsection}{\numberline {5.2.2.1}demangle\_publisher\_from\_topic()}{15}{subsubsection.5.2.2.1}%
+\contentsline {subsubsection}{\numberline {5.2.2.2}demangle\_service\_from\_topic()}{16}{subsubsection.5.2.2.2}%
+\contentsline {subsubsection}{\numberline {5.2.2.3}demangle\_service\_reply\_from\_topic()}{16}{subsubsection.5.2.2.3}%
+\contentsline {subsubsection}{\numberline {5.2.2.4}demangle\_service\_request\_from\_topic()}{16}{subsubsection.5.2.2.4}%
+\contentsline {subsubsection}{\numberline {5.2.2.5}demangle\_subscriber\_from\_topic()}{17}{subsubsection.5.2.2.5}%
+\contentsline {subsubsection}{\numberline {5.2.2.6}demangle\_topic()}{17}{subsubsection.5.2.2.6}%
+\contentsline {subsubsection}{\numberline {5.2.2.7}discovery\_thread()}{17}{subsubsection.5.2.2.7}%
+\contentsline {subsubsection}{\numberline {5.2.2.8}discovery\_thread\_start()}{18}{subsubsection.5.2.2.8}%
+\contentsline {subsubsection}{\numberline {5.2.2.9}discovery\_thread\_stop()}{18}{subsubsection.5.2.2.9}%
+\contentsline {subsubsection}{\numberline {5.2.2.10}identity\_demangle()}{18}{subsubsection.5.2.2.10}%
+\contentsline {subsubsection}{\numberline {5.2.2.11}resolve\_prefix()}{19}{subsubsection.5.2.2.11}%
+\contentsline {subsubsection}{\numberline {5.2.2.12}send\_discovery\_beacon()}{19}{subsubsection.5.2.2.12}%
+\contentsline {subsubsection}{\numberline {5.2.2.13}send\_discovery\_request()}{20}{subsubsection.5.2.2.13}%
+\contentsline {section}{\numberline {5.3}Message\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Serialization Namespace Reference}{20}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Detailed Description}{21}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Function Documentation}{21}{subsection.5.3.2}%
+\contentsline {subsubsection}{\numberline {5.3.2.1}deserialize()}{21}{subsubsection.5.3.2.1}%
+\contentsline {subsubsection}{\numberline {5.3.2.2}deserialize\_field()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{21}{subsubsection.5.3.2.2}%
+\contentsline {subsubsection}{\numberline {5.3.2.3}deserialize\_field()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{22}{subsubsection.5.3.2.3}%
+\contentsline {subsubsection}{\numberline {5.3.2.4}serialize()}{22}{subsubsection.5.3.2.4}%
+\contentsline {subsubsection}{\numberline {5.3.2.5}serialize\_field()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{22}{subsubsection.5.3.2.5}%
+\contentsline {subsubsection}{\numberline {5.3.2.6}serialize\_field()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{23}{subsubsection.5.3.2.6}%
+\contentsline {chapter}{\numberline {6}Class Documentation}{25}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Circular\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Queue$<$ T, Max\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Len, Container $>$ Class Template Reference}{25}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Client Class Reference}{26}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}Constructor \& Destructor Documentation}{26}{subsection.6.2.1}%
+\contentsline {subsubsection}{\numberline {6.2.1.1}DesertClient()}{26}{subsubsection.6.2.1.1}%
+\contentsline {subsection}{\numberline {6.2.2}Member Function Documentation}{27}{subsection.6.2.2}%
+\contentsline {subsubsection}{\numberline {6.2.2.1}get\_gid()}{27}{subsubsection.6.2.2.1}%
+\contentsline {subsubsection}{\numberline {6.2.2.2}get\_request\_type\_name()}{27}{subsubsection.6.2.2.2}%
+\contentsline {subsubsection}{\numberline {6.2.2.3}get\_response\_type\_name()}{27}{subsubsection.6.2.2.3}%
+\contentsline {subsubsection}{\numberline {6.2.2.4}get\_service\_name()}{27}{subsubsection.6.2.2.4}%
+\contentsline {subsubsection}{\numberline {6.2.2.5}has\_data()}{28}{subsubsection.6.2.2.5}%
+\contentsline {subsubsection}{\numberline {6.2.2.6}read\_response()}{28}{subsubsection.6.2.2.6}%
+\contentsline {subsubsection}{\numberline {6.2.2.7}send\_request()}{28}{subsubsection.6.2.2.7}%
+\contentsline {section}{\numberline {6.3}Desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Guard\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Condition Class Reference}{29}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}Member Function Documentation}{29}{subsection.6.3.1}%
+\contentsline {subsubsection}{\numberline {6.3.1.1}get\_has\_triggered()}{29}{subsubsection.6.3.1.1}%
+\contentsline {subsubsection}{\numberline {6.3.1.2}has\_triggered()}{29}{subsubsection.6.3.1.2}%
+\contentsline {subsubsection}{\numberline {6.3.1.3}trigger()}{30}{subsubsection.6.3.1.3}%
+\contentsline {section}{\numberline {6.4}Desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Node Class Reference}{30}{section.6.4}%
+\contentsline {subsection}{\numberline {6.4.1}Constructor \& Destructor Documentation}{30}{subsection.6.4.1}%
+\contentsline {subsubsection}{\numberline {6.4.1.1}DesertNode()}{30}{subsubsection.6.4.1.1}%
+\contentsline {subsection}{\numberline {6.4.2}Member Function Documentation}{31}{subsection.6.4.2}%
+\contentsline {subsubsection}{\numberline {6.4.2.1}add\_client()}{31}{subsubsection.6.4.2.1}%
+\contentsline {subsubsection}{\numberline {6.4.2.2}add\_publisher()}{31}{subsubsection.6.4.2.2}%
+\contentsline {subsubsection}{\numberline {6.4.2.3}add\_service()}{31}{subsubsection.6.4.2.3}%
+\contentsline {subsubsection}{\numberline {6.4.2.4}add\_subscriber()}{32}{subsubsection.6.4.2.4}%
+\contentsline {subsubsection}{\numberline {6.4.2.5}get\_gid()}{32}{subsubsection.6.4.2.5}%
+\contentsline {subsubsection}{\numberline {6.4.2.6}remove\_client()}{32}{subsubsection.6.4.2.6}%
+\contentsline {subsubsection}{\numberline {6.4.2.7}remove\_publisher()}{32}{subsubsection.6.4.2.7}%
+\contentsline {subsubsection}{\numberline {6.4.2.8}remove\_service()}{33}{subsubsection.6.4.2.8}%
+\contentsline {subsubsection}{\numberline {6.4.2.9}remove\_subscriber()}{33}{subsubsection.6.4.2.9}%
+\contentsline {section}{\numberline {6.5}Desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Publisher Class Reference}{33}{section.6.5}%
+\contentsline {subsection}{\numberline {6.5.1}Constructor \& Destructor Documentation}{34}{subsection.6.5.1}%
+\contentsline {subsubsection}{\numberline {6.5.1.1}DesertPublisher()}{34}{subsubsection.6.5.1.1}%
+\contentsline {subsection}{\numberline {6.5.2}Member Function Documentation}{34}{subsection.6.5.2}%
+\contentsline {subsubsection}{\numberline {6.5.2.1}get\_gid()}{34}{subsubsection.6.5.2.1}%
+\contentsline {subsubsection}{\numberline {6.5.2.2}get\_topic\_name()}{34}{subsubsection.6.5.2.2}%
+\contentsline {subsubsection}{\numberline {6.5.2.3}get\_type\_name()}{35}{subsubsection.6.5.2.3}%
+\contentsline {subsubsection}{\numberline {6.5.2.4}push()}{35}{subsubsection.6.5.2.4}%
+\contentsline {section}{\numberline {6.6}Desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Service Class Reference}{35}{section.6.6}%
+\contentsline {subsection}{\numberline {6.6.1}Constructor \& Destructor Documentation}{36}{subsection.6.6.1}%
+\contentsline {subsubsection}{\numberline {6.6.1.1}DesertService()}{36}{subsubsection.6.6.1.1}%
+\contentsline {subsection}{\numberline {6.6.2}Member Function Documentation}{36}{subsection.6.6.2}%
+\contentsline {subsubsection}{\numberline {6.6.2.1}get\_gid()}{36}{subsubsection.6.6.2.1}%
+\contentsline {subsubsection}{\numberline {6.6.2.2}get\_request\_type\_name()}{36}{subsubsection.6.6.2.2}%
+\contentsline {subsubsection}{\numberline {6.6.2.3}get\_response\_type\_name()}{37}{subsubsection.6.6.2.3}%
+\contentsline {subsubsection}{\numberline {6.6.2.4}get\_service\_name()}{37}{subsubsection.6.6.2.4}%
+\contentsline {subsubsection}{\numberline {6.6.2.5}has\_data()}{37}{subsubsection.6.6.2.5}%
+\contentsline {subsubsection}{\numberline {6.6.2.6}read\_request()}{37}{subsubsection.6.6.2.6}%
+\contentsline {subsubsection}{\numberline {6.6.2.7}send\_response()}{38}{subsubsection.6.6.2.7}%
+\contentsline {section}{\numberline {6.7}Desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Subscriber Class Reference}{38}{section.6.7}%
+\contentsline {subsection}{\numberline {6.7.1}Constructor \& Destructor Documentation}{39}{subsection.6.7.1}%
+\contentsline {subsubsection}{\numberline {6.7.1.1}DesertSubscriber()}{39}{subsubsection.6.7.1.1}%
+\contentsline {subsection}{\numberline {6.7.2}Member Function Documentation}{39}{subsection.6.7.2}%
+\contentsline {subsubsection}{\numberline {6.7.2.1}get\_gid()}{39}{subsubsection.6.7.2.1}%
+\contentsline {subsubsection}{\numberline {6.7.2.2}get\_topic\_name()}{39}{subsubsection.6.7.2.2}%
+\contentsline {subsubsection}{\numberline {6.7.2.3}get\_type\_name()}{39}{subsubsection.6.7.2.3}%
+\contentsline {subsubsection}{\numberline {6.7.2.4}has\_data()}{40}{subsubsection.6.7.2.4}%
+\contentsline {subsubsection}{\numberline {6.7.2.5}read\_data()}{40}{subsubsection.6.7.2.5}%
+\contentsline {section}{\numberline {6.8}Desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Waitset Class Reference}{40}{section.6.8}%
+\contentsline {section}{\numberline {6.9}Generic\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}CSequence$<$ T $>$ Struct Template Reference}{40}{section.6.9}%
+\contentsline {section}{\numberline {6.10}rmw\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}context\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}impl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}s Struct Reference}{41}{section.6.10}%
+\contentsline {section}{\numberline {6.11}cbor\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Rx\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Stream Class Reference}{41}{section.6.11}%
+\contentsline {subsection}{\numberline {6.11.1}Constructor \& Destructor Documentation}{42}{subsection.6.11.1}%
+\contentsline {subsubsection}{\numberline {6.11.1.1}RxStream()}{42}{subsubsection.6.11.1.1}%
+\contentsline {subsection}{\numberline {6.11.2}Member Function Documentation}{42}{subsection.6.11.2}%
+\contentsline {subsubsection}{\numberline {6.11.2.1}clear\_buffer()}{42}{subsubsection.6.11.2.1}%
+\contentsline {subsubsection}{\numberline {6.11.2.2}data\_available()}{43}{subsubsection.6.11.2.2}%
+\contentsline {subsubsection}{\numberline {6.11.2.3}deserialize\_integer()}{43}{subsubsection.6.11.2.3}%
+\contentsline {subsubsection}{\numberline {6.11.2.4}deserialize\_sequence()}{43}{subsubsection.6.11.2.4}%
+\contentsline {subsubsection}{\numberline {6.11.2.5}get\_identifier()}{44}{subsubsection.6.11.2.5}%
+\contentsline {subsubsection}{\numberline {6.11.2.6}get\_name()}{44}{subsubsection.6.11.2.6}%
+\contentsline {subsubsection}{\numberline {6.11.2.7}get\_type()}{44}{subsubsection.6.11.2.7}%
+\contentsline {subsubsection}{\numberline {6.11.2.8}interpret\_packets()}{44}{subsubsection.6.11.2.8}%
+\contentsline {subsubsection}{\numberline {6.11.2.9}operator$>$$>$()\hspace {0.1cm}{\footnotesize \ttfamily [1/16]}}{44}{subsubsection.6.11.2.9}%
+\contentsline {subsubsection}{\numberline {6.11.2.10}operator$>$$>$()\hspace {0.1cm}{\footnotesize \ttfamily [2/16]}}{45}{subsubsection.6.11.2.10}%
+\contentsline {subsubsection}{\numberline {6.11.2.11}operator$>$$>$()\hspace {0.1cm}{\footnotesize \ttfamily [3/16]}}{45}{subsubsection.6.11.2.11}%
+\contentsline {subsubsection}{\numberline {6.11.2.12}operator$>$$>$()\hspace {0.1cm}{\footnotesize \ttfamily [4/16]}}{45}{subsubsection.6.11.2.12}%
+\contentsline {subsubsection}{\numberline {6.11.2.13}operator$>$$>$()\hspace {0.1cm}{\footnotesize \ttfamily [5/16]}}{45}{subsubsection.6.11.2.13}%
+\contentsline {subsubsection}{\numberline {6.11.2.14}operator$>$$>$()\hspace {0.1cm}{\footnotesize \ttfamily [6/16]}}{46}{subsubsection.6.11.2.14}%
+\contentsline {subsubsection}{\numberline {6.11.2.15}operator$>$$>$()\hspace {0.1cm}{\footnotesize \ttfamily [7/16]}}{46}{subsubsection.6.11.2.15}%
+\contentsline {subsubsection}{\numberline {6.11.2.16}operator$>$$>$()\hspace {0.1cm}{\footnotesize \ttfamily [8/16]}}{46}{subsubsection.6.11.2.16}%
+\contentsline {subsubsection}{\numberline {6.11.2.17}operator$>$$>$()\hspace {0.1cm}{\footnotesize \ttfamily [9/16]}}{46}{subsubsection.6.11.2.17}%
+\contentsline {subsubsection}{\numberline {6.11.2.18}operator$>$$>$()\hspace {0.1cm}{\footnotesize \ttfamily [10/16]}}{47}{subsubsection.6.11.2.18}%
+\contentsline {subsubsection}{\numberline {6.11.2.19}operator$>$$>$()\hspace {0.1cm}{\footnotesize \ttfamily [11/16]}}{47}{subsubsection.6.11.2.19}%
+\contentsline {subsubsection}{\numberline {6.11.2.20}operator$>$$>$()\hspace {0.1cm}{\footnotesize \ttfamily [12/16]}}{47}{subsubsection.6.11.2.20}%
+\contentsline {subsubsection}{\numberline {6.11.2.21}operator$>$$>$()\hspace {0.1cm}{\footnotesize \ttfamily [13/16]}}{47}{subsubsection.6.11.2.21}%
+\contentsline {subsubsection}{\numberline {6.11.2.22}operator$>$$>$()\hspace {0.1cm}{\footnotesize \ttfamily [14/16]}}{48}{subsubsection.6.11.2.22}%
+\contentsline {subsubsection}{\numberline {6.11.2.23}operator$>$$>$()\hspace {0.1cm}{\footnotesize \ttfamily [15/16]}}{48}{subsubsection.6.11.2.23}%
+\contentsline {subsubsection}{\numberline {6.11.2.24}operator$>$$>$()\hspace {0.1cm}{\footnotesize \ttfamily [16/16]}}{48}{subsubsection.6.11.2.24}%
+\contentsline {subsubsection}{\numberline {6.11.2.25}push\_packet()}{48}{subsubsection.6.11.2.25}%
+\contentsline {section}{\numberline {6.12}Tcp\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Daemon Class Reference}{49}{section.6.12}%
+\contentsline {subsection}{\numberline {6.12.1}Member Function Documentation}{49}{subsection.6.12.1}%
+\contentsline {subsubsection}{\numberline {6.12.1.1}enqueue\_packet()}{49}{subsubsection.6.12.1.1}%
+\contentsline {subsubsection}{\numberline {6.12.1.2}init()}{49}{subsubsection.6.12.1.2}%
+\contentsline {subsubsection}{\numberline {6.12.1.3}read\_packet()}{50}{subsubsection.6.12.1.3}%
+\contentsline {section}{\numberline {6.13}Topics\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Config Class Reference}{50}{section.6.13}%
+\contentsline {subsection}{\numberline {6.13.1}Member Function Documentation}{50}{subsection.6.13.1}%
+\contentsline {subsubsection}{\numberline {6.13.1.1}get\_identifier\_topic()}{50}{subsubsection.6.13.1.1}%
+\contentsline {subsubsection}{\numberline {6.13.1.2}get\_topic\_identifier()}{51}{subsubsection.6.13.1.2}%
+\contentsline {subsubsection}{\numberline {6.13.1.3}load\_configuration()}{51}{subsubsection.6.13.1.3}%
+\contentsline {section}{\numberline {6.14}cbor\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Tx\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Stream Class Reference}{51}{section.6.14}%
+\contentsline {subsection}{\numberline {6.14.1}Constructor \& Destructor Documentation}{52}{subsection.6.14.1}%
+\contentsline {subsubsection}{\numberline {6.14.1.1}TxStream()}{52}{subsubsection.6.14.1.1}%
+\contentsline {subsection}{\numberline {6.14.2}Member Function Documentation}{52}{subsection.6.14.2}%
+\contentsline {subsubsection}{\numberline {6.14.2.1}end\_transmission()}{52}{subsubsection.6.14.2.1}%
+\contentsline {subsubsection}{\numberline {6.14.2.2}operator$<$$<$()\hspace {0.1cm}{\footnotesize \ttfamily [1/16]}}{53}{subsubsection.6.14.2.2}%
+\contentsline {subsubsection}{\numberline {6.14.2.3}operator$<$$<$()\hspace {0.1cm}{\footnotesize \ttfamily [2/16]}}{53}{subsubsection.6.14.2.3}%
+\contentsline {subsubsection}{\numberline {6.14.2.4}operator$<$$<$()\hspace {0.1cm}{\footnotesize \ttfamily [3/16]}}{53}{subsubsection.6.14.2.4}%
+\contentsline {subsubsection}{\numberline {6.14.2.5}operator$<$$<$()\hspace {0.1cm}{\footnotesize \ttfamily [4/16]}}{53}{subsubsection.6.14.2.5}%
+\contentsline {subsubsection}{\numberline {6.14.2.6}operator$<$$<$()\hspace {0.1cm}{\footnotesize \ttfamily [5/16]}}{54}{subsubsection.6.14.2.6}%
+\contentsline {subsubsection}{\numberline {6.14.2.7}operator$<$$<$()\hspace {0.1cm}{\footnotesize \ttfamily [6/16]}}{54}{subsubsection.6.14.2.7}%
+\contentsline {subsubsection}{\numberline {6.14.2.8}operator$<$$<$()\hspace {0.1cm}{\footnotesize \ttfamily [7/16]}}{54}{subsubsection.6.14.2.8}%
+\contentsline {subsubsection}{\numberline {6.14.2.9}operator$<$$<$()\hspace {0.1cm}{\footnotesize \ttfamily [8/16]}}{54}{subsubsection.6.14.2.9}%
+\contentsline {subsubsection}{\numberline {6.14.2.10}operator$<$$<$()\hspace {0.1cm}{\footnotesize \ttfamily [9/16]}}{54}{subsubsection.6.14.2.10}%
+\contentsline {subsubsection}{\numberline {6.14.2.11}operator$<$$<$()\hspace {0.1cm}{\footnotesize \ttfamily [10/16]}}{55}{subsubsection.6.14.2.11}%
+\contentsline {subsubsection}{\numberline {6.14.2.12}operator$<$$<$()\hspace {0.1cm}{\footnotesize \ttfamily [11/16]}}{55}{subsubsection.6.14.2.12}%
+\contentsline {subsubsection}{\numberline {6.14.2.13}operator$<$$<$()\hspace {0.1cm}{\footnotesize \ttfamily [12/16]}}{55}{subsubsection.6.14.2.13}%
+\contentsline {subsubsection}{\numberline {6.14.2.14}operator$<$$<$()\hspace {0.1cm}{\footnotesize \ttfamily [13/16]}}{55}{subsubsection.6.14.2.14}%
+\contentsline {subsubsection}{\numberline {6.14.2.15}operator$<$$<$()\hspace {0.1cm}{\footnotesize \ttfamily [14/16]}}{57}{subsubsection.6.14.2.15}%
+\contentsline {subsubsection}{\numberline {6.14.2.16}operator$<$$<$()\hspace {0.1cm}{\footnotesize \ttfamily [15/16]}}{57}{subsubsection.6.14.2.16}%
+\contentsline {subsubsection}{\numberline {6.14.2.17}operator$<$$<$()\hspace {0.1cm}{\footnotesize \ttfamily [16/16]}}{57}{subsubsection.6.14.2.17}%
+\contentsline {subsubsection}{\numberline {6.14.2.18}serialize\_sequence()}{57}{subsubsection.6.14.2.18}%
+\contentsline {subsubsection}{\numberline {6.14.2.19}start\_transmission()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{58}{subsubsection.6.14.2.19}%
+\contentsline {subsubsection}{\numberline {6.14.2.20}start\_transmission()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{58}{subsubsection.6.14.2.20}%
+\contentsline {chapter}{\numberline {7}File Documentation}{59}{chapter.7}%
+\contentsline {section}{\numberline {7.1}src/desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}classes/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}CBor\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Stream.h File Reference}{59}{section.7.1}%
+\contentsline {subsection}{\numberline {7.1.1}Detailed Description}{60}{subsection.7.1.1}%
+\contentsline {section}{\numberline {7.2}CBor\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Stream.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{60}{section.7.2}%
+\contentsline {section}{\numberline {7.3}src/desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}classes/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}CString\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Helper.h File Reference}{63}{section.7.3}%
+\contentsline {subsection}{\numberline {7.3.1}Detailed Description}{64}{subsection.7.3.1}%
+\contentsline {section}{\numberline {7.4}CString\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Helper.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{64}{section.7.4}%
+\contentsline {section}{\numberline {7.5}src/desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}classes/demangle.h File Reference}{65}{section.7.5}%
+\contentsline {subsection}{\numberline {7.5.1}Detailed Description}{67}{subsection.7.5.1}%
+\contentsline {section}{\numberline {7.6}demangle.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{67}{section.7.6}%
+\contentsline {section}{\numberline {7.7}src/desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}classes/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Client.h File Reference}{68}{section.7.7}%
+\contentsline {subsection}{\numberline {7.7.1}Detailed Description}{69}{subsection.7.7.1}%
+\contentsline {section}{\numberline {7.8}Desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Client.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{69}{section.7.8}%
+\contentsline {section}{\numberline {7.9}src/desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}classes/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Guard\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Condition.h File Reference}{70}{section.7.9}%
+\contentsline {subsection}{\numberline {7.9.1}Detailed Description}{70}{subsection.7.9.1}%
+\contentsline {section}{\numberline {7.10}Desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Guard\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Condition.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{70}{section.7.10}%
+\contentsline {section}{\numberline {7.11}src/desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}classes/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Node.h File Reference}{71}{section.7.11}%
+\contentsline {subsection}{\numberline {7.11.1}Detailed Description}{71}{subsection.7.11.1}%
+\contentsline {section}{\numberline {7.12}Desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Node.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{72}{section.7.12}%
+\contentsline {section}{\numberline {7.13}src/desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}classes/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Publisher.h File Reference}{73}{section.7.13}%
+\contentsline {subsection}{\numberline {7.13.1}Detailed Description}{73}{subsection.7.13.1}%
+\contentsline {section}{\numberline {7.14}Desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Publisher.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{74}{section.7.14}%
+\contentsline {section}{\numberline {7.15}src/desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}classes/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Service.h File Reference}{74}{section.7.15}%
+\contentsline {subsection}{\numberline {7.15.1}Detailed Description}{75}{subsection.7.15.1}%
+\contentsline {section}{\numberline {7.16}Desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Service.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{76}{section.7.16}%
+\contentsline {section}{\numberline {7.17}src/desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}classes/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Subscriber.h File Reference}{77}{section.7.17}%
+\contentsline {subsection}{\numberline {7.17.1}Detailed Description}{77}{subsection.7.17.1}%
+\contentsline {section}{\numberline {7.18}Desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Subscriber.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{78}{section.7.18}%
+\contentsline {section}{\numberline {7.19}src/desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}classes/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Wait\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Set.h File Reference}{78}{section.7.19}%
+\contentsline {subsection}{\numberline {7.19.1}Detailed Description}{79}{subsection.7.19.1}%
+\contentsline {section}{\numberline {7.20}Desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Wait\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Set.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{79}{section.7.20}%
+\contentsline {section}{\numberline {7.21}src/desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}classes/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Discovery.h File Reference}{79}{section.7.21}%
+\contentsline {subsection}{\numberline {7.21.1}Detailed Description}{81}{subsection.7.21.1}%
+\contentsline {section}{\numberline {7.22}Discovery.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{81}{section.7.22}%
+\contentsline {section}{\numberline {7.23}src/desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}classes/macros.h File Reference}{82}{section.7.23}%
+\contentsline {subsection}{\numberline {7.23.1}Detailed Description}{82}{subsection.7.23.1}%
+\contentsline {subsection}{\numberline {7.23.2}Macro Definition Documentation}{82}{subsection.7.23.2}%
+\contentsline {subsubsection}{\numberline {7.23.2.1}SPECIALIZE\_GENERIC\_C\_SEQUENCE}{82}{subsubsection.7.23.2.1}%
+\contentsline {section}{\numberline {7.24}macros.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{83}{section.7.24}%
+\contentsline {section}{\numberline {7.25}src/desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}classes/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Message\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Serialization.h File Reference}{83}{section.7.25}%
+\contentsline {subsection}{\numberline {7.25.1}Detailed Description}{85}{subsection.7.25.1}%
+\contentsline {section}{\numberline {7.26}Message\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Serialization.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{85}{section.7.26}%
+\contentsline {section}{\numberline {7.27}src/desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}classes/rmw\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}context\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}impl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}s.h File Reference}{90}{section.7.27}%
+\contentsline {subsection}{\numberline {7.27.1}Detailed Description}{91}{subsection.7.27.1}%
+\contentsline {section}{\numberline {7.28}rmw\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}context\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}impl\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}s.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{91}{section.7.28}%
+\contentsline {section}{\numberline {7.29}src/desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}classes/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Tcp\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Daemon.h File Reference}{91}{section.7.29}%
+\contentsline {subsection}{\numberline {7.29.1}Detailed Description}{92}{subsection.7.29.1}%
+\contentsline {section}{\numberline {7.30}Tcp\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Daemon.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{93}{section.7.30}%
+\contentsline {section}{\numberline {7.31}src/desert\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}classes/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Topics\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Config.h File Reference}{93}{section.7.31}%
+\contentsline {subsection}{\numberline {7.31.1}Detailed Description}{94}{subsection.7.31.1}%
+\contentsline {section}{\numberline {7.32}Topics\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Config.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{95}{section.7.32}%
+\contentsline {chapter}{Index}{97}{section*.71}%
