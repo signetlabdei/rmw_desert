@@ -2,6 +2,11 @@
 Changelog for package rmw_desert
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Added get_service_endpoint_info
+* Contributors: matlin
+
 4.0.0 (2025-05-21)
 ------------------
 * Switch to target_link_libraries for linking
