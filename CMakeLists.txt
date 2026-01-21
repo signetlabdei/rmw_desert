@@ -37,6 +37,7 @@ add_library(rmw_desert
   src/features.cpp
   src/get_topic_endpoint_info.cpp
   src/get_network_flow_endpoints.cpp
+  src/get_service_endpoint_info.cpp
   src/event.cpp
   src/get_service_names_and_types.cpp
   src/desert_classes/DesertNode.cpp
