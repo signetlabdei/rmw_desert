@@ -5,23 +5,36 @@ std::map<uint8_t, std::string> TopicsConfig::_identifiers_list;
 
 void TopicsConfig::load_configuration()
 {
-  std::ifstream ifs("ros_allowed_topics.conf");
-  
+  const char* env_path = std::getenv("ROS_ALLOWED_TOPICS_CONFIG");
+
+  std::string config_path;
+
+  if (env_path != nullptr)
+  {
+    config_path = env_path;
+  }
+  else
+  {
+    config_path = "ros_allowed_topics.conf";
+  }
+
+  std::ifstream ifs(config_path);
+
   if (!ifs.good())
   {
-    printf("CRITICAL: a file called 'ros_allowed_topics.conf' must be present in the current directory\n");
+    printf("CRITICAL: configuration file '%s' could not be opened\n", config_path.c_str());
   }
-  
+
   json config = json::parse(ifs);
 
   // Find object and convert to map
   std::map<std::string, uint8_t> topics = config.at("topics").get<std::map<std::string, uint8_t>>();
-  
+
   std::map<uint8_t, std::string> identifiers;
-  
+
   for (std::map<std::string, uint8_t>::iterator i = topics.begin(); i != topics.end(); ++i)
     identifiers[i->second] = i->first;
-  
+
   _topics_list = topics;
   _identifiers_list = identifiers;
 }
