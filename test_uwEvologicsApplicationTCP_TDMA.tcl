@@ -1,8 +1,8 @@
 # ----------------------------------------------------------------------------------
-# This script depicts a very simple but complete stack in which one or two nodes send data
+# This script depicts a very simple but complete stack in which one or more nodes send data
 # to a common sink. The second node can be used by the first one as a relay to send data to the sink.
 # The routes are configured by using UW/STATICROUTING.
-# The application used to generate data is UW/CBR.
+# The application used to generate data is UW/APPLICATION.
 # ----------------------------------------------------------------------------------
 # Stack
 #             Node 1                         Node 2                        Sink
@@ -35,32 +35,24 @@ set opt(bash_parameters)    0
 # Library Loading   #
 #####################
 load libMiracle.so
-load libMiracleBasicMovement.so
 load libmphy.so
 load libmmac.so
-load libUwmStd.so
-load libuwinterference.so
 load libuwip.so
-load libuwstaticrouting.so
 load libuwmll.so
+load libuwstaticrouting.so
 load libuwudp.so
 load libuwapplication.so
-load libUwmStdPhyBpskTracer.so
-load libuwphy_clmsgs.so
-load libuwstats_utilities.so
-load libuwphysical.so
 load libpackeruwapplication.so
-load libuwaloha.so
 load libuwal.so
 load libpackeruwip.so
 load libpackercommon.so
 load libpackermac.so
 load libpackeruwudp.so
+load libuwphy_clmsgs.so
 load libuwconnector.so
 load libuwmodem.so
 load libuwevologicss2c.so
 load libuwmmac_clmsgs.so
-load libuwcbr.so
 load libuwtdma.so
 
 #############################
