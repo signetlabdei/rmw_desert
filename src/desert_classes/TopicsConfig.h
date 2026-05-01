@@ -38,6 +38,7 @@
 #include <string>
 #include <cstdint>
 #include <fstream>
+#include <cstdlib>
 
 /** @endcond */
 
@@ -52,7 +53,9 @@ class TopicsConfig
    /**
     * @brief Initialize the configuration
     *
-    * This function reads the configuration file from ./ros_allowed_topics.conf. 
+    * This function reads the configuration file from:
+    * env variable: ROS_ALLOWED_TOPICS_CONFIG
+    * or from: ./ros_allowed_topics.conf. 
     * If not present, a warning will be displayed.
     */
     static void load_configuration();
