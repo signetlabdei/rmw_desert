@@ -2,8 +2,8 @@
 Changelog for package rmw_desert
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+4.0.2 (2026-05-04)
+------------------
 * Update README.md
 * Add support for ROS_ALLOWED_TOPICS_CONFIG environment variable in configuration loading
 * Add option to use env variable
