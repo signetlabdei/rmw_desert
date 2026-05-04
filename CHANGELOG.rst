@@ -2,6 +2,13 @@
 Changelog for package rmw_desert
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Update README.md
+* Add support for ROS_ALLOWED_TOPICS_CONFIG environment variable in configuration loading
+* Add option to use env variable
+* Contributors: Magform, dcostan
+
 4.0.1 (2026-01-21)
 ------------------
 * Added get_service_endpoint_info
