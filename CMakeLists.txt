@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.5)
 
 project(rmw_desert)
 
+include(config.cmake)
+
 # Default to C++20
 if(NOT CMAKE_CXX_STANDARD)
   set(CMAKE_CXX_STANDARD 20)
@@ -52,14 +54,29 @@ add_library(rmw_desert
   src/desert_classes/Discovery.cpp
   src/desert_classes/TopicsConfig.cpp
   src/desert_classes/demangle.cpp
-  
-  ${CBOR_ROOT}/src/common.c
-  ${CBOR_ROOT}/src/parser.c
-  ${CBOR_ROOT}/src/decoder.c
-  ${CBOR_ROOT}/src/encoder.c
-  ${CBOR_ROOT}/src/helper.c
-  ${CBOR_ROOT}/src/ieee754.c
 )
+
+if (${CBOR_LIB} STREQUAL "libmcu_cbor")
+  set(CBOR_ROOT cbor)
+  target_sources(rmw_desert PRIVATE
+    ${CBOR_ROOT}/src/common.c
+    ${CBOR_ROOT}/src/parser.c
+    ${CBOR_ROOT}/src/decoder.c
+    ${CBOR_ROOT}/src/encoder.c
+    ${CBOR_ROOT}/src/helper.c
+    ${CBOR_ROOT}/src/ieee754.c
+  )
+  target_compile_definitions(rmw_desert PRIVATE LIBMCU_CBOR_ENABLED)
+elseif (${CBOR_LIB} STREQUAL "NanoCBOR")
+  set(CBOR_ROOT thirdparty/NanoCBOR)
+  target_sources(rmw_desert PRIVATE
+    ${CBOR_ROOT}/src/decoder.c
+    ${CBOR_ROOT}/src/encoder.c
+  )
+  target_compile_definitions(rmw_desert PRIVATE NANOCBOR_ENABLED)
+else ()
+  message(FATAL_ERROR "At least one CBOR libraty is required")
+endif ()
 
 INCLUDE (FindPkgConfig)
 

@@ -1,0 +1,1 @@
+set(CBOR_LIB "libmcu_cbor" CACHE STRING "Cbor library.") # libmcu_cbor, NanoCBOR
