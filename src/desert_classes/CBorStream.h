@@ -52,13 +52,12 @@
 
 /** @endcond */
 
-#include "cbor/encoder.h"
-#include "cbor/ieee754.h"
-#include "cbor/decoder.h"
+#ifdef LIBMCU_CBOR_ENABLED
 #include "cbor/parser.h"
-#include "cbor/helper.h"
-
-#include "half.hpp"
+#endif
+#ifdef NANOCBOR_ENABLED
+#include <nanocbor/nanocbor.h>
+#endif
 
 #define PUBLISHER_TYPE  0
 #define SUBSCRIBER_TYPE 1
@@ -66,6 +65,17 @@
 #define SERVICE_TYPE    3
 
 #define MAX_BUFFER_CAPACITY 100
+
+#ifdef LIBMCU_CBOR_ENABLED
+#define cbor_error_type cbor_error_t
+#endif
+#ifdef NANOCBOR_ENABLED
+#define cbor_error_type nanocbor_error_t
+#define CBOR_ITEM_INTEGER NANOCBOR_TYPE_NINT
+#define CBOR_ITEM_STRING NANOCBOR_TYPE_TSTR
+#define CBOR_ITEM_FLOAT NANOCBOR_TYPE_FLOAT
+#define CBOR_ITEM_SIMPLE_VALUE NANOCBOR_SIMPLE_FALSE
+#endif
 
 template <typename T, int MaxLen, typename Container=std::deque<T>>
 class CircularQueue : public std::queue<T, Container> {
@@ -94,12 +104,12 @@ class TxStream
     * @param stream_identifier  Identifier of the topic or the service read from configuration
     */
     TxStream(uint8_t stream_type, std::string stream_name, uint8_t stream_identifier);
-    
+
    /**
     * @brief Tell the stream to create a new packet
     *
-    * Every time a transmission in started, a new empty packet must be 
-    * generated and saved as a private member. Then type, service name 
+    * Every time a transmission in started, a new empty packet must be
+    * generated and saved as a private member. Then type, service name
     * and sequence id are put in front of the data.
     *
     * @param sequence_id The id of the client service communication
@@ -108,15 +118,15 @@ class TxStream
    /**
     * @brief Tell the stream to create a new packet
     *
-    * Every time a transmission in started, a new empty packet must be 
-    * generated and saved as a private member. Then type and topic name 
+    * Every time a transmission in started, a new empty packet must be
+    * generated and saved as a private member. Then type and topic name
     * are put in front of the data.
     */
     void start_transmission();
    /**
     * @brief Tell the stream to send down the packet
     *
-    * When the transmission is finished the packet is stored in the 
+    * When the transmission is finished the packet is stored in the
     * static member of TcpDaemon in order to be sent to DESERT.
     */
     void end_transmission();
@@ -191,7 +201,7 @@ class TxStream
     * @param b Field to encode
     */
     TxStream & operator<<(const bool b);
-    
+
    /**
     * @brief Encode vector
     * @param v Field to encode
@@ -202,13 +212,13 @@ class TxStream
       *this << static_cast<const uint32_t>(v.size());
       return serialize_sequence(v.data(), v.size());
     }
-    
+
    /**
     * @brief Encode bool vector
     * @param v Field to encode
     */
     TxStream & operator<<(const std::vector<bool> v);
-    
+
    /**
     * @brief Serialize a sequence of uniform elements
     * @param items Pointer to the first element
@@ -228,16 +238,21 @@ class TxStream
     uint8_t _stream_type;
     std::string _stream_name;
     uint8_t _stream_identifier;
-    
+
     bool _overflow;
     uint8_t *  _packet;
+#ifdef LIBMCU_CBOR_ENABLED
     cbor_writer_t *  _writer;
-    
+#endif
+#ifdef NANOCBOR_ENABLED
+    nanocbor_encoder_t * _encoder;
+#endif
+
     void new_packet();
-    void handle_overrun(cbor_error_t result);
-    
+    void handle_overrun(cbor_error_type result);
+
     std::string toUTF8(const std::u16string source);
-  
+
 };
 
 class RxStream
@@ -251,31 +266,31 @@ class RxStream
     * @param stream_identifier  Identifier of the topic or the service read from configuration
     */
     RxStream(uint8_t stream_type, std::string stream_name, uint8_t stream_identifier);
-    
+
    /**
     * @brief Destroy the reception stream
     */
     ~RxStream();
-    
+
    /**
     * @brief Check if there are data
     *
-    * A map contains the information received for all topics and services, 
-    * so using the name saved in the current instance as key it is possible 
+    * A map contains the information received for all topics and services,
+    * so using the name saved in the current instance as key it is possible
     * to know if a message is arrived for a specific entity.
     *
     * @param sequence_id The id of the client service communication
     */
     bool data_available(int64_t sequence_id = 0);
-    
+
    /**
     * @brief Clear the currently buffered packet
     *
-    * When the packet is read by the entity, this function must be called to clear the buffer 
+    * When the packet is read by the entity, this function must be called to clear the buffer
     * and allow RxStream to add the next one in the queue.
     */
     void clear_buffer();
-    
+
    /**
     * @brief Decode uint64
     * @param n Field to decode
@@ -316,14 +331,14 @@ class RxStream
     * @param n Field to decode
     */
     RxStream & operator>>(int8_t & n);
-    
+
    /**
     * @brief Decode a generic integer
     * @param n Field to decode
     */
     template<typename T>
     RxStream & deserialize_integer(T & n);
-    
+
    /**
     * @brief Decode char
     * @param n Field to decode
@@ -354,7 +369,7 @@ class RxStream
     * @param b Field to decode
     */
     RxStream & operator>>(bool & b);
-    
+
    /**
     * @brief Decode vector
     * @param v Field to decode
@@ -365,16 +380,16 @@ class RxStream
       uint32_t size;
       *this >> size;
       v.resize(size);
-      
+
       return deserialize_sequence(v.data(), size);
     }
-    
+
    /**
     * @brief Decode bool vector
     * @param v Field to decode
     */
     RxStream & operator>>(std::vector<bool> & v);
-    
+
    /**
     * @brief Deserialize a sequence of uniform elements
     * @param items Pointer to the first element
@@ -389,8 +404,8 @@ class RxStream
       }
       return *this;
     }
-    
-    
+
+
    /**
     * @brief Get the stream type of a specific instance
     * @return Type of the stream
@@ -406,7 +421,7 @@ class RxStream
     * @return Topic identifier of the stream
     */
     uint8_t get_identifier() const;
-    
+
    /**
     * @brief Add a packet to _received_packets
     *
@@ -417,30 +432,30 @@ class RxStream
     * @param packet The packet to add
     */
     void push_packet(std::vector<std::pair<void *, int>> packet);
-    
+
    /**
     * @brief Interpret raw packets and splits them into different communication types
     *
-    * Raw packets from TcpDaemon are read and interpreted in order to put them in 
-    * a map where the key allows to distinguish the topic name or the service name, 
+    * Raw packets from TcpDaemon are read and interpreted in order to put them in
+    * a map where the key allows to distinguish the topic name or the service name,
     * and eventually the sequence identifier.
     */
     static void interpret_packets();
-  
+
   private:
     uint8_t _stream_type;
     std::string _stream_name;
     uint8_t _stream_identifier;
-    
+
     size_t _buffered_iterator;
-    
+
     // packets: <packet <field, field_type>>
     std::vector<std::pair<void *, int>> _buffered_packet;
     CircularQueue<std::vector<std::pair<void *, int>>, MAX_BUFFER_CAPACITY> _received_packets;
-    
+
     static const std::map<int, int> _stream_type_match_map;
     static std::vector<RxStream *> _listening_streams;
-    
+
     union _cbor_value {
 	int8_t i8;
 	int16_t i16;
@@ -452,10 +467,15 @@ class RxStream
 	char *str;
 	uint8_t str_copy[128];
     };
-    
+
     static std::mutex _rx_mutex;
-    
+#ifdef LIBMCU_CBOR_ENABLED
     static std::pair<void *, int> interpret_field(cbor_item_t * items, size_t i, union _cbor_value & val);
+#endif
+#ifdef NANOCBOR_ENABLED
+    static std::pair<void *, int> interpret_field(nanocbor_value_t* cbor_value);
+#endif
+
     std::u16string toUTF16(const std::string source);
 };
 

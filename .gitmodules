@@ -1,0 +1,3 @@
+[submodule "thirdparty/NanoCBOR"]
+	path = thirdparty/NanoCBOR
+	url = https://github.com/bergzand/NanoCBOR
