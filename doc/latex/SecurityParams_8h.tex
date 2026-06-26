@@ -1,0 +1,63 @@
+\doxysection{src/desert\+\_\+classes/security/\+Security\+Params.h File Reference}
+\hypertarget{SecurityParams_8h}{}\label{SecurityParams_8h}\index{src/desert\_classes/security/SecurityParams.h@{src/desert\_classes/security/SecurityParams.h}}
+
+
+Class containing the parameters of the selected cryptography.  
+
+
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=215pt]{SecurityParams_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classsecurity_1_1AeadParams}{security\+::\+Aead\+Params}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{SecurityParams_8h_ab6850a9b99b1d9a05c6fced548cf6475}\label{SecurityParams_8h_ab6850a9b99b1d9a05c6fced548cf6475} 
+\#define {\bfseries AEAD\+\_\+\+ALGO\+\_\+\+ASCON\+\_\+128}~"{}Ascon-\/AEAD128"{}
+\item 
+\Hypertarget{SecurityParams_8h_a1ab1ff831f454eb6f74178863db1ee89}\label{SecurityParams_8h_a1ab1ff831f454eb6f74178863db1ee89} 
+\#define {\bfseries AEAD\+\_\+\+ALGO\+\_\+\+ASCON\+\_\+128\+\_\+64}~"{}Ascon-\/AEAD128-\/64"{}
+\item 
+\Hypertarget{SecurityParams_8h_a10ed2a4bdb24afc51ab7744c4dd9da41}\label{SecurityParams_8h_a10ed2a4bdb24afc51ab7744c4dd9da41} 
+\#define {\bfseries AEAD\+\_\+\+ALGO\+\_\+\+ASCON\+\_\+128\+\_\+32}~"{}Ascon-\/AEAD128-\/32"{}
+\item 
+\Hypertarget{SecurityParams_8h_a909bfc607701f1113190ab9be4ec64e0}\label{SecurityParams_8h_a909bfc607701f1113190ab9be4ec64e0} 
+\#define {\bfseries KDF\+\_\+\+ALGO\+\_\+\+ASCON\+\_\+256}~"{}HKDF-\/Ascon256"{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{SecurityParams_8h_a070ffacee0cdc51dfd21f4f163f46466}\label{SecurityParams_8h_a070ffacee0cdc51dfd21f4f163f46466} 
+enum {\bfseries Aead\+Algorithms} \{ \newline
+{\bfseries ASCON\+\_\+\+AEAD128}
+, {\bfseries ASCON\+\_\+\+AEAD128\+\_\+64}
+, {\bfseries ASCON\+\_\+\+AEAD128\+\_\+32}
+, {\bfseries A128\+GCM}
+, \newline
+{\bfseries AEAD\+\_\+\+UNKNOWN}
+ \}
+\item 
+\Hypertarget{SecurityParams_8h_ae978a398a2ccf76f28626af9fcc55c03}\label{SecurityParams_8h_ae978a398a2ccf76f28626af9fcc55c03} 
+enum {\bfseries Kdf\+Algorithms} \{ {\bfseries HKDF\+\_\+\+ASCON}
+, {\bfseries HKDF\+\_\+\+HMAC256}
+, {\bfseries KDF\+\_\+\+UNKNOWN}
+ \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class containing the parameters of the selected cryptography. 
+
+This header defines the algorithms and parameter sets used by the security layer. It provides AEAD and KDF identifiers together with the key, nonce, and authentication-\/tag sizes required by each supported AEAD algorithm. These parameters are used to configure cryptographic context derivation.
+
+\begin{DoxyAuthor}{Author}
+Dmytro Ochkas 
+\end{DoxyAuthor}

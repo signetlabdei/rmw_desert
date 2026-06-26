@@ -22,7 +22,7 @@ void TopicsConfig::load_configuration()
 
   if (!ifs.good())
   {
-    printf("CRITICAL: configuration file '%s' could not be opened\n", config_path.c_str());
+    printf("CRITICAL: configuration file '%s' could not be opened\n\n", config_path.c_str());
   }
 
   json config = json::parse(ifs);

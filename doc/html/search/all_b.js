@@ -11,5 +11,5 @@ var searchData=
   ['resolve_5fprefix_8',['resolve_prefix',['../namespaceDiscovery.html#afb3cd88fa21922977a1cbcadd109388e',1,'Discovery']]],
   ['rmw_5fcontext_5fimpl_5fs_9',['rmw_context_impl_s',['../structrmw__context__impl__s.html',1,'']]],
   ['rmw_5fcontext_5fimpl_5fs_2eh_10',['rmw_context_impl_s.h',['../rmw__context__impl__s_8h.html',1,'']]],
-  ['rxstream_11',['rxstream',['../classcbor_1_1RxStream.html',1,'cbor::RxStream'],['../classcbor_1_1RxStream.html#a69c580c78b5cf3cab873d750ba2afc50',1,'cbor::RxStream::RxStream()']]]
+  ['rxstream_11',['RxStream',['../classcbor_1_1RxStream.html',1,'cbor::RxStream'],['../classcbor_1_1RxStream.html#a69c580c78b5cf3cab873d750ba2afc50',1,'cbor::RxStream::RxStream()']]]
 ];

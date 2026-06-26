@@ -47,6 +47,19 @@ rmw_ret_t rmw_init(const rmw_init_options_t * options,  rmw_context_t * context)
   
   TopicsConfig::load_configuration();
   TcpDaemon tcp = TcpDaemon();
+
+  if (tcp.init(port) != 0)
+    return RMW_RET_ERROR;
+
+  // Create a test stream to check for errors on the environment
+  try
+  {
+    cbor::RxStream test_stream = cbor::RxStream(SUBSCRIBER_TYPE, "/none", 0);
+  }
+  catch (...)
+  {
+    return RMW_RET_ERROR;
+  }
   
   auto restore_context = rcpputils::make_scope_exit(
     [context]() {*context = rmw_get_zero_initialized_context();});
@@ -60,9 +73,6 @@ rmw_ret_t rmw_init(const rmw_init_options_t * options,  rmw_context_t * context)
   rmw_ret_t ret = Discovery::discovery_thread_start(context->impl);
   
   if (ret != RMW_RET_OK)
-    return RMW_RET_ERROR;
-  
-  if (tcp.init(port) != 0)
     return RMW_RET_ERROR;
   
   restore_context.cancel();

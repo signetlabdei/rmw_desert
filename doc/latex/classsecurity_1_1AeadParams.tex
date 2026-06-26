@@ -1,0 +1,98 @@
+\doxysection{security\+::Aead\+Params Class Reference}
+\hypertarget{classsecurity_1_1AeadParams}{}\label{classsecurity_1_1AeadParams}\index{security::AeadParams@{security::AeadParams}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsecurity_1_1AeadParams_aa2f852d55d9878ca6c06e6a1c453a976}{Aead\+Params}} (Aead\+Algorithms alg)
+\begin{DoxyCompactList}\small\item\em Creates the parameter set for an AEAD algorithm. \end{DoxyCompactList}\item 
+Aead\+Algorithms \mbox{\hyperlink{classsecurity_1_1AeadParams_a1d427e56449a2fff0447f004fa93eab7}{get\+\_\+alg}} () const
+\begin{DoxyCompactList}\small\item\em Returns the configured AEAD algorithm. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{classsecurity_1_1AeadParams_a215194d9d462aea753abd8cb5aa8aebb}{get\+\_\+key\+\_\+size}} () const
+\begin{DoxyCompactList}\small\item\em Returns the size of the AEAD key. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{classsecurity_1_1AeadParams_a820fccbcd73025ec6fbdd68ae774fa59}{get\+\_\+nonce\+\_\+size}} () const
+\begin{DoxyCompactList}\small\item\em Returns the size of the AEAD nonce. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{classsecurity_1_1AeadParams_a506dd9a82c19f8893718cd7cef338a10}{get\+\_\+tag\+\_\+size}} () const
+\begin{DoxyCompactList}\small\item\em Returns the size of the AEAD authentication tag. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{classsecurity_1_1AeadParams_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classsecurity_1_1AeadParams_aa2f852d55d9878ca6c06e6a1c453a976}\index{security::AeadParams@{security::AeadParams}!AeadParams@{AeadParams}}
+\index{AeadParams@{AeadParams}!security::AeadParams@{security::AeadParams}}
+\doxysubsubsection{\texorpdfstring{AeadParams()}{AeadParams()}}
+{\footnotesize\ttfamily \label{classsecurity_1_1AeadParams_aa2f852d55d9878ca6c06e6a1c453a976} 
+security\+::\+Aead\+Params\+::\+Aead\+Params (\begin{DoxyParamCaption}\item[{Aead\+Algorithms}]{alg}{}\end{DoxyParamCaption})}
+
+
+
+Creates the parameter set for an AEAD algorithm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em alg} & AEAD algorithm to configure. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classsecurity_1_1AeadParams_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsecurity_1_1AeadParams_a1d427e56449a2fff0447f004fa93eab7}\index{security::AeadParams@{security::AeadParams}!get\_alg@{get\_alg}}
+\index{get\_alg@{get\_alg}!security::AeadParams@{security::AeadParams}}
+\doxysubsubsection{\texorpdfstring{get\_alg()}{get\_alg()}}
+{\footnotesize\ttfamily \label{classsecurity_1_1AeadParams_a1d427e56449a2fff0447f004fa93eab7} 
+Aead\+Algorithms security\+::\+Aead\+Params\+::get\+\_\+alg (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the configured AEAD algorithm. 
+
+\begin{DoxyReturn}{Returns}
+The selected AEAD algorithm identifier. 
+\end{DoxyReturn}
+\Hypertarget{classsecurity_1_1AeadParams_a215194d9d462aea753abd8cb5aa8aebb}\index{security::AeadParams@{security::AeadParams}!get\_key\_size@{get\_key\_size}}
+\index{get\_key\_size@{get\_key\_size}!security::AeadParams@{security::AeadParams}}
+\doxysubsubsection{\texorpdfstring{get\_key\_size()}{get\_key\_size()}}
+{\footnotesize\ttfamily \label{classsecurity_1_1AeadParams_a215194d9d462aea753abd8cb5aa8aebb} 
+uint16\+\_\+t security\+::\+Aead\+Params\+::get\+\_\+key\+\_\+size (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the size of the AEAD key. 
+
+\begin{DoxyReturn}{Returns}
+Key size in bytes. 
+\end{DoxyReturn}
+\Hypertarget{classsecurity_1_1AeadParams_a820fccbcd73025ec6fbdd68ae774fa59}\index{security::AeadParams@{security::AeadParams}!get\_nonce\_size@{get\_nonce\_size}}
+\index{get\_nonce\_size@{get\_nonce\_size}!security::AeadParams@{security::AeadParams}}
+\doxysubsubsection{\texorpdfstring{get\_nonce\_size()}{get\_nonce\_size()}}
+{\footnotesize\ttfamily \label{classsecurity_1_1AeadParams_a820fccbcd73025ec6fbdd68ae774fa59} 
+uint16\+\_\+t security\+::\+Aead\+Params\+::get\+\_\+nonce\+\_\+size (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the size of the AEAD nonce. 
+
+\begin{DoxyReturn}{Returns}
+Nonce size in bytes. 
+\end{DoxyReturn}
+\Hypertarget{classsecurity_1_1AeadParams_a506dd9a82c19f8893718cd7cef338a10}\index{security::AeadParams@{security::AeadParams}!get\_tag\_size@{get\_tag\_size}}
+\index{get\_tag\_size@{get\_tag\_size}!security::AeadParams@{security::AeadParams}}
+\doxysubsubsection{\texorpdfstring{get\_tag\_size()}{get\_tag\_size()}}
+{\footnotesize\ttfamily \label{classsecurity_1_1AeadParams_a506dd9a82c19f8893718cd7cef338a10} 
+uint16\+\_\+t security\+::\+Aead\+Params\+::get\+\_\+tag\+\_\+size (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the size of the AEAD authentication tag. 
+
+\begin{DoxyReturn}{Returns}
+Authentication-\/tag size in bytes. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/desert\+\_\+classes/security/\mbox{\hyperlink{AeadParams_8h}{Aead\+Params.\+h}}\item 
+src/desert\+\_\+classes/security/Aead\+Params.\+cpp\end{DoxyCompactItemize}

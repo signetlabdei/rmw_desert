@@ -1,0 +1,65 @@
+\doxysection{src/desert\+\_\+classes/security/\+Security\+Layer.h File Reference}
+\hypertarget{SecurityLayer_8h}{}\label{SecurityLayer_8h}\index{src/desert\_classes/security/SecurityLayer.h@{src/desert\_classes/security/SecurityLayer.h}}
+
+
+Class used to handle the encryption of the stream.  
+
+
+{\ttfamily \#include $<$cose\+\_\+defines.\+h$>$}\newline
+{\ttfamily \#include $<$cose/key.\+h$>$}\newline
+{\ttfamily \#include "{}Aead\+Params.\+h"{}}\newline
+Include dependency graph for Security\+Layer.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{SecurityLayer_8h__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classsecurity_1_1SecurityLayer}{security\+::\+Security\+Layer}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{SecurityLayer_8h_abd09aa55ce9ef8d53ea46850122f2bee}\label{SecurityLayer_8h_abd09aa55ce9ef8d53ea46850122f2bee} 
+\#define {\bfseries DEFAULT\+\_\+\+MASTER\+\_\+\+SALT\+\_\+\+LEN}~16
+\item 
+\Hypertarget{SecurityLayer_8h_a2145414e1ea05c0ed288302988b72b42}\label{SecurityLayer_8h_a2145414e1ea05c0ed288302988b72b42} 
+\#define {\bfseries COSE\+\_\+\+SERIALIZATION\+\_\+\+MAX\+\_\+\+OVERHEAD}~12
+\item 
+\Hypertarget{SecurityLayer_8h_abfdad9ab93832caa24aed380a74c5c0f}\label{SecurityLayer_8h_abfdad9ab93832caa24aed380a74c5c0f} 
+\#define {\bfseries COSE\+\_\+\+INTERNAL\+\_\+\+BUF\+\_\+\+SIZE}~512
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{SecurityLayer_8h_a78e0c63db9b1183ab6f4f3f1b1feeb9e}\label{SecurityLayer_8h_a78e0c63db9b1183ab6f4f3f1b1feeb9e} 
+enum {\bfseries Security\+Result} \{ \newline
+{\bfseries OK} = 0
+, {\bfseries PARAM\+\_\+\+ERROR} = -\/1
+, {\bfseries KEY\+\_\+\+SIZE\+\_\+\+ERROR} = -\/2
+, {\bfseries KEY\+\_\+\+ENV\+\_\+\+ERROR} = -\/3
+, \newline
+{\bfseries NONCE\+\_\+\+ENV\+\_\+\+ERROR} = -\/4
+, {\bfseries NONCE\+\_\+\+SIZE\+\_\+\+ERROR} = -\/5
+, {\bfseries BUFFER\+\_\+\+ERROR} = -\/6
+, {\bfseries CONTEXT\+\_\+\+DERIVE\+\_\+\+ERROR} = -\/7
+, \newline
+{\bfseries COMP\+\_\+\+ERROR} = -\/8
+, {\bfseries WRAP\+\_\+\+ERROR} = -\/100
+, {\bfseries UNWRAP\+\_\+\+ERROR} = -\/200
+, {\bfseries INTERNAL\+\_\+\+ERROR} = -\/999
+ \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class used to handle the encryption of the stream. 
+
+This header declares the security layer used to protect application data. It derives sender and receiver contexts, builds nonces, and performs COSE wrapping and unwrapping of payloads using the selected AEAD and KDF schemes. It also manages key material, identifiers, and serialization buffers.
+
+\begin{DoxyAuthor}{Author}
+Dmytro Ochkas 
+\end{DoxyAuthor}
