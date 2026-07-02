@@ -25,9 +25,6 @@ find_package(rosidl_typesupport_introspection_cpp REQUIRED)
 find_package(rcutils REQUIRED)
 find_package(rcpputils REQUIRED)
 
-set(CBOR_ROOT cbor)
-include_directories(${CBOR_ROOT}/include)
-
 add_library(rmw_desert
   src/get_node_info_and_types.cpp
   src/init.cpp
@@ -48,7 +45,6 @@ add_library(rmw_desert
   src/desert_classes/DesertClient.cpp
   src/desert_classes/DesertService.cpp
   src/desert_classes/DesertGuardCondition.cpp
-  src/desert_classes/CBorStream.cpp
   src/desert_classes/CStringHelper.cpp
   src/desert_classes/TcpDaemon.cpp
   src/desert_classes/Discovery.cpp
@@ -58,6 +54,7 @@ add_library(rmw_desert
 
 if (${CBOR_LIB} STREQUAL "libmcu_cbor")
   set(CBOR_ROOT cbor)
+  include_directories(${CBOR_ROOT}/include)
   target_sources(rmw_desert PRIVATE
     ${CBOR_ROOT}/src/common.c
     ${CBOR_ROOT}/src/parser.c
@@ -65,19 +62,22 @@ if (${CBOR_LIB} STREQUAL "libmcu_cbor")
     ${CBOR_ROOT}/src/encoder.c
     ${CBOR_ROOT}/src/helper.c
     ${CBOR_ROOT}/src/ieee754.c
+    src/desert_classes/LibMcuCBorStream.cpp
   )
   target_compile_definitions(rmw_desert PRIVATE LIBMCU_CBOR_ENABLED)
 elseif (${CBOR_LIB} STREQUAL "NanoCBOR")
   set(CBOR_ROOT thirdparty/NanoCBOR)
+  include_directories(${CBOR_ROOT}/include)
   target_sources(rmw_desert PRIVATE
     ${CBOR_ROOT}/src/decoder.c
     ${CBOR_ROOT}/src/encoder.c
+    src/desert_classes/NanoCBorStream.cpp
   )
   target_compile_definitions(rmw_desert PRIVATE NANOCBOR_ENABLED)
 else ()
   message(FATAL_ERROR "At least one CBOR libraty is required")
 endif ()
-
+	
 INCLUDE (FindPkgConfig)
 
 # specific order: dependents before dependencies
