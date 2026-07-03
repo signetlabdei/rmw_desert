@@ -2,11 +2,6 @@
 
 #include <nanocbor/nanocbor.h>
 
-#define CBOR_ITEM_INTEGER NANOCBOR_TYPE_NINT
-#define CBOR_ITEM_STRING NANOCBOR_TYPE_TSTR
-#define CBOR_ITEM_FLOAT NANOCBOR_TYPE_FLOAT
-#define CBOR_ITEM_SIMPLE_VALUE NANOCBOR_SIMPLE_FALSE
-
 namespace cbor
 {
 
@@ -71,7 +66,7 @@ void TxStream::end_transmission()
 
   size_t encoded_len = nanocbor_encoded_len(&_writer->nanocbor_encoder);
 
-  std::vector<uint8_t> daemon_packet(encoded_len);
+  std::vector<uint8_t> daemon_packet;
 
   for(size_t i=0; i < encoded_len; i++)
   {
@@ -181,8 +176,7 @@ TxStream & TxStream::operator<<(const std::u16string s)
 
 TxStream & TxStream::operator<<(const bool b)
 {
-  nanocbor_error_t result = (nanocbor_error_t) nanocbor_fmt_bool(&_writer->nanocbor_encoder, b);
-  handle_overrun(ERROR(result));
+  *this << static_cast<uint8_t>(b);
   return *this;
 }
 
@@ -295,58 +289,76 @@ void RxStream::clear_buffer()
 
 RxStream & RxStream::operator>>(uint64_t & n)
 {
-  return deserialize_integer<uint64_t>(n);
+  if (_buffered_packet.size() > _buffered_iterator && _buffered_packet[_buffered_iterator].second == NANOCBOR_TYPE_UINT)
+    n = *static_cast<uint64_t *>(_buffered_packet[_buffered_iterator].first);
+
+  _buffered_iterator++;
+  
+  return *this;
 }
 
 RxStream & RxStream::operator>>(uint32_t & n)
 {
-  return deserialize_integer<uint32_t>(n);
+  uint64_t value;
+  *this >> value;
+  n = static_cast<uint32_t>(value);
+  return *this;
 }
 
 RxStream & RxStream::operator>>(uint16_t & n)
 {
-  return deserialize_integer<uint16_t>(n);
+  uint64_t value;
+  *this >> value;
+  n = static_cast<uint16_t>(value);
+  return *this;
 }
 
 RxStream & RxStream::operator>>(uint8_t & n)
 {
-  return deserialize_integer<uint8_t>(n);
+  uint64_t value;
+  *this >> value;
+  n = static_cast<uint8_t>(value);
+  return *this;
 }
 
 RxStream & RxStream::operator>>(int64_t & n)
 {
-  return deserialize_integer<int64_t>(n);
+  int type = _buffered_packet[_buffered_iterator].second;
+  if (_buffered_packet.size() > _buffered_iterator && (type == NANOCBOR_TYPE_UINT || type == NANOCBOR_TYPE_NINT))
+    n = *static_cast<int64_t *>(_buffered_packet[_buffered_iterator].first);
+
+  _buffered_iterator++;
+  
+  return *this;
 }
 
 RxStream & RxStream::operator>>(int32_t & n)
 {
-  return deserialize_integer<int32_t>(n);
+  int64_t value;
+  *this >> value;
+  n = static_cast<int32_t>(value);
+  return *this;
 }
 
 RxStream & RxStream::operator>>(int16_t & n)
 {
-  return deserialize_integer<int16_t>(n);
+  int64_t value;
+  *this >> value;
+  n = static_cast<int16_t>(value);
+  return *this;
 }
 
 RxStream & RxStream::operator>>(int8_t & n)
 {
-  return deserialize_integer<int8_t>(n);
-}
-
-template<typename T>
-RxStream & RxStream::deserialize_integer(T & n)
-{
-  if (_buffered_packet.size() > _buffered_iterator && _buffered_packet[_buffered_iterator].second == CBOR_ITEM_INTEGER)
-    n = *static_cast<T *>(_buffered_packet[_buffered_iterator].first);
-
-  _buffered_iterator++;
-
+  int64_t value;
+  *this >> value;
+  n = static_cast<int8_t>(value);
   return *this;
 }
 
 RxStream & RxStream::operator>>(char & n)
 {
-  if (_buffered_packet.size() > _buffered_iterator && _buffered_packet[_buffered_iterator].second == CBOR_ITEM_STRING)
+  if (_buffered_packet.size() > _buffered_iterator && _buffered_packet[_buffered_iterator].second == NANOCBOR_TYPE_TSTR)
     n = (*static_cast<std::string *>(_buffered_packet[_buffered_iterator].first))[0];
 
   _buffered_iterator++;
@@ -356,7 +368,7 @@ RxStream & RxStream::operator>>(char & n)
 
 RxStream & RxStream::operator>>(float & f)
 {
-  if (_buffered_packet.size() > _buffered_iterator && _buffered_packet[_buffered_iterator].second == CBOR_ITEM_FLOAT)
+  if (_buffered_packet.size() > _buffered_iterator && _buffered_packet[_buffered_iterator].second == NANOCBOR_TYPE_FLOAT)
     f = *static_cast<float *>(_buffered_packet[_buffered_iterator].first);
 
   _buffered_iterator++;
@@ -374,7 +386,7 @@ RxStream & RxStream::operator>>(double & d)
 
 RxStream & RxStream::operator>>(std::string & s)
 {
-  if (_buffered_packet.size() > _buffered_iterator && _buffered_packet[_buffered_iterator].second == CBOR_ITEM_STRING)
+  if (_buffered_packet.size() > _buffered_iterator && _buffered_packet[_buffered_iterator].second == NANOCBOR_TYPE_TSTR)
     s = *static_cast<std::string *>(_buffered_packet[_buffered_iterator].first);
 
   _buffered_iterator++;
@@ -395,7 +407,7 @@ RxStream & RxStream::operator>>(bool & b)
 {
   int8_t b_;
 
-  if (_buffered_packet.size() > _buffered_iterator && _buffered_packet[_buffered_iterator].second == CBOR_ITEM_SIMPLE_VALUE)
+  if (_buffered_packet.size() > _buffered_iterator && _buffered_packet[_buffered_iterator].second == NANOCBOR_TYPE_UINT)
   {
     b_ = *static_cast<int8_t *>(_buffered_packet[_buffered_iterator].first);
     b = b_ ? true : false;
@@ -495,30 +507,24 @@ void RxStream::interpret_packets()
 
     if (stream_name.empty())
     {
-      goto clean_and_continue;
+      for (auto& field : interpreted_packet)
+      {
+        if (field.first)
+        {
+          free(field.first);
+          field.first = nullptr;
+        }
+      }
+      continue;
     }
 
     for (RxStream * stream : _listening_streams)
     {
       if (stream->get_type() == _stream_type_match_map.at(stream_type) && stream->get_identifier() == stream_identifier)
       {
-        // No deed to free ?
         stream->push_packet(interpreted_packet);
-        goto just_continue;
       }
     }
-
-    clean_and_continue:
-    for (auto& field : interpreted_packet)
-    {
-      if (field.first)
-      {
-        free(field.first);
-        field.first = nullptr;
-        field.second = 0;
-      }
-    }
-    just_continue:;
   }
 }
 
@@ -534,8 +540,9 @@ std::pair<void *, int> RxStream::interpret_field(ITEM * cbor_value, size_t i, un
       int64_t val;
       if (nanocbor_get_int64(&cbor_value->nanocbor_value, &val) < 0)
       {
-        goto error;
+        break;
       }
+      
       int64_t * number = new int64_t{val};
       return std::make_pair(number, NANOCBOR_TYPE_NINT);
     }
@@ -544,30 +551,33 @@ std::pair<void *, int> RxStream::interpret_field(ITEM * cbor_value, size_t i, un
       uint64_t val;
       if (nanocbor_get_uint64(&cbor_value->nanocbor_value, &val) < 0)
       {
-        goto error;
+        break;
       }
+      
       uint64_t * number = new uint64_t{val};
       return std::make_pair(number, NANOCBOR_TYPE_UINT);
     }
     case NANOCBOR_TYPE_FLOAT:
     {
-      double val;
-      if (nanocbor_get_double(&cbor_value->nanocbor_value, &val) < 0)
+      float val;
+      if (nanocbor_get_float(&cbor_value->nanocbor_value, &val) < 0)
       {
-        goto error;
+        break;
       }
-      double* f = new double{val};
+      
+      float * f = new float{val};
       return std::make_pair(static_cast<void *>(f), NANOCBOR_TYPE_FLOAT);
     }
     case NANOCBOR_TYPE_TSTR:
     {
-      const char* val;
+      const char * val;
       size_t val_size;
       if (nanocbor_get_tstr(&cbor_value->nanocbor_value, (const uint8_t**) &val, &val_size) < 0)
       {
-        goto error;
+        break;
       }
-      std::string* s = new std::string(val, val_size);
+      
+      std::string * s = new std::string(val, val_size);
       return std::make_pair(s, NANOCBOR_TYPE_TSTR);
     }
     case NANOCBOR_TYPE_BSTR:
@@ -576,31 +586,18 @@ std::pair<void *, int> RxStream::interpret_field(ITEM * cbor_value, size_t i, un
       size_t val_size;
       if (nanocbor_get_bstr(&cbor_value->nanocbor_value, (const uint8_t**) &val, &val_size) < 0)
       {
-        goto error;
+        break;
       }
-      std::string* s = new std::string(val, val_size);
+      
+      std::string * s = new std::string(val, val_size);
       return std::make_pair(s, NANOCBOR_TYPE_TSTR);
-    }
-    // Not sure
-    case NANOCBOR_SIMPLE_FALSE:
-    case NANOCBOR_SIMPLE_TRUE:
-    case NANOCBOR_SIMPLE_NULL:
-    case NANOCBOR_SIMPLE_UNDEF:
-    {
-      uint8_t val;
-      if (nanocbor_get_simple(&cbor_value->nanocbor_value, &val) < 0)
-      {
-        goto error;
-      }
-      uint8_t * simple = new uint8_t{val};
-      return std::make_pair(simple, NANOCBOR_SIMPLE_FALSE);
     }
     default:
       nanocbor_skip(&cbor_value->nanocbor_value);
-      goto error;
+      return std::make_pair(nullptr, 0);
   }
-
-  error:
+  
+  nanocbor_skip(&cbor_value->nanocbor_value);
   return std::make_pair(nullptr, 0);
 }
 

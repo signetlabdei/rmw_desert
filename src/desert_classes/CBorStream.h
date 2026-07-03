@@ -316,13 +316,6 @@ class RxStream
     RxStream & operator>>(int8_t & n);
     
    /**
-    * @brief Decode a generic integer
-    * @param n Field to decode
-    */
-    template<typename T>
-    RxStream & deserialize_integer(T & n);
-    
-   /**
     * @brief Decode char
     * @param n Field to decode
     */

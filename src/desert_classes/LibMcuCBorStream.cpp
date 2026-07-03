@@ -287,52 +287,67 @@ void RxStream::clear_buffer()
 
 RxStream & RxStream::operator>>(uint64_t & n)
 {
-  return deserialize_integer<uint64_t>(n);
+  int64_t value;
+  *this >> value;
+  n = static_cast<uint64_t>(value);
+  return *this;
 }
 
 RxStream & RxStream::operator>>(uint32_t & n)
 {
-  return deserialize_integer<uint32_t>(n);
+  int64_t value;
+  *this >> value;
+  n = static_cast<uint32_t>(value);
+  return *this;
 }
 
 RxStream & RxStream::operator>>(uint16_t & n)
 {
-  return deserialize_integer<uint16_t>(n);
+  int64_t value;
+  *this >> value;
+  n = static_cast<uint16_t>(value);
+  return *this;
 }
 
 RxStream & RxStream::operator>>(uint8_t & n)
 {
-  return deserialize_integer<uint8_t>(n);
+  int64_t value;
+  *this >> value;
+  n = static_cast<uint8_t>(value);
+  return *this;
 }
 
 RxStream & RxStream::operator>>(int64_t & n)
 {
-  return deserialize_integer<int64_t>(n);
+  if (_buffered_packet.size() > _buffered_iterator && _buffered_packet[_buffered_iterator].second == CBOR_ITEM_INTEGER)
+    n = *static_cast<int64_t *>(_buffered_packet[_buffered_iterator].first);
+
+  _buffered_iterator++;
+  
+  return *this;
 }
 
 RxStream & RxStream::operator>>(int32_t & n)
 {
-  return deserialize_integer<int32_t>(n);
+  int64_t value;
+  *this >> value;
+  n = static_cast<int32_t>(value);
+  return *this;
 }
 
 RxStream & RxStream::operator>>(int16_t & n)
 {
-  return deserialize_integer<int16_t>(n);
+  int64_t value;
+  *this >> value;
+  n = static_cast<int16_t>(value);
+  return *this;
 }
 
 RxStream & RxStream::operator>>(int8_t & n)
 {
-  return deserialize_integer<int8_t>(n);
-}
-
-template<typename T>
-RxStream & RxStream::deserialize_integer(T & n)
-{
-  if (_buffered_packet.size() > _buffered_iterator && _buffered_packet[_buffered_iterator].second == CBOR_ITEM_INTEGER)
-    n = *static_cast<T *>(_buffered_packet[_buffered_iterator].first);
-
-  _buffered_iterator++;
-  
+  int64_t value;
+  *this >> value;
+  n = static_cast<int8_t>(value);
   return *this;
 }
 
@@ -486,6 +501,14 @@ void RxStream::interpret_packets()
     
     if (stream_name.empty())
     {
+      for (auto& field : interpreted_packet)
+      {
+        if (field.first)
+        {
+          free(field.first);
+          field.first = nullptr;
+        }
+      }
       continue;
     }
     
