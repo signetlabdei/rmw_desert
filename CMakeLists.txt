@@ -13,6 +13,8 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic -pthread)
 endif()
 
+set(CMAKE_POLICY_VERSION_MINIMUM 3.5)
+
 find_package(ament_cmake REQUIRED)
 find_package(ament_cmake_ros_core REQUIRED)
 
@@ -54,7 +56,7 @@ add_library(rmw_desert
 
 if (${CBOR_LIB} STREQUAL "libmcu_cbor")
   set(CBOR_ROOT cbor)
-  include_directories(${CBOR_ROOT}/include)
+  set(CBOR_INC_DIR "${CBOR_ROOT}/include")
   target_sources(rmw_desert PRIVATE
     ${CBOR_ROOT}/src/common.c
     ${CBOR_ROOT}/src/parser.c
@@ -66,18 +68,70 @@ if (${CBOR_LIB} STREQUAL "libmcu_cbor")
   )
   target_compile_definitions(rmw_desert PRIVATE LIBMCU_CBOR_ENABLED)
 elseif (${CBOR_LIB} STREQUAL "NanoCBOR")
-  set(CBOR_ROOT thirdparty/NanoCBOR)
-  include_directories(${CBOR_ROOT}/include)
-  target_sources(rmw_desert PRIVATE
+  set(CBOR_ROOT "${PROJECT_SOURCE_DIR}/thirdparty/NanoCBOR")
+  set(NANOCBOR_LIB "NanoCBOR")
+  set(CBOR_INC_DIR "${CBOR_ROOT}/include")
+  add_library(${NANOCBOR_LIB} OBJECT
     ${CBOR_ROOT}/src/decoder.c
     ${CBOR_ROOT}/src/encoder.c
-    src/desert_classes/NanoCBorStream.cpp
+  )
+  target_include_directories(${NANOCBOR_LIB} PRIVATE ${CBOR_ROOT})
+
+  target_sources(rmw_desert PRIVATE
+          $<TARGET_OBJECTS:${NANOCBOR_LIB}>
+          ${PROJECT_SOURCE_DIR}/src/desert_classes/NanoCBorStream.cpp
   )
   target_compile_definitions(rmw_desert PRIVATE NANOCBOR_ENABLED)
 else ()
   message(FATAL_ERROR "At least one CBOR libraty is required")
 endif ()
-	
+
+target_include_directories(rmw_desert PRIVATE ${CBOR_INC_DIR})
+
+if (SECURE_MODE_ENABLED)
+  if (NOT ${CBOR_LIB} STREQUAL "NanoCBOR")
+    message(FATAL_ERROR "Secure mode requires NanoCBOR lib.")
+  endif ()
+
+  set(COSE_ROOT "${PROJECT_SOURCE_DIR}/thirdparty/libcose")
+  set(COSE_LIB "libcose")
+  set(COSE_INC_DIR "${COSE_ROOT}/include")
+  add_library(${COSE_LIB} OBJECT
+    ${COSE_ROOT}/src/cose_common.c
+    ${COSE_ROOT}/src/cose_crypto.c
+    ${COSE_ROOT}/src/cose_encrypt.c
+    ${COSE_ROOT}/src/cose_hdr.c
+    ${COSE_ROOT}/src/cose_hkdf.c
+    ${COSE_ROOT}/src/cose_key.c
+    ${COSE_ROOT}/src/cose_recipient.c
+    ${COSE_ROOT}/src/cose_sign.c
+    ${COSE_ROOT}/src/cose_signature.c
+  )
+  target_include_directories(${COSE_LIB} PRIVATE ${COSE_INC_DIR} ${CBOR_INC_DIR})
+
+  if (${CRYPTO_LIB} STREQUAL "mbedtls")
+#    find_package(MbedTLS)
+    add_subdirectory(thirdparty/mbedtls)
+
+    target_sources(${COSE_LIB} PRIVATE ${COSE_ROOT}/src/crypt/mbedtls.c)
+    target_sources(${COSE_LIB} PRIVATE ${COSE_ROOT}/src/crypt/keygen_symm.c)
+    target_link_libraries(${COSE_LIB} PRIVATE mbedtls)
+    target_link_libraries(rmw_desert PRIVATE mbedtls)
+    add_compile_definitions(CRYPTO_MBEDTLS)
+  else ()
+    message(FATAL_ERROR "Cryptolib ${CRYPTO_LIB} is not supported")
+  endif ()
+
+  target_sources(rmw_desert PRIVATE
+    $<TARGET_OBJECTS:${COSE_LIB}>
+    ${PROJECT_SOURCE_DIR}/src/desert_classes/security/sec_utils.cpp
+    ${PROJECT_SOURCE_DIR}/src/desert_classes/security/SecurityConfig.cpp
+    ${PROJECT_SOURCE_DIR}/src/desert_classes/security/SecurityLayer.cpp
+  )
+  target_include_directories(rmw_desert PRIVATE ${COSE_INC_DIR})
+  target_compile_definitions(rmw_desert PRIVATE SECURE_MODE_ENABLED)
+endif ()
+
 INCLUDE (FindPkgConfig)
 
 # specific order: dependents before dependencies

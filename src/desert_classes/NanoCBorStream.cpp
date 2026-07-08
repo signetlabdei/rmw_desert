@@ -2,6 +2,10 @@
 
 #include <nanocbor/nanocbor.h>
 
+#ifdef SECURE_MODE_ENABLED
+#include "security/SecurityLayer.h"
+#endif
+
 namespace cbor
 {
 
@@ -66,13 +70,19 @@ void TxStream::end_transmission()
 
   size_t encoded_len = nanocbor_encoded_len(&_writer->nanocbor_encoder);
 
-  std::vector<uint8_t> daemon_packet;
+  size_t wrapped_size = encoded_len;
+  uint8_t* wrapped_ptr = _packet;
 
-  for(size_t i=0; i < encoded_len; i++)
-  {
-    daemon_packet.push_back(_packet[i]);
+#ifdef SECURE_MODE_ENABLED
+  auto st = rmw_desert::security::g_sec_layer->wrap(_packet, encoded_len, MAX_PACKET_LENGTH, &wrapped_ptr, &wrapped_size);
+  if (st != rmw_desert::security::OK) {
+    delete _packet;
+    delete _writer;
+    return;
   }
+#endif
 
+  std::vector<uint8_t> daemon_packet(wrapped_ptr, wrapped_ptr + wrapped_size);
   TcpDaemon::enqueue_packet(daemon_packet);
 
   delete _packet;
@@ -293,7 +303,7 @@ RxStream & RxStream::operator>>(uint64_t & n)
     n = *static_cast<uint64_t *>(_buffered_packet[_buffered_iterator].first);
 
   _buffered_iterator++;
-  
+
   return *this;
 }
 
@@ -328,7 +338,7 @@ RxStream & RxStream::operator>>(int64_t & n)
     n = *static_cast<int64_t *>(_buffered_packet[_buffered_iterator].first);
 
   _buffered_iterator++;
-  
+
   return *this;
 }
 
@@ -460,8 +470,17 @@ void RxStream::interpret_packets()
   {
     // Initialize buffer and reader
     uint8_t * buffer = &packet[0];
+    size_t unwrapped_size = packet.size();
+
+#ifdef SECURE_MODE_ENABLED
+    auto unwrap_st = rmw_desert::security::g_sec_layer->unwrap(buffer, packet.size(), &unwrapped_size);
+    if (unwrap_st != rmw_desert::security::OK) {
+      continue;
+    }
+#endif
+
     ITEM decoder;
-    nanocbor_decoder_init(&decoder.nanocbor_value, buffer, packet.size());
+    nanocbor_decoder_init(&decoder.nanocbor_value, buffer, unwrapped_size);
 
     uint8_t stream_type;
     uint8_t stream_identifier;
