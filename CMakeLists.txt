@@ -89,7 +89,7 @@ if (SECURE_MODE_ENABLED)
 
   add_compile_options(-fPIC)
 
-  set(COSE_ROOT "${PROJECT_SOURCE_DIR}/thirdparty/libcose")
+  set(COSE_ROOT "thirdparty/libcose")
   set(COSE_LIB "libcose")
   set(COSE_INC_DIR "${COSE_ROOT}/include")
   add_library(${COSE_LIB} OBJECT
@@ -118,10 +118,9 @@ if (SECURE_MODE_ENABLED)
   endif ()
 
   target_sources(rmw_desert PRIVATE
-    $<TARGET_OBJECTS:${COSE_LIB}>
-    ${PROJECT_SOURCE_DIR}/src/desert_classes/security/sec_utils.cpp
-    ${PROJECT_SOURCE_DIR}/src/desert_classes/security/SecurityConfig.cpp
-    ${PROJECT_SOURCE_DIR}/src/desert_classes/security/SecurityLayer.cpp
+    src/desert_classes/security/sec_utils.cpp
+    src/desert_classes/security/SecurityConfig.cpp
+    src/desert_classes/security/SecurityLayer.cpp
   )
   target_include_directories(rmw_desert PRIVATE ${COSE_INC_DIR})
   target_compile_definitions(rmw_desert PRIVATE SECURE_MODE_ENABLED)
