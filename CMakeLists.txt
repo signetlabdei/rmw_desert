@@ -87,6 +87,8 @@ if (SECURE_MODE_ENABLED)
     message(FATAL_ERROR "Secure mode requires NanoCBOR lib.")
   endif ()
 
+  add_compile_options(-fPIC)
+
   set(COSE_ROOT "${PROJECT_SOURCE_DIR}/thirdparty/libcose")
   set(COSE_LIB "libcose")
   set(COSE_INC_DIR "${COSE_ROOT}/include")
@@ -104,7 +106,6 @@ if (SECURE_MODE_ENABLED)
   target_include_directories(${COSE_LIB} PRIVATE ${COSE_INC_DIR} ${CBOR_INC_DIR})
 
   if (${CRYPTO_LIB} STREQUAL "mbedtls")
-#    find_package(MbedTLS)
     add_subdirectory(thirdparty/mbedtls)
 
     target_sources(${COSE_LIB} PRIVATE ${COSE_ROOT}/src/crypt/mbedtls.c)
