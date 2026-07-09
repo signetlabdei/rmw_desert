@@ -56,7 +56,7 @@ add_library(rmw_desert
 
 if (${CBOR_LIB} STREQUAL "libmcu_cbor")
   set(CBOR_ROOT cbor)
-  set(CBOR_INC_DIR "${CBOR_ROOT}/include")
+  include_directories(${CBOR_ROOT}/include)
   target_sources(rmw_desert PRIVATE
     ${CBOR_ROOT}/src/common.c
     ${CBOR_ROOT}/src/parser.c
@@ -68,18 +68,12 @@ if (${CBOR_LIB} STREQUAL "libmcu_cbor")
   )
   target_compile_definitions(rmw_desert PRIVATE LIBMCU_CBOR_ENABLED)
 elseif (${CBOR_LIB} STREQUAL "NanoCBOR")
-  set(CBOR_ROOT "${PROJECT_SOURCE_DIR}/thirdparty/NanoCBOR")
-  set(NANOCBOR_LIB "NanoCBOR")
-  set(CBOR_INC_DIR "${CBOR_ROOT}/include")
-  add_library(${NANOCBOR_LIB} OBJECT
+  set(CBOR_ROOT thirdparty/NanoCBOR)
+  include_directories(${CBOR_ROOT}/include)
+  target_sources(rmw_desert PRIVATE
     ${CBOR_ROOT}/src/decoder.c
     ${CBOR_ROOT}/src/encoder.c
-  )
-  target_include_directories(${NANOCBOR_LIB} PRIVATE ${CBOR_ROOT})
-
-  target_sources(rmw_desert PRIVATE
-          $<TARGET_OBJECTS:${NANOCBOR_LIB}>
-          ${PROJECT_SOURCE_DIR}/src/desert_classes/NanoCBorStream.cpp
+    src/desert_classes/NanoCBorStream.cpp
   )
   target_compile_definitions(rmw_desert PRIVATE NANOCBOR_ENABLED)
 else ()

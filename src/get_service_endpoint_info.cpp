@@ -25,3 +25,4 @@ rmw_ret_t rmw_get_servers_info_by_service(const rmw_node_t * node, rcutils_alloc
   RMW_SET_ERROR_MSG("rmw_get_servers_info_by_service not implemented");
   return RMW_RET_UNSUPPORTED;
 }
+
