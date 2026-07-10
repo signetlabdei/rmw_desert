@@ -1,6 +1,5 @@
 #include <cose.h>
 
-#include "SecurityConfig.h"
 #include "SecurityLayer.h"
 #include "sec_utils.h"
 
@@ -26,7 +25,7 @@ SecurityLayer::SecurityLayer()
 {
   if (get_key() != OK)
   {
-    throw std::runtime_error("Failed to get the symmetric key");
+    throw std::runtime_error("Failed to parse the encryption key");
   }
 }
 
@@ -44,10 +43,14 @@ SecurityResult SecurityLayer::get_key()
     const char* env_value = std::getenv("MASTER_SECRET_KEY");
     if (env_value == nullptr || !decode_hex(env_value, key_bytes_))
     {
+      printf("CRITICAL: the master secret key is invalid\n");
+      printf("Please fill the MASTER_SECRET_KEY environment variable with stream of hexadecimal bytes\n");
       return KEY_ENV_ERROR;
     }
     if (key_bytes_.size() < aead_params_.get_key_size())
     {
+      printf("CRITICAL: the master secret key size does not match the required suite\n");
+      printf("Please set a MASTER_SECRET_KEY of %d bytes\n", aead_params_.get_key_size());
       return KEY_SIZE_ERROR;
     }
   }

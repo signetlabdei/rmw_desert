@@ -118,8 +118,9 @@ if (SECURE_MODE_ENABLED)
   endif ()
 
   target_sources(rmw_desert PRIVATE
+    $<TARGET_OBJECTS:${COSE_LIB}>
     src/desert_classes/security/sec_utils.cpp
-    src/desert_classes/security/SecurityConfig.cpp
+    src/desert_classes/security/AeadParams.cpp
     src/desert_classes/security/SecurityLayer.cpp
   )
   target_include_directories(rmw_desert PRIVATE ${COSE_INC_DIR})

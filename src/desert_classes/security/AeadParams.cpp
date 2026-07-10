@@ -1,7 +1,7 @@
 #include <memory>
 
-#include "SecurityConfig.h"
-#include "SecurityLayer.h"
+#include "AeadParams.h"
+#include "AeadParams.h"
 
 namespace security
 {

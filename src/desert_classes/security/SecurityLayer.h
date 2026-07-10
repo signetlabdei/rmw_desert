@@ -1,13 +1,11 @@
 #ifndef SECURITY_LAYER_H
 #define SECURITY_LAYER_H
 
-// #include <cstdint>
-// #include <cstddef>
 #include <memory>
 #include <string>
 #include <vector>
 
-#include "SecurityConfig.h"
+#include "AeadParams.h"
 
 #define COSE_INTERNAL_BUF_SIZE 512
 
