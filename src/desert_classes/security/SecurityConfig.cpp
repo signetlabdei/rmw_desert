@@ -3,19 +3,38 @@
 #include "SecurityConfig.h"
 #include "SecurityLayer.h"
 
-namespace rmw_desert::security {
+namespace security
+{
 
-    std::shared_ptr<AeadParams> ascon_aead128 = std::make_shared<AeadParams>(ASCON_AEAD128, 16, 16, 16);
-    std::shared_ptr<AeadParams> ascon_aead128_64 = std::make_shared<AeadParams>(ASCON_AEAD128_64, 16, 16, 8);
-    std::shared_ptr<AeadParams> ascon_aead128_32 = std::make_shared<AeadParams>(ASCON_AEAD128_32, 16, 16, 4);
-    std::shared_ptr<AeadParams> aes_gcm_128 = std::make_shared<AeadParams>(A128GCM, 16, 12, 16);
-
-    std::shared_ptr<KeyProvider> key_provider = std::make_shared<EnvKeyProvider>("MASTER_SECRET_KEY");
-    std::shared_ptr<NonceGenerator> nonce_gen = std::make_shared<DefaultNVMNonceGenerator>();
-
-    const std::unique_ptr<SecurityLayer> g_sec_layer = std::make_unique<CoseSecurityLayer>(
-        aes_gcm_128, key_provider, nonce_gen
-    );
-
+AeadParams::AeadParams(AeadAlgorithms alg)
+      : alg_(alg)
+{
+  switch (alg_)
+  {
+    case ASCON_AEAD128:
+      key_size_ = 16;
+      nonce_size_ = 16;
+      tag_size_ = 16;
+      break;
+    case ASCON_AEAD128_64:
+      key_size_ = 16;
+      nonce_size_ = 16;
+      tag_size_ = 8;
+      break;
+    case ASCON_AEAD128_32:
+      key_size_ = 16;
+      nonce_size_ = 16;
+      tag_size_ = 4;
+      break;
+    case A128GCM:
+      key_size_ = 16;
+      nonce_size_ = 12;
+      tag_size_ = 16;
+      break;
+    default:
+      throw std::runtime_error("Invalid security profile");
+  }
 }
+
+}  // namespace security
 

@@ -74,8 +74,10 @@ void TxStream::end_transmission()
   uint8_t* wrapped_ptr = _packet;
 
 #ifdef SECURE_MODE_ENABLED
-  auto st = rmw_desert::security::g_sec_layer->wrap(_packet, encoded_len, MAX_PACKET_LENGTH, &wrapped_ptr, &wrapped_size);
-  if (st != rmw_desert::security::OK) {
+  security::SecurityLayer g_sec_layer;
+  auto st = g_sec_layer.wrap(_packet, encoded_len, MAX_PACKET_LENGTH, &wrapped_ptr, &wrapped_size);
+  if (st != security::OK)
+  {
     delete _packet;
     delete _writer;
     return;
@@ -473,8 +475,10 @@ void RxStream::interpret_packets()
     size_t unwrapped_size = packet.size();
 
 #ifdef SECURE_MODE_ENABLED
-    auto unwrap_st = rmw_desert::security::g_sec_layer->unwrap(buffer, packet.size(), &unwrapped_size);
-    if (unwrap_st != rmw_desert::security::OK) {
+    security::SecurityLayer g_sec_layer;
+    auto unwrap_st = g_sec_layer.unwrap(buffer, packet.size(), &unwrapped_size);
+    if (unwrap_st != security::OK)
+    {
       continue;
     }
 #endif
