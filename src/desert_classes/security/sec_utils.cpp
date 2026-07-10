@@ -8,7 +8,8 @@ static int hex_value(char c)
   return -1;
 }
 
-bool decode_hex(const std::string& hex, std::vector<uint8_t>& out) {
+bool decode_hex(const std::string& hex, std::vector<uint8_t>& out)
+{
   if (hex.size() % 2 != 0)
   {
     return false;
