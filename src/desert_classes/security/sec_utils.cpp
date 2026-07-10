@@ -21,7 +21,8 @@ bool decode_hex(const std::string& hex, std::vector<uint8_t>& out) {
   {
     const int hi = hex_value(hex[i]);
     const int lo = hex_value(hex[i + 1]);
-    if (hi < 0 || lo < 0) {
+    if (hi < 0 || lo < 0)
+    {
       out.clear();
       return false;
     }
