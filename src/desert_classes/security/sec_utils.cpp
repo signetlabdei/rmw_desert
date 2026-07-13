@@ -10,15 +10,22 @@ static int hex_value(char c)
 
 bool decode_hex(const std::string& hex, std::vector<uint8_t>& out)
 {
-  if (hex.size() % 2 != 0)
+  size_t start = 0;
+  if (hex.size() >= 2 && hex[0] == '0' && (hex[1] == 'x' || hex[1] == 'X'))
+  {
+    start = 2;
+  }
+
+  size_t hex_length = hex.size() - start;
+  if (hex_length % 2 != 0)
   {
     return false;
   }
 
   out.clear();
-  out.reserve(hex.size() / 2);
+  out.reserve(hex_length / 2);
 
-  for (size_t i = 0; i < hex.size(); i += 2)
+  for (size_t i = start; i < hex.size(); i += 2)
   {
     const int hi = hex_value(hex[i]);
     const int lo = hex_value(hex[i + 1]);

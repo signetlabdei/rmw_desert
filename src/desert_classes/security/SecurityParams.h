@@ -3,6 +3,12 @@
 
 #include <cstdint>
 
+#define AEAD_ALGO_ASCON_128 "Ascon-AEAD128"
+#define AEAD_ALGO_ASCON_128_64 "Ascon-AEAD128-64"
+#define AEAD_ALGO_ASCON_128_32 "Ascon-AEAD128-32"
+
+#define KDF_ALGO_ASCON_256 "HKDF-Ascon256"
+
 namespace security
 {
 
@@ -11,11 +17,13 @@ enum AeadAlgorithms
   ASCON_AEAD128,
   ASCON_AEAD128_64,
   ASCON_AEAD128_32,
-  A128GCM
+  A128GCM,
+  AEAD_UNKNOWN
 };
 
 enum KdfAlgorithms {
-  HKDF_ASCON
+  HKDF_ASCON,
+  KDF_UNKNOWN
 };
 
 class AeadParams

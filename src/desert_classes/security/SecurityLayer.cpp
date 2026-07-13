@@ -13,6 +13,28 @@
 namespace security
 {
 
+static AeadAlgorithms str_to_aead_algo(const std::string& str) {
+  if (str == AEAD_ALGO_ASCON_128) {
+    return ASCON_AEAD128;
+  }
+  if (str == AEAD_ALGO_ASCON_128_64) {
+    return ASCON_AEAD128_64;
+  }
+  if (str == AEAD_ALGO_ASCON_128_32) {
+    return ASCON_AEAD128_32;
+  }
+
+  return AEAD_UNKNOWN;
+}
+
+static KdfAlgorithms str_to_kdf_algo(const std::string& str) {
+  if (str == KDF_ALGO_ASCON_256) {
+    return HKDF_ASCON;
+  }
+
+  return KDF_UNKNOWN;
+}
+
 static cose_algo_t aead_algo_to_cose_algo(AeadAlgorithms algo)
 {
   switch (algo)
@@ -49,14 +71,20 @@ static SecurityResult cbor_err_to_sec_err(int err) {
 }
 
 SecurityLayer::SecurityLayer()
-  : aead_params_(AeadParams(A128GCM)),
-    kdf_(HKDF_ASCON),
+  : aead_params_(AeadParams(str_to_aead_algo(AEAD_ALGO))),
+    kdf_(str_to_kdf_algo(KDF_ALGO)),
     piv_size_(2),
     piv_bytes_(piv_size_),
-    sender_seq_number_(0),
-    sender_key_bytes_(aead_params_.get_key_size()),
-    receiver_key_bytes_(aead_params_.get_key_size())
+    sender_seq_number_(0)
 {
+  if (!decode_hex(SENDER_ID, sender_id_)) {
+    throw std::runtime_error("Failed to parse the sender id");
+  }
+
+  if (!decode_hex(RECEIVER_ID, receiver_id_)) {
+    throw std::runtime_error("Failed to parse the receiver id");
+  }
+
   std::vector<uint8_t> master_key{};
   if (get_master_key_env(master_key) != OK)
   {
@@ -125,6 +153,7 @@ SecurityResult SecurityLayer::derive_key(const std::vector<uint8_t>& ikm, const 
     return info_res;
   }
 
+  key_out.resize(aead_params_.get_key_size());
   auto kdf_res = cose_crypto_hkdf_derive(master_salt.data(),
     master_salt.size(),
     ikm.data(),
@@ -160,6 +189,7 @@ SecurityResult SecurityLayer::derive_iv(const std::vector<uint8_t>& ikm, const s
     return info_res;
   }
 
+  iv_out.resize(aead_params_.get_nonce_size());
   auto kdf_res = cose_crypto_hkdf_derive(master_salt.data(),
     master_salt.size(),
     ikm.data(),

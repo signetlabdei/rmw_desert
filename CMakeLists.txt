@@ -15,17 +15,17 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic -pthread)
 endif()
 
-find_package(ament_cmake REQUIRED)
-find_package(ament_cmake_ros_core REQUIRED)
-
-find_package(rmw REQUIRED)
-find_package(rmw_dds_common REQUIRED)
-find_package(rosidl_runtime_c REQUIRED)
-find_package(rosidl_typesupport_introspection_c REQUIRED)
-find_package(rosidl_typesupport_introspection_cpp REQUIRED)
-
-find_package(rcutils REQUIRED)
-find_package(rcpputils REQUIRED)
+#find_package(ament_cmake REQUIRED)
+#find_package(ament_cmake_ros_core REQUIRED)
+#
+#find_package(rmw REQUIRED)
+#find_package(rmw_dds_common REQUIRED)
+#find_package(rosidl_runtime_c REQUIRED)
+#find_package(rosidl_typesupport_introspection_c REQUIRED)
+#find_package(rosidl_typesupport_introspection_cpp REQUIRED)
+#
+#find_package(rcutils REQUIRED)
+#find_package(rcpputils REQUIRED)
 
 add_library(rmw_desert
   src/get_node_info_and_types.cpp
@@ -125,50 +125,55 @@ if (SECURE_MODE_ENABLED)
   )
   target_include_directories(rmw_desert PRIVATE ${COSE_INC_DIR})
   target_compile_definitions(rmw_desert PRIVATE SECURE_MODE_ENABLED)
+  target_compile_definitions(rmw_desert PRIVATE
+          AEAD_ALGO="${AEAD_ALGO}"
+          KDF_ALGO="${KDF_ALGO}"
+          SENDER_ID="${SENDER_ID}"
+          RECEIVER_ID="${RECEIVER_ID}")
 endif ()
 
-INCLUDE (FindPkgConfig)
-
-# specific order: dependents before dependencies
-target_link_libraries(rmw_desert PUBLIC
-  rmw::rmw
-  rcutils::rcutils
-  rcpputils::rcpputils
-  rmw_dds_common::rmw_dds_common_library
-  rosidl_typesupport_introspection_c::rosidl_typesupport_introspection_c
-  rosidl_typesupport_introspection_cpp::rosidl_typesupport_introspection_cpp
-  rosidl_runtime_c::rosidl_runtime_c
-)
-
-configure_rmw_library(rmw_desert)
-
-# Causes the visibility macros to use dllexport rather than dllimport,
-# which is appropriate when building the dll but not consuming it.
-target_compile_definitions(${PROJECT_NAME}
-PRIVATE "rmw_desert_BUILDING_LIBRARY")
-
-# specific order: dependents before dependencies
-ament_export_libraries(rmw_desert)
-
-ament_export_dependencies(
-  rcutils
-  rcpputils
-  rmw
-  rosidl_runtime_c
-  rmw_dds_common
-  rosidl_typesupport_introspection_c
-  rosidl_typesupport_introspection_cpp
-)
-
-register_rmw_implementation(
-  "c:rosidl_typesupport_c:rosidl_typesupport_introspection_c"
-  "cpp:rosidl_typesupport_cpp:rosidl_typesupport_introspection_cpp")
-
-ament_package()
-
-install(
-  TARGETS rmw_desert
-  ARCHIVE DESTINATION lib
-  LIBRARY DESTINATION lib
-  RUNTIME DESTINATION bin
-)
+#INCLUDE (FindPkgConfig)
+#
+## specific order: dependents before dependencies
+#target_link_libraries(rmw_desert PUBLIC
+#  rmw::rmw
+#  rcutils::rcutils
+#  rcpputils::rcpputils
+#  rmw_dds_common::rmw_dds_common_library
+#  rosidl_typesupport_introspection_c::rosidl_typesupport_introspection_c
+#  rosidl_typesupport_introspection_cpp::rosidl_typesupport_introspection_cpp
+#  rosidl_runtime_c::rosidl_runtime_c
+#)
+#
+#configure_rmw_library(rmw_desert)
+#
+## Causes the visibility macros to use dllexport rather than dllimport,
+## which is appropriate when building the dll but not consuming it.
+#target_compile_definitions(${PROJECT_NAME}
+#PRIVATE "rmw_desert_BUILDING_LIBRARY")
+#
+## specific order: dependents before dependencies
+#ament_export_libraries(rmw_desert)
+#
+#ament_export_dependencies(
+#  rcutils
+#  rcpputils
+#  rmw
+#  rosidl_runtime_c
+#  rmw_dds_common
+#  rosidl_typesupport_introspection_c
+#  rosidl_typesupport_introspection_cpp
+#)
+#
+#register_rmw_implementation(
+#  "c:rosidl_typesupport_c:rosidl_typesupport_introspection_c"
+#  "cpp:rosidl_typesupport_cpp:rosidl_typesupport_introspection_cpp")
+#
+#ament_package()
+#
+#install(
+#  TARGETS rmw_desert
+#  ARCHIVE DESTINATION lib
+#  LIBRARY DESTINATION lib
+#  RUNTIME DESTINATION bin
+#)
