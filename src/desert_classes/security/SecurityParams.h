@@ -14,6 +14,10 @@ enum AeadAlgorithms
   A128GCM
 };
 
+enum KdfAlgorithms {
+  HKDF_ASCON
+};
+
 class AeadParams
 {
   public:

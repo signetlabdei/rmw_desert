@@ -1,7 +1,6 @@
-#include <memory>
+#include "SecurityParams.h"
 
-#include "AeadParams.h"
-#include "AeadParams.h"
+#include <exception>
 
 namespace security
 {
