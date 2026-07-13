@@ -9,11 +9,11 @@ if(NOT CMAKE_CXX_STANDARD)
   set(CMAKE_CXX_STANDARD 20)
 endif()
 
+set(CMAKE_POLICY_VERSION_MINIMUM 3.5)
+
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic -pthread)
 endif()
-
-set(CMAKE_POLICY_VERSION_MINIMUM 3.5)
 
 find_package(ament_cmake REQUIRED)
 find_package(ament_cmake_ros_core REQUIRED)
