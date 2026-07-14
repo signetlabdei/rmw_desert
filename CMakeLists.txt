@@ -120,7 +120,6 @@ if (SECURE_MODE_ENABLED)
     add_library(${ASCON_LIB} OBJECT
             ${ASCON_AEAD_ROOT}/aead.c
             ${ASCON_AEAD_ROOT}/permutations.c
-            ${ASCON_AEAD_ROOT}/printstate.c
             ${ASCON_HASH_ROOT}/hash.c
     )
     target_compile_definitions(${ASCON_LIB} PRIVATE ASCON_INLINE_MODE=0)
