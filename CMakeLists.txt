@@ -114,18 +114,19 @@ if (SECURE_MODE_ENABLED)
     target_link_libraries(rmw_desert PRIVATE mbedtls)
     add_compile_definitions(CRYPTO_MBEDTLS)
   elseif (${CRYPTO_LIB} STREQUAL "ascon-c")
-    set(ASCON_LIB_NAME "ascon-c")
+    set(ASCON_LIB "ascon-c")
     set(ASCON_AEAD_ROOT thirdparty/ascon-c/crypto_aead/asconaead128/opt64)
     set(ASCON_HASH_ROOT thirdparty/ascon-c/crypto_hash/asconhash256/opt64)
-    add_library(${ASCON_LIB_NAME} OBJECT
+    add_library(${ASCON_LIB} OBJECT
             ${ASCON_AEAD_ROOT}/aead.c
             ${ASCON_AEAD_ROOT}/permutations.c
             ${ASCON_AEAD_ROOT}/printstate.c
             ${ASCON_HASH_ROOT}/hash.c
     )
-    target_compile_definitions(${ASCON_LIB_NAME} PRIVATE ASCON_INLINE_MODE=0)
+    target_compile_definitions(${ASCON_LIB} PRIVATE ASCON_INLINE_MODE=0)
 
     target_sources(${COSE_LIB} PRIVATE ${COSE_ROOT}/src/crypt/ascon_c.c)
+    target_sources(rmw_desert PRIVATE $<TARGET_OBJECTS:${ASCON_LIB}>)
     add_compile_definitions(CRYPTO_ASCON)
   else ()
     message(FATAL_ERROR "Cryptolib ${CRYPTO_LIB} is not supported")
