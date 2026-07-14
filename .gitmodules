@@ -4,3 +4,9 @@
 [submodule "thirdparty/mbedtls"]
 	path = thirdparty/mbedtls
 	url = https://github.com/Mbed-TLS/mbedtls.git
+[submodule "thirdparty/libcose"]
+	path = thirdparty/libcose
+	url = https://github.com/dmochkas/libcose
+[submodule "thirdparty/ascon-c"]
+	path = thirdparty/ascon-c
+	url = https://github.com/dmochkas/ascon-c

@@ -15,17 +15,17 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic -pthread)
 endif()
 
-find_package(ament_cmake REQUIRED)
-find_package(ament_cmake_ros_core REQUIRED)
-
-find_package(rmw REQUIRED)
-find_package(rmw_dds_common REQUIRED)
-find_package(rosidl_runtime_c REQUIRED)
-find_package(rosidl_typesupport_introspection_c REQUIRED)
-find_package(rosidl_typesupport_introspection_cpp REQUIRED)
-
-find_package(rcutils REQUIRED)
-find_package(rcpputils REQUIRED)
+#find_package(ament_cmake REQUIRED)
+#find_package(ament_cmake_ros_core REQUIRED)
+#
+#find_package(rmw REQUIRED)
+#find_package(rmw_dds_common REQUIRED)
+#find_package(rosidl_runtime_c REQUIRED)
+#find_package(rosidl_typesupport_introspection_c REQUIRED)
+#find_package(rosidl_typesupport_introspection_cpp REQUIRED)
+#
+#find_package(rcutils REQUIRED)
+#find_package(rcpputils REQUIRED)
 
 add_library(rmw_desert
   src/get_node_info_and_types.cpp
@@ -102,6 +102,7 @@ if (SECURE_MODE_ENABLED)
     ${COSE_ROOT}/src/cose_recipient.c
     ${COSE_ROOT}/src/cose_sign.c
     ${COSE_ROOT}/src/cose_signature.c
+    ${COSE_ROOT}/src/crypt/keygen_symm.c
   )
   target_include_directories(${COSE_LIB} PRIVATE ${COSE_INC_DIR} ${CBOR_INC_DIR})
 
@@ -109,10 +110,23 @@ if (SECURE_MODE_ENABLED)
     add_subdirectory(thirdparty/mbedtls)
 
     target_sources(${COSE_LIB} PRIVATE ${COSE_ROOT}/src/crypt/mbedtls.c)
-    target_sources(${COSE_LIB} PRIVATE ${COSE_ROOT}/src/crypt/keygen_symm.c)
     target_link_libraries(${COSE_LIB} PRIVATE mbedtls)
     target_link_libraries(rmw_desert PRIVATE mbedtls)
     add_compile_definitions(CRYPTO_MBEDTLS)
+  elseif (${CRYPTO_LIB} STREQUAL "ascon-c")
+    set(ASCON_LIB_NAME "ascon-c")
+    set(ASCON_AEAD_ROOT thirdparty/ascon-c/crypto_aead/asconaead128/opt64)
+    set(ASCON_HASH_ROOT thirdparty/ascon-c/crypto_hash/asconhash256/opt64)
+    add_library(${ASCON_LIB_NAME} OBJECT
+            ${ASCON_AEAD_ROOT}/aead.c
+            ${ASCON_AEAD_ROOT}/permutations.c
+            ${ASCON_AEAD_ROOT}/printstate.c
+            ${ASCON_HASH_ROOT}/hash.c
+    )
+    target_compile_definitions(${ASCON_LIB_NAME} PRIVATE ASCON_INLINE_MODE=0)
+
+    target_sources(${COSE_LIB} PRIVATE ${COSE_ROOT}/src/crypt/ascon_c.c)
+    add_compile_definitions(CRYPTO_ASCON)
   else ()
     message(FATAL_ERROR "Cryptolib ${CRYPTO_LIB} is not supported")
   endif ()
@@ -132,48 +146,48 @@ if (SECURE_MODE_ENABLED)
           RECEIVER_ID="${RECEIVER_ID}")
 endif ()
 
-INCLUDE (FindPkgConfig)
-
-# specific order: dependents before dependencies
-target_link_libraries(rmw_desert PUBLIC
-  rmw::rmw
-  rcutils::rcutils
-  rcpputils::rcpputils
-  rmw_dds_common::rmw_dds_common_library
-  rosidl_typesupport_introspection_c::rosidl_typesupport_introspection_c
-  rosidl_typesupport_introspection_cpp::rosidl_typesupport_introspection_cpp
-  rosidl_runtime_c::rosidl_runtime_c
-)
-
-configure_rmw_library(rmw_desert)
-
-# Causes the visibility macros to use dllexport rather than dllimport,
-# which is appropriate when building the dll but not consuming it.
-target_compile_definitions(${PROJECT_NAME}
-PRIVATE "rmw_desert_BUILDING_LIBRARY")
-
-# specific order: dependents before dependencies
-ament_export_libraries(rmw_desert)
-
-ament_export_dependencies(
-  rcutils
-  rcpputils
-  rmw
-  rosidl_runtime_c
-  rmw_dds_common
-  rosidl_typesupport_introspection_c
-  rosidl_typesupport_introspection_cpp
-)
-
-register_rmw_implementation(
-  "c:rosidl_typesupport_c:rosidl_typesupport_introspection_c"
-  "cpp:rosidl_typesupport_cpp:rosidl_typesupport_introspection_cpp")
-
-ament_package()
-
-install(
-  TARGETS rmw_desert
-  ARCHIVE DESTINATION lib
-  LIBRARY DESTINATION lib
-  RUNTIME DESTINATION bin
-)
+#INCLUDE (FindPkgConfig)
+#
+## specific order: dependents before dependencies
+#target_link_libraries(rmw_desert PUBLIC
+#  rmw::rmw
+#  rcutils::rcutils
+#  rcpputils::rcpputils
+#  rmw_dds_common::rmw_dds_common_library
+#  rosidl_typesupport_introspection_c::rosidl_typesupport_introspection_c
+#  rosidl_typesupport_introspection_cpp::rosidl_typesupport_introspection_cpp
+#  rosidl_runtime_c::rosidl_runtime_c
+#)
+#
+#configure_rmw_library(rmw_desert)
+#
+## Causes the visibility macros to use dllexport rather than dllimport,
+## which is appropriate when building the dll but not consuming it.
+#target_compile_definitions(${PROJECT_NAME}
+#PRIVATE "rmw_desert_BUILDING_LIBRARY")
+#
+## specific order: dependents before dependencies
+#ament_export_libraries(rmw_desert)
+#
+#ament_export_dependencies(
+#  rcutils
+#  rcpputils
+#  rmw
+#  rosidl_runtime_c
+#  rmw_dds_common
+#  rosidl_typesupport_introspection_c
+#  rosidl_typesupport_introspection_cpp
+#)
+#
+#register_rmw_implementation(
+#  "c:rosidl_typesupport_c:rosidl_typesupport_introspection_c"
+#  "cpp:rosidl_typesupport_cpp:rosidl_typesupport_introspection_cpp")
+#
+#ament_package()
+#
+#install(
+#  TARGETS rmw_desert
+#  ARCHIVE DESTINATION lib
+#  LIBRARY DESTINATION lib
+#  RUNTIME DESTINATION bin
+#)
