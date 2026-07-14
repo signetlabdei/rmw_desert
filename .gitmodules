@@ -1,9 +1,6 @@
 [submodule "thirdparty/NanoCBOR"]
 	path = thirdparty/NanoCBOR
 	url = https://github.com/bergzand/NanoCBOR
-[submodule "thirdparty/libcose"]
-	path = thirdparty/libcose
-	url = https://github.com/bergzand/libcose.git
 [submodule "thirdparty/mbedtls"]
 	path = thirdparty/mbedtls
 	url = https://github.com/Mbed-TLS/mbedtls.git
