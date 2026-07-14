@@ -142,6 +142,7 @@ if (SECURE_MODE_ENABLED)
   target_compile_definitions(rmw_desert PRIVATE
           AEAD_ALGO="${AEAD_ALGO}"
           KDF_ALGO="${KDF_ALGO}"
+          PIV_LEN=${PIV_LEN}
           SENDER_ID="${SENDER_ID}"
           RECEIVER_ID="${RECEIVER_ID}")
 endif ()

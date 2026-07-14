@@ -77,7 +77,7 @@ static SecurityResult cbor_err_to_sec_err(int err) {
 SecurityLayer::SecurityLayer()
   : aead_params_(AeadParams(str_to_aead_algo(AEAD_ALGO))),
     kdf_(str_to_kdf_algo(KDF_ALGO)),
-    piv_size_(2),
+    piv_size_(PIV_LEN),
     piv_bytes_(piv_size_),
     sender_seq_number_(0)
 {
