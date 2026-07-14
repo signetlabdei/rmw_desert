@@ -6,6 +6,7 @@
 #include <vector>
 
 #include <cose_defines.h>
+#include <cose/key.h>
 
 #include "SecurityParams.h"
 
@@ -34,6 +35,9 @@ class SecurityLayer
 {
   public:
     SecurityLayer();
+    SecurityLayer(const AeadParams &aead_params, KdfAlgorithms kdf, const std::vector<uint8_t> &master_key,
+      const std::vector<uint8_t> &master_salt, size_t piv_size, size_t sender_seq_number,
+      const std::vector<uint8_t> &sender_id, const std::vector<uint8_t> &receiver_id);
 
     SecurityResult wrap(uint8_t* data, size_t data_len, size_t data_max_len, uint8_t** cose_ptr, size_t* cose_len);
     SecurityResult unwrap(uint8_t* data, size_t data_len, size_t* new_data_len);
@@ -45,7 +49,7 @@ class SecurityLayer
     SecurityResult build_kdf_info(const std::vector<uint8_t>& id, cose_algo_t alg, const std::string& type, size_t len, uint8_t** out, size_t* out_len);
     SecurityResult derive_key(const std::vector<uint8_t>& ikm, const std::vector<uint8_t>& salt, const std::vector<uint8_t>& id, cose_algo_t algo, std::vector<uint8_t>& key_out, cose_key_t* cose_k_out);
     SecurityResult derive_iv(const std::vector<uint8_t>& ikm, const std::vector<uint8_t>& salt, cose_algo_t alg, std::vector<uint8_t>& iv_out);
-    SecurityResult SecurityLayer::derive_context(const std::vector<uint8_t>& master_key, const std::vector<uint8_t>& master_salt);
+    SecurityResult derive_context(const std::vector<uint8_t>& master_key, const std::vector<uint8_t>& master_salt);
 
   /* Algorithms to use */
     AeadParams aead_params_;

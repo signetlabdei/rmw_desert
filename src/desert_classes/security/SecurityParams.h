@@ -23,6 +23,7 @@ enum AeadAlgorithms
 
 enum KdfAlgorithms {
   HKDF_ASCON,
+  HKDF_HMAC256,
   KDF_UNKNOWN
 };
 

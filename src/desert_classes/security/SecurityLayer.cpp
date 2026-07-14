@@ -40,23 +40,27 @@ static cose_algo_t aead_algo_to_cose_algo(AeadAlgorithms algo)
   switch (algo)
   {
     case ASCON_AEAD128:
+      return COSE_ALGO_ASCON_AEAD128;
     case ASCON_AEAD128_64:
+      return COSE_ALGO_ASCON_AEAD128_64;
     case ASCON_AEAD128_32:
+      return COSE_ALGO_ASCON_AEAD128_32;
     case A128GCM:
       return COSE_ALGO_A128GCM;
+    default:
+      return COSE_ALGO_NONE;
   }
-
-  return COSE_ALGO_NONE;
 }
 
 static cose_algo_t kdf_algo_to_cose_algo(KdfAlgorithms algo) {
   switch (algo) {
-    // TODO: Change
     case HKDF_ASCON:
+      return COSE_ALGO_HMAC_ASCON_HASH256;
+    case HKDF_HMAC256:
       return COSE_ALGO_HMAC256;
+    default:
+      return COSE_ALGO_NONE;
   }
-
-  return COSE_ALGO_NONE;
 }
 
 static SecurityResult cbor_err_to_sec_err(int err) {
@@ -97,6 +101,23 @@ SecurityLayer::SecurityLayer()
     master_salt = std::vector<uint8_t>(DEFAULT_MASTER_SALT_LEN, 0);
   }
 
+  auto res = derive_context(master_key, master_salt);
+  if (res != OK) {
+    throw std::runtime_error("Security context initialization error");
+  }
+}
+
+SecurityLayer::SecurityLayer(const AeadParams &aead_params, KdfAlgorithms kdf, const std::vector<uint8_t> &master_key,
+  const std::vector<uint8_t> &master_salt, size_t piv_size, size_t sender_seq_number, const std::vector<uint8_t> &sender_id,
+  const std::vector<uint8_t> &receiver_id)
+    : aead_params_(aead_params),
+      kdf_(kdf),
+      piv_size_(piv_size),
+      piv_bytes_(piv_size),
+      sender_seq_number_(sender_seq_number),
+      sender_id_(sender_id),
+      receiver_id_(receiver_id)
+{
   auto res = derive_context(master_key, master_salt);
   if (res != OK) {
     throw std::runtime_error("Security context initialization error");
@@ -242,7 +263,8 @@ SecurityResult SecurityLayer::get_master_salt_env(std::vector<uint8_t>& master_s
 SecurityResult SecurityLayer::generate_nonce()
 {
   uint32_t seq = htonl(sender_seq_number_);
-  memcpy(piv_bytes_.data(), &seq, MIN(sizeof(seq), piv_size_));
+  uint32_t offset = MIN(sizeof(seq), piv_size_);
+  memcpy(piv_bytes_.data(), reinterpret_cast<uint8_t *>(&seq) + (sizeof(seq) - offset), offset);
   return OK;
 }
 
@@ -315,7 +337,7 @@ SecurityResult SecurityLayer::unwrap(uint8_t* data, size_t data_len, size_t* new
   }
 
   std::vector<uint8_t> plaintext(data_len);
-  if (cose_encrypt_decrypt(&decrypt, nullptr, &receiver_cose_key_, internal_buf_, sizeof(internal_buf_), plaintext.data(), new_data_len))
+  if (cose_encrypt_decrypt_lw(&decrypt, nullptr, &receiver_cose_key_, internal_buf_, sizeof(internal_buf_), plaintext.data(), new_data_len, context_iv_.data()))
   {
     return UNWRAP_ERROR;
   }

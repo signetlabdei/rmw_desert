@@ -1,6 +1,6 @@
 #include "SecurityParams.h"
 
-#include <exception>
+#include <stdexcept>
 
 namespace security
 {
