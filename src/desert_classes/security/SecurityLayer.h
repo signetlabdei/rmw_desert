@@ -11,6 +11,7 @@
 #include "SecurityParams.h"
 
 #define DEFAULT_MASTER_SALT_LEN 16
+#define COSE_SERIALIZATION_MAX_OVERHEAD 12
 #define COSE_INTERNAL_BUF_SIZE 512
 
 namespace security
@@ -26,6 +27,7 @@ enum SecurityResult
   NONCE_SIZE_ERROR = -5,
   BUFFER_ERROR = -6,
   CONTEXT_DERIVE_ERROR = -7,
+  COMP_ERROR = -8,
   WRAP_ERROR = -100,
   UNWRAP_ERROR = -200,
   INTERNAL_ERROR = -999
@@ -40,7 +42,7 @@ class SecurityLayer
       const std::vector<uint8_t> &sender_id, const std::vector<uint8_t> &receiver_id);
 
     SecurityResult wrap(uint8_t* data, size_t data_len, size_t data_max_len, uint8_t** cose_ptr, size_t* cose_len);
-    SecurityResult unwrap(uint8_t* data, size_t data_len, size_t* new_data_len);
+    SecurityResult unwrap(uint8_t* data, size_t data_len, size_t data_max_len, size_t* new_data_len);
 
   private:
     SecurityResult get_master_key_env(std::vector<uint8_t>& master_key) const;
@@ -50,8 +52,10 @@ class SecurityLayer
     SecurityResult derive_key(const std::vector<uint8_t>& ikm, const std::vector<uint8_t>& salt, const std::vector<uint8_t>& id, cose_algo_t algo, std::vector<uint8_t>& key_out, cose_key_t* cose_k_out);
     SecurityResult derive_iv(const std::vector<uint8_t>& ikm, const std::vector<uint8_t>& salt, cose_algo_t alg, std::vector<uint8_t>& iv_out);
     SecurityResult derive_context(const std::vector<uint8_t>& master_key, const std::vector<uint8_t>& master_salt);
+    SecurityResult cose_stateless_compress(uint8_t* cose, size_t cose_len, uint8_t** out, size_t* out_len) const;
+    SecurityResult cose_stateless_decompress(uint8_t* data, size_t data_len, size_t data_max_len, size_t* out_len) const;
 
-  /* Algorithms to use */
+    /* Algorithms to use */
     AeadParams aead_params_;
     KdfAlgorithms kdf_;
     /* ***************** */

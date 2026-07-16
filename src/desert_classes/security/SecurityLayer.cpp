@@ -188,9 +188,7 @@ SecurityResult SecurityLayer::derive_key(const std::vector<uint8_t>& ikm, const 
     return CONTEXT_DERIVE_ERROR;
   }
 
-  // static uint8_t kid[] = "rmw_desert_sender_key";
   cose_key_init(cose_k_out);
-  // cose_key_set_kid(&cose_key_, kid, sizeof(kid) - 1);
   cose_key_set_keys(cose_k_out, COSE_EC_NONE, alg, nullptr, nullptr, key_out.data());
 
   return OK;
@@ -292,12 +290,90 @@ SecurityResult SecurityLayer::derive_context(const std::vector<uint8_t>& master_
   return res;
 }
 
+SecurityResult SecurityLayer::cose_stateless_compress(uint8_t* cose, size_t cose_len, uint8_t** out, size_t* out_len) const
+{
+  /*
+    83                                      # array(3)
+       40                                   # bytes(0)
+                                            # ""
+       A1                                   # map(1)
+          06                                # unsigned(6)
+          42                                # bytes(2)
+             00FE                           # "\u0000\xFE"
+       58 18                                # bytes(24)
+          78AEE7DB75167291B572751B304A662925F1C71A36EED8E6
+  */
+  uint8_t piv_offset = 5;
+  const uint8_t* piv_ptr = cose + piv_offset;
+  const uint8_t* ciphertext_bstr = piv_ptr + piv_size_;
+  size_t ciphertext_bstr_len = cose + cose_len - ciphertext_bstr;
+  nanocbor_value_t v;
+  nanocbor_decoder_init(&v, ciphertext_bstr, ciphertext_bstr_len);
+
+  const uint8_t* ciphertext;
+  size_t ciphertext_len;
+  int res = nanocbor_get_bstr(&v, &ciphertext, &ciphertext_len);
+  if (res < 0) {
+    return COMP_ERROR;
+  }
+  uint8_t* pkt_start = const_cast<uint8_t *>(ciphertext) - piv_size_;
+  memmove(pkt_start, piv_ptr, piv_size_);
+
+  *out = pkt_start;
+  *out_len = piv_size_ + ciphertext_len;
+  return OK;
+}
+
+SecurityResult SecurityLayer::cose_stateless_decompress(uint8_t* data, size_t data_len, size_t data_max_len, size_t* out_len) const
+{
+  static constexpr uint8_t cose_prefix[] = {0x83, 0x40, 0xA1, 0x06};
+  static constexpr size_t cose_prefix_len = sizeof(cose_prefix);
+
+  uint8_t* payload_ptr = data + piv_size_;
+  size_t payload_len = data_len - piv_size_;
+
+  nanocbor_encoder_t enc;
+  nanocbor_encoder_init(&enc, nullptr, 0);
+  nanocbor_fmt_bstr(&enc, piv_size_);
+  size_t piv_ind_len = nanocbor_encoded_len(&enc);
+
+  nanocbor_encoder_init(&enc, nullptr, 0);
+  nanocbor_fmt_bstr(&enc, payload_len);
+  size_t pl_ind_len = nanocbor_encoded_len(&enc);
+
+  size_t decompressed_len = cose_prefix_len + piv_ind_len + piv_size_ + pl_ind_len + payload_len;
+  if (decompressed_len > data_max_len) {
+    return BUFFER_ERROR;
+  }
+
+  memmove(payload_ptr + cose_prefix_len + piv_ind_len + pl_ind_len, payload_ptr, payload_len);
+  memmove(data + cose_prefix_len + piv_ind_len, data, piv_size_);
+  memcpy(data, cose_prefix, cose_prefix_len);
+
+  uint8_t* piv_bstr_ptr = data + cose_prefix_len;
+  nanocbor_encoder_init(&enc, piv_bstr_ptr, piv_ind_len);
+  int res = nanocbor_fmt_bstr(&enc, piv_size_);
+  if (res < 0) {
+    return INTERNAL_ERROR;
+  }
+
+  uint8_t* pl_bstr_ptr = payload_ptr + cose_prefix_len + piv_ind_len;
+  nanocbor_encoder_init(&enc, pl_bstr_ptr, payload_len);
+  res = nanocbor_fmt_bstr(&enc, payload_len);
+  if (res < 0) {
+    return INTERNAL_ERROR;
+  }
+
+  *out_len = decompressed_len;
+  return OK;
+}
+
 SecurityResult SecurityLayer::wrap(uint8_t* data, size_t data_len, size_t data_max_len, uint8_t** cose_ptr, size_t* cose_len)
 {
-  auto nonce_st = generate_nonce();
-  if (nonce_st != OK)
+  auto st = generate_nonce();
+  if (st != OK)
   {
-    return nonce_st;
+    return st;
   }
   std::vector<uint8_t> payload(data, data + data_len);
 
@@ -324,12 +400,27 @@ SecurityResult SecurityLayer::wrap(uint8_t* data, size_t data_len, size_t data_m
     return WRAP_ERROR;
   }
   *cose_len = len;
+#ifdef COSE_STATELESS_COMP_ENABLED
+  st = cose_stateless_compress(*cose_ptr, len, cose_ptr, cose_len);
+  if (st != OK) {
+    return st;
+  }
+#endif
   sender_seq_number_++;
   return OK;
 }
 
-SecurityResult SecurityLayer::unwrap(uint8_t* data, size_t data_len, size_t* new_data_len)
+SecurityResult SecurityLayer::unwrap(uint8_t* data, size_t data_len, size_t data_max_len, size_t* new_data_len)
 {
+#ifdef COSE_STATELESS_COMP_ENABLED
+  auto st = cose_stateless_decompress(data, data_len, data_max_len, &data_len);
+  if (st != OK) {
+    return st;
+  }
+#else
+  (void)data_max_len;
+#endif
+
   cose_encrypt_dec_t decrypt;
   if (cose_encrypt_decode(&decrypt, data, data_len) != COSE_OK)
   {
@@ -337,7 +428,8 @@ SecurityResult SecurityLayer::unwrap(uint8_t* data, size_t data_len, size_t* new
   }
 
   std::vector<uint8_t> plaintext(data_len);
-  if (cose_encrypt_decrypt_lw(&decrypt, nullptr, &receiver_cose_key_, internal_buf_, sizeof(internal_buf_), plaintext.data(), new_data_len, context_iv_.data()))
+  if (cose_encrypt_decrypt_lw(&decrypt, nullptr, &receiver_cose_key_, internal_buf_, sizeof(internal_buf_),
+    plaintext.data(), new_data_len, context_iv_.data()) != COSE_OK)
   {
     return UNWRAP_ERROR;
   }

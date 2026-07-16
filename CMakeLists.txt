@@ -145,6 +145,9 @@ if (SECURE_MODE_ENABLED)
           PIV_LEN=${PIV_LEN}
           SENDER_ID="${SENDER_ID}"
           RECEIVER_ID="${RECEIVER_ID}")
+  if (COSE_STATELESS_COMP_ENABLED)
+    target_compile_definitions(rmw_desert PRIVATE COSE_STATELESS_COMP_ENABLED)
+  endif ()
 endif ()
 
 INCLUDE (FindPkgConfig)

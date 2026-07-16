@@ -478,7 +478,11 @@ void RxStream::interpret_packets()
     size_t unwrapped_size = packet.size();
 
 #ifdef SECURE_MODE_ENABLED
-    auto unwrap_st = g_sec_layer.unwrap(buffer, packet.size(), &unwrapped_size);
+#ifdef COSE_STATELESS_COMP_ENABLED
+    // Need some extra space for decompression
+    packet.resize(packet.size() + COSE_SERIALIZATION_MAX_OVERHEAD);
+#endif
+    auto unwrap_st = g_sec_layer.unwrap(buffer, unwrapped_size, packet.size(), &unwrapped_size);
     if (unwrap_st != security::OK)
     {
       continue;
