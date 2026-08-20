@@ -303,7 +303,7 @@ SecurityResult SecurityLayer::cose_stateless_compress(uint8_t* cose, size_t cose
        58 18                                # bytes(24)
           78AEE7DB75167291B572751B304A662925F1C71A36EED8E6
   */
-  uint8_t piv_offset = 5;
+  static const uint8_t piv_offset = 5;
   const uint8_t* piv_ptr = cose + piv_offset;
   const uint8_t* ciphertext_bstr = piv_ptr + piv_size_;
   size_t ciphertext_bstr_len = cose + cose_len - ciphertext_bstr;
@@ -316,10 +316,10 @@ SecurityResult SecurityLayer::cose_stateless_compress(uint8_t* cose, size_t cose
   if (res < 0) {
     return COMP_ERROR;
   }
-  uint8_t* pkt_start = const_cast<uint8_t *>(ciphertext) - piv_size_;
-  memmove(pkt_start, piv_ptr, piv_size_);
+  memmove(cose, piv_ptr, piv_size_);
+  memmove(cose + piv_size_, ciphertext, ciphertext_len);
 
-  *out = pkt_start;
+  *out = cose;
   *out_len = piv_size_ + ciphertext_len;
   return OK;
 }
