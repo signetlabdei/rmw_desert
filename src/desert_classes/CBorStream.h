@@ -450,6 +450,7 @@ class RxStream
     static std::mutex _rx_mutex;
     
     static std::pair<void *, int> interpret_field(ITEM * items, size_t i, union _cbor_value & val);
+    static void destroy_interpreted_field(std::pair<void *, int>& field);
     std::u16string toUTF16(const std::string source);
 };
 

@@ -67,7 +67,7 @@ void TxStream::end_transmission()
 {
   if (_overflow)
   {
-    delete _packet;
+    delete[] _packet;
     delete _writer;
     return;
   }
@@ -81,7 +81,7 @@ void TxStream::end_transmission()
   auto st = g_sec_layer.wrap(_packet, encoded_len, MAX_PACKET_LENGTH, &wrapped_ptr, &wrapped_size);
   if (st != security::OK)
   {
-    delete _packet;
+    delete[] _packet;
     delete _writer;
     return;
   }
@@ -90,7 +90,7 @@ void TxStream::end_transmission()
   std::vector<uint8_t> daemon_packet(wrapped_ptr, wrapped_ptr + wrapped_size);
   TcpDaemon::enqueue_packet(daemon_packet);
 
-  delete _packet;
+  delete[] _packet;
   delete _writer;
 }
 
@@ -466,6 +466,36 @@ void RxStream::push_packet(std::vector<std::pair<void *, int>> packet)
   _received_packets.push(packet);
 }
 
+void RxStream::destroy_interpreted_field(std::pair<void *, int>& field)
+{
+  if (!field.first)
+  {
+    return;
+  }
+
+  switch (field.second)
+  {
+    case NANOCBOR_TYPE_NINT:
+      delete static_cast<int64_t *>(field.first);
+      break;
+    case NANOCBOR_TYPE_UINT:
+      delete static_cast<uint64_t *>(field.first);
+      break;
+    case NANOCBOR_TYPE_FLOAT:
+      delete static_cast<float *>(field.first);
+      break;
+    case NANOCBOR_TYPE_TSTR:
+    case NANOCBOR_TYPE_BSTR:
+      delete static_cast<std::string *>(field.first);
+      break;
+    default:
+      break;
+  }
+
+  field.first = nullptr;
+  field.second = 0;
+}
+
 void RxStream::interpret_packets()
 {
   std::lock_guard<std::mutex> lock(_rx_mutex);
@@ -481,6 +511,7 @@ void RxStream::interpret_packets()
 #ifdef COSE_STATELESS_COMP_ENABLED
     // Need some extra space for decompression
     packet.resize(packet.size() + COSE_SERIALIZATION_MAX_OVERHEAD);
+    buffer = &packet[0];
 #endif
     auto unwrap_st = g_sec_layer.unwrap(buffer, unwrapped_size, packet.size(), &unwrapped_size);
     if (unwrap_st != security::OK)
@@ -538,11 +569,7 @@ void RxStream::interpret_packets()
     {
       for (auto& field : interpreted_packet)
       {
-        if (field.first)
-        {
-          free(field.first);
-          field.first = nullptr;
-        }
+        destroy_interpreted_field(field);
       }
       continue;
     }
@@ -605,7 +632,7 @@ std::pair<void *, int> RxStream::interpret_field(ITEM * cbor_value, size_t i, un
       {
         break;
       }
-      
+
       std::string * s = new std::string(val, val_size);
       return std::make_pair(s, NANOCBOR_TYPE_TSTR);
     }
@@ -617,7 +644,7 @@ std::pair<void *, int> RxStream::interpret_field(ITEM * cbor_value, size_t i, un
       {
         break;
       }
-      
+
       std::string * s = new std::string(val, val_size);
       return std::make_pair(s, NANOCBOR_TYPE_TSTR);
     }
@@ -625,7 +652,7 @@ std::pair<void *, int> RxStream::interpret_field(ITEM * cbor_value, size_t i, un
       nanocbor_skip(&cbor_value->nanocbor_value);
       return std::make_pair(nullptr, 0);
   }
-  
+
   nanocbor_skip(&cbor_value->nanocbor_value);
   return std::make_pair(nullptr, 0);
 }
