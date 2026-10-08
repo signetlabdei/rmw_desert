@@ -52,12 +52,6 @@
 
 /** @endcond */
 
-#include "cbor/encoder.h"
-#include "cbor/ieee754.h"
-#include "cbor/decoder.h"
-#include "cbor/parser.h"
-#include "cbor/helper.h"
-
 #include "half.hpp"
 
 #define PUBLISHER_TYPE  0
@@ -225,16 +219,20 @@ class TxStream
     }
 
   private:
+    // Forward declarations to abstract the implementation
+    struct WRITER;
+    struct ERROR;
+    
     uint8_t _stream_type;
     std::string _stream_name;
     uint8_t _stream_identifier;
     
     bool _overflow;
-    uint8_t *  _packet;
-    cbor_writer_t *  _writer;
+    uint8_t * _packet;
+    WRITER * _writer;
     
     void new_packet();
-    void handle_overrun(cbor_error_t result);
+    void handle_overrun(ERROR result);
     
     std::string toUTF8(const std::u16string source);
   
@@ -316,13 +314,6 @@ class RxStream
     * @param n Field to decode
     */
     RxStream & operator>>(int8_t & n);
-    
-   /**
-    * @brief Decode a generic integer
-    * @param n Field to decode
-    */
-    template<typename T>
-    RxStream & deserialize_integer(T & n);
     
    /**
     * @brief Decode char
@@ -428,6 +419,9 @@ class RxStream
     static void interpret_packets();
   
   private:
+    // Forward declarations to abstract the implementation
+    struct ITEM;
+    
     uint8_t _stream_type;
     std::string _stream_name;
     uint8_t _stream_identifier;
@@ -455,7 +449,8 @@ class RxStream
     
     static std::mutex _rx_mutex;
     
-    static std::pair<void *, int> interpret_field(cbor_item_t * items, size_t i, union _cbor_value & val);
+    static std::pair<void *, int> interpret_field(ITEM * items, size_t i, union _cbor_value & val);
+    static void destroy_interpreted_field(std::pair<void *, int>& field);
     std::u16string toUTF16(const std::string source);
 };
 

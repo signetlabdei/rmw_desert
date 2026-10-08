@@ -39,12 +39,14 @@ Namespace containing C sequence handling functions.
 
 The C data type implementation is more complicated than the C++ one, because complex types like vectors have to be manually managed and this header contains functions to convert C strings and generic sequences into respectively C++ strings and vectors. 
 
+\label{doc-func-members}
+\Hypertarget{namespaceCStringHelper_doc-func-members}
 \doxysubsection{Function Documentation}
-\Hypertarget{namespaceCStringHelper_acd385ff8fc21921cc8b1cb875b52fdd0}\label{namespaceCStringHelper_acd385ff8fc21921cc8b1cb875b52fdd0} 
-\index{CStringHelper@{CStringHelper}!assign\_string@{assign\_string}}
+\Hypertarget{namespaceCStringHelper_acd385ff8fc21921cc8b1cb875b52fdd0}\index{CStringHelper@{CStringHelper}!assign\_string@{assign\_string}}
 \index{assign\_string@{assign\_string}!CStringHelper@{CStringHelper}}
 \doxysubsubsection{\texorpdfstring{assign\_string()}{assign\_string()}}
-{\footnotesize\ttfamily void CString\+Helper\+::assign\+\_\+string (\begin{DoxyParamCaption}\item[{std\+::string}]{str,  }\item[{void \texorpdfstring{$\ast$}{*}}]{field }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespaceCStringHelper_acd385ff8fc21921cc8b1cb875b52fdd0} 
+void CString\+Helper\+::assign\+\_\+string (\begin{DoxyParamCaption}\item[{std\+::string}]{str}{, }\item[{void \texorpdfstring{$\ast$}{*}}]{field}{}\end{DoxyParamCaption})}
 
 
 
@@ -59,11 +61,11 @@ This function stores the data contained in a C++ string in a rosidl\+\_\+runtime
 {\em field} & Pointer containing the destination of the string \\
 \hline
 \end{DoxyParams}
-\Hypertarget{namespaceCStringHelper_ae78445b8ee145086048078bb0b6ee3cc}\label{namespaceCStringHelper_ae78445b8ee145086048078bb0b6ee3cc} 
-\index{CStringHelper@{CStringHelper}!assign\_u16string@{assign\_u16string}}
+\Hypertarget{namespaceCStringHelper_ae78445b8ee145086048078bb0b6ee3cc}\index{CStringHelper@{CStringHelper}!assign\_u16string@{assign\_u16string}}
 \index{assign\_u16string@{assign\_u16string}!CStringHelper@{CStringHelper}}
 \doxysubsubsection{\texorpdfstring{assign\_u16string()}{assign\_u16string()}}
-{\footnotesize\ttfamily void CString\+Helper\+::assign\+\_\+u16string (\begin{DoxyParamCaption}\item[{std\+::u16string}]{str,  }\item[{void \texorpdfstring{$\ast$}{*}}]{field }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespaceCStringHelper_ae78445b8ee145086048078bb0b6ee3cc} 
+void CString\+Helper\+::assign\+\_\+u16string (\begin{DoxyParamCaption}\item[{std\+::u16string}]{str}{, }\item[{void \texorpdfstring{$\ast$}{*}}]{field}{}\end{DoxyParamCaption})}
 
 
 
@@ -78,11 +80,11 @@ This function stores the data contained in a C++ u16string in a rosidl\+\_\+runt
 {\em field} & Pointer containing the destination of the u16string \\
 \hline
 \end{DoxyParams}
-\Hypertarget{namespaceCStringHelper_a2b8b924dc2903c7055bfb7e4a413f392}\label{namespaceCStringHelper_a2b8b924dc2903c7055bfb7e4a413f392} 
-\index{CStringHelper@{CStringHelper}!assign\_vector\_string@{assign\_vector\_string}}
+\Hypertarget{namespaceCStringHelper_a2b8b924dc2903c7055bfb7e4a413f392}\index{CStringHelper@{CStringHelper}!assign\_vector\_string@{assign\_vector\_string}}
 \index{assign\_vector\_string@{assign\_vector\_string}!CStringHelper@{CStringHelper}}
 \doxysubsubsection{\texorpdfstring{assign\_vector\_string()}{assign\_vector\_string()}}
-{\footnotesize\ttfamily void CString\+Helper\+::assign\+\_\+vector\+\_\+string (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::string $>$}]{cpp\+\_\+string\+\_\+vector,  }\item[{void \texorpdfstring{$\ast$}{*}}]{str\+\_\+array,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespaceCStringHelper_a2b8b924dc2903c7055bfb7e4a413f392} 
+void CString\+Helper\+::assign\+\_\+vector\+\_\+string (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::string $>$}]{cpp\+\_\+string\+\_\+vector}{, }\item[{void \texorpdfstring{$\ast$}{*}}]{str\+\_\+array}{, }\item[{size\+\_\+t}]{size}{}\end{DoxyParamCaption})}
 
 
 
@@ -99,11 +101,11 @@ This function stores the data contained in a C++ vector of strings in a rosidl\+
 {\em size} & Number of elements in the array \\
 \hline
 \end{DoxyParams}
-\Hypertarget{namespaceCStringHelper_a7e136add8498b7a4ea9c065825961c7b}\label{namespaceCStringHelper_a7e136add8498b7a4ea9c065825961c7b} 
-\index{CStringHelper@{CStringHelper}!assign\_vector\_string\_to\_sequence@{assign\_vector\_string\_to\_sequence}}
+\Hypertarget{namespaceCStringHelper_a7e136add8498b7a4ea9c065825961c7b}\index{CStringHelper@{CStringHelper}!assign\_vector\_string\_to\_sequence@{assign\_vector\_string\_to\_sequence}}
 \index{assign\_vector\_string\_to\_sequence@{assign\_vector\_string\_to\_sequence}!CStringHelper@{CStringHelper}}
 \doxysubsubsection{\texorpdfstring{assign\_vector\_string\_to\_sequence()}{assign\_vector\_string\_to\_sequence()}}
-{\footnotesize\ttfamily void CString\+Helper\+::assign\+\_\+vector\+\_\+string\+\_\+to\+\_\+sequence (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::string $>$}]{cpp\+\_\+string\+\_\+vector,  }\item[{void \texorpdfstring{$\ast$}{*}}]{str\+\_\+seq }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespaceCStringHelper_a7e136add8498b7a4ea9c065825961c7b} 
+void CString\+Helper\+::assign\+\_\+vector\+\_\+string\+\_\+to\+\_\+sequence (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::string $>$}]{cpp\+\_\+string\+\_\+vector}{, }\item[{void \texorpdfstring{$\ast$}{*}}]{str\+\_\+seq}{}\end{DoxyParamCaption})}
 
 
 
@@ -118,11 +120,11 @@ This function stores the data contained in a C++ vector of strings in a rosidl\+
 {\em str\+\_\+seq} & Pointer containing the destination of the string sequence \\
 \hline
 \end{DoxyParams}
-\Hypertarget{namespaceCStringHelper_aecd6afde0b4be23924a25101a11921a8}\label{namespaceCStringHelper_aecd6afde0b4be23924a25101a11921a8} 
-\index{CStringHelper@{CStringHelper}!assign\_vector\_u16string@{assign\_vector\_u16string}}
+\Hypertarget{namespaceCStringHelper_aecd6afde0b4be23924a25101a11921a8}\index{CStringHelper@{CStringHelper}!assign\_vector\_u16string@{assign\_vector\_u16string}}
 \index{assign\_vector\_u16string@{assign\_vector\_u16string}!CStringHelper@{CStringHelper}}
 \doxysubsubsection{\texorpdfstring{assign\_vector\_u16string()}{assign\_vector\_u16string()}}
-{\footnotesize\ttfamily void CString\+Helper\+::assign\+\_\+vector\+\_\+u16string (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::u16string $>$}]{cpp\+\_\+string\+\_\+vector,  }\item[{void \texorpdfstring{$\ast$}{*}}]{str\+\_\+array,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespaceCStringHelper_aecd6afde0b4be23924a25101a11921a8} 
+void CString\+Helper\+::assign\+\_\+vector\+\_\+u16string (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::u16string $>$}]{cpp\+\_\+string\+\_\+vector}{, }\item[{void \texorpdfstring{$\ast$}{*}}]{str\+\_\+array}{, }\item[{size\+\_\+t}]{size}{}\end{DoxyParamCaption})}
 
 
 
@@ -139,11 +141,11 @@ This function stores the data contained in a C++ vector of u16strings in a rosid
 {\em size} & Number of elements in the array \\
 \hline
 \end{DoxyParams}
-\Hypertarget{namespaceCStringHelper_a2d98ad81c785c470ee14cc3a98857c22}\label{namespaceCStringHelper_a2d98ad81c785c470ee14cc3a98857c22} 
-\index{CStringHelper@{CStringHelper}!assign\_vector\_u16string\_to\_sequence@{assign\_vector\_u16string\_to\_sequence}}
+\Hypertarget{namespaceCStringHelper_a2d98ad81c785c470ee14cc3a98857c22}\index{CStringHelper@{CStringHelper}!assign\_vector\_u16string\_to\_sequence@{assign\_vector\_u16string\_to\_sequence}}
 \index{assign\_vector\_u16string\_to\_sequence@{assign\_vector\_u16string\_to\_sequence}!CStringHelper@{CStringHelper}}
 \doxysubsubsection{\texorpdfstring{assign\_vector\_u16string\_to\_sequence()}{assign\_vector\_u16string\_to\_sequence()}}
-{\footnotesize\ttfamily void CString\+Helper\+::assign\+\_\+vector\+\_\+u16string\+\_\+to\+\_\+sequence (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::u16string $>$}]{cpp\+\_\+string\+\_\+vector,  }\item[{void \texorpdfstring{$\ast$}{*}}]{str\+\_\+seq }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespaceCStringHelper_a2d98ad81c785c470ee14cc3a98857c22} 
+void CString\+Helper\+::assign\+\_\+vector\+\_\+u16string\+\_\+to\+\_\+sequence (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::u16string $>$}]{cpp\+\_\+string\+\_\+vector}{, }\item[{void \texorpdfstring{$\ast$}{*}}]{str\+\_\+seq}{}\end{DoxyParamCaption})}
 
 
 
@@ -158,11 +160,11 @@ This function stores the data contained in a C++ vector of u16strings in a rosid
 {\em str\+\_\+seq} & Pointer containing the destination of the u16string sequence \\
 \hline
 \end{DoxyParams}
-\Hypertarget{namespaceCStringHelper_af1fb65516cba6b268c562c9e5541c688}\label{namespaceCStringHelper_af1fb65516cba6b268c562c9e5541c688} 
-\index{CStringHelper@{CStringHelper}!convert\_sequence\_to\_std\_vector\_string@{convert\_sequence\_to\_std\_vector\_string}}
+\Hypertarget{namespaceCStringHelper_af1fb65516cba6b268c562c9e5541c688}\index{CStringHelper@{CStringHelper}!convert\_sequence\_to\_std\_vector\_string@{convert\_sequence\_to\_std\_vector\_string}}
 \index{convert\_sequence\_to\_std\_vector\_string@{convert\_sequence\_to\_std\_vector\_string}!CStringHelper@{CStringHelper}}
 \doxysubsubsection{\texorpdfstring{convert\_sequence\_to\_std\_vector\_string()}{convert\_sequence\_to\_std\_vector\_string()}}
-{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ CString\+Helper\+::convert\+\_\+sequence\+\_\+to\+\_\+std\+\_\+vector\+\_\+string (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{str\+\_\+seq }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespaceCStringHelper_af1fb65516cba6b268c562c9e5541c688} 
+std\+::vector$<$ std\+::string $>$ CString\+Helper\+::convert\+\_\+sequence\+\_\+to\+\_\+std\+\_\+vector\+\_\+string (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{str\+\_\+seq}{}\end{DoxyParamCaption})}
 
 
 
@@ -178,11 +180,11 @@ This function converts a rosidl\+\_\+runtime\+\_\+c\+\_\+\+\_\+\+String\+\_\+\+\
 \begin{DoxyReturn}{Returns}
 A C++ vector of strings 
 \end{DoxyReturn}
-\Hypertarget{namespaceCStringHelper_aca7d541ea4477361e7d97080edf124ea}\label{namespaceCStringHelper_aca7d541ea4477361e7d97080edf124ea} 
-\index{CStringHelper@{CStringHelper}!convert\_sequence\_to\_std\_vector\_u16string@{convert\_sequence\_to\_std\_vector\_u16string}}
+\Hypertarget{namespaceCStringHelper_aca7d541ea4477361e7d97080edf124ea}\index{CStringHelper@{CStringHelper}!convert\_sequence\_to\_std\_vector\_u16string@{convert\_sequence\_to\_std\_vector\_u16string}}
 \index{convert\_sequence\_to\_std\_vector\_u16string@{convert\_sequence\_to\_std\_vector\_u16string}!CStringHelper@{CStringHelper}}
 \doxysubsubsection{\texorpdfstring{convert\_sequence\_to\_std\_vector\_u16string()}{convert\_sequence\_to\_std\_vector\_u16string()}}
-{\footnotesize\ttfamily std\+::vector$<$ std\+::u16string $>$ CString\+Helper\+::convert\+\_\+sequence\+\_\+to\+\_\+std\+\_\+vector\+\_\+u16string (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{str\+\_\+seq }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespaceCStringHelper_aca7d541ea4477361e7d97080edf124ea} 
+std\+::vector$<$ std\+::u16string $>$ CString\+Helper\+::convert\+\_\+sequence\+\_\+to\+\_\+std\+\_\+vector\+\_\+u16string (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{str\+\_\+seq}{}\end{DoxyParamCaption})}
 
 
 
@@ -198,11 +200,11 @@ This function converts a rosidl\+\_\+runtime\+\_\+c\+\_\+\+\_\+\+U16\+String\+\_
 \begin{DoxyReturn}{Returns}
 A C++ vector of u16string 
 \end{DoxyReturn}
-\Hypertarget{namespaceCStringHelper_afdd1746a13b7caa09a79880e048e083f}\label{namespaceCStringHelper_afdd1746a13b7caa09a79880e048e083f} 
-\index{CStringHelper@{CStringHelper}!convert\_to\_std\_string@{convert\_to\_std\_string}}
+\Hypertarget{namespaceCStringHelper_afdd1746a13b7caa09a79880e048e083f}\index{CStringHelper@{CStringHelper}!convert\_to\_std\_string@{convert\_to\_std\_string}}
 \index{convert\_to\_std\_string@{convert\_to\_std\_string}!CStringHelper@{CStringHelper}}
 \doxysubsubsection{\texorpdfstring{convert\_to\_std\_string()}{convert\_to\_std\_string()}}
-{\footnotesize\ttfamily std\+::string CString\+Helper\+::convert\+\_\+to\+\_\+std\+\_\+string (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{str }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespaceCStringHelper_afdd1746a13b7caa09a79880e048e083f} 
+std\+::string CString\+Helper\+::convert\+\_\+to\+\_\+std\+\_\+string (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{str}{}\end{DoxyParamCaption})}
 
 
 
@@ -218,11 +220,11 @@ This function converts a rosidl\+\_\+runtime\+\_\+c\+\_\+\+\_\+\+String into a C
 \begin{DoxyReturn}{Returns}
 A C++ string 
 \end{DoxyReturn}
-\Hypertarget{namespaceCStringHelper_a67a072527df76b6105dc694d0d65e317}\label{namespaceCStringHelper_a67a072527df76b6105dc694d0d65e317} 
-\index{CStringHelper@{CStringHelper}!convert\_to\_std\_u16string@{convert\_to\_std\_u16string}}
+\Hypertarget{namespaceCStringHelper_a67a072527df76b6105dc694d0d65e317}\index{CStringHelper@{CStringHelper}!convert\_to\_std\_u16string@{convert\_to\_std\_u16string}}
 \index{convert\_to\_std\_u16string@{convert\_to\_std\_u16string}!CStringHelper@{CStringHelper}}
 \doxysubsubsection{\texorpdfstring{convert\_to\_std\_u16string()}{convert\_to\_std\_u16string()}}
-{\footnotesize\ttfamily std\+::u16string CString\+Helper\+::convert\+\_\+to\+\_\+std\+\_\+u16string (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{str }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespaceCStringHelper_a67a072527df76b6105dc694d0d65e317} 
+std\+::u16string CString\+Helper\+::convert\+\_\+to\+\_\+std\+\_\+u16string (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{str}{}\end{DoxyParamCaption})}
 
 
 
@@ -238,11 +240,11 @@ This function converts a rosidl\+\_\+runtime\+\_\+c\+\_\+\+\_\+\+U16\+String int
 \begin{DoxyReturn}{Returns}
 A C++ u16string 
 \end{DoxyReturn}
-\Hypertarget{namespaceCStringHelper_a46c9096e1ecb6f6bc0fb672bd915e80f}\label{namespaceCStringHelper_a46c9096e1ecb6f6bc0fb672bd915e80f} 
-\index{CStringHelper@{CStringHelper}!convert\_to\_std\_vector\_string@{convert\_to\_std\_vector\_string}}
+\Hypertarget{namespaceCStringHelper_a46c9096e1ecb6f6bc0fb672bd915e80f}\index{CStringHelper@{CStringHelper}!convert\_to\_std\_vector\_string@{convert\_to\_std\_vector\_string}}
 \index{convert\_to\_std\_vector\_string@{convert\_to\_std\_vector\_string}!CStringHelper@{CStringHelper}}
 \doxysubsubsection{\texorpdfstring{convert\_to\_std\_vector\_string()}{convert\_to\_std\_vector\_string()}}
-{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ CString\+Helper\+::convert\+\_\+to\+\_\+std\+\_\+vector\+\_\+string (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{str\+\_\+array,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespaceCStringHelper_a46c9096e1ecb6f6bc0fb672bd915e80f} 
+std\+::vector$<$ std\+::string $>$ CString\+Helper\+::convert\+\_\+to\+\_\+std\+\_\+vector\+\_\+string (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{str\+\_\+array}{, }\item[{size\+\_\+t}]{size}{}\end{DoxyParamCaption})}
 
 
 
@@ -260,11 +262,11 @@ This function converts a rosidl\+\_\+runtime\+\_\+c\+\_\+\+\_\+\+String fixed si
 \begin{DoxyReturn}{Returns}
 A C++ vector of strings 
 \end{DoxyReturn}
-\Hypertarget{namespaceCStringHelper_a7cd36550ae2df76c2b9d94fdb4f95fae}\label{namespaceCStringHelper_a7cd36550ae2df76c2b9d94fdb4f95fae} 
-\index{CStringHelper@{CStringHelper}!convert\_to\_std\_vector\_u16string@{convert\_to\_std\_vector\_u16string}}
+\Hypertarget{namespaceCStringHelper_a7cd36550ae2df76c2b9d94fdb4f95fae}\index{CStringHelper@{CStringHelper}!convert\_to\_std\_vector\_u16string@{convert\_to\_std\_vector\_u16string}}
 \index{convert\_to\_std\_vector\_u16string@{convert\_to\_std\_vector\_u16string}!CStringHelper@{CStringHelper}}
 \doxysubsubsection{\texorpdfstring{convert\_to\_std\_vector\_u16string()}{convert\_to\_std\_vector\_u16string()}}
-{\footnotesize\ttfamily std\+::vector$<$ std\+::u16string $>$ CString\+Helper\+::convert\+\_\+to\+\_\+std\+\_\+vector\+\_\+u16string (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{str\+\_\+array,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespaceCStringHelper_a7cd36550ae2df76c2b9d94fdb4f95fae} 
+std\+::vector$<$ std\+::u16string $>$ CString\+Helper\+::convert\+\_\+to\+\_\+std\+\_\+vector\+\_\+u16string (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{str\+\_\+array}{, }\item[{size\+\_\+t}]{size}{}\end{DoxyParamCaption})}
 
 
 

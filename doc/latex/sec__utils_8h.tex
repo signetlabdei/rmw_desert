@@ -1,0 +1,73 @@
+\doxysection{src/desert\+\_\+classes/security/sec\+\_\+utils.h File Reference}
+\hypertarget{sec__utils_8h}{}\label{sec__utils_8h}\index{src/desert\_classes/security/sec\_utils.h@{src/desert\_classes/security/sec\_utils.h}}
+
+
+Utilities for the security layer.  
+
+
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{sec__utils_8h_a3acffbd305ee72dcd4593c0d8af64a4f}{MIN}}(a,  b)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{sec__utils_8h_ae91b9ad6e5f5e2d6f54b7edba7150301}{decode\+\_\+hex}} (const std\+::string \&hex, std\+::vector$<$ uint8\+\_\+t $>$ \&out)
+\begin{DoxyCompactList}\small\item\em Decodes a hexadecimal string into a byte vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Utilities for the security layer. 
+
+This header declares utility functions shared by the security layer. It includes helpers for converting hexadecimal strings into byte vectors and small generic macros used while processing cryptographic input data. These utilities support configuration parsing and internal data handling.
+
+\begin{DoxyAuthor}{Author}
+Dmytro Ochkas 
+\end{DoxyAuthor}
+
+
+\label{doc-define-members}
+\Hypertarget{sec__utils_8h_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{sec__utils_8h_a3acffbd305ee72dcd4593c0d8af64a4f}\index{sec\_utils.h@{sec\_utils.h}!MIN@{MIN}}
+\index{MIN@{MIN}!sec\_utils.h@{sec\_utils.h}}
+\doxysubsubsection{\texorpdfstring{MIN}{MIN}}
+{\footnotesize\ttfamily \label{sec__utils_8h_a3acffbd305ee72dcd4593c0d8af64a4f} 
+\#define MIN(\begin{DoxyParamCaption}\item[{}]{a}{, }\item[{}]{b}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((a)\ >\ (b)\ ?\ (b)\ :\ (a))}
+
+\end{DoxyCode}
+
+
+\label{doc-func-members}
+\Hypertarget{sec__utils_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{sec__utils_8h_ae91b9ad6e5f5e2d6f54b7edba7150301}\index{sec\_utils.h@{sec\_utils.h}!decode\_hex@{decode\_hex}}
+\index{decode\_hex@{decode\_hex}!sec\_utils.h@{sec\_utils.h}}
+\doxysubsubsection{\texorpdfstring{decode\_hex()}{decode\_hex()}}
+{\footnotesize\ttfamily \label{sec__utils_8h_ae91b9ad6e5f5e2d6f54b7edba7150301} 
+bool decode\+\_\+hex (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{hex}{, }\item[{std\+::vector$<$ uint8\+\_\+t $>$ \&}]{out}{}\end{DoxyParamCaption})}
+
+
+
+Decodes a hexadecimal string into a byte vector. 
+
+The input can optionally begin with the prefixes {\ttfamily 0x} or {\ttfamily 0X}. After an optional prefix, the string must contain an even number of valid hexadecimal characters.
+
+
+\begin{DoxyParams}{Parameters}
+{\em hex} & String containing hexadecimal byte values. \\
+\hline
+{\em out} & Output vector receiving the decoded bytes. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the complete input is valid and has been decoded; false if the input has an odd length or contains non-\/hexadecimal characters.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+On failure, {\ttfamily out} is cleared. 
+\end{DoxyNote}

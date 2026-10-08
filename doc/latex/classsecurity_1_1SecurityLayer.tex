@@ -1,0 +1,137 @@
+\doxysection{security\+::Security\+Layer Class Reference}
+\hypertarget{classsecurity_1_1SecurityLayer}{}\label{classsecurity_1_1SecurityLayer}\index{security::SecurityLayer@{security::SecurityLayer}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsecurity_1_1SecurityLayer_a113f48f0428d906be314d9fe60b13aaa}{Security\+Layer}} ()
+\begin{DoxyCompactList}\small\item\em Creates a security layer using compile-\/time configuration values. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classsecurity_1_1SecurityLayer_ae746c85b2d7d36eb9d55522ec6aef086}{Security\+Layer}} (const \mbox{\hyperlink{classsecurity_1_1AeadParams}{Aead\+Params}} \&aead\+\_\+params, Kdf\+Algorithms kdf, const std\+::vector$<$ uint8\+\_\+t $>$ \&master\+\_\+key, const std\+::vector$<$ uint8\+\_\+t $>$ \&master\+\_\+salt, size\+\_\+t piv\+\_\+size, size\+\_\+t sender\+\_\+seq\+\_\+number, const std\+::vector$<$ uint8\+\_\+t $>$ \&sender\+\_\+id, const std\+::vector$<$ uint8\+\_\+t $>$ \&receiver\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Creates a security layer from explicitly supplied parameters. \end{DoxyCompactList}\item 
+Security\+Result \mbox{\hyperlink{classsecurity_1_1SecurityLayer_a558020dbde90e4489b35e6639e8aff8b}{wrap}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t data\+\_\+len, size\+\_\+t data\+\_\+max\+\_\+len, uint8\+\_\+t \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}cose\+\_\+ptr, size\+\_\+t \texorpdfstring{$\ast$}{*}cose\+\_\+len)
+\begin{DoxyCompactList}\small\item\em Encrypts and serializes an application payload as a COSE message. \end{DoxyCompactList}\item 
+Security\+Result \mbox{\hyperlink{classsecurity_1_1SecurityLayer_a59a9b60c731fe2cbc793930aa98355af}{unwrap}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t data\+\_\+len, size\+\_\+t data\+\_\+max\+\_\+len, size\+\_\+t \texorpdfstring{$\ast$}{*}new\+\_\+data\+\_\+len)
+\begin{DoxyCompactList}\small\item\em Decodes, authenticates, and decrypts a COSE message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{classsecurity_1_1SecurityLayer_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classsecurity_1_1SecurityLayer_a113f48f0428d906be314d9fe60b13aaa}\index{security::SecurityLayer@{security::SecurityLayer}!SecurityLayer@{SecurityLayer}}
+\index{SecurityLayer@{SecurityLayer}!security::SecurityLayer@{security::SecurityLayer}}
+\doxysubsubsection{\texorpdfstring{SecurityLayer()}{SecurityLayer()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classsecurity_1_1SecurityLayer_a113f48f0428d906be314d9fe60b13aaa} 
+security\+::\+Security\+Layer\+::\+Security\+Layer (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Creates a security layer using compile-\/time configuration values. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & If identifiers or key material are invalid, or if the security context cannot be derived. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classsecurity_1_1SecurityLayer_ae746c85b2d7d36eb9d55522ec6aef086}\index{security::SecurityLayer@{security::SecurityLayer}!SecurityLayer@{SecurityLayer}}
+\index{SecurityLayer@{SecurityLayer}!security::SecurityLayer@{security::SecurityLayer}}
+\doxysubsubsection{\texorpdfstring{SecurityLayer()}{SecurityLayer()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classsecurity_1_1SecurityLayer_ae746c85b2d7d36eb9d55522ec6aef086} 
+security\+::\+Security\+Layer\+::\+Security\+Layer (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classsecurity_1_1AeadParams}{Aead\+Params}} \&}]{aead\+\_\+params}{, }\item[{Kdf\+Algorithms}]{kdf}{, }\item[{const std\+::vector$<$ uint8\+\_\+t $>$ \&}]{master\+\_\+key}{, }\item[{const std\+::vector$<$ uint8\+\_\+t $>$ \&}]{master\+\_\+salt}{, }\item[{size\+\_\+t}]{piv\+\_\+size}{, }\item[{size\+\_\+t}]{sender\+\_\+seq\+\_\+number}{, }\item[{const std\+::vector$<$ uint8\+\_\+t $>$ \&}]{sender\+\_\+id}{, }\item[{const std\+::vector$<$ uint8\+\_\+t $>$ \&}]{receiver\+\_\+id}{}\end{DoxyParamCaption})}
+
+
+
+Creates a security layer from explicitly supplied parameters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em aead\+\_\+params} & Parameters of the AEAD algorithm to use. \\
+\hline
+{\em kdf} & Key-\/derivation algorithm to use. \\
+\hline
+{\em master\+\_\+key} & Master secret used to derive encryption keys. \\
+\hline
+{\em master\+\_\+salt} & Salt used during key derivation. \\
+\hline
+{\em piv\+\_\+size} & Size, in bytes, of the Partial IV carried in messages. \\
+\hline
+{\em sender\+\_\+seq\+\_\+number} & Initial sender sequence number. \\
+\hline
+{\em sender\+\_\+id} & Sender identifier used to derive the sender key. \\
+\hline
+{\em receiver\+\_\+id} & Receiver identifier used to derive the receiver key. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & If the security context cannot be derived. \\
+\hline
+\end{DoxyExceptions}
+
+
+\label{doc-func-members}
+\Hypertarget{classsecurity_1_1SecurityLayer_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsecurity_1_1SecurityLayer_a59a9b60c731fe2cbc793930aa98355af}\index{security::SecurityLayer@{security::SecurityLayer}!unwrap@{unwrap}}
+\index{unwrap@{unwrap}!security::SecurityLayer@{security::SecurityLayer}}
+\doxysubsubsection{\texorpdfstring{unwrap()}{unwrap()}}
+{\footnotesize\ttfamily \label{classsecurity_1_1SecurityLayer_a59a9b60c731fe2cbc793930aa98355af} 
+Security\+Result security\+::\+Security\+Layer\+::unwrap (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{size\+\_\+t}]{data\+\_\+len}{, }\item[{size\+\_\+t}]{data\+\_\+max\+\_\+len}{, }\item[{size\+\_\+t \texorpdfstring{$\ast$}{*}}]{new\+\_\+data\+\_\+len}{}\end{DoxyParamCaption})}
+
+
+
+Decodes, authenticates, and decrypts a COSE message. 
+
+If stateless compression is enabled, the method first reconstructs the standard COSE serialization. It then decrypts the message using the receiver key and copies the recovered plaintext to {\ttfamily data}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Buffer containing the received COSE message. On success, it is overwritten with the plaintext payload. \\
+\hline
+{\em data\+\_\+len} & Length of the received message in bytes. \\
+\hline
+{\em data\+\_\+max\+\_\+len} & Total capacity of {\ttfamily data} in bytes. \\
+\hline
+{\em new\+\_\+data\+\_\+len} & Output length of the recovered plaintext in bytes. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OK on success; UNWRAP\+\_\+\+ERROR if parsing, authentication, or decryption fails; otherwise a specific processing error. 
+\end{DoxyReturn}
+\Hypertarget{classsecurity_1_1SecurityLayer_a558020dbde90e4489b35e6639e8aff8b}\index{security::SecurityLayer@{security::SecurityLayer}!wrap@{wrap}}
+\index{wrap@{wrap}!security::SecurityLayer@{security::SecurityLayer}}
+\doxysubsubsection{\texorpdfstring{wrap()}{wrap()}}
+{\footnotesize\ttfamily \label{classsecurity_1_1SecurityLayer_a558020dbde90e4489b35e6639e8aff8b} 
+Security\+Result security\+::\+Security\+Layer\+::wrap (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{size\+\_\+t}]{data\+\_\+len}{, }\item[{size\+\_\+t}]{data\+\_\+max\+\_\+len}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{cose\+\_\+ptr}{, }\item[{size\+\_\+t \texorpdfstring{$\ast$}{*}}]{cose\+\_\+len}{}\end{DoxyParamCaption})}
+
+
+
+Encrypts and serializes an application payload as a COSE message. 
+
+Generates a Partial IV from the current sender sequence number, adds it as an unprotected COSE header, encrypts the payload with the sender key, and optionally applies the stateless COSE compression format.
+
+On success, the sender sequence number is incremented.
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Buffer containing the plaintext payload and receiving output. \\
+\hline
+{\em data\+\_\+len} & Length of the plaintext payload in bytes. \\
+\hline
+{\em data\+\_\+max\+\_\+len} & Total capacity of {\ttfamily data} in bytes. \\
+\hline
+{\em cose\+\_\+ptr} & Output pointer to the beginning of the encoded message. \\
+\hline
+{\em cose\+\_\+len} & Output length of the encoded COSE message in bytes. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OK on success; otherwise an error describing the failed step.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The caller must ensure that {\ttfamily data} has sufficient capacity for the resulting serialized message. 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/desert\+\_\+classes/security/\mbox{\hyperlink{SecurityLayer_8h}{Security\+Layer.\+h}}\item 
+src/desert\+\_\+classes/security/Security\+Layer.\+cpp\end{DoxyCompactItemize}

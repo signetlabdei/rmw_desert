@@ -8,8 +8,8 @@ Namespace containing discovery functions.
 \doxysubsubsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{namespaceDiscovery_afcd9f3f89bf54bf9ece85c7b0ca50565}\label{namespaceDiscovery_afcd9f3f89bf54bf9ece85c7b0ca50565} 
-using {\bfseries Demangle\+Function} = std\+::string(\texorpdfstring{$\ast$}{*})(const std\+::string \&)
+\Hypertarget{namespaceDiscovery_a235a8c731ee9d16c2405fa9e2c65cc38}\label{namespaceDiscovery_a235a8c731ee9d16c2405fa9e2c65cc38} 
+using {\bfseries Demangle\+Function} = std\+::string (\texorpdfstring{$\ast$}{*})(const std\+::string \&)
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
@@ -65,12 +65,14 @@ Namespace containing discovery functions.
 
 The middleware layer of a ROS stack must implement functionalities used to inform each node of the network structure of the other nodes connected, with their names and topics. Since this operation is quite resource-\/consuming and the underwater channel has a limited bandwidth, it is possible to disable it. 
 
+\label{doc-func-members}
+\Hypertarget{namespaceDiscovery_doc-func-members}
 \doxysubsection{Function Documentation}
-\Hypertarget{namespaceDiscovery_abcb975203ff1385fac73e67c3d24359d}\label{namespaceDiscovery_abcb975203ff1385fac73e67c3d24359d} 
-\index{Discovery@{Discovery}!demangle\_publisher\_from\_topic@{demangle\_publisher\_from\_topic}}
+\Hypertarget{namespaceDiscovery_abcb975203ff1385fac73e67c3d24359d}\index{Discovery@{Discovery}!demangle\_publisher\_from\_topic@{demangle\_publisher\_from\_topic}}
 \index{demangle\_publisher\_from\_topic@{demangle\_publisher\_from\_topic}!Discovery@{Discovery}}
 \doxysubsubsection{\texorpdfstring{demangle\_publisher\_from\_topic()}{demangle\_publisher\_from\_topic()}}
-{\footnotesize\ttfamily std\+::string Discovery\+::demangle\+\_\+publisher\+\_\+from\+\_\+topic (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{topic\+\_\+name }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespaceDiscovery_abcb975203ff1385fac73e67c3d24359d} 
+std\+::string Discovery\+::demangle\+\_\+publisher\+\_\+from\+\_\+topic (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{topic\+\_\+name}{}\end{DoxyParamCaption})}
 
 
 
@@ -86,11 +88,11 @@ Return the topic name for a given topic if it is part of a publisher, else "{}"{
 \begin{DoxyReturn}{Returns}
 Demangled topic name 
 \end{DoxyReturn}
-\Hypertarget{namespaceDiscovery_a8bc93d05e9496be514abb057f2d0f419}\label{namespaceDiscovery_a8bc93d05e9496be514abb057f2d0f419} 
-\index{Discovery@{Discovery}!demangle\_service\_from\_topic@{demangle\_service\_from\_topic}}
+\Hypertarget{namespaceDiscovery_a8bc93d05e9496be514abb057f2d0f419}\index{Discovery@{Discovery}!demangle\_service\_from\_topic@{demangle\_service\_from\_topic}}
 \index{demangle\_service\_from\_topic@{demangle\_service\_from\_topic}!Discovery@{Discovery}}
 \doxysubsubsection{\texorpdfstring{demangle\_service\_from\_topic()}{demangle\_service\_from\_topic()}}
-{\footnotesize\ttfamily std\+::string Discovery\+::demangle\+\_\+service\+\_\+from\+\_\+topic (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{topic\+\_\+name }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespaceDiscovery_a8bc93d05e9496be514abb057f2d0f419} 
+std\+::string Discovery\+::demangle\+\_\+service\+\_\+from\+\_\+topic (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{topic\+\_\+name}{}\end{DoxyParamCaption})}
 
 
 
@@ -106,11 +108,11 @@ Return the service name for a given topic if it is part of a service, else "{}"{
 \begin{DoxyReturn}{Returns}
 Demangled topic name 
 \end{DoxyReturn}
-\Hypertarget{namespaceDiscovery_ae8f89ce6c4f6ee93ac36aa9f43194456}\label{namespaceDiscovery_ae8f89ce6c4f6ee93ac36aa9f43194456} 
-\index{Discovery@{Discovery}!demangle\_service\_reply\_from\_topic@{demangle\_service\_reply\_from\_topic}}
+\Hypertarget{namespaceDiscovery_ae8f89ce6c4f6ee93ac36aa9f43194456}\index{Discovery@{Discovery}!demangle\_service\_reply\_from\_topic@{demangle\_service\_reply\_from\_topic}}
 \index{demangle\_service\_reply\_from\_topic@{demangle\_service\_reply\_from\_topic}!Discovery@{Discovery}}
 \doxysubsubsection{\texorpdfstring{demangle\_service\_reply\_from\_topic()}{demangle\_service\_reply\_from\_topic()}}
-{\footnotesize\ttfamily std\+::string Discovery\+::demangle\+\_\+service\+\_\+reply\+\_\+from\+\_\+topic (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{topic\+\_\+name }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespaceDiscovery_ae8f89ce6c4f6ee93ac36aa9f43194456} 
+std\+::string Discovery\+::demangle\+\_\+service\+\_\+reply\+\_\+from\+\_\+topic (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{topic\+\_\+name}{}\end{DoxyParamCaption})}
 
 
 
@@ -126,11 +128,11 @@ Return the service name for a given topic if it is part of a service reply, else
 \begin{DoxyReturn}{Returns}
 Demangled topic name 
 \end{DoxyReturn}
-\Hypertarget{namespaceDiscovery_a3c957231110c86458257b65473cedb46}\label{namespaceDiscovery_a3c957231110c86458257b65473cedb46} 
-\index{Discovery@{Discovery}!demangle\_service\_request\_from\_topic@{demangle\_service\_request\_from\_topic}}
+\Hypertarget{namespaceDiscovery_a3c957231110c86458257b65473cedb46}\index{Discovery@{Discovery}!demangle\_service\_request\_from\_topic@{demangle\_service\_request\_from\_topic}}
 \index{demangle\_service\_request\_from\_topic@{demangle\_service\_request\_from\_topic}!Discovery@{Discovery}}
 \doxysubsubsection{\texorpdfstring{demangle\_service\_request\_from\_topic()}{demangle\_service\_request\_from\_topic()}}
-{\footnotesize\ttfamily std\+::string Discovery\+::demangle\+\_\+service\+\_\+request\+\_\+from\+\_\+topic (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{topic\+\_\+name }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespaceDiscovery_a3c957231110c86458257b65473cedb46} 
+std\+::string Discovery\+::demangle\+\_\+service\+\_\+request\+\_\+from\+\_\+topic (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{topic\+\_\+name}{}\end{DoxyParamCaption})}
 
 
 
@@ -146,11 +148,11 @@ Return the service name for a given topic if it is part of a service request, el
 \begin{DoxyReturn}{Returns}
 Demangled topic name 
 \end{DoxyReturn}
-\Hypertarget{namespaceDiscovery_a2faa4dcc655e7a26478325e6d0c6569d}\label{namespaceDiscovery_a2faa4dcc655e7a26478325e6d0c6569d} 
-\index{Discovery@{Discovery}!demangle\_subscriber\_from\_topic@{demangle\_subscriber\_from\_topic}}
+\Hypertarget{namespaceDiscovery_a2faa4dcc655e7a26478325e6d0c6569d}\index{Discovery@{Discovery}!demangle\_subscriber\_from\_topic@{demangle\_subscriber\_from\_topic}}
 \index{demangle\_subscriber\_from\_topic@{demangle\_subscriber\_from\_topic}!Discovery@{Discovery}}
 \doxysubsubsection{\texorpdfstring{demangle\_subscriber\_from\_topic()}{demangle\_subscriber\_from\_topic()}}
-{\footnotesize\ttfamily std\+::string Discovery\+::demangle\+\_\+subscriber\+\_\+from\+\_\+topic (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{topic\+\_\+name }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespaceDiscovery_a2faa4dcc655e7a26478325e6d0c6569d} 
+std\+::string Discovery\+::demangle\+\_\+subscriber\+\_\+from\+\_\+topic (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{topic\+\_\+name}{}\end{DoxyParamCaption})}
 
 
 
@@ -166,11 +168,11 @@ Return the topic name for a given topic if it is part of a subscriber, else "{}"
 \begin{DoxyReturn}{Returns}
 Demangled topic name 
 \end{DoxyReturn}
-\Hypertarget{namespaceDiscovery_a8bb6999dac2a7d02fdc90b200b239e72}\label{namespaceDiscovery_a8bb6999dac2a7d02fdc90b200b239e72} 
-\index{Discovery@{Discovery}!demangle\_topic@{demangle\_topic}}
+\Hypertarget{namespaceDiscovery_a8bb6999dac2a7d02fdc90b200b239e72}\index{Discovery@{Discovery}!demangle\_topic@{demangle\_topic}}
 \index{demangle\_topic@{demangle\_topic}!Discovery@{Discovery}}
 \doxysubsubsection{\texorpdfstring{demangle\_topic()}{demangle\_topic()}}
-{\footnotesize\ttfamily std\+::string Discovery\+::demangle\+\_\+topic (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{topic\+\_\+name }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespaceDiscovery_a8bb6999dac2a7d02fdc90b200b239e72} 
+std\+::string Discovery\+::demangle\+\_\+topic (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{topic\+\_\+name}{}\end{DoxyParamCaption})}
 
 
 
@@ -186,11 +188,11 @@ Return the topic name for a given topic if it is part of one, else "{}"{}.
 \begin{DoxyReturn}{Returns}
 Demangled topic name 
 \end{DoxyReturn}
-\Hypertarget{namespaceDiscovery_afc230e589bc25b82ddb9c6ce6fc997ee}\label{namespaceDiscovery_afc230e589bc25b82ddb9c6ce6fc997ee} 
-\index{Discovery@{Discovery}!discovery\_thread@{discovery\_thread}}
+\Hypertarget{namespaceDiscovery_afc230e589bc25b82ddb9c6ce6fc997ee}\index{Discovery@{Discovery}!discovery\_thread@{discovery\_thread}}
 \index{discovery\_thread@{discovery\_thread}!Discovery@{Discovery}}
 \doxysubsubsection{\texorpdfstring{discovery\_thread()}{discovery\_thread()}}
-{\footnotesize\ttfamily void Discovery\+::discovery\+\_\+thread (\begin{DoxyParamCaption}\item[{rmw\+\_\+context\+\_\+impl\+\_\+t \texorpdfstring{$\ast$}{*}}]{impl }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespaceDiscovery_afc230e589bc25b82ddb9c6ce6fc997ee} 
+void Discovery\+::discovery\+\_\+thread (\begin{DoxyParamCaption}\item[{rmw\+\_\+context\+\_\+impl\+\_\+t \texorpdfstring{$\ast$}{*}}]{impl}{}\end{DoxyParamCaption})}
 
 
 
@@ -203,11 +205,11 @@ This function allows the middleware to receive and process incoming discovery be
 {\em impl} & The middleware comtext implementation \\
 \hline
 \end{DoxyParams}
-\Hypertarget{namespaceDiscovery_a5dc93da666c8a2aec838bf863b293f93}\label{namespaceDiscovery_a5dc93da666c8a2aec838bf863b293f93} 
-\index{Discovery@{Discovery}!discovery\_thread\_start@{discovery\_thread\_start}}
+\Hypertarget{namespaceDiscovery_a5dc93da666c8a2aec838bf863b293f93}\index{Discovery@{Discovery}!discovery\_thread\_start@{discovery\_thread\_start}}
 \index{discovery\_thread\_start@{discovery\_thread\_start}!Discovery@{Discovery}}
 \doxysubsubsection{\texorpdfstring{discovery\_thread\_start()}{discovery\_thread\_start()}}
-{\footnotesize\ttfamily rmw\+\_\+ret\+\_\+t Discovery\+::discovery\+\_\+thread\+\_\+start (\begin{DoxyParamCaption}\item[{rmw\+\_\+context\+\_\+impl\+\_\+t \texorpdfstring{$\ast$}{*}}]{impl }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespaceDiscovery_a5dc93da666c8a2aec838bf863b293f93} 
+rmw\+\_\+ret\+\_\+t Discovery\+::discovery\+\_\+thread\+\_\+start (\begin{DoxyParamCaption}\item[{rmw\+\_\+context\+\_\+impl\+\_\+t \texorpdfstring{$\ast$}{*}}]{impl}{}\end{DoxyParamCaption})}
 
 
 
@@ -223,11 +225,11 @@ This function is called during the initialization of the middleware and starts t
 \begin{DoxyReturn}{Returns}
 Outcome of the operation 
 \end{DoxyReturn}
-\Hypertarget{namespaceDiscovery_ac609e77d08b32d2cec10b82094ff8425}\label{namespaceDiscovery_ac609e77d08b32d2cec10b82094ff8425} 
-\index{Discovery@{Discovery}!discovery\_thread\_stop@{discovery\_thread\_stop}}
+\Hypertarget{namespaceDiscovery_ac609e77d08b32d2cec10b82094ff8425}\index{Discovery@{Discovery}!discovery\_thread\_stop@{discovery\_thread\_stop}}
 \index{discovery\_thread\_stop@{discovery\_thread\_stop}!Discovery@{Discovery}}
 \doxysubsubsection{\texorpdfstring{discovery\_thread\_stop()}{discovery\_thread\_stop()}}
-{\footnotesize\ttfamily rmw\+\_\+ret\+\_\+t Discovery\+::discovery\+\_\+thread\+\_\+stop (\begin{DoxyParamCaption}\item[{rmw\+\_\+context\+\_\+impl\+\_\+t \texorpdfstring{$\ast$}{*}}]{impl }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespaceDiscovery_ac609e77d08b32d2cec10b82094ff8425} 
+rmw\+\_\+ret\+\_\+t Discovery\+::discovery\+\_\+thread\+\_\+stop (\begin{DoxyParamCaption}\item[{rmw\+\_\+context\+\_\+impl\+\_\+t \texorpdfstring{$\ast$}{*}}]{impl}{}\end{DoxyParamCaption})}
 
 
 
@@ -243,11 +245,11 @@ This function is called during the termination of the middleware and stops the d
 \begin{DoxyReturn}{Returns}
 Outcome of the operation 
 \end{DoxyReturn}
-\Hypertarget{namespaceDiscovery_ab6b197ee34095c994e4e3038067b2de4}\label{namespaceDiscovery_ab6b197ee34095c994e4e3038067b2de4} 
-\index{Discovery@{Discovery}!identity\_demangle@{identity\_demangle}}
+\Hypertarget{namespaceDiscovery_ab6b197ee34095c994e4e3038067b2de4}\index{Discovery@{Discovery}!identity\_demangle@{identity\_demangle}}
 \index{identity\_demangle@{identity\_demangle}!Discovery@{Discovery}}
 \doxysubsubsection{\texorpdfstring{identity\_demangle()}{identity\_demangle()}}
-{\footnotesize\ttfamily std\+::string Discovery\+::identity\+\_\+demangle (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespaceDiscovery_ab6b197ee34095c994e4e3038067b2de4} 
+std\+::string Discovery\+::identity\+\_\+demangle (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name}{}\end{DoxyParamCaption})}
 
 
 
@@ -263,11 +265,11 @@ Used when ros names are not mangled.
 \begin{DoxyReturn}{Returns}
 Same topic name 
 \end{DoxyReturn}
-\Hypertarget{namespaceDiscovery_afb3cd88fa21922977a1cbcadd109388e}\label{namespaceDiscovery_afb3cd88fa21922977a1cbcadd109388e} 
-\index{Discovery@{Discovery}!resolve\_prefix@{resolve\_prefix}}
+\Hypertarget{namespaceDiscovery_afb3cd88fa21922977a1cbcadd109388e}\index{Discovery@{Discovery}!resolve\_prefix@{resolve\_prefix}}
 \index{resolve\_prefix@{resolve\_prefix}!Discovery@{Discovery}}
 \doxysubsubsection{\texorpdfstring{resolve\_prefix()}{resolve\_prefix()}}
-{\footnotesize\ttfamily std\+::string Discovery\+::resolve\+\_\+prefix (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{const std\+::string \&}]{prefix }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespaceDiscovery_afb3cd88fa21922977a1cbcadd109388e} 
+std\+::string Discovery\+::resolve\+\_\+prefix (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name}{, }\item[{const std\+::string \&}]{prefix}{}\end{DoxyParamCaption})}
 
 
 
@@ -285,11 +287,11 @@ Returns {\ttfamily name} stripped of {\ttfamily prefix}.
 \begin{DoxyReturn}{Returns}
 Demangled topic name 
 \end{DoxyReturn}
-\Hypertarget{namespaceDiscovery_ab435705870ebef2f12289243d9c9fad6}\label{namespaceDiscovery_ab435705870ebef2f12289243d9c9fad6} 
-\index{Discovery@{Discovery}!send\_discovery\_beacon@{send\_discovery\_beacon}}
+\Hypertarget{namespaceDiscovery_ab435705870ebef2f12289243d9c9fad6}\index{Discovery@{Discovery}!send\_discovery\_beacon@{send\_discovery\_beacon}}
 \index{send\_discovery\_beacon@{send\_discovery\_beacon}!Discovery@{Discovery}}
 \doxysubsubsection{\texorpdfstring{send\_discovery\_beacon()}{send\_discovery\_beacon()}}
-{\footnotesize\ttfamily void Discovery\+::send\+\_\+discovery\+\_\+beacon (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcbor_1_1TxStream}{cbor\+::\+Tx\+Stream}}}]{stream,  }\item[{std\+::string}]{node\+\_\+name,  }\item[{std\+::string}]{node\+\_\+namespace,  }\item[{int}]{entity\+\_\+type,  }\item[{rmw\+\_\+gid\+\_\+t}]{entity\+\_\+gid,  }\item[{std\+::string}]{topic\+\_\+name,  }\item[{std\+::string}]{type\+\_\+name,  }\item[{bool}]{disconnect }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespaceDiscovery_ab435705870ebef2f12289243d9c9fad6} 
+void Discovery\+::send\+\_\+discovery\+\_\+beacon (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcbor_1_1TxStream}{cbor\+::\+Tx\+Stream}}}]{stream}{, }\item[{std\+::string}]{node\+\_\+name}{, }\item[{std\+::string}]{node\+\_\+namespace}{, }\item[{int}]{entity\+\_\+type}{, }\item[{rmw\+\_\+gid\+\_\+t}]{entity\+\_\+gid}{, }\item[{std\+::string}]{topic\+\_\+name}{, }\item[{std\+::string}]{type\+\_\+name}{, }\item[{bool}]{disconnect}{}\end{DoxyParamCaption})}
 
 
 
@@ -316,11 +318,11 @@ This function sends a beacon in the underwater channel containing all the inform
 {\em disconnect} & Flag used to determine if an entity is connecting or disconnecting \\
 \hline
 \end{DoxyParams}
-\Hypertarget{namespaceDiscovery_ae055d476e3f382c263fa2c0aca00e017}\label{namespaceDiscovery_ae055d476e3f382c263fa2c0aca00e017} 
-\index{Discovery@{Discovery}!send\_discovery\_request@{send\_discovery\_request}}
+\Hypertarget{namespaceDiscovery_ae055d476e3f382c263fa2c0aca00e017}\index{Discovery@{Discovery}!send\_discovery\_request@{send\_discovery\_request}}
 \index{send\_discovery\_request@{send\_discovery\_request}!Discovery@{Discovery}}
 \doxysubsubsection{\texorpdfstring{send\_discovery\_request()}{send\_discovery\_request()}}
-{\footnotesize\ttfamily void Discovery\+::send\+\_\+discovery\+\_\+request (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcbor_1_1TxStream}{cbor\+::\+Tx\+Stream}}}]{stream }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespaceDiscovery_ae055d476e3f382c263fa2c0aca00e017} 
+void Discovery\+::send\+\_\+discovery\+\_\+request (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcbor_1_1TxStream}{cbor\+::\+Tx\+Stream}}}]{stream}{}\end{DoxyParamCaption})}
 
 
 

@@ -1,0 +1,113 @@
+\doxysection{Security\+Layer.\+h}
+\hypertarget{SecurityLayer_8h_source}{}\label{SecurityLayer_8h_source}\index{src/desert\_classes/security/SecurityLayer.h@{src/desert\_classes/security/SecurityLayer.h}}
+\mbox{\hyperlink{SecurityLayer_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ Copyright\ (C)\ 2026\ Davide\ Costa\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ This\ file\ is\ part\ of\ RMW\ desert.\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ \ \ RMW\ desert\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify\ it\ \ *}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ \ \ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by\ the\ \ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ \ \ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or\ any\ \ \ \ \ \ *}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ \ \ later\ version.\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ \ \ RMW\ desert\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,\ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ \ \ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of\ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ \ \ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the\ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ \ GNU\ General\ Public\ License\ for\ more\ details.\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ \ \ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License\ \ \ \ \ \ *}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ \ \ along\ with\ RMW\ desert.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.\ \ \ \ *}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ ****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#ifndef\ SECURITY\_LAYER\_H}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ SECURITY\_LAYER\_H}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#include\ <cose\_defines.h>}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#include\ <cose/key.h>}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{AeadParams_8h}{AeadParams.h}}"{}}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ DEFAULT\_MASTER\_SALT\_LEN\ 16}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ COSE\_SERIALIZATION\_MAX\_OVERHEAD\ 12}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ COSE\_INTERNAL\_BUF\_SIZE\ 512}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{keyword}{namespace\ }security}
+\DoxyCodeLine{00054\ \{}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{keyword}{enum}\ SecurityResult}
+\DoxyCodeLine{00057\ \{}
+\DoxyCodeLine{00058\ \ \ OK\ =\ 0,}
+\DoxyCodeLine{00059\ \ \ PARAM\_ERROR\ =\ -\/1,}
+\DoxyCodeLine{00060\ \ \ KEY\_SIZE\_ERROR\ =\ -\/2,}
+\DoxyCodeLine{00061\ \ \ KEY\_ENV\_ERROR\ =\ -\/3,}
+\DoxyCodeLine{00062\ \ \ NONCE\_ENV\_ERROR\ =\ -\/4,}
+\DoxyCodeLine{00063\ \ \ NONCE\_SIZE\_ERROR\ =\ -\/5,}
+\DoxyCodeLine{00064\ \ \ BUFFER\_ERROR\ =\ -\/6,}
+\DoxyCodeLine{00065\ \ \ CONTEXT\_DERIVE\_ERROR\ =\ -\/7,}
+\DoxyCodeLine{00066\ \ \ COMP\_ERROR\ =\ -\/8,}
+\DoxyCodeLine{00067\ \ \ WRAP\_ERROR\ =\ -\/100,}
+\DoxyCodeLine{00068\ \ \ UNWRAP\_ERROR\ =\ -\/200,}
+\DoxyCodeLine{00069\ \ \ INTERNAL\_ERROR\ =\ -\/999}
+\DoxyCodeLine{00070\ \};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsecurity_1_1SecurityLayer_a113f48f0428d906be314d9fe60b13aaa}{SecurityLayer}}}
+\DoxyCodeLine{00073\ \{}
+\DoxyCodeLine{00074\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00081\ \ \ \ \ \mbox{\hyperlink{classsecurity_1_1SecurityLayer_a113f48f0428d906be314d9fe60b13aaa}{SecurityLayer}}();}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00096\ \ \ \ \ \mbox{\hyperlink{classsecurity_1_1SecurityLayer_a113f48f0428d906be314d9fe60b13aaa}{SecurityLayer}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsecurity_1_1AeadParams}{AeadParams}}\ \&aead\_params,\ KdfAlgorithms\ kdf,\ \textcolor{keyword}{const}\ std::vector<uint8\_t>\ \&master\_key,}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<uint8\_t>\ \&master\_salt,\ \textcolor{keywordtype}{size\_t}\ piv\_size,\ \textcolor{keywordtype}{size\_t}\ sender\_seq\_number,}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<uint8\_t>\ \&sender\_id,\ \textcolor{keyword}{const}\ std::vector<uint8\_t>\ \&receiver\_id);}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00119\ \ \ \ \ SecurityResult\ \mbox{\hyperlink{classsecurity_1_1SecurityLayer_a558020dbde90e4489b35e6639e8aff8b}{wrap}}(uint8\_t*\ data,\ \textcolor{keywordtype}{size\_t}\ data\_len,\ \textcolor{keywordtype}{size\_t}\ data\_max\_len,\ uint8\_t**\ cose\_ptr,\ \textcolor{keywordtype}{size\_t}*\ cose\_len);}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00136\ \ \ \ \ SecurityResult\ \mbox{\hyperlink{classsecurity_1_1SecurityLayer_a59a9b60c731fe2cbc793930aa98355af}{unwrap}}(uint8\_t*\ data,\ \textcolor{keywordtype}{size\_t}\ data\_len,\ \textcolor{keywordtype}{size\_t}\ data\_max\_len,\ \textcolor{keywordtype}{size\_t}*\ new\_data\_len);}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00139\ \ \ \ \ SecurityResult\ get\_master\_key\_env(std::vector<uint8\_t>\&\ master\_key)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00140\ \ \ \ \ SecurityResult\ generate\_nonce();}
+\DoxyCodeLine{00141\ \ \ \ \ SecurityResult\ build\_kdf\_info(\textcolor{keyword}{const}\ std::vector<uint8\_t>\&\ \textcolor{keywordtype}{id},\ cose\_algo\_t\ alg,\ \textcolor{keyword}{const}\ std::string\&\ type,\ \textcolor{keywordtype}{size\_t}\ len,\ uint8\_t**\ out,\ \textcolor{keywordtype}{size\_t}*\ out\_len);}
+\DoxyCodeLine{00142\ \ \ \ \ SecurityResult\ derive\_key(\textcolor{keyword}{const}\ std::vector<uint8\_t>\&\ ikm,\ \textcolor{keyword}{const}\ std::vector<uint8\_t>\&\ salt,\ \textcolor{keyword}{const}\ std::vector<uint8\_t>\&\ \textcolor{keywordtype}{id},\ cose\_algo\_t\ algo,\ std::vector<uint8\_t>\&\ key\_out,\ cose\_key\_t*\ cose\_k\_out);}
+\DoxyCodeLine{00143\ \ \ \ \ SecurityResult\ derive\_iv(\textcolor{keyword}{const}\ std::vector<uint8\_t>\&\ ikm,\ \textcolor{keyword}{const}\ std::vector<uint8\_t>\&\ salt,\ cose\_algo\_t\ alg,\ std::vector<uint8\_t>\&\ iv\_out);}
+\DoxyCodeLine{00144\ \ \ \ \ SecurityResult\ derive\_context(\textcolor{keyword}{const}\ std::vector<uint8\_t>\&\ master\_key,\ \textcolor{keyword}{const}\ std::vector<uint8\_t>\&\ master\_salt);}
+\DoxyCodeLine{00145\ \ \ \ \ SecurityResult\ cose\_stateless\_compress(uint8\_t*\ cose,\ \textcolor{keywordtype}{size\_t}\ cose\_len,\ uint8\_t**\ out,\ \textcolor{keywordtype}{size\_t}*\ out\_len)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00146\ \ \ \ \ SecurityResult\ cose\_stateless\_decompress(uint8\_t*\ data,\ \textcolor{keywordtype}{size\_t}\ data\_len,\ \textcolor{keywordtype}{size\_t}\ data\_max\_len,\ \textcolor{keywordtype}{size\_t}*\ out\_len)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{comment}{/*\ Algorithms\ to\ use\ */}}
+\DoxyCodeLine{00149\ \ \ \ \ \mbox{\hyperlink{classsecurity_1_1AeadParams}{AeadParams}}\ aead\_params\_;}
+\DoxyCodeLine{00150\ \ \ \ \ KdfAlgorithms\ kdf\_;}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{comment}{/*\ *****************\ */}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{comment}{/*\ Nonce-\/related\ fields\ */}}
+\DoxyCodeLine{00154\ \ \ \ \ std::vector<uint8\_t>\ context\_iv\_\{\};}
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ piv\_size\_;}
+\DoxyCodeLine{00156\ \ \ \ \ std::vector<uint8\_t>\ piv\_bytes\_\{\};}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ sender\_seq\_number\_;}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{comment}{/*\ ********************\ */}}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{comment}{/*\ Key-\/related\ fields\ */}}
+\DoxyCodeLine{00161\ \ \ \ \ std::vector<uint8\_t>\ sender\_id\_\{\};}
+\DoxyCodeLine{00162\ \ \ \ \ std::vector<uint8\_t>\ sender\_key\_bytes\_\{\};}
+\DoxyCodeLine{00163\ \ \ \ \ cose\_key\_t\ sender\_cose\_key\_\{\};}
+\DoxyCodeLine{00164\ \ \ \ \ std::vector<uint8\_t>\ receiver\_id\_\{\};}
+\DoxyCodeLine{00165\ \ \ \ \ std::vector<uint8\_t>\ receiver\_key\_bytes\_\{\};}
+\DoxyCodeLine{00166\ \ \ \ \ cose\_key\_t\ receiver\_cose\_key\_\{\};}
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{comment}{/*\ ******************\ */}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \ \ \ \ uint8\_t\ internal\_buf\_[COSE\_INTERNAL\_BUF\_SIZE]\{\};}
+\DoxyCodeLine{00170\ \};}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \}\ \ \textcolor{comment}{//\ namespace\ security}}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
