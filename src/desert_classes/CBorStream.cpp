@@ -177,12 +177,70 @@ void TxStream::handle_overrun(cbor_error_t result)
 
 std::string TxStream::toUTF8(const std::u16string source)
 {
-    std::string result;
+  std::string result;
+  result.reserve(source.size());
 
-    std::wstring_convert<std::codecvt_utf8_utf16<char16_t>, char16_t> convertor;
-    result = convertor.to_bytes(source);
+  const auto appendByte = [&result](std::uint32_t byte) {
+    result.push_back(static_cast<char>(byte));
+  };
 
-    return result;
+  for (std::size_t i = 0; i < source.size(); ++i)
+  {
+    std::uint32_t cp = source[i];
+
+    if (cp >= 0xD800 && cp <= 0xDBFF)
+    {
+      // UTF-16: incomplete surrogate pair
+      if (i + 1 == source.size())
+      {
+        return "";
+      }
+
+      const std::uint32_t low = source[i + 1];
+
+      // UTF-16: invalid surrogate pair
+      if (low < 0xDC00 || low > 0xDFFF)
+      {
+        return "";
+      }
+
+      cp = 0x10000
+      + ((cp - 0xD800) << 10)
+      + (low - 0xDC00);
+
+      ++i;
+    }
+    // UTF-16: isolated low surrogate
+    else if (cp >= 0xDC00 && cp <= 0xDFFF)
+    {
+      return "";
+    }
+
+    if (cp <= 0x7F)
+    {
+      appendByte(cp);
+    }
+    else if (cp <= 0x7FF)
+    {
+      appendByte(0xC0 | (cp >> 6));
+      appendByte(0x80 | (cp & 0x3F));
+    }
+    else if (cp <= 0xFFFF)
+    {
+      appendByte(0xE0 | (cp >> 12));
+      appendByte(0x80 | ((cp >> 6) & 0x3F));
+      appendByte(0x80 | (cp & 0x3F));
+    }
+    else
+    {
+      appendByte(0xF0 | (cp >> 18));
+      appendByte(0x80 | ((cp >> 12) & 0x3F));
+      appendByte(0x80 | ((cp >> 6) & 0x3F));
+      appendByte(0x80 | (cp & 0x3F));
+    }
+  }
+
+  return result;
 }
 
 
@@ -520,12 +578,88 @@ std::pair<void *, int> RxStream::interpret_field(cbor_item_t * items, size_t i, 
 
 std::u16string RxStream::toUTF16(const std::string source)
 {
-    std::u16string result;
+  std::u16string result;
+  result.reserve(source.size());
 
-    std::wstring_convert<std::codecvt_utf8_utf16<char16_t>, char16_t> convertor;
-    result = convertor.from_bytes(source);
+  std::size_t i = 0;
 
-    return result;
+  while (i < source.size())
+  {
+    const auto first = static_cast<unsigned char>(source[i++]);
+
+    std::uint32_t cp;
+    std::uint32_t minimum;
+    std::size_t continuationCount;
+
+    if (first <= 0x7F)
+    {
+      cp = first;
+      minimum = 0;
+      continuationCount = 0;
+    }
+    else if (first >= 0xC2 && first <= 0xDF)
+    {
+      cp = first & 0x1F;
+      minimum = 0x80;
+      continuationCount = 1;
+    }
+    else if (first >= 0xE0 && first <= 0xEF)
+    {
+      cp = first & 0x0F;
+      minimum = 0x800;
+      continuationCount = 2;
+    }
+    else if (first >= 0xF0 && first <= 0xF4)
+    {
+      cp = first & 0x07;
+      minimum = 0x10000;
+      continuationCount = 3;
+    }
+    // UTF-8: invalid leading byte
+    else
+    {
+      return u"";
+    }
+
+    // UTF-8: incomplete sequence
+    if (source.size() - i < continuationCount)
+    {
+      return u"";
+    }
+
+    for (std::size_t j = 0; j < continuationCount; ++j)
+    {
+      const auto byte = static_cast<unsigned char>(source[i++]);
+
+      // UTF-8: invalid continuation byte
+      if ((byte & 0xC0) != 0x80)
+      {
+        return u"";
+      }
+
+      cp = (cp << 6) | (byte & 0x3F);
+    }
+
+    // UTF-8: invalid code point
+    if (cp < minimum || cp > 0x10FFFF || (cp >= 0xD800 && cp <= 0xDFFF))
+    {
+      return u"";
+    }
+
+    if (cp <= 0xFFFF)
+    {
+      result.push_back(static_cast<char16_t>(cp));
+    }
+    else
+    {
+      cp -= 0x10000;
+
+      result.push_back(static_cast<char16_t>(0xD800 + (cp >> 10)));
+      result.push_back(static_cast<char16_t>(0xDC00 + (cp & 0x3FF)));
+    }
+  }
+
+  return result;
 }
 
 }

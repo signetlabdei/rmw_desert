@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.10)
 
 project(rmw_desert)
 
@@ -75,6 +75,17 @@ target_link_libraries(rmw_desert PUBLIC
 )
 
 configure_rmw_library(rmw_desert)
+
+# Fix for -fvisibility-inlines-hidden
+if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+  set_target_properties(rmw_desert PROPERTIES
+    COMPILE_FLAGS "-fvisibility=hidden"
+  )
+
+  target_compile_options(rmw_desert PRIVATE
+    "$<$<COMPILE_LANGUAGE:CXX>:-fvisibility-inlines-hidden>"
+  )
+endif()
 
 # Causes the visibility macros to use dllexport rather than dllimport,
 # which is appropriate when building the dll but not consuming it.
