@@ -2,9 +2,7 @@
 
 #include <nanocbor/nanocbor.h>
 
-#ifdef SECURE_MODE_ENABLED
 #include "security/SecurityLayer.h"
-#endif
 
 namespace cbor
 {

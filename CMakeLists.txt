@@ -82,10 +82,7 @@ endif ()
 
 target_include_directories(rmw_desert PRIVATE ${CBOR_INC_DIR})
 
-if (SECURE_MODE_ENABLED)
-  if (NOT ${CBOR_LIB} STREQUAL "NanoCBOR")
-    message(FATAL_ERROR "Secure mode requires NanoCBOR lib.")
-  endif ()
+if (${CBOR_LIB} STREQUAL "NanoCBOR")
 
   add_compile_options(-fPIC)
 
@@ -138,16 +135,9 @@ if (SECURE_MODE_ENABLED)
     src/desert_classes/security/SecurityLayer.cpp
   )
   target_include_directories(rmw_desert PRIVATE ${COSE_INC_DIR})
-  target_compile_definitions(rmw_desert PRIVATE SECURE_MODE_ENABLED)
   target_compile_definitions(rmw_desert PRIVATE
-          AEAD_ALGO="${AEAD_ALGO}"
           KDF_ALGO="${KDF_ALGO}"
-          PIV_LEN=${PIV_LEN}
-          SENDER_ID="${SENDER_ID}"
-          RECEIVER_ID="${RECEIVER_ID}")
-  if (COSE_STATELESS_COMP_ENABLED)
-    target_compile_definitions(rmw_desert PRIVATE COSE_STATELESS_COMP_ENABLED)
-  endif ()
+          PIV_LEN=${PIV_LEN})
 endif ()
 
 INCLUDE (FindPkgConfig)
