@@ -21,7 +21,7 @@
  * @file DesertNode.h
  * @brief Implementation of the Node structure for DESERT
  * 
- * The DesertNode class is used to keep track af all the entities created by a specific node. 
+ * DesertNode is used to keep track af all the entities created by a specific node.
  * Each of them is stored in a vector of pointers to the original memory locations mainly 
  * used to provide discovery functionalities.
  *

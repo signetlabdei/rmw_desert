@@ -21,7 +21,7 @@
  * @file DesertService.h
  * @brief Implementation of the Service structure for DESERT
  * 
- * The DesertService class is used to create instances of the various services 
+ * DesertService is used to create instances of the various services
  * registered by ROS. Each of them contains the informations needed to decode 
  * the data structure of the messages in the stream and allows to send and 
  * receive data through specific public functions.
