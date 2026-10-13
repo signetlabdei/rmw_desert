@@ -21,7 +21,7 @@
  * @file DesertGuardCondition.h
  * @brief Implementation of the GuardCondition structure for DESERT
  * 
- * The DesertGuardCondition class is used to handle trigger signals sent from rclcpp 
+ * DesertGuardCondition is used to handle trigger signals sent from rclcpp
  * in order to break rcl_wait, usually when dealing with multithreading executors.
  *
  * @author Prof. Davide Costa

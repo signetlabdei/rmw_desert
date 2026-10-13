@@ -21,7 +21,7 @@
  * @file DesertPublisher.h
  * @brief Implementation of the Publisher structure for DESERT
  * 
- * The DesertPublisher class is used to create instances of the various publishers 
+ * DesertPublisher is used to create instances of the various publishers
  * registered by ROS. Each of them contains the informations needed to encode the 
  * data structure of the messages in the topic and send them to the stream through 
  * specific public functions.
