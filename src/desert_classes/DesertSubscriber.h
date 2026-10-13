@@ -21,7 +21,7 @@
  * @file DesertSubscriber.h
  * @brief Implementation of the Subscriber structure for DESERT
  * 
- * The DesertSubscriber class is used to create instances of the various subscribers 
+ * DesertSubscriber is used to create instances of the various subscribers
  * registered by ROS. Each of them contains the informations needed to decode the 
  * data structure of the messages in the topic through specific public functions.
  *

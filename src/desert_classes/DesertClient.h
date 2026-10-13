@@ -21,7 +21,7 @@
  * @file DesertClient.h
  * @brief Implementation of the Client structure for DESERT
  * 
- * The DesertClient class is used to create instances of the various clients 
+ * DesertClient is used to create instances of the various clients
  * registered by ROS. Each of them contains the informations needed to decode 
  * the data structure of the messages in the service and allows to send and 
  * receive data through specific public functions.
