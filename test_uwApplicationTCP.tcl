@@ -30,7 +30,6 @@
 # Flags to enable or disable options #
 ######################################
 set opt(trace_files)        1
-set opt(bash_parameters)    0
 
 #####################
 # Library Loading   #
@@ -82,37 +81,11 @@ set opt(pktsize)            125
 set opt(cbr_period)         0.2
 set opt(socket_comm)        1
 
-if {$opt(bash_parameters)} {
-    if {$argc != 4} {
-        puts "ERROR!!!!!!"
-		  puts "The script requires four inputs:"
-        puts "---> The DATA packet size (byte)"
-        puts "---> Period to generate DATA packets (s)"
-        puts "---> socket_comm"
-        puts "---> Random generator substream"
-        puts "For example: ns test_uwApplication.tcl 125 60 0 13"
-        puts "Please try again."
-        return
-    } else {
-        if {[lindex $argv 0] > 4096} {
-			puts "ERROR!!!!!!"
-			puts "The payload size is too high. It must be less then 4096 charachters."
-			puts "Please try again."
-			return
-		  } else {
-        		set opt(pktsize)       [lindex $argv 0]
-        		set opt(cbr_period)    [lindex $argv 1]
-			    set opt(socket_comm)   [lindex $argv 2]
-                set opt(rngstream)     [lindex $argv 3]
-		  }
-    }
-} 
 
 global defaultRNG
 for {set k 0} {$k < $opt(rngstream)} {incr k} {
     $defaultRNG next-substream
 }
-
 
 if {$opt(trace_files)} {
     set opt(tracefilename) "./test_uwApplicationTCP.tr"
@@ -145,7 +118,7 @@ Module/UW/APPLICATION set debug_             2
 Module/UW/APPLICATION set period_            $opt(cbr_period)
 Module/UW/APPLICATION set PoissonTraffic_    0
 Module/UW/APPLICATION set Payload_size_      $opt(pktsize)
-Module/UW/APPLICATION set drop_out_of_order_ 1
+Module/UW/APPLICATION set drop_out_of_order_ 0
 Module/UW/APPLICATION set EXP_ID_            1
 
 # Physical
@@ -276,7 +249,7 @@ proc createSink { } {
         }    
     }
     
-    $ipif_sink addr 254
+    $ipif_sink addr 6
 
     set position_sink [new "Position/BM"]
     $node_sink addPosition $position_sink
@@ -389,14 +362,14 @@ proc finish {} {
     set sum_per                0
     set sum_cbr_sent_pkts      0.0
     set sum_cbr_rcv_pkts       0.0    
-    set sum_cbr_queue_pkts		 0.0
+    set sum_cbr_queue_pkts     0.0
 
     for {set i 0} {$i < $opt(nn)} {incr i}  {
         set cbr_throughput [$app_sink($i) getthr]
         set cbr_sent_pkts [$app($i) getsentpkts]
         
         set cbr_rcv_pkts [$app_sink($i) getrecvpkts]
-        if { $opt(socket_comm) == 1 } {	
+        if { $opt(socket_comm) == 1 } {
             set cbr_queue_pkts [$app($i) getrecvpktsqueue]
         }
         set sum_cbr_throughput [expr $sum_cbr_throughput + $cbr_throughput]
