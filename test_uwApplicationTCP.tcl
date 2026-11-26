@@ -54,9 +54,6 @@ load libuwphysical.so
 set ns [new Simulator]
 $ns use-Miracle
 
-#Declare the use of a Real Time Schedule (necessary for the interfacing with real hardware)
-$ns use-scheduler RealTime
-
 ##################
 # Tcl variables  #
 ##################
@@ -99,9 +96,54 @@ if {$opt(trace_files)} {
     set opt(cltracefile) [open $opt(cltracefilename) w]
 }
 
-MPropagation/Underwater set debug_              1
-MPropagation/Underwater set windspeed_          10
-MPropagation/Underwater set shipping_           0
+#########################
+# Module Configuration  #
+#########################
+# Application
+Module/UW/APPLICATION set debug_                  0
+Module/UW/APPLICATION set period_                 $opt(cbr_period)
+Module/UW/APPLICATION set PoissonTraffic_         0
+Module/UW/APPLICATION set Payload_size_           $opt(pktsize)
+Module/UW/APPLICATION set drop_out_of_order_      1
+Module/UW/APPLICATION set EXP_ID_                 1
+Module/UW/APPLICATION set destAddr_               0
+Module/UW/APPLICATION set destPort_               0
+
+# Physical
+Module/UW/PHYSICAL  set BitRate_                  $opt(bitrate)
+Module/UW/PHYSICAL  set AcquisitionThreshold_dB_  4.0
+Module/UW/PHYSICAL  set RxSnrPenalty_dB_          0
+Module/UW/PHYSICAL  set TxSPLMargin_dB_           0
+Module/UW/PHYSICAL  set TxPower_                  0
+Module/UW/PHYSICAL  set MaxTxSPL_dB_              $opt(txpower)
+Module/UW/PHYSICAL  set MinTxSPL_dB_              10
+Module/UW/PHYSICAL  set MaxTxRange_               200
+Module/UW/PHYSICAL  set PER_target_               0
+Module/UW/PHYSICAL  set CentralFreqOptimization_  0
+Module/UW/PHYSICAL  set BandwidthOptimization_    0
+Module/UW/PHYSICAL  set SPLOptimization_          0
+Module/UW/PHYSICAL  set ConsumedEnergy_           0
+Module/UW/PHYSICAL  set NoiseSPD_                 0
+Module/UW/PHYSICAL  set debug_                    0
+
+# Interference
+Module/UW/INTERFERENCE set debug_                 0
+Module/UW/INTERFERENCE set use_maxinterval_       1
+Module/UW/INTERFERENCE set maxinterval_           $opt(maxinterval_)
+
+# Propagation
+MPropagation/Underwater set debug_                1
+MPropagation/Underwater set windspeed_            10
+MPropagation/Underwater set shipping_             0
+
+# Channel
+Module/UnderwaterChannel set propSpeed_           $opt(propagation_speed)
+
+# Scheduler
+Scheduler/RealTime set maxinterval_               0
+Scheduler/RealTime set slop_warning               0
+Scheduler/RealTime set min_bin_width_             0
+Scheduler/RealTime set adjust_new_width_interval_ 0
 
 set channel [new Module/UnderwaterChannel]
 set propagation [new MPropagation/Underwater]
@@ -110,30 +152,8 @@ $data_mask setFreq              $opt(freq)
 $data_mask setBandwidth         $opt(bw)
 $data_mask setPropagationSpeed  $opt(propagation_speed)
 
-#########################
-# Module Configuration  #
-#########################
-#UW/APPLICATION
-Module/UW/APPLICATION set debug_             2
-Module/UW/APPLICATION set period_            $opt(cbr_period)
-Module/UW/APPLICATION set PoissonTraffic_    0
-Module/UW/APPLICATION set Payload_size_      $opt(pktsize)
-Module/UW/APPLICATION set drop_out_of_order_ 0
-Module/UW/APPLICATION set EXP_ID_            1
-
-# Physical
-Module/UW/PHYSICAL  set BitRate_                    $opt(bitrate)
-Module/UW/PHYSICAL  set AcquisitionThreshold_dB_    4.0 
-Module/UW/PHYSICAL  set RxSnrPenalty_dB_            0
-Module/UW/PHYSICAL  set TxSPLMargin_dB_             0
-Module/UW/PHYSICAL  set MaxTxSPL_dB_                $opt(txpower)
-Module/UW/PHYSICAL  set MinTxSPL_dB_                10
-Module/UW/PHYSICAL  set MaxTxRange_                 200
-Module/UW/PHYSICAL  set PER_target_                 0    
-Module/UW/PHYSICAL  set CentralFreqOptimization_    0
-Module/UW/PHYSICAL  set BandwidthOptimization_      0
-Module/UW/PHYSICAL  set SPLOptimization_            0
-Module/UW/PHYSICAL  set debug_                      0
+#Declare the use of a Real Time Schedule (necessary for the interfacing with real hardware)
+$ns use-scheduler RealTime
 
 ################################
 # Procedure(s) to create nodes #
