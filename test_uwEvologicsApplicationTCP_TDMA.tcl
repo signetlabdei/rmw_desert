@@ -26,11 +26,6 @@
 #   |                                     UnderwaterChannel                                  |
 #   +----------------------------------------------------------------------------------------+
 
-######################################
-# Flags to enable or disable options #
-######################################
-set opt(bash_parameters)    0
-
 #####################
 # Library Loading   #
 #####################
@@ -62,9 +57,6 @@ load libuwtdma.so
 set ns [new Simulator]
 $ns use-Miracle
 
-#Declare the use of a Real Time Schedule (necessary for the interfacing with real hardware)
-$ns use-scheduler RealTime
-
 ##################
 # Tcl variables  #
 ##################
@@ -79,32 +71,6 @@ set opt(rngstream)          1
 set opt(pktsize)            64
 set opt(cbr_period)         0.5
 set opt(socket_comm)        1
-
-if {$opt(bash_parameters)} {
-    if {$argc != 4} {
-        puts "ERROR!!!!!!"
-	puts "The script requires four inputs:"
-        puts "---> The DATA packet size (byte)"
-        puts "---> Period to generate DATA packets (s)"
-        puts "---> socket_comm"
-        puts "---> Random generator substream"
-        puts "For example: ns test_uwApplication.tcl 125 60 0 13"
-        puts "Please try again."
-        return
-    } else {
-        if {[lindex $argv 0] > 4096} {
-		puts "ERROR!!!!!!"
-		puts "The payload size is too high. It must be less then 4096 charachters."
-		puts "Please try again."
-		return
-	} else {
-		set opt(pktsize)       [lindex $argv 0]
-		set opt(cbr_period)    [lindex $argv 1]
-		set opt(socket_comm)   [lindex $argv 2]
-		set opt(rngstream)     [lindex $argv 3]
-	}
-    }
-} 
 
 global defaultRNG
 for {set k 0} {$k < $opt(rngstream)} {incr k} {
@@ -126,80 +92,94 @@ set address_sink    "10.42.9.2:9200"
 #########################
 # Module Configuration  #
 #########################
+# Application
+Module/UW/APPLICATION set debug_                        0
+Module/UW/APPLICATION set period_                       $opt(cbr_period)
+Module/UW/APPLICATION set PoissonTraffic_               0
+Module/UW/APPLICATION set Payload_size_                 $opt(pktsize)
+Module/UW/APPLICATION set drop_out_of_order_            0
+Module/UW/APPLICATION set EXP_ID_                       1
+Module/UW/APPLICATION set destAddr_                     0
+Module/UW/APPLICATION set destPort_                     0
 
-# variables for the TDMA module
-Module/UW/TDMA set frame_duration   1
-Module/UW/TDMA set debug_           10
-Module/UW/TDMA set sea_trial_       1
-Module/UW/TDMA set fair_mode        1 
-Module/UW/TDMA set guard_time       0.3
-Module/UW/TDMA set tot_slots        [expr $opt(nn) + 1]
-Module/UW/TDMA set queue_size_      100
+# TDMA
+Module/UW/TDMA set frame_duration                       1
+Module/UW/TDMA set debug_                               10
+Module/UW/TDMA set sea_trial_                           1
+Module/UW/TDMA set fair_mode                            1
+Module/UW/TDMA set guard_time                           0.3
+Module/UW/TDMA set tot_slots                            [expr $opt(nn) + 1]
+Module/UW/TDMA set queue_size_                          100
 
-# variables for the AL module
-Module/UW/AL set Dbit 1
-Module/UW/AL set PSDU 64
-Module/UW/AL set debug_ 1
-Module/UW/AL set interframe_period  0.e1
-Module/UW/AL set frame_set_validity 0
+# Packer(s)
+NS2/COMMON/Packer set PTYPE_Bits                        8
+NS2/COMMON/Packer set SIZE_Bits                         8
+NS2/COMMON/Packer set UID_Bits                          8
+NS2/COMMON/Packer set ERROR_Bits                        0
+NS2/COMMON/Packer set TIMESTAMP_Bits                    8
+NS2/COMMON/Packer set PREV_HOP_Bits                     8
+NS2/COMMON/Packer set NEXT_HOP_Bits                     8
+NS2/COMMON/Packer set ADDR_TYPE_Bits                    0
+NS2/COMMON/Packer set LAST_HOP_Bits                     0
+NS2/COMMON/Packer set TXTIME_Bits                       0
+NS2/COMMON/Packer set debug_                            0
 
-# variables for the packer(s)
-UW/AL/Packer set SRC_ID_Bits 8
-UW/AL/Packer set PKT_ID_Bits 8
-UW/AL/Packer set FRAME_OFFSET_Bits 15
-UW/AL/Packer set M_BIT_Bits 1
-UW/AL/Packer set DUMMY_CONTENT_Bits 0
-UW/AL/Packer set debug_ 1
+UW/AL/Packer set SRC_ID_Bits                            8
+UW/AL/Packer set PKT_ID_Bits                            8
+UW/AL/Packer set FRAME_OFFSET_Bits                      15
+UW/AL/Packer set M_BIT_Bits                             1
+UW/AL/Packer set DUMMY_CONTENT_Bits                     0
+UW/AL/Packer set debug_                                 1
 
-NS2/COMMON/Packer set PTYPE_Bits 8
-NS2/COMMON/Packer set SIZE_Bits 8
-NS2/COMMON/Packer set UID_Bits 8
-NS2/COMMON/Packer set ERROR_Bits 0
-NS2/COMMON/Packer set TIMESTAMP_Bits 8
-NS2/COMMON/Packer set PREV_HOP_Bits 8
-NS2/COMMON/Packer set NEXT_HOP_Bits 8
-NS2/COMMON/Packer set ADRR_TYPE_Bits 0
-NS2/COMMON/Packer set LAST_HOP_Bits 0
-NS2/COMMON/Packer set TXTIME_Bits 0
-NS2/COMMON/Packer set debug_ 0
+UW/IP/Packer set SAddr_Bits                             8
+UW/IP/Packer set DAddr_Bits                             8
+UW/IP/Packer set debug_                                 0
 
-UW/IP/Packer set SAddr_Bits 8
-UW/IP/Packer set DAddr_Bits 8
-UW/IP/Packer set debug_ 0
+NS2/MAC/Packer set Ftype_Bits                           0
+NS2/MAC/Packer set SRC_Bits                             8
+NS2/MAC/Packer set DST_Bits                             8
+NS2/MAC/Packer set Htype_Bits                           0
+NS2/MAC/Packer set TXtime_Bits                          0
+NS2/MAC/Packer set SStime_Bits                          0
+NS2/MAC/Packer set Padding_Bits                         0
+NS2/MAC/Packer set debug_                               1
 
-NS2/MAC/Packer set Ftype_Bits 0
-NS2/MAC/Packer set SRC_Bits 8
-NS2/MAC/Packer set DST_Bits 8
-NS2/MAC/Packer set Htype_Bits 0
-NS2/MAC/Packer set TXtime_Bits 0
-NS2/MAC/Packer set SStime_Bits 0
-NS2/MAC/Packer set Padding_Bits 0
-NS2/MAC/Packer set debug_ 1
+UW/UDP/Packer set SPort_Bits                            2
+UW/UDP/Packer set DPort_Bits                            2
+UW/UDP/Packer set debug_                                0
 
-UW/UDP/Packer set SPort_Bits 2
-UW/UDP/Packer set DPort_Bits 2
-UW/UDP/Packer set debug_ 0
+UW/APP/uwApplication/Packer set SN_FIELD_               6
+UW/APP/uwApplication/Packer set RFFT_FIELD_             5
+UW/APP/uwApplication/Packer set RFFTVALID_FIELD_        2
+UW/APP/uwApplication/Packer set PRIORITY_FIELD_         2
+UW/APP/uwApplication/Packer set PAYLOADMSG_FIELD_SIZE_  8
+UW/APP/uwApplication/Packer set debug_                  10
 
-UW/APP/uwApplication/Packer set SN_FIELD_ 6
-UW/APP/uwApplication/Packer set RFFT_FIELD_ 5
-UW/APP/uwApplication/Packer set RFFTVALID_FIELD_ 2
-UW/APP/uwApplication/Packer set PRIORITY_FIELD_ 2
-UW/APP/uwApplication/Packer set PAYLOADMSG_FIELD_SIZE_ 8
-UW/APP/uwApplication/Packer set debug_ 10
+# Adaptation layer
+Module/UW/AL set Dbit                                   1
+Module/UW/AL set PSDU                                   64
+Module/UW/AL set debug_                                 1
+Module/UW/AL set force_endTx                            0
+Module/UW/AL set interframe_period                      0.e1
+Module/UW/AL set frame_set_validity                     0
 
-Module/UW/APPLICATION set debug_ -1
-Module/UW/APPLICATION set period_ $opt(cbr_period)
-Module/UW/APPLICATION set PoissonTraffic_ 0
-Module/UW/APPLICATION set Payload_size_ $opt(pktsize)
-Module/UW/APPLICATION set drop_out_of_order_ 1
-Module/UW/APPLICATION set EXP_ID_ 1
+# EvoLogics S2C
+Module/UW/UwModem/EvoLogicsS2C set ID_                  0
+Module/UW/UwModem/EvoLogicsS2C set debug_               1
+Module/UW/UwModem/EvoLogicsS2C set buffer_size          4096
+Module/UW/UwModem/EvoLogicsS2C set max_read_size        4096
+Module/UW/UwModem/EvoLogicsS2C set max_n_tx_poll        50
+Module/UW/UwModem/EvoLogicsS2C set max_n_status_queries 0
+Module/UW/UwModem/EvoLogicsS2C set period_              0.1
 
-# variables for the S2C modem's interface
-Module/UW/UwModem/EvoLogicsS2C set debug_         1
-Module/UW/UwModem/EvoLogicsS2C set buffer_size    4096
-Module/UW/UwModem/EvoLogicsS2C set max_read_size  4096
-Module/UW/UwModem/EvoLogicsS2C set max_n_tx_poll  50
-Module/UW/UwModem/EvoLogicsS2C set period_        0.1
+# Scheduler
+Scheduler/RealTime set maxinterval_                     0
+Scheduler/RealTime set slop_warning                     0
+Scheduler/RealTime set min_bin_width_                   0
+Scheduler/RealTime set adjust_new_width_interval_       0
+
+#Declare the use of a Real Time Schedule (necessary for the interfacing with real hardware)
+$ns use-scheduler RealTime
 
 ################################
 # Procedure(s) to create nodes #
